@@ -1,7 +1,7 @@
 version: '2'
 services:
-  service-tcf2excel:
-    image: weblicht/service-tcf2excel
+  service-lapps-converter:
+    image: weblicht/service-lapps-converter
     labels:
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label: power=strong
