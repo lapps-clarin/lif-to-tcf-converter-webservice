@@ -10,7 +10,6 @@ It can be deployed using Maven 2.0.10 or greater with Java 6.0 or greater.
 This demo application exposes the converter service.
 
 Lif file to Tcf file converter:
-* /con/bytes
 * /con/stream
 
 
