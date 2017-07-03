@@ -1,7 +1,0 @@
-BASEDIR=/var/lib/service-lapps-converter
-LOGDIR=/var/log/service-lapps-converter
-HEAPSIZE=1024m
-CONFFILE=/etc/clarind/service-lapps-converter.yaml
-SERVICEJARFILE=/usr/share/service-lapps-converter/service-lapps-converter.jar
-CONTEXTPATH=/service-lapps-converter
-export LOGDIR CONTEXTPATH BASEDIR HEAPSIZE CONFFILE SERVICEJARFILE

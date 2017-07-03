@@ -1,8 +1,0 @@
-weblicht/TEST/DummyMainTest.class
-weblicht/format_converter/datamodel/create_input/ConstParseInputCreation.class
-weblicht/format_converter/datamodel/create_input/DependencyParseInputCreation.class
-weblicht/format_converter/datamodel/DataModelTcfTest.class
-weblicht/format_converter/datamodel/create_input/NameEntityInputCreation.class
-weblicht/format_converter/datamodel/create_input/SenetenceInputCreation.class
-weblicht/format_converter/datamodel/create_input/TokenInputCreation.class
-weblicht/format_converter/datamodel/utils/JsonProcessorTest.class
