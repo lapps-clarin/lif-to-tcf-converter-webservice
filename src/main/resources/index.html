@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>weblicht service</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        <h2>Demo Service</h2>
+        There is an example of web service included in this demo.
+        <h2>A sample LIF(LAPPS Grid interchange format) to TCF(WebLicht interchange format) converter</h2>
+        <p>
+            This web service is an example of a simple converter that converts a LIF file to TCF.
+        </p>
+        <p>
+            This web service demonstrates the case when the underlying processing tool object is not
+            expensive to create and it does not consume a lot of memory.
+            In such a case it is convenient to create the tool object with each client POST request, 
+            as shown in the service implementation.
+            You don't need to worry about whether the tool is thread-safe or not.
+        </p>
+        <p>You can test the service endpoints using curl or wget as follows:</p>
+        <ul>
+            <li>download the file <a href="inputMulti_con.lif">inputMulti_con.lif</a> file and run the following command</li>
+                    <code> wget --post-file=inputMulti_con.lif --header='Content-Type: application/json' <span class="url"></span>con/stream</code>
+            </li>                     
+            </br>
+            </br>
+            <li>more examples of the converters:</li>
+            </br>
+            <li>download the file <a href="inputTok_con.lif">inputTok_con.lif</a> file. This is an example of converting token layer.
+            </br>
+            <code> wget --post-file=inputTok_con.lif --header='Content-Type: application/json' <span class="url"></span>con/stream</code>
+            </br>
+            <li>download the file <a href="inputPos_con.lif">inputPos_con.lif</a> file. This is an example of converting Pos Tagger layer.
+            </br>
+            <code> wget --post-file=inputPos_con.lif --header='Content-Type: application/json' <span class="url"></span>con/stream</code>
+            </br>
+            <li>download the file <a href="inputNer_con.lif">inputNer_con.lif</a> file. This is an example of converting Name Entity Recognition layer.
+            </br>
+            <code> wget --post-file=inputNer_con.lif --header='Content-Type: application/json' <span class="url"></span>con/stream</code>
+            </br>
+            <li>download the file <a href="inputCon_con.lif">inputCon_con.lif</a> file. This is an example of converting constituent layer.
+            </br>
+            <code> wget --post-file=inputCon_con.lif --header='Content-Type: application/json' <span class="url"></span>con/stream</code>
+            </br>
+            <li>download the file <a href="inputDep_con.lif">inputDep_con.lif</a> file. This is an example of converting dependency layer.
+            </br>
+            <code> wget --post-file=inputDep_con.lif --header='Content-Type: application/json' <span class="url"></span>con/stream</code>
+            </li>
+        </ul>
+        <script type="text/javascript">
+                var elemList = document.getElementsByClassName("url");
+                for (var i = 0; i < elemList.length; i++) {
+                    elemList[i].innerHTML = window.location.href;
+                }
+        </script>
+    </body>
+</html>

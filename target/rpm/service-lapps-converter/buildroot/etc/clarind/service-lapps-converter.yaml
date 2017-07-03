@@ -1,0 +1,22 @@
+server:
+  type: simple
+  applicationContextPath: /service-lapps-converter
+  connector:
+    type: http
+    port: 4016
+  requestLog:
+    timeZone: UTC
+    appenders:
+      - type: file
+        currentLogFilename: /var/log/service-lapps-converter/access.log
+        archivedLogFilenamePattern: /var/log/service-lapps-converter/access-%d.log.gz
+        archivedFileCount: 5
+
+logging:
+  level: INFO
+  appenders:
+    - type: file
+      currentLogFilename: /var/log/service-lapps-converter/service-lapps-converter.log
+      archivedLogFilenamePattern: /var/log/service-lapps-converter/service-lapps-converter-%d.log.gz
+      archivedFileCount: 5
+      timeZone: UTC

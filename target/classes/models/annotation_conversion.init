@@ -1,0 +1,8 @@
+ner:stanford=CoNLL2002=http://vocab.lappsgrid.org/Person=PER 
+ner:stanford=CoNLL2002=http://vocab.lappsgrid.org/Location=LOC
+ner:stanford=CoNLL2002=http://vocab.lappsgrid.org/Date=DAT
+ner:stanford=CoNLL2002=http://vocab.lappsgrid.org/Organization=ORG
+ner:dkpro_opennlp=openNLP=http://vocab.lappsgrid.org/Person=person
+ner:dkpro_opennlp=openNLP=http://vocab.lappsgrid.org/Location=location
+ner:dkpro_opennlp=openNLP=http://vocab.lappsgrid.org/Date=date
+ner:dkpro_opennlp=openNLP=http://vocab.lappsgrid.org/Organization=organization
