@@ -1,5 +1,6 @@
 server:
   type: simple
+  applicationContextPath: /${APP_CONTEXT_PATH!'service-lapps-converter'}
   applicationContextPath:/${APP_CONTEXT_PATH!'service-lapps-converter'}
   connector:
     type: http
