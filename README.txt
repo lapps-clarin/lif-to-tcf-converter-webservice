@@ -1,6 +1,3 @@
-weblicht-nentities-ws-archetype
-
-Created using WebLicht converter Webservice Dropwizard Archetype.
 
 What is it?
 ===========
@@ -9,7 +6,7 @@ This is a converter developed as web service on weblicht-nentities-ws-archetype 
 It can be deployed using Maven 2.0.10 or greater with Java 6.0 or greater.
 This demo application exposes the converter service.
 
-Lif file to Tcf file converter:
+LIF to TCF converter:
 * /con/stream
 
 
