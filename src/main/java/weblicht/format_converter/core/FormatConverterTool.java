@@ -28,7 +28,7 @@ public class FormatConverterTool implements DataModelConverter {
         convertedDataModel.toLanguage(givenDataModel.getLanguage());
         convertedDataModel.toText(givenDataModel.getText());
         //the text source layer is temporary closed.
-        convertedDataModel.toTextSource(givenDataModel.getFileString());
+        //convertedDataModel.toTextSource(givenDataModel.getFileString());
         try {
             convertAnnotationLayers();
             this.display();
