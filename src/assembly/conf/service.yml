@@ -3,7 +3,7 @@ server:
   applicationContextPath: /${APP_CONTEXT_PATH!'service-lapps-converter'}
   connector:
     type: http
-    port: ${PORT!8010}
+    port: ${PORT!8080}
   requestLog:
     timeZone: UTC
     appenders:
