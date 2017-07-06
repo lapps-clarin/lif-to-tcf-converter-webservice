@@ -1,7 +1,8 @@
 version: '2'
 services:
   service-lapps-converter:
-    image: weblicht.sfs.uni-tuebingen.de:5000/elahi/service-lapps-converter
+    image: weblicht.sfs.uni-tuebingen.de:5000/lapps/service-lapps-converter  
     labels:
+      io.rancher.scheduler.affinity:container_label_soft_ne: io.rancher.stack_service.name=$${stack_name}/$${service_name}
       io.rancher.container.pull_image: always
       io.rancher.scheduler.affinity:host_label: power=strong

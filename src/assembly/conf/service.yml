@@ -1,0 +1,15 @@
+server:
+  type: simple
+  applicationContextPath: /${APP_CONTEXT_PATH!'service-lapps-converter'}
+  connector:
+    type: http
+    port: ${PORT!8010}
+  requestLog:
+    timeZone: UTC
+    appenders:
+      - type: console
+
+logging:
+  level: ${LOG_LEVEL!'INFO'}
+  appenders:
+    - type: ${LOG_APPENDER!'console'}
