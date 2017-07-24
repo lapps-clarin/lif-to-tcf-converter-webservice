@@ -16,13 +16,6 @@ public class IndexResource {
         return getClass().getResourceAsStream("/index.html");
     }
 
-   /* @GET
-    @Path("/input1_ner.xml")
-    @Produces("text/xml")
-    public InputStream inputTestNerData() {
-        return getClass().getResourceAsStream("/input1_ner.xml");
-    }*/
-
     @GET
     @Path("/inputMulti.json")
     @Produces("application/json")
