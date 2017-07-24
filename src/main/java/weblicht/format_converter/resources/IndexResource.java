@@ -16,52 +16,45 @@ public class IndexResource {
         return getClass().getResourceAsStream("/index.html");
     }
 
-   /* @GET
-    @Path("/input1_ner.xml")
-    @Produces("text/xml")
-    public InputStream inputTestNerData() {
-        return getClass().getResourceAsStream("/input1_ner.xml");
-    }*/
-
     @GET
-    @Path("/inputMulti_con.lif")
-    @Produces("text/lif")
+    @Path("/inputMulti.json")
+    @Produces("application/json")
     public InputStream inputTestMultiData() {
-        return getClass().getResourceAsStream("/inputMulti_con.lif");
+        return getClass().getResourceAsStream("/inputMulti.json");
     }
     @GET
-    @Path("/inputTok_con.lif")
-    @Produces("text/lif")
+    @Path("/inputTok.json")
+    @Produces("application/json")
     public InputStream inputTestTokData() {
-        return getClass().getResourceAsStream("/inputTok_con.lif");
+        return getClass().getResourceAsStream("/inputTok.json");
     }
     
     @GET
-    @Path("/inputPos_con.lif")
-    @Produces("text/lif")
+    @Path("/inputPos.json")
+    @Produces("application/json")
     public InputStream inputTestPosData() {
-        return getClass().getResourceAsStream("/inputPos_con.lif");
+        return getClass().getResourceAsStream("/inputPos.json");
     }
     
     @GET
-    @Path("/inputNer_con.lif")
-    @Produces("text/lif")
+    @Path("/inputNer.json")
+    @Produces("application/json")
     public InputStream inputTestNerData() {
-        return getClass().getResourceAsStream("/inputNer_con.lif");
+        return getClass().getResourceAsStream("/inputNer.json");
     }
     
     @GET
-    @Path("/inputCon_con.lif")
-    @Produces("text/lif")
+    @Path("/inputCon.json")
+    @Produces("application/json")
     public InputStream inputTestConData() {
-        return getClass().getResourceAsStream("/inputCon_con.lif");
+        return getClass().getResourceAsStream("/inputCon.json");
     }
     
      @GET
-    @Path("/inputDep_con.lif")
-    @Produces("text/lif")
+    @Path("/inputDep.json")
+    @Produces("application/json")
     public InputStream inputTestDepData() {
-        return getClass().getResourceAsStream("/inputDep_con.lif");
+        return getClass().getResourceAsStream("/inputDep.json");
     }
     
 }
