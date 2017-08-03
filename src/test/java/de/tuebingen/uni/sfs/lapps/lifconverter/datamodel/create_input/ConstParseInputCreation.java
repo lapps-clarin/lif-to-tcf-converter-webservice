@@ -5,7 +5,8 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.vocabulary.LifVocabularies;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,7 +15,7 @@ import java.util.Map;
 import org.lappsgrid.discriminator.Discriminators;
 import org.lappsgrid.serialization.lif.Annotation;
 import org.lappsgrid.vocabulary.Features;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.Vocabularies;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.TcfVocabularies;
 
 /**
  *
@@ -39,7 +40,7 @@ public class ConstParseInputCreation {
     private String urlParseStructureType = Discriminators.Uri.PHRASE_STRUCTURE;
 
     private static Map<String, List<String>> constChild = new HashMap<String, List<String>>();
-    private List<LifAnnotationInterpreter> constitunetParseAnnotations = new ArrayList<LifAnnotationInterpreter>();
+    private List<AnnotationInterpreter> constitunetParseAnnotations = new ArrayList<AnnotationInterpreter>();
 
     static {
         List<String> childList = new ArrayList<String>();
@@ -110,7 +111,7 @@ public class ConstParseInputCreation {
         parseAnnotations.addAll(constituentAnnotations);
 
         for (Annotation annotation : parseAnnotations) {
-            LifAnnotationInterpreter annotationInterpreter = new LifAnnotationInterpreter(annotation);
+            AnnotationInterpreter annotationInterpreter = new AnnotationInterpreter(annotation);
             constitunetParseAnnotations.add(annotationInterpreter);
         }
     }
@@ -141,8 +142,8 @@ public class ConstParseInputCreation {
         List<String> constitunetList = Arrays.asList("c_0_0", "c_0_1", "c_0_2", "c_0_3", "c_0_4", "c_0_5", "c_0_6", "c_0_7", "c_0_8", "c_0_9", "c_0_10", "c_0_11");
         Map<Object, Object> map = new HashMap<Object, Object>();
         map.put(Discriminators.Alias.SENTENCE, text);
-        map.put(Vocabularies.LIF.DiscriminitorsExtended.PENN_TREE, pennTree);
-        map.put(Vocabularies.LIF.DiscriminitorsExtended.CONSTITUENTS, constitunetList);
+        map.put(LifVocabularies.LIF.DiscriminitorsExtended.PENN_TREE, pennTree);
+        map.put(LifVocabularies.LIF.DiscriminitorsExtended.CONSTITUENTS, constitunetList);
         annotations.add(setTokenAnnotation(urlParseStructureType, null, "ps_0", new Long(0), new Long(23), map));
         return annotations;
     }
@@ -173,7 +174,7 @@ public class ConstParseInputCreation {
         return annotation;
     }
 
-    public List<LifAnnotationInterpreter> getConstitunetParseAnnotations() {
+    public List<AnnotationInterpreter> getConstitunetParseAnnotations() {
         return constitunetParseAnnotations;
     }
 

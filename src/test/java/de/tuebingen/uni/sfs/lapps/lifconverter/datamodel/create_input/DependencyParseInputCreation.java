@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -37,7 +37,7 @@ public class DependencyParseInputCreation {
     private static String[] depIdLabels = {"nn", "pobj", "nsubj", "prep"};
 
     private static Map<String, Map<String, String>> depFeatures = new HashMap<String, Map<String, String>>();
-    private List<LifAnnotationInterpreter> dependencyParseAnnotations = new ArrayList<LifAnnotationInterpreter>();
+    private List<AnnotationInterpreter> dependencyParseAnnotations = new ArrayList<AnnotationInterpreter>();
 
     static {
         Map<String, String> features = new HashMap<String, String>();
@@ -75,7 +75,7 @@ public class DependencyParseInputCreation {
         parseAnnotations.addAll(dependencyAnnotations);
 
         for (Annotation annotation : parseAnnotations) {
-            LifAnnotationInterpreter annotationInterpreter = new LifAnnotationInterpreter(annotation);
+            AnnotationInterpreter annotationInterpreter = new AnnotationInterpreter(annotation);
             dependencyParseAnnotations.add(annotationInterpreter);
         }
     }
@@ -137,7 +137,7 @@ public class DependencyParseInputCreation {
         return annotation;
     }
 
-    public List<LifAnnotationInterpreter> getDependencyParseAnnotations() {
+    public List<AnnotationInterpreter> getDependencyParseAnnotations() {
         return dependencyParseAnnotations;
     }
 

@@ -6,7 +6,7 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel;
 
 import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input.ConstParseInputCreation;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input.DependencyParseInputCreation;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model.DataModelTcf;
@@ -32,12 +32,12 @@ import org.junit.Ignore;
  */
 public class DataModelTcfTest {
 
-    private static List<LifAnnotationInterpreter> tokenAnnotations = new ArrayList<LifAnnotationInterpreter>();
-    private static List<LifAnnotationInterpreter> senetenceAnnotations = new ArrayList<LifAnnotationInterpreter>();
+    private static List<AnnotationInterpreter> tokenAnnotations = new ArrayList<AnnotationInterpreter>();
+    private static List<AnnotationInterpreter> senetenceAnnotations = new ArrayList<AnnotationInterpreter>();
 
     @BeforeClass
     public static void setUpClass() {
-        LifAnnotationInterpreter.elementIdMapper = new HashMap<String, LifAnnotationInterpreter>();
+        AnnotationInterpreter.elementIdMapper = new HashMap<String, AnnotationInterpreter>();
         tokenAnnotations = new TokenInputCreation().getTokenAnnotations();
         senetenceAnnotations = new SenetenceInputCreation().getSentenceAnnotations();
     }
@@ -63,7 +63,7 @@ public class DataModelTcfTest {
         System.out.println("toLayers");
         String givenLayer = "";
          AnnotationLayerFinder layer = null;
-        List<LifAnnotationInterpreter> annotationlist = null;
+        List<AnnotationInterpreter> annotationlist = null;
         DataModelTcf instance = null;
         instance.toLayers(layer,annotationlist);
         fail("The test case is a prototype.");
@@ -165,7 +165,7 @@ public class DataModelTcfTest {
     public void testToNameEntity() throws Exception {
         System.out.println("toNameEntity");
         DataModelTcf instance = new DataModelTcf(null);
-        List<LifAnnotationInterpreter> nameEntityAnnotations = new NameEntityInputCreation().getNameEntityAnnotations();
+        List<AnnotationInterpreter> nameEntityAnnotations = new NameEntityInputCreation().getNameEntityAnnotations();
         instance.setGivenAnnotations(nameEntityAnnotations);
         instance.toNameEntity();
         assertEquals("null [t_2, t_1]", instance.getTextCorpusStored().getNamedEntitiesLayer().getEntity(0).toString());
@@ -179,7 +179,7 @@ public class DataModelTcfTest {
     public void testToConstituentParser() throws Exception {
         System.out.println("toConstituentParser");
         DataModelTcf instance = new DataModelTcf(null);
-        List<LifAnnotationInterpreter> constituentParseAnnotations = new ConstParseInputCreation().getConstitunetParseAnnotations();
+        List<AnnotationInterpreter> constituentParseAnnotations = new ConstParseInputCreation().getConstitunetParseAnnotations();
         instance.setGivenAnnotations(constituentParseAnnotations);
         instance.toConstituentParser();
         String expectedParseResult = "c_17 -> ROOT ( c_16 -> S ( c_15 -> NP ( c_14 -> NNP ( c_13 -> NNP [t_0] ) ) c_12 -> VP ( c_11 -> VBD ( c_10 -> VBD [t_1] ) c_9 -> PP ( c_8 -> TO ( c_7 -> TO [t_2] ) c_6 -> NP ( c_5 -> NNP ( c_4 -> NNP [t_3] ) c_3 -> NNP ( c_2 -> NNP [t_4] ) ) ) ) c_1 -> . ( c_0 -> . [t_5] ) ) )";
@@ -194,7 +194,7 @@ public class DataModelTcfTest {
     public void testToDependencyParser() throws Exception {
         System.out.println("toDependencyParser");
         DataModelTcf instance = new DataModelTcf(null);
-        List<LifAnnotationInterpreter> dependencyParseAnnotations = new DependencyParseInputCreation().getDependencyParseAnnotations();
+        List<AnnotationInterpreter> dependencyParseAnnotations = new DependencyParseInputCreation().getDependencyParseAnnotations();
         instance.setGivenAnnotations(dependencyParseAnnotations);
         instance.toDependencyParser();
         String expectedParseResult = "[nn [t_3] <- [t_4], pobj [t_4] <- [t_2], nsubj [t_0] <- [t_1], prep [t_2] <- [t_1]]";

@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +22,7 @@ public class LifConstituent {
     private String catFunction = null;
     private String parentId = null;
 
-    public LifConstituent(LifAnnotationInterpreter constAnnotationInterpreter) throws NullPointerException {
+    public LifConstituent(AnnotationInterpreter constAnnotationInterpreter) throws NullPointerException {
         this.constituentId = constAnnotationInterpreter.getId();
         this.catFunction = constAnnotationInterpreter.getLabel();
         this.childrenList = (List<String>) constAnnotationInterpreter.getFeatures().get(Features.Constituent.CHILDREN);

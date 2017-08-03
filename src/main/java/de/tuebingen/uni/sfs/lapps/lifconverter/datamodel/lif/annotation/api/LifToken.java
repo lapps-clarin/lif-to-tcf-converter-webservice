@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
 import java.util.List;
 
 /**
@@ -13,5 +13,5 @@ import java.util.List;
  * @author felahi
  */
 public interface LifToken {
-    public List<LifAnnotationInterpreter> getTokenList(); 
+    public List<AnnotationInterpreter> getTokenList(); 
 }

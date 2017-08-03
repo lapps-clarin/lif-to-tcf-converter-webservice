@@ -6,7 +6,7 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion;
 
 import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface AnnotationLayerConverter {
 
-    public void toLayers(AnnotationLayerFinder layer, List<LifAnnotationInterpreter> annotationlist) throws Exception;
+    public void toLayers(AnnotationLayerFinder layer, List<AnnotationInterpreter> annotationlist) throws Exception;
 
     public void toText(String text) throws ConversionException;
 

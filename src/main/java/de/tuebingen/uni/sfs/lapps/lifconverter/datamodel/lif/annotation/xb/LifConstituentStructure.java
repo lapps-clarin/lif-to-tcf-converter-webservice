@@ -5,11 +5,12 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb;
 
+import de.tuebingen.uni.sfs.lapps.library.vocabulary.LifVocabularies;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.lappsgrid.discriminator.Discriminators;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.Vocabularies;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.TcfVocabularies;
 
 /**
  *
@@ -23,8 +24,8 @@ public class LifConstituentStructure {
 
     public LifConstituentStructure(Map<Object, Object> features) throws NullPointerException {
         this.text = (String) features.get(Discriminators.Alias.SENTENCE);
-        this.tree = (String) features.get(Vocabularies.LIF.DiscriminitorsExtended.PENN_TREE);
-        this.constituents = (List) features.get(Vocabularies.LIF.DiscriminitorsExtended.CONSTITUENTS);
+        this.tree = (String) features.get(LifVocabularies.LIF.DiscriminitorsExtended.PENN_TREE);
+        this.constituents = (List) features.get(LifVocabularies.LIF.DiscriminitorsExtended.CONSTITUENTS);
     }
 
     public String getText() {

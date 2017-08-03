@@ -6,7 +6,7 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model;
 
 import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.AnnotationLayerConverter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifConstituentParserStored;
@@ -46,7 +46,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionEx
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifConstituent;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifConstituentParser;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifDependencyParser;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.Vocabularies;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.TcfVocabularies;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifTokenPosLemmaStored;
 
 /**
@@ -57,14 +57,14 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
 
     private TextCorpusStored textCorpusStored = null;
     private AnnotationLayerFinder givenToolTagSetVocabularies = null;
-    private List<LifAnnotationInterpreter> givenAnnotations = new ArrayList<LifAnnotationInterpreter>();
+    private List<AnnotationInterpreter> givenAnnotations = new ArrayList<AnnotationInterpreter>();
     private CharOffsetToTokenIdMapper charOffsetToTokenIdMapper = null;
 
     public DataModelTcf(InputStream input) throws ConversionException, IOException {
-        toLanguage(Vocabularies.TCF.TcfVocabularies.DEFAULT_LANGUAGE);
+        toLanguage(TcfVocabularies.TCF.TcfConstants.DEFAULT_LANGUAGE);
     }
 
-    public void toLayers(AnnotationLayerFinder layer, List<LifAnnotationInterpreter> annotationlist) throws Exception {
+    public void toLayers(AnnotationLayerFinder layer, List<AnnotationInterpreter> annotationlist) throws Exception {
         //System.out.println("++++++++++++++++++++++++++++" + givenLayer + "++++++++++++++++++++++++++++");
         this.givenAnnotations = annotationlist;
         this.givenToolTagSetVocabularies = layer;
@@ -102,7 +102,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         } catch (NullPointerException ex) {
             throw new ConversionException("Language conversion failed from lif to tcf failed!!");
         } finally {
-            textCorpusStored = new TextCorpusStored(Vocabularies.TCF.TcfVocabularies.DEFAULT_LANGUAGE);
+            textCorpusStored = new TextCorpusStored(TcfVocabularies.TCF.TcfConstants.DEFAULT_LANGUAGE);
         }
     }
 
@@ -126,7 +126,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         Map<String, Token> tokenIdToken = new HashMap<String, Token>();
         Map<Long, String> startIdTokenIdMapper = new HashMap<Long, String>();
 
-        for (LifAnnotationInterpreter annotationInterpreter : givenAnnotations) {
+        for (AnnotationInterpreter annotationInterpreter : givenAnnotations) {
             Token token = null;
             LifTokenPosLemmaStored lifToken = new LifTokenPosLemmaStored(annotationInterpreter.getFeatures());
 
@@ -138,7 +138,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
                         wordFlag = true;
                     }
                     if (lifToken.getPos() != null) {
-                        posLayer = textCorpusStored.createPosTagsLayer(Vocabularies.TCF.TcfTagSets.POS_TAGSETS);
+                        posLayer = textCorpusStored.createPosTagsLayer(TcfVocabularies.TCF.TcfTagSets.POS_TAGSETS);
                         posFlag = true;
                     }
                     if (lifToken.getLemma() != null) {
@@ -207,7 +207,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
 
         SentencesLayer sentencesLayer = textCorpusStored.createSentencesLayer();
 
-        for (LifAnnotationInterpreter lifSentence : givenAnnotations) {
+        for (AnnotationInterpreter lifSentence : givenAnnotations) {
             List<Token> sentenceTokens = new ArrayList<Token>();
             List<String> tokenIds = charOffsetToTokenIdMapper.getTokenIdsFromStartIds(lifSentence.getStart(), lifSentence.getEnd());
             for (String tokenId : tokenIds) {
@@ -230,7 +230,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         String tool = this.givenToolTagSetVocabularies.getTool();
         NamedEntitiesLayer namedEntitiesLayer = textCorpusStored.createNamedEntitiesLayer(this.givenToolTagSetVocabularies.getTagSetName(tool));
 
-        for (LifAnnotationInterpreter annotationObject : givenAnnotations) {
+        for (AnnotationInterpreter annotationObject : givenAnnotations) {
             List<String> tokenIds = charOffsetToTokenIdMapper.getTokenIdsFromStartIds(annotationObject.getStart(), annotationObject.getEnd());
             List<Token> tokenList = new ArrayList<Token>();
             for (String tokenId : tokenIds) {
@@ -250,7 +250,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
     }
 
     public void toConstituentParser() throws ConversionException {
-        ConstituentParsingLayer constituentParsingLayer = textCorpusStored.createConstituentParsingLayer(Vocabularies.TCF.TcfTagSets.CONSTITUENT_TAGSETS);
+        ConstituentParsingLayer constituentParsingLayer = textCorpusStored.createConstituentParsingLayer(TcfVocabularies.TCF.TcfTagSets.CONSTITUENT_TAGSETS);
         LifConstituentParser lifConstituentParser = new LifConstituentParserStored(givenAnnotations);
         this.givenAnnotations = lifConstituentParser.getTokenList();
         this.toToken();
@@ -273,7 +273,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
     }
 
     public void toDependencyParser() throws ConversionException {
-        DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(Vocabularies.TCF.TcfTagSets.DEPENDENCY_TAGSETS, true, true);
+        DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(TcfVocabularies.TCF.TcfTagSets.DEPENDENCY_TAGSETS, true, true);
         LifDependencyParser lifDependencyParser = new LifDependencyParserStored(givenAnnotations);
         this.givenAnnotations = lifDependencyParser.getTokenList();
         this.toToken();
@@ -325,7 +325,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         return textCorpusStored;
     }
 
-    public void setGivenAnnotations(List<LifAnnotationInterpreter> givenAnnotations) {
+    public void setGivenAnnotations(List<AnnotationInterpreter> givenAnnotations) {
         this.givenAnnotations = givenAnnotations;
     }
 }

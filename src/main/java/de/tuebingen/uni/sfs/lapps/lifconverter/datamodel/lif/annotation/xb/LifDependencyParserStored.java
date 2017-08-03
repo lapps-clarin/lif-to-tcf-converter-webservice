@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifDependencyParser;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.tcf.xb.TcfDependencyEntity;
@@ -28,10 +28,10 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifP
 public class LifDependencyParserStored implements LifDependencyParser, LifParseAnnotationProcessing {
 
     private Map<Long, List<TcfDependencyEntity>> dependencyParses = new TreeMap<Long, List<TcfDependencyEntity>>();
-    private List<LifAnnotationInterpreter> tokenList = new ArrayList<LifAnnotationInterpreter>();
+    private List<AnnotationInterpreter> tokenList = new ArrayList<AnnotationInterpreter>();
     private List<TcfDependencyEntity> dependencyEntities = new ArrayList<TcfDependencyEntity>();
 
-    public LifDependencyParserStored(List<LifAnnotationInterpreter> lifAnnotationList) throws ConversionException {
+    public LifDependencyParserStored(List<AnnotationInterpreter> lifAnnotationList) throws ConversionException {
         seperateUnitsofParseStruectures(lifAnnotationList);
         try {
             extractParses(lifAnnotationList);
@@ -40,9 +40,9 @@ public class LifDependencyParserStored implements LifDependencyParser, LifParseA
         }
     }
 
-    public void extractParses(List<LifAnnotationInterpreter> lifAnnotationList) throws ConversionException {
+    public void extractParses(List<AnnotationInterpreter> lifAnnotationList) throws ConversionException {
         Long parseIndex = new Long(0);
-        for (LifAnnotationInterpreter annotationObject : lifAnnotationList) {
+        for (AnnotationInterpreter annotationObject : lifAnnotationList) {
             if (annotationObject.getUrl().equals(Discriminators.Uri.DEPENDENCY_STRUCTURE)) {
                 parseIndex = parseIndex + 1;
                 try {
@@ -55,16 +55,16 @@ public class LifDependencyParserStored implements LifDependencyParser, LifParseA
         }
     }
 
-    public void seperateStructures(LifAnnotationInterpreter annotationObject) throws ConversionException {
+    public void seperateStructures(AnnotationInterpreter annotationObject) throws ConversionException {
         dependencyEntities = new ArrayList<TcfDependencyEntity>();
-        Map<Object, Object> dependencyStructureFeatures = LifAnnotationInterpreter.elementIdMapper.get(annotationObject.getId()).getFeatures();
+        Map<Object, Object> dependencyStructureFeatures = AnnotationInterpreter.elementIdMapper.get(annotationObject.getId()).getFeatures();
         if (!dependencyStructureFeatures.isEmpty()) {
             LifDependencyStructure lifDepStructureFeature = new LifDependencyStructure(dependencyStructureFeatures);
             List<String> dependencies = lifDepStructureFeature.getDependencies();
             for (String dependencyId : dependencies) {
                 try {
-                    if (LifAnnotationInterpreter.elementIdMapper.containsKey(dependencyId)) {
-                        LifAnnotationInterpreter depAnnotationInterpreter = LifAnnotationInterpreter.elementIdMapper.get(dependencyId);
+                    if (AnnotationInterpreter.elementIdMapper.containsKey(dependencyId)) {
+                        AnnotationInterpreter depAnnotationInterpreter = AnnotationInterpreter.elementIdMapper.get(dependencyId);
                         Map<Object, Object> dependencyFeatures = depAnnotationInterpreter.getFeatures();
                         LifDependency lifDepFeature = new LifDependency(dependencyFeatures, depAnnotationInterpreter.getLabel());
                         TcfDependencyEntity dependencyTcfEntity = new TcfDependencyEntity(lifDepFeature.getDependency_function());
@@ -88,8 +88,8 @@ public class LifDependencyParserStored implements LifDependencyParser, LifParseA
 
     }
 
-    public boolean seperateUnitsofParseStruectures(List<LifAnnotationInterpreter> lifAnnotationList) throws ConversionException {
-        for (LifAnnotationInterpreter annotationObject : lifAnnotationList) {
+    public boolean seperateUnitsofParseStruectures(List<AnnotationInterpreter> lifAnnotationList) throws ConversionException {
+        for (AnnotationInterpreter annotationObject : lifAnnotationList) {
             if (annotationObject.getUrl().equals(Discriminators.Uri.TOKEN)) {
                 this.tokenList.add(annotationObject);
             }
@@ -98,13 +98,13 @@ public class LifDependencyParserStored implements LifDependencyParser, LifParseA
     }
 
     public Long getTokenStartId(String lifTokenId) throws Exception {
-        if (LifAnnotationInterpreter.elementIdMapper.containsKey(lifTokenId)) {
-            return LifAnnotationInterpreter.elementIdMapper.get(lifTokenId).getStart();
+        if (AnnotationInterpreter.elementIdMapper.containsKey(lifTokenId)) {
+            return AnnotationInterpreter.elementIdMapper.get(lifTokenId).getStart();
         }
         return new Long(0);
     }
 
-    public List<LifAnnotationInterpreter> getTokenList() {
+    public List<AnnotationInterpreter> getTokenList() {
         return tokenList;
     }
 

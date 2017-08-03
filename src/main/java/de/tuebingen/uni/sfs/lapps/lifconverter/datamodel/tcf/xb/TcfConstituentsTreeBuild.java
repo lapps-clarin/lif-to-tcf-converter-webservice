@@ -16,7 +16,7 @@ import java.util.Map;
 import java.util.Stack;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifConstituent;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.CharOffsetToTokenIdMapper;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.Vocabularies;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.TcfVocabularies;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
 
 /**
@@ -189,7 +189,7 @@ public class TcfConstituentsTreeBuild implements ConstituentParse {
         if (this.vistedNodes.containsKey(rootNode.getConstituentId())) {
             if (this.vistedNodes.get(rootNode.getConstituentId()) != null) {
                 rootConstituent = this.vistedNodes.get(rootNode.getConstituentId());
-                if (rootConstituent.toString().contains(Vocabularies.TCF.TcfTreeSets.CONSTITUENT_ROOT)) {
+                if (rootConstituent.toString().contains(TcfVocabularies.TCF.TcfTreeSets.CONSTITUENT_ROOT)) {
                     return rootConstituent;
                 } else {
                     throw new ConversionException("The root node in tcf is not build in Depth first search tree making");

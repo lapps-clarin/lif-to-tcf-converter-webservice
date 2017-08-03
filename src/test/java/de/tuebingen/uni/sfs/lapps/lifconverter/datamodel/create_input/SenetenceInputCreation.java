@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -20,7 +20,7 @@ public class SenetenceInputCreation {
 
     private String text = "Karen flew to New York.";
     private String urlType = "http://vocab.lappsgrid.org/Sentence";
-    private List<LifAnnotationInterpreter> sentenceAnnotations = new ArrayList<LifAnnotationInterpreter>();
+    private List<AnnotationInterpreter> sentenceAnnotations = new ArrayList<AnnotationInterpreter>();
 
     public SenetenceInputCreation() {
         this.setSenetenceAnnotations();
@@ -30,7 +30,7 @@ public class SenetenceInputCreation {
 
         List<Annotation> annotations = this.setSentenceAnnotationList();
         for (Annotation annotation : annotations) {
-            LifAnnotationInterpreter annotationInterpreter = new LifAnnotationInterpreter(annotation);
+            AnnotationInterpreter annotationInterpreter = new AnnotationInterpreter(annotation);
             sentenceAnnotations.add(annotationInterpreter);
         }
     }
@@ -54,7 +54,7 @@ public class SenetenceInputCreation {
         return annotation;
     }
 
-    public List<LifAnnotationInterpreter> getSentenceAnnotations() {
+    public List<AnnotationInterpreter> getSentenceAnnotations() {
         return sentenceAnnotations;
     }
 

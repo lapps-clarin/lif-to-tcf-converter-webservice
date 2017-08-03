@@ -5,7 +5,8 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.vocabulary.LifVocabularies;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifConstituentParser;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,7 +16,6 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.Vector;
 import org.lappsgrid.discriminator.Discriminators;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.Vocabularies;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifParseAnnotationProcessing;
 
@@ -26,13 +26,13 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifP
 public class LifConstituentParserStored implements LifConstituentParser, LifParseAnnotationProcessing {
 
     private Map<Long, List<LifConstituent>> constituentParses = new TreeMap<Long, List<LifConstituent>>();
-    private List<LifAnnotationInterpreter> tokenList = new ArrayList<LifAnnotationInterpreter>();
+    private List<AnnotationInterpreter> tokenList = new ArrayList<AnnotationInterpreter>();
     private Map<String, Long> tokenIdStartIdMapper = new HashMap<String, Long>();
     private List<LifConstituent> constituents = new ArrayList<LifConstituent>();
-    private Map<String, LifAnnotationInterpreter> constituentAnnotations = new HashMap<String, LifAnnotationInterpreter>();
-    private Map<String, LifAnnotationInterpreter> phraseAnnotations = new HashMap<String, LifAnnotationInterpreter>();
+    private Map<String, AnnotationInterpreter> constituentAnnotations = new HashMap<String, AnnotationInterpreter>();
+    private Map<String, AnnotationInterpreter> phraseAnnotations = new HashMap<String, AnnotationInterpreter>();
 
-    public LifConstituentParserStored(List<LifAnnotationInterpreter> lifAnnotations) throws ConversionException {
+    public LifConstituentParserStored(List<AnnotationInterpreter> lifAnnotations) throws ConversionException {
         try {
             if (seperateUnitsofParseStruectures(lifAnnotations)) {
                 extractParses();
@@ -43,9 +43,9 @@ public class LifConstituentParserStored implements LifConstituentParser, LifPars
         }
     }
 
-    public boolean seperateUnitsofParseStruectures(List<LifAnnotationInterpreter> lifAnnotationList) throws ConversionException {
+    public boolean seperateUnitsofParseStruectures(List<AnnotationInterpreter> lifAnnotationList) throws ConversionException {
         boolean tokenlayerFlag = false, constituentFlag = false, phraseStructureFlag = false;
-        for (LifAnnotationInterpreter annotationObject : lifAnnotationList) {
+        for (AnnotationInterpreter annotationObject : lifAnnotationList) {
             if (annotationObject.getUrl().equals(Discriminators.Uri.TOKEN)) {
                 tokenlayerFlag = true;
                 this.tokenList.add(annotationObject);
@@ -74,7 +74,7 @@ public class LifConstituentParserStored implements LifConstituentParser, LifPars
         Long parseIndex = new Long(0);
         for (String id : phraseAnnotations.keySet()) {
             parseIndex = parseIndex + 1;
-            LifAnnotationInterpreter annotationObject = phraseAnnotations.get(id);
+            AnnotationInterpreter annotationObject = phraseAnnotations.get(id);
             this.extractStructures(annotationObject.getFeatures());
             this.constituentParses.put(parseIndex, constituents);
         }
@@ -121,7 +121,7 @@ public class LifConstituentParserStored implements LifConstituentParser, LifPars
         List<LifConstituent> constituentLifConstituents = this.constituentParses.get(parseIndex);
 
         for (LifConstituent lifConstituent : constituentLifConstituents) {
-            if (lifConstituent.getCatFunction().contains(Vocabularies.LIF.TreeSets.CONSTITUENT_ROOT)) {
+            if (lifConstituent.getCatFunction().contains(LifVocabularies.LIF.TreeSets.CONSTITUENT_ROOT)) {
                 flag = true;
                 return lifConstituent;
             }
@@ -141,7 +141,7 @@ public class LifConstituentParserStored implements LifConstituentParser, LifPars
         }
     }
 
-    public List<LifAnnotationInterpreter> getTokenList() {
+    public List<AnnotationInterpreter> getTokenList() {
         return tokenList;
     }
 
@@ -149,11 +149,11 @@ public class LifConstituentParserStored implements LifConstituentParser, LifPars
         return tokenIdStartIdMapper;
     }
 
-    public void extractParses(List<LifAnnotationInterpreter> lifAnnotationList) throws ConversionException {
+    public void extractParses(List<AnnotationInterpreter> lifAnnotationList) throws ConversionException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void seperateStructures(LifAnnotationInterpreter annotationObject) throws ConversionException {
+    public void seperateStructures(AnnotationInterpreter annotationObject) throws ConversionException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

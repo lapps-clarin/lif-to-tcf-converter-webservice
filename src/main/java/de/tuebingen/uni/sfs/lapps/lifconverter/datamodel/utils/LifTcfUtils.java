@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
 import java.util.List;
 
 /**
@@ -14,10 +14,10 @@ import java.util.List;
  */
 public class LifTcfUtils {
     
-    public static LifAnnotationInterpreter[] convertToArray(List<LifAnnotationInterpreter> list) {
-        LifAnnotationInterpreter[] stringArray = new LifAnnotationInterpreter[list.size()];
+    public static AnnotationInterpreter[] convertToArray(List<AnnotationInterpreter> list) {
+        AnnotationInterpreter[] stringArray = new AnnotationInterpreter[list.size()];
         Integer index = 0;
-        for (LifAnnotationInterpreter charOffsetLifObject : list) {
+        for (AnnotationInterpreter charOffsetLifObject : list) {
             stringArray[index++] = charOffsetLifObject;
         }
         return stringArray;

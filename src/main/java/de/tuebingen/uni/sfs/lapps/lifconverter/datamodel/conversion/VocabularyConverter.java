@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.lang.StringUtils;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.Vocabularies;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.TcfVocabularies;
 
 /**
  *
@@ -49,10 +49,10 @@ public class VocabularyConverter implements AnnotationLayerFinder {
     private void setLayers(String filePath) throws Exception {
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filePath), Vocabularies.GeneralParameters.UNICODE));
+            reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filePath), TcfVocabularies.GeneralParameters.UNICODE));
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parameters = line.split(Vocabularies.GeneralParameters.PARAMETER_SEPERATOR);
+                String[] parameters = line.split(TcfVocabularies.GeneralParameters.PARAMETER_SEPERATOR);
                 String parameter = parameters[0];
                 String value = parameters[1];
                 layerMapper.put(parameter, value);
@@ -80,10 +80,10 @@ public class VocabularyConverter implements AnnotationLayerFinder {
         String tcfEntity = null;
 
         try {
-            reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filePath), Vocabularies.GeneralParameters.UNICODE));
+            reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filePath), TcfVocabularies.GeneralParameters.UNICODE));
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parameters = line.split(Vocabularies.GeneralParameters.PARAMETER_SEPERATOR_REG);
+                String[] parameters = line.split(TcfVocabularies.GeneralParameters.PARAMETER_SEPERATOR_REG);
                 lifTool = parameters[0];
                 tcftagSet = parameters[1];
                 lifEntity = parameters[2];

@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,16 +26,16 @@ public class NameEntityInputCreation {
         "http://vocab.lappsgrid.org/Location"};
     private Long[] startId = new Long[]{new Long(0), new Long(14), new Long(18)};
     private Long[] endId = new Long[]{new Long(5), new Long(17), new Long(22)};
-    private List<LifAnnotationInterpreter> nameEntityAnnotations = new ArrayList<LifAnnotationInterpreter>();
+    private List<AnnotationInterpreter> nameEntityAnnotations = new ArrayList<AnnotationInterpreter>();
 
     public NameEntityInputCreation() {
         this.setNameEntityAnnotations();
     }
 
-    private List<LifAnnotationInterpreter> setNameEntityAnnotations() {
+    private List<AnnotationInterpreter> setNameEntityAnnotations() {
         List<Annotation> annotations = this.setNameEntityAnnotationList();
         for (Annotation annotation : annotations) {
-            LifAnnotationInterpreter annotationInterpreter = new LifAnnotationInterpreter(annotation);
+            AnnotationInterpreter annotationInterpreter = new AnnotationInterpreter(annotation);
             nameEntityAnnotations.add(annotationInterpreter);
         }
         return nameEntityAnnotations;
@@ -61,7 +61,7 @@ public class NameEntityInputCreation {
         return annotation;
     }
 
-    public List<LifAnnotationInterpreter> getNameEntityAnnotations() {
+    public List<AnnotationInterpreter> getNameEntityAnnotations() {
         return nameEntityAnnotations;
     }
 }

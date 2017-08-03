@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
 import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusLayerTag;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,17 +27,17 @@ public class TokenInputCreation {
     private String label = "Token";
     private Long[] startId = new Long[] {new Long(0),new Long(6),new Long(11),new Long(14),new Long(18),new Long(22)};
     private Long[] endId   = new Long[] {new Long(5),new Long(10),new Long(13),new Long(17),new Long(22),new Long(23)};
-    private List<LifAnnotationInterpreter> tokenAnnotations = new ArrayList<LifAnnotationInterpreter>();
+    private List<AnnotationInterpreter> tokenAnnotations = new ArrayList<AnnotationInterpreter>();
 
     public TokenInputCreation() {
         this.setTokenAnnotations();
     }
 
-    private List<LifAnnotationInterpreter> setTokenAnnotations() {
+    private List<AnnotationInterpreter> setTokenAnnotations() {
         //List<AnnotationInterpreter> tokenAnnotations = new ArrayList<AnnotationInterpreter>();
         List<Annotation> annotations = this.setTokenAnnotationList();
         for (Annotation annotation : annotations) {
-            LifAnnotationInterpreter annotationInterpreter = new LifAnnotationInterpreter(annotation);
+            AnnotationInterpreter annotationInterpreter = new AnnotationInterpreter(annotation);
             tokenAnnotations.add(annotationInterpreter);
         }
         return tokenAnnotations;
@@ -66,7 +66,7 @@ public class TokenInputCreation {
         return annotation;
     }
 
-    public List<LifAnnotationInterpreter> getTokenAnnotations() {
+    public List<AnnotationInterpreter> getTokenAnnotations() {
         return tokenAnnotations;
     }
 

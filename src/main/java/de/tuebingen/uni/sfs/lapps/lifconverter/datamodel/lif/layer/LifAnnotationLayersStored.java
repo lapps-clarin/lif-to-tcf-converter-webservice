@@ -6,10 +6,10 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.layer;
 
 import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
 import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.library.validity.LifValidityCheck;
+import de.tuebingen.uni.sfs.lapps.library.validity.ValidityCheckStored;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -30,7 +30,7 @@ public class LifAnnotationLayersStored implements AnnotationLayerFinder {
 
     private Set<String> metadataInfoInLayers = new HashSet<String>();
     private Set<String> annotationInfoInLayers = new HashSet<String>();
-    private List<LifAnnotationInterpreter> lifAnnotations = new ArrayList<LifAnnotationInterpreter>();
+    private List<AnnotationInterpreter> lifAnnotations = new ArrayList<AnnotationInterpreter>();
 
     private Map metadataMap = null;
     public String lifLayer = null;
@@ -71,14 +71,14 @@ public class LifAnnotationLayersStored implements AnnotationLayerFinder {
         }
     }
 
-    public List<LifAnnotationInterpreter> processAnnotations(List<Annotation> annotations) throws LifException {
-        LifAnnotationInterpreter.elementIdMapper = new HashMap<String, LifAnnotationInterpreter>();
-        List<LifAnnotationInterpreter> annotationInterpreterList = new ArrayList<LifAnnotationInterpreter>();
+    public List<AnnotationInterpreter> processAnnotations(List<Annotation> annotations) throws LifException {
+        AnnotationInterpreter.elementIdMapper = new HashMap<String, AnnotationInterpreter>();
+        List<AnnotationInterpreter> annotationInterpreterList = new ArrayList<AnnotationInterpreter>();
         DuplicateChecker duplicateChecker = new DuplicateChecker();
 
         for (Annotation annotation : annotations) {
             //if (!duplicateChecker.isDuplicate(annotation.getStart())) {
-            LifAnnotationInterpreter charOffsetLifObject = new LifAnnotationInterpreter(annotation);
+            AnnotationInterpreter charOffsetLifObject = new AnnotationInterpreter(annotation);
             annotationInterpreterList.add(charOffsetLifObject);
             annotationInfoInLayers.add(annotation.getAtType());
             //}
@@ -112,7 +112,7 @@ public class LifAnnotationLayersStored implements AnnotationLayerFinder {
     }
 
     public boolean isLayerValid() throws LifException {
-        LifValidityCheck lifValidityCheck = new LifValidityCheck();
+        ValidityCheckStored lifValidityCheck = new ValidityCheckStored();
         return lifValidityCheck.isMetadataLayerValid(this.lifLayer, this.metadataInfoInLayers, this.annotationInfoInLayers);
     }
 
@@ -144,7 +144,7 @@ public class LifAnnotationLayersStored implements AnnotationLayerFinder {
         }
     }
 
-    public List<LifAnnotationInterpreter> getLifAnnotations() {
+    public List<AnnotationInterpreter> getLifAnnotations() {
         return lifAnnotations;
     }
 
