@@ -5,9 +5,10 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion;
 
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
 import java.util.List;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifAnnotationInterpreter;
 
 /**
  *

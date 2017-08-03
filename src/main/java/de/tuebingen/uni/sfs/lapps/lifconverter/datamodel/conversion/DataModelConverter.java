@@ -5,9 +5,9 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion;
 
+import de.tuebingen.uni.sfs.lapps.library.model.DataModelLif;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
 import java.io.InputStream;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model.DataModelLif;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model.DataModelTcf;
 
 /**

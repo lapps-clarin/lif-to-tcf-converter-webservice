@@ -1,5 +1,8 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.resources;
 
+import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
+import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.library.model.DataModelLif;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -10,11 +13,8 @@ import java.util.logging.Logger;
 
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.FormatConverterTool;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.DataModelConverter;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model.DataModelLif;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model.DataModelTcf;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.LifException;
 
 @Path("con")
 public class FormatConverterResource {

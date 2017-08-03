@@ -5,6 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input;
 
+import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -14,7 +15,6 @@ import org.lappsgrid.discriminator.Discriminators;
 import org.lappsgrid.serialization.lif.Annotation;
 import org.lappsgrid.vocabulary.Features;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.Vocabularies;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifAnnotationInterpreter;
 
 /**
  *

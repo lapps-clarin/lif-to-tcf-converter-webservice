@@ -5,6 +5,8 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel;
 
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input.ConstParseInputCreation;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input.DependencyParseInputCreation;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model.DataModelTcf;
@@ -24,9 +26,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifAnnotationInterpreter;
-
 /**
  *
  * @author felahi

@@ -5,6 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb;
 
+import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifDependencyParser;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.tcf.xb.TcfDependencyEntity;

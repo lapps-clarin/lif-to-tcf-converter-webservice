@@ -5,11 +5,9 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion;
 
+import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
 import java.util.HashMap;
 import java.util.Map;
-
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.VocabularyMappingException;
-
 /**
  *
  * @author felahi

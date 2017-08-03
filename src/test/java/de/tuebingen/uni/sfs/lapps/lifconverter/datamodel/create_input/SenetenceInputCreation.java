@@ -5,12 +5,12 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input;
 
+import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.lappsgrid.serialization.lif.Annotation;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifAnnotationInterpreter;
 
 /**
  *

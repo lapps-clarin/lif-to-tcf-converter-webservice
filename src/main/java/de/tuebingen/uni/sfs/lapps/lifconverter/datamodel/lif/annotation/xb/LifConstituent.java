@@ -5,6 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb;
 
+import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
 import java.util.ArrayList;
 import java.util.List;
 

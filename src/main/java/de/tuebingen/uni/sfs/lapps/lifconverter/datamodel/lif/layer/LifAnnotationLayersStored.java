@@ -5,11 +5,14 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.layer;
 
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
+import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.library.validity.LifValidityCheck;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.AnnotationLayerFinder;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -17,9 +20,6 @@ import java.util.Set;
 import org.lappsgrid.discriminator.Discriminators;
 import org.lappsgrid.serialization.lif.Annotation;
 import org.lappsgrid.vocabulary.Metadata;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.LifException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.LifValidityCheck;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifAnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.DuplicateChecker;
 
 /**

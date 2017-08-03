@@ -5,8 +5,10 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model;
 
+import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.library.annotation.LifAnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.AnnotationLayerConverter;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifConstituentParserStored;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.tcf.xb.TcfConstituentsTreeBuild;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.tcf.xb.TcfDependencyEntity;
@@ -37,7 +39,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifAnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifDependencyParserStored;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.CharOffsetToTokenIdMapper;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.DuplicateChecker;
@@ -46,7 +47,6 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifCo
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifConstituentParser;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifDependencyParser;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.Vocabularies;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifTokenPosLemmaStored;
 
 /**
