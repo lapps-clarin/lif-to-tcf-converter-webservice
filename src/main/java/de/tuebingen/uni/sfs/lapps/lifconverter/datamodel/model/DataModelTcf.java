@@ -273,7 +273,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
     }
 
     public void toDependencyParser() throws ConversionException {
-        DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(TcfVocabularies.TCF.TcfTagSets.DEPENDENCY_TAGSETS, true, true);
+        DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(TcfVocabularies.TCF.TcfTagSets.DEPARSING_TAGSETS, true, true);
         LifDependencyParser lifDependencyParser = new LifDependencyParserStored(givenAnnotations);
         this.givenAnnotations = lifDependencyParser.getTokenList();
         this.toToken();

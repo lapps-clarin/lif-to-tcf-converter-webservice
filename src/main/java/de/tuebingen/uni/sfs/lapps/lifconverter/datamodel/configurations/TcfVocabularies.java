@@ -31,6 +31,7 @@ public class TcfVocabularies {
         public static class TcfTagSets {
 
             public static final String DEPENDENCY_TAGSETS = "stts";
+            public static final String DEPARSING_TAGSETS = "stanford-simple";
             public static final String CONSTITUENT_TAGSETS = "tigertb";
             public static final String POS_TAGSETS = "penntb";
         }
