@@ -32,7 +32,7 @@ public class FormatConverterTool implements DataModelConverter {
         //convertedDataModel.toTextSource(givenDataModel.getFileString());
         try {
             convertAnnotationLayers();
-            this.display();
+            //this.display();
         } catch (ConversionException conExp) {
             Logger.getLogger(FormatConverterTool.class.getName()).log(Level.SEVERE, null, conExp);
         } catch (VocabularyMappingException vocExp) {
