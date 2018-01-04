@@ -36,6 +36,8 @@ public interface AnnotationLayerConverter {
 
     public void toNameEntity() throws Exception;
     
+    public void toCoreferenceResolver() throws Exception;
+    
     public void toTextSource(String fileString) throws Exception;
-
+    
 }

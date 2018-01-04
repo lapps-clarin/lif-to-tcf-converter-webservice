@@ -200,6 +200,17 @@ public class DataModelTcfTest {
         String expectedParseResult = "[nn [t_3] <- [t_4], pobj [t_4] <- [t_2], nsubj [t_0] <- [t_1], prep [t_2] <- [t_1]]";
         assertEquals(expectedParseResult, instance.getTextCorpusStored().getDependencyParsingLayer().getParse(0).toString());
     }
+    
+    @Test
+    public void testToCoreferenceResolver() throws Exception {
+        System.out.println("toCoreferenceResolver");
+        DataModelTcf instance = new DataModelTcf(null);
+        List<AnnotationInterpreter> coreferenceResolverAnnotations = new DependencyParseInputCreation().getDependencyParseAnnotations();
+        instance.setGivenAnnotations(coreferenceResolverAnnotations);
+        instance.toCoreferenceResolver();
+        //String expectedParseResult = "[nn [t_3] <- [t_4], pobj [t_4] <- [t_2], nsubj [t_0] <- [t_1], prep [t_2] <- [t_1]]";
+        //assertEquals(expectedParseResult, instance.getTextCorpusStored().getDependencyParsingLayer().getParse(0).toString());
+    }
 
     /**
      * Test of toTextSource method, of class DataModelTcf.

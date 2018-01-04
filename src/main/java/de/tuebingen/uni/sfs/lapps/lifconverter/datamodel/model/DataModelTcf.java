@@ -48,6 +48,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifC
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifDependencyParser;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.TcfVocabularies;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifTokenPosLemmaStored;
+import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
 
 /**
  *
@@ -88,6 +89,8 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
                 toDependencyParser();
             } else if (givenLayer.contains(TextCorpusLayerTag.PARSING_CONSTITUENT.toString())) {
                 this.toConstituentParser();
+            } else if (givenLayer.contains(TextCorpusLayerTag.REFERENCES.toString())) {
+                this.toCoreferenceResolver();
             }
         } catch (ConversionException ex) {
             Logger.getLogger(DataModelTcf.class.getName()).log(Level.SEVERE, null, ex);
@@ -292,6 +295,11 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         } catch (Exception exp) {
             throw new ConversionException("the converion of constituent parser failed!!");
         }
+    }
+
+    public void toCoreferenceResolver() throws ConversionException {
+        TokensLayer tokensLayer = textCorpusStored.getTokensLayer();
+        ReferencesLayer refsLayer = textCorpusStored.createReferencesLayer("BART", "TuebaDZ", null);
     }
 
     public void toTextSource(String fileString) throws Exception {
