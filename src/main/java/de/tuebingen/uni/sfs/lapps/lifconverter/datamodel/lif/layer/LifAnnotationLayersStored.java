@@ -5,11 +5,11 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.layer;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.api.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.library.annotation.xb.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
 import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.library.validity.ValidityCheckStored;
+import de.tuebingen.uni.sfs.lapps.library.utils.xb.ValidityCheckerStored;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -112,7 +112,7 @@ public class LifAnnotationLayersStored implements AnnotationLayerFinder {
     }
 
     public boolean isLayerValid() throws LifException {
-        ValidityCheckStored lifValidityCheck = new ValidityCheckStored();
+        ValidityCheckerStored lifValidityCheck = new ValidityCheckerStored();
         return lifValidityCheck.isMetadataLayerValid(this.lifLayer, this.metadataInfoInLayers, this.annotationInfoInLayers);
     }
 
@@ -154,5 +154,13 @@ public class LifAnnotationLayersStored implements AnnotationLayerFinder {
         } else {
             throw new VocabularyMappingException("LIF producer field is not found");
         }
+    }
+
+    public void getLayerFromSingleUrl() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void getLayerFromMultipleUrls() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -5,8 +5,8 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
-import de.tuebingen.uni.sfs.lapps.library.vocabulary.LifVocabularies;
+import de.tuebingen.uni.sfs.lapps.library.annotation.xb.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.constants.LifVocabularies;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifConstituentParser;
 import java.util.ArrayList;
 import java.util.Collections;

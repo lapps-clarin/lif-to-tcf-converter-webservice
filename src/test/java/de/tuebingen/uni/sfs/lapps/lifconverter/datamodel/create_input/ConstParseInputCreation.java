@@ -5,8 +5,8 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
-import de.tuebingen.uni.sfs.lapps.library.vocabulary.LifVocabularies;
+import de.tuebingen.uni.sfs.lapps.library.annotation.xb.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.constants.LifVocabularies;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;

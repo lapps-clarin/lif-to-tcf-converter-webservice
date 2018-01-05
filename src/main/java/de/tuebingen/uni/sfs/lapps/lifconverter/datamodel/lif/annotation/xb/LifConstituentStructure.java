@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb;
 
-import de.tuebingen.uni.sfs.lapps.library.vocabulary.LifVocabularies;
+import de.tuebingen.uni.sfs.lapps.library.constants.LifVocabularies;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

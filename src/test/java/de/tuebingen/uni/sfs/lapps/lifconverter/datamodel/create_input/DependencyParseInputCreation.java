@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.xb.AnnotationInterpreter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
