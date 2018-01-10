@@ -10,6 +10,7 @@ import java.io.InputStream;
  */
 @Path("/")
 public class IndexResource {
+
     @GET
     @Produces("text/html")
     public InputStream index() {
@@ -22,39 +23,47 @@ public class IndexResource {
     public InputStream inputTestMultiData() {
         return getClass().getResourceAsStream("/inputMulti.json");
     }
+
+    @GET
+    @Path("/inputText.json")
+    @Produces("application/json")
+    public InputStream inputTestTextData() {
+        return getClass().getResourceAsStream("/inputText.json");
+    }
+
     @GET
     @Path("/inputTok.json")
     @Produces("application/json")
     public InputStream inputTestTokData() {
         return getClass().getResourceAsStream("/inputTok.json");
     }
-    
+
     @GET
     @Path("/inputPos.json")
     @Produces("application/json")
     public InputStream inputTestPosData() {
         return getClass().getResourceAsStream("/inputPos.json");
     }
-    
+
     @GET
     @Path("/inputNer.json")
     @Produces("application/json")
     public InputStream inputTestNerData() {
         return getClass().getResourceAsStream("/inputNer.json");
     }
-    
+
     @GET
     @Path("/inputCon.json")
     @Produces("application/json")
     public InputStream inputTestConData() {
         return getClass().getResourceAsStream("/inputCon.json");
     }
-    
-     @GET
+
+    @GET
     @Path("/inputDep.json")
     @Produces("application/json")
     public InputStream inputTestDepData() {
         return getClass().getResourceAsStream("/inputDep.json");
     }
-    
+
 }
