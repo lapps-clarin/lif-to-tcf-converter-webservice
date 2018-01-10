@@ -65,5 +65,12 @@ public class IndexResource {
     public InputStream inputTestDepData() {
         return getClass().getResourceAsStream("/inputDep.json");
     }
+    
+    @GET
+    @Path("/inputCorfer.json")
+    @Produces("application/json")
+    public InputStream inputTestCorferenceData() {
+        return getClass().getResourceAsStream("/inputCorfer.json");
+    }
 
 }
