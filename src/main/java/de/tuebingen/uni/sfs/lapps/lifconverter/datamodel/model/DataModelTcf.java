@@ -51,7 +51,9 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.TcfVocab
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifReference;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifRefererenceStored;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifTokenPosLemmaStored;
+import eu.clarin.weblicht.wlfxb.tc.api.Reference;
 import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
+import java.util.Arrays;
 
 /**
  *
@@ -309,8 +311,33 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         this.givenAnnotations = lifRefererence.getTokenList();
         this.toToken();
         TokensLayer tokensLayer = textCorpusStored.getTokensLayer();
-        System.out.println(tokensLayer.toString());
         ReferencesLayer refsLayer = textCorpusStored.createReferencesLayer("BART", "TuebaDZ", null);
+        //		  <references typetagset="BART" reltagset="TuebaDZ">
+//		    <entity ID="rft_0">
+//		      <reference ID="rc_0" rel="cataphoric" target="rc_1" tokenIDs="t1" mintokIDs="t1" type="pro.per3"/>
+//            <reference ID="rc_1" tokenIDs="t18 t19 t20 t21 t22" mintokIDs="t20 t21" type="nam"/>
+//		    </entity>
+//	      </references>
+
+        Reference ref1_1 = refsLayer.createReference("pro.per3",
+                Arrays.asList(new Token[]{tokensLayer.getToken(0)}),
+                Arrays.asList(new Token[]{tokensLayer.getToken(0)}));
+        Reference ref1_2 = refsLayer.createReference("nam",
+                Arrays.asList(new Token[]{tokensLayer.getToken(1), tokensLayer.getToken(2),
+                    tokensLayer.getToken(3), tokensLayer.getToken(4), tokensLayer.getToken(5)}),
+                Arrays.asList(new Token[]{tokensLayer.getToken(6), tokensLayer.getToken(7)}));
+
+
+//		Reference ref1_3 = refsLayer.createReference("blah", 
+//				Arrays.asList(new Token[]{tokensLayer.getToken(5)}),
+//				Arrays.asList(new Token[]{tokensLayer.getToken(5)}));
+//		refsLayer.addRelation(ref1_3, "expletive", new Reference[0]);
+
+        refsLayer.addRelation(ref1_1, "cataphoric", new Reference[]{ref1_2});
+        List<Reference> refs1 = Arrays.asList(new Reference[]{ref1_1, ref1_2});
+        //List<Reference> refs1 = Arrays.asList(new Reference[]{ref1_1, ref1_2, ref1_3});
+        refsLayer.addReferent(refs1);
+
 
     }
 

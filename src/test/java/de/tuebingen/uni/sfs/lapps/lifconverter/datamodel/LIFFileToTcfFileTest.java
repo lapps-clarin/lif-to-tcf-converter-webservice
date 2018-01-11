@@ -145,10 +145,10 @@ public class LIFFileToTcfFileTest {
             AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isCorferenceLayer()) {
                 Assert.assertEquals(tool.isCorferenceLayer(), true);
-                System.out.println("CorferenceLayer exists:" + tool.getLayers().toString());
                 List<AnnotationInterpreter> coreferenceResolverAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
                 instance.setGivenAnnotations(coreferenceResolverAnnotations);
                 instance.toCoreferenceResolver();
+                System.out.println("CorferenceLayer exists:" + instance.getTextCorpusStored().getReferencesLayer().getReferencedEntity(0));
             }
 
         }
