@@ -67,7 +67,7 @@ public class IndexResource {
     }
     
     @GET
-    @Path("inputCorfer.json")
+    @Path("/inputCorfer.json")
     @Produces("application/json")
     public InputStream inputTestCorferenceData() {
         return getClass().getResourceAsStream("/inputCorfer.json");
