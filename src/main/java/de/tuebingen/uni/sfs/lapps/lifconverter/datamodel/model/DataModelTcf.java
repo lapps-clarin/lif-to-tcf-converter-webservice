@@ -48,12 +48,12 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifCo
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifConstituentParser;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifDependencyParser;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.TcfVocabularies;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifReference;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifRefererenceStored;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifRefererenceLayerStored;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifTokenPosLemmaStored;
 import eu.clarin.weblicht.wlfxb.tc.api.Reference;
 import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
 import java.util.Arrays;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifReferenceLayer;
 
 /**
  *
@@ -307,15 +307,15 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
     }
 
     public void toCoreferenceResolver() throws ConversionException, LifException {
-        LifReference lifRefererence = new LifRefererenceStored(givenAnnotations);
+        LifReferenceLayer lifRefererence = new LifRefererenceLayerStored(givenAnnotations);
         this.givenAnnotations = lifRefererence.getTokenList();
         this.toToken();
         TokensLayer tokensLayer = textCorpusStored.getTokensLayer();
         ReferencesLayer refsLayer = textCorpusStored.createReferencesLayer("BART", "TuebaDZ", null);
-        //		  <references typetagset="BART" reltagset="TuebaDZ">
+//		  <references typetagset="BART" reltagset="TuebaDZ">
 //		    <entity ID="rft_0">
-//		      <reference ID="rc_0" rel="cataphoric" target="rc_1" tokenIDs="t1" mintokIDs="t1" type="pro.per3"/>
-//            <reference ID="rc_1" tokenIDs="t18 t19 t20 t21 t22" mintokIDs="t20 t21" type="nam"/>
+//		    <reference ID="rc_0" rel="cataphoric" target="rc_1" tokenIDs="t1" mintokIDs="t1" type="pro.per3"/>
+//                  <reference ID="rc_1" tokenIDs="t18 t19 t20 t21 t22" mintokIDs="t20 t21" type="nam"/>
 //		    </entity>
 //	      </references>
 

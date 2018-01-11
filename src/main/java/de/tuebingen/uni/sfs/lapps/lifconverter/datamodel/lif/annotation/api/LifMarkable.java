@@ -5,17 +5,13 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api;
 
-import java.util.List;
 import java.util.Set;
 
 /**
  *
- * @author Mohammad Fazleh Elahi
+ * @author felahi
  */
-public interface LifReference {
-
-    public String getRepresentative();
-
-    public Set<String> getMentions();
-
+public interface LifMarkable {
+    public Set<String> getTargets();
+    
 }

@@ -7,25 +7,27 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb;
 
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifMarkable;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifReference;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.lappsgrid.discriminator.Discriminators;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifReferenceLayer;
 
 /**
  *
  * @author Mohammad Fazleh Elahi
  */
-public class LifRefererenceStored implements LifReference {
+public class LifRefererenceLayerStored implements LifReferenceLayer {
 
     private List<AnnotationInterpreter> tokenList = new ArrayList<AnnotationInterpreter>();
     private Map<String, Long> tokenIdStartIdMapper = new HashMap<String, Long>();
-    private Map<String, AnnotationInterpreter> corferenceAnnotations = new HashMap<String, AnnotationInterpreter>();
-    private Map<String, AnnotationInterpreter> markableAnnotations = new HashMap<String, AnnotationInterpreter>();
+    private Map<String, LifReference> corferenceAnnotations = new HashMap<String, LifReference>();
+    private Map<String, LifMarkable> markableAnnotations = new HashMap<String, LifMarkable>();
 
-    public LifRefererenceStored(List<AnnotationInterpreter> lifAnnotations) throws LifException {
+    public LifRefererenceLayerStored(List<AnnotationInterpreter> lifAnnotations) throws LifException {
         try {
             if (checkAnnotationValidity(lifAnnotations)) {
             }
@@ -36,17 +38,19 @@ public class LifRefererenceStored implements LifReference {
     }
 
     public boolean checkAnnotationValidity(List<AnnotationInterpreter> lifAnnotationList) throws LifException {
-       
+
         for (AnnotationInterpreter annotationObject : lifAnnotationList) {
             if (annotationObject.getUrl().equals(Discriminators.Uri.TOKEN)) {
                 this.tokenList.add(annotationObject);
                 this.tokenIdStartIdMapper.put(annotationObject.getId(), annotationObject.getStart());
             }
             if (annotationObject.getUrl().equals(Discriminators.Uri.COREF)) {
-                corferenceAnnotations.put(annotationObject.getId(), annotationObject);
+                LifReference lifReference = new LifReferenceStored(annotationObject.getFeatures());
+                corferenceAnnotations.put(annotationObject.getId(), lifReference);
             }
             if (annotationObject.getUrl().equals(Discriminators.Uri.MARKABLE)) {
-                markableAnnotations.put(annotationObject.getId(), annotationObject);
+                LifMarkable lifMarkable = new LifMarkableStored(annotationObject.getFeatures());
+                markableAnnotations.put(annotationObject.getId(), lifMarkable);
 
             }
         }
@@ -64,12 +68,12 @@ public class LifRefererenceStored implements LifReference {
         return tokenList;
     }
 
-    public Map<String, AnnotationInterpreter> getCorferenceAnnotations() {
-        return corferenceAnnotations;
+    public Map<String, LifReference> getCorferenceAnnotations() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Map<String, AnnotationInterpreter> getMarkableAnnotations() {
-        return markableAnnotations;
+    public Map<String, LifMarkable> getMarkableAnnotations() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
