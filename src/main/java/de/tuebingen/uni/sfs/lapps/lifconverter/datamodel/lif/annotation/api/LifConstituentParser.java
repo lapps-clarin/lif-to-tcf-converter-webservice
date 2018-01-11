@@ -5,6 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api;
 
+import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -20,9 +21,9 @@ public interface LifConstituentParser extends LifToken{
     
     public Vector<Long> getParseIndexs() ;
 
-    public LifConstituent getRoot(Long parseIndex) throws ConversionException;
+    public LifConstituent getRoot(Long parseIndex) throws LifException;
 
-    public  List<LifConstituent> getConstituentEntities(Long parseIndex) throws ConversionException;
+    public  List<LifConstituent> getConstituentEntities(Long parseIndex) throws LifException;
 
     public Map<String, Long> getTokenIdStartIdMapper();
 

@@ -259,7 +259,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
 
     }
 
-    public void toConstituentParser() throws ConversionException {
+    public void toConstituentParser() throws ConversionException, LifException {
         ConstituentParsingLayer constituentParsingLayer = textCorpusStored.createConstituentParsingLayer(TcfVocabularies.TCF.TcfTagSets.CONSTITUENT_TAGSETS);
         LifConstituentParser lifConstituentParser = new LifConstituentParserStored(givenAnnotations);
         this.givenAnnotations = lifConstituentParser.getTokenList();
@@ -282,7 +282,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         }
     }
 
-    public void toDependencyParser() throws ConversionException {
+    public void toDependencyParser() throws ConversionException, LifException {
         DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(TcfVocabularies.TCF.TcfTagSets.DEPARSING_TAGSETS, true, true);
         LifDependencyParser lifDependencyParser = new LifDependencyParserStored(givenAnnotations);
         this.givenAnnotations = lifDependencyParser.getTokenList();

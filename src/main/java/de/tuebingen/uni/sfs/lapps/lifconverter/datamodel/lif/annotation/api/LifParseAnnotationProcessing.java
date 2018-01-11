@@ -6,6 +6,7 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api;
 
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
 import java.util.List;
 
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
@@ -16,10 +17,10 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionEx
  */
 public interface LifParseAnnotationProcessing {
 
-    public void extractParses(List<AnnotationInterpreter> lifAnnotationList) throws ConversionException;
+    public void extractParses(List<AnnotationInterpreter> lifAnnotationList) throws LifException;
 
-    public void seperateStructures(AnnotationInterpreter annotationObject) throws ConversionException;
+    public void seperateStructures(AnnotationInterpreter annotationObject) throws LifException;
 
-    public boolean seperateUnitsofParseStruectures(List<AnnotationInterpreter> lifAnnotationList) throws ConversionException;
+    public boolean seperateUnitsofParseStruectures(List<AnnotationInterpreter> lifAnnotationList) throws LifException;
 
 }
