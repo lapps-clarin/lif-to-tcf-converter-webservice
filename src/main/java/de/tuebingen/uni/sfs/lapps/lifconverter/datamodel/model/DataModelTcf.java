@@ -7,6 +7,7 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model;
 
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
 import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.AnnotationLayerConverter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifConstituentParserStored;
@@ -47,6 +48,8 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifCo
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifConstituentParser;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifDependencyParser;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.TcfVocabularies;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifReference;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifRefererenceStored;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifTokenPosLemmaStored;
 import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
 
@@ -72,7 +75,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         this.toLayer(this.givenToolTagSetVocabularies.getLayer());
     }
 
-    public void toLayer(String givenLayer) throws ConversionException, VocabularyMappingException {
+    public void toLayer(String givenLayer) throws ConversionException, VocabularyMappingException, LifException {
 
         try {
             if (givenLayer.contains(TextCorpusLayerTag.TOKENS.toString())) {
@@ -92,7 +95,11 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
             } else if (givenLayer.contains(TextCorpusLayerTag.REFERENCES.toString())) {
                 this.toCoreferenceResolver();
             }
-        } catch (ConversionException ex) {
+        } catch (LifException ex) {
+            Logger.getLogger(DataModelTcf.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ConversionException("LIF annotations are wrong!!");
+        }
+        catch (ConversionException ex) {
             Logger.getLogger(DataModelTcf.class.getName()).log(Level.SEVERE, null, ex);
             throw new ConversionException("LIF to TCF conversion failed!!");
         }
@@ -297,9 +304,14 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         }
     }
 
-    public void toCoreferenceResolver() throws ConversionException {
+    public void toCoreferenceResolver() throws ConversionException, LifException {
+        LifReference lifRefererence = new LifRefererenceStored(givenAnnotations);
+        this.givenAnnotations = lifRefererence.getTokenList();
+        this.toToken();
         TokensLayer tokensLayer = textCorpusStored.getTokensLayer();
+        System.out.println(tokensLayer.toString());
         ReferencesLayer refsLayer = textCorpusStored.createReferencesLayer("BART", "TuebaDZ", null);
+
     }
 
     public void toTextSource(String fileString) throws Exception {
