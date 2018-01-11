@@ -12,7 +12,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.tcf.xb.TcfDependencyEnt
 
 /**
  *
- * @author felahi
+ * @author Mohammad Fazleh Elahi
  */
 public interface LifDependencyParser extends LifToken{
     

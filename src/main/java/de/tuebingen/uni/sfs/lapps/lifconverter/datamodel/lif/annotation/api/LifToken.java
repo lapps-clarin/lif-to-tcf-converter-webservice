@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  *
- * @author felahi
+ * @author Mohammad Fazleh Elahi
  */
 public interface LifToken {
     public List<AnnotationInterpreter> getTokenList(); 

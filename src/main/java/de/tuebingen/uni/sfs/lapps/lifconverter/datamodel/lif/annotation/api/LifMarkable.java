@@ -9,7 +9,7 @@ import java.util.Set;
 
 /**
  *
- * @author felahi
+ * @author Mohammad Fazleh Elahi
  */
 public interface LifMarkable {
     public Set<String> getTargets();

@@ -14,9 +14,9 @@ import org.lappsgrid.vocabulary.Features;
 
 /**
  *
- * @author felahi
+ * @author Mohammad Fazleh Elahi
  */
-public class LifMarkableStored implements LifMarkable{
+public class LifMarkableStored implements LifMarkable {
 
     private Map<Object, Object> features = new HashMap<Object, Object>();
 
@@ -31,7 +31,7 @@ public class LifMarkableStored implements LifMarkable{
     }
 
     public Set<String> getTargets() {
-        return  (Set<String>) this.features.get(Features.Markable.TARGETS);
+        return (Set<String>) this.features.get(Features.Markable.TARGETS);
     }
 
 }

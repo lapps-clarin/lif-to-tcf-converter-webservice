@@ -7,7 +7,7 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api;
 
 /**
  *
- * @author felahi
+ * @author Mohammad Fazleh Elahi
  */
 public interface LifTokenPosLemma {
 

@@ -13,7 +13,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionEx
 
 /**
  *
- * @author felahi
+ * @author Mohammad Fazleh Elahi
  */
 public interface LifParseAnnotationProcessing {
 

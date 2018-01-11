@@ -15,7 +15,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifCo
 
 /**
  *
- * @author felahi
+ * @author Mohammad Fazleh Elahi
  */
 public interface LifConstituentParser extends LifToken{
     

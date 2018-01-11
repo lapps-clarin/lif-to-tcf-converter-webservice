@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  *
- * @author felahi
+ * @author Mohammad Fazleh Elahi
  */
 public interface LifReferenceLayer extends LifToken {
 
