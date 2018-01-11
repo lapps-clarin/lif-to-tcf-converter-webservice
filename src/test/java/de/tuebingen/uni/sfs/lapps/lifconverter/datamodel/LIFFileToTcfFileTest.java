@@ -29,45 +29,60 @@ public class LIFFileToTcfFileTest {
     private String NAMEENTITY_EXAMPLE = "inputNer.json";
     private String SENTENCE_EXAMPLE = "inputSen.json";
     private String POS_EXAMPLE = "inputPos.json";
-    private String TEXT_EXAMPLE = "inputTest.json";
+    private String TEXT_EXAMPLE = "inputText.json";
     private String TOKEN_EXAMPLE = "inputTok.json";
     private String FILE_LIF = "json";
     private ClassLoader classLoader = getClass().getClassLoader();
 
-    @Ignore
+    @Test
     public void testTextLayer() throws Exception {
+        System.out.println("toText");
         File inputFile = new File(classLoader.getResource(TEXT_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
             AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isTextLayer()) {
                 Assert.assertEquals(tool.isTextLayer(), true);
-                System.out.println("TextLayer exists:" + tool.getText());
+                DataModelTcf instance = new DataModelTcf(null);
+                instance.toText("Karen flew to New York.");
+                System.out.println("TextLayer exists:" + instance.getTextCorpusStored().getTextLayer().toString());
+                assertEquals("text : Karen flew to New York.", instance.getTextCorpusStored().getTextLayer().toString());
             }
         }
     }
 
-    @Ignore
+    @Test
     public void testTokenLayer() throws Exception {
+        System.out.println("toToken");
         File inputFile = new File(classLoader.getResource(TOKEN_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
             AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isTokenLayer()) {
                 Assert.assertEquals(tool.isTokenLayer(), true);
-                System.out.println("TokenLayer exists:" + tool.getLayers().toString());
+                DataModelTcf instance = new DataModelTcf(null);
+                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                instance.setGivenAnnotations(tokenAnnotations);
+                instance.toToken();
+                System.out.println("TokenLayer exists:" + instance.getTextCorpusStored().getTokensLayer().getToken(0).toString());
+                assertEquals("0: t_0 -> Karen", instance.getTextCorpusStored().getTokensLayer().getToken(0).toString());
             }
         }
 
     }
 
-    @Ignore
+    @Test
     public void testPosLayer() throws Exception {
-
+        System.out.println("toPos");
         File inputFile = new File(classLoader.getResource(POS_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
             AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isPosLayer()) {
                 Assert.assertEquals(tool.isPosLayer(), true);
-                System.out.println("PosLayer exists:" + tool.getLayers().toString());
+                DataModelTcf instance = new DataModelTcf(null);
+                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                instance.setGivenAnnotations(tokenAnnotations);
+                instance.toPos();
+                System.out.println("PosLayer exists:" + instance.getTextCorpusStored().getPosTagsLayer().getTag(0).toString());
+                assertEquals("NNP [t_0]", instance.getTextCorpusStored().getPosTagsLayer().getTag(0).toString());
             }
         }
     }
