@@ -5,8 +5,8 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.layer.xb.AnnotationInterpreter;
-import de.tuebingen.uni.sfs.lapps.library.annotation.layer.xb.AnnotationLayersStored;
+import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationLayersStored;
 import de.tuebingen.uni.sfs.lapps.library.utils.xb.ProcessUtils;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model.DataModelTcf;
 import java.io.File;

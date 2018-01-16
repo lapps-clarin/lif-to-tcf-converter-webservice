@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.layer.xb.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
 import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusLayerTag;
 import java.util.ArrayList;
 import java.util.HashMap;

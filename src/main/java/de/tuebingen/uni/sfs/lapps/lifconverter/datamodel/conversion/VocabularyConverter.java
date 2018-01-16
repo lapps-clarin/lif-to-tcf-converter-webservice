@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.layer.api.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
 import java.io.BufferedReader;
 import java.io.IOException;
