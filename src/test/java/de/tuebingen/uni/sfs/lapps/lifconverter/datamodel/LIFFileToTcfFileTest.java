@@ -6,7 +6,7 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel;
 
 import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
-import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationLayersStored;
+import de.tuebingen.uni.sfs.lapps.library.layer.xb.LifAnnotationLayerFinderStored;
 import de.tuebingen.uni.sfs.lapps.library.utils.xb.ProcessUtils;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model.DataModelTcf;
 import java.io.File;
@@ -41,7 +41,7 @@ public class LIFFileToTcfFileTest {
         System.out.println("toText");
         File inputFile = new File(classLoader.getResource(TEXT_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
-            AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isTextLayer()) {
                 Assert.assertEquals(tool.isTextLayer(), true);
                 instance = new DataModelTcf(null);
@@ -57,7 +57,7 @@ public class LIFFileToTcfFileTest {
         System.out.println("toToken");
         File inputFile = new File(classLoader.getResource(TOKEN_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
-            AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isTokenLayer()) {
                 Assert.assertEquals(tool.isTokenLayer(), true);
                 instance = new DataModelTcf(null);
@@ -76,7 +76,7 @@ public class LIFFileToTcfFileTest {
         System.out.println("toPos");
         File inputFile = new File(classLoader.getResource(POS_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
-            AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isPosLayer()) {
                 Assert.assertEquals(tool.isPosLayer(), true);
                 instance = new DataModelTcf(null);
@@ -93,7 +93,7 @@ public class LIFFileToTcfFileTest {
     public void testSentenceLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(SENTENCE_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
-            AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isSenetenceLayer()) {
                 Assert.assertEquals(tool.isSenetenceLayer(), true);
                 instance = new DataModelTcf(null);
@@ -111,7 +111,7 @@ public class LIFFileToTcfFileTest {
     public void testNamedEntirtyLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(NAMEENTITY_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
-            AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isNamedEntityLayer()) {
                 Assert.assertEquals(tool.isNamedEntityLayer(), true);
                 instance = new DataModelTcf(null);
@@ -131,7 +131,7 @@ public class LIFFileToTcfFileTest {
     public void testDependencyLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(DEPENDENCY_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
-            AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isDependencyLayer()) {
                 Assert.assertEquals(tool.isDependencyLayer(), true);
                 instance = new DataModelTcf(null);
@@ -149,7 +149,7 @@ public class LIFFileToTcfFileTest {
     public void testConstituentLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(CONTSTITUENT_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
-            AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isConstituentLayer()) {
                 Assert.assertEquals(tool.isConstituentLayer(), true);
                 instance = new DataModelTcf(null);
@@ -169,7 +169,7 @@ public class LIFFileToTcfFileTest {
         File inputFile = new File(classLoader.getResource(CORFERENCE_EXAMPLE).getFile());
         DataModelTcf instance = new DataModelTcf(null);
         if (inputFile.getName().contains(FILE_LIF)) {
-            AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isCorferenceLayer()) {
                 Assert.assertEquals(tool.isCorferenceLayer(), true);
                 List<AnnotationInterpreter> coreferenceResolverAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
