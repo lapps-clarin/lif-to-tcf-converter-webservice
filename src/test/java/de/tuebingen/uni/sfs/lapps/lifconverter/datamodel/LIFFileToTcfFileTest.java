@@ -87,14 +87,20 @@ public class LIFFileToTcfFileTest {
         }
     }
 
-    @Ignore
+    @Test
     public void testSentenceLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(SENTENCE_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
             AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isSenetenceLayer()) {
                 Assert.assertEquals(tool.isSenetenceLayer(), true);
-                System.out.println("SentenceLayer exists:" + tool.getLayers().toString());
+                DataModelTcf instance = new DataModelTcf(null);
+                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                instance.setGivenAnnotations(tokenAnnotations);
+                instance.toToken();
+                instance.toSentences();
+                System.out.println("SentenceLayer exists:" + instance.getTextCorpusStored().getSentencesLayer().getSentence(0));
+                assertEquals("[t_0]", instance.getTextCorpusStored().getSentencesLayer().getSentence(0).toString());
             }
         }
     }
@@ -137,7 +143,7 @@ public class LIFFileToTcfFileTest {
 
     }
 
-    @Test
+    @Ignore
     public void testCorferenceLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(CORFERENCE_EXAMPLE).getFile());
         DataModelTcf instance = new DataModelTcf(null);
