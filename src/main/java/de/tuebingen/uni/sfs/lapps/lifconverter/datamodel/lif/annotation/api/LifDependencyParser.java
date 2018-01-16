@@ -5,6 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api;
 
+import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifToken;
 import java.util.List;
 import java.util.Vector;
 
