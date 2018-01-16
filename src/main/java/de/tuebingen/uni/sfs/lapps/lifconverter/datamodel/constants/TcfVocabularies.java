@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations;
+package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.constants;
 
 import java.util.Arrays;
 import java.util.HashSet;

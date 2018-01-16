@@ -17,7 +17,7 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.lang.StringUtils;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.TcfVocabularies;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.constants.TcfVocabularies;
 
 /**
  *

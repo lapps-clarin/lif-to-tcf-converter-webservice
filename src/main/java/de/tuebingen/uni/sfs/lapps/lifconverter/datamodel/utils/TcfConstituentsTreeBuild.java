@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.tcf.xb;
+package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils;
 
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifConstituent;
 import eu.clarin.weblicht.wlfxb.tc.api.Constituent;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Stack;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.CharOffsetToTokenIdMapper;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.TcfVocabularies;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.constants.TcfVocabularies;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
 
 /**
