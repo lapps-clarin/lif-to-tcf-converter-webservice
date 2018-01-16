@@ -5,13 +5,13 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb;
 
+import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifTokenPosLemma;
 import java.util.HashMap;
 import java.util.Map;
 import static org.lappsgrid.vocabulary.Features.Token.LEMMA;
 import static org.lappsgrid.vocabulary.Features.Token.POS;
 import static org.lappsgrid.vocabulary.Features.Token.WORD;
 
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifTokenPosLemma;
 
 /**
  *
