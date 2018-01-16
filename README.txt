@@ -1,30 +1,13 @@
-
-What is it?
+LIF to TCF converter
 ===========
 
-This is a converter developed as web service on weblicht-nentities-ws-archetype Dropwizard  archetype. The converter converts LIF (LAPPS Grid interchange format)file to TCF(WebLicht interchange format).
-It can be deployed using Maven 2.0.10 or greater with Java 6.0 or greater.
-This demo application exposes the converter service.
-
-LIF to TCF converter:
-* /con/stream
-
-
-LIF to TCF converter
-==========
-This web-service converts LIF to TCF. The service
+This is a converter developed as web service. The converter converts LIF (LAPPS Grid interchange format)file to TCF(WebLicht interchange format).
+This demo application exposes the converter service. This web-service converts LIF to TCF. The service
 processes POST requests containing LIF data and produces TCF data.
 
 It imitates a tool that requires loading a parameter list for converting LIF to TCF vocabulries. In this web-service example the tool instance is created only
 once (the corresponding list resource is loaded only once), when the application
-is created. The example shows the case when the tool is not thread-safe.
-Therefore, the tool's process() method requires synchronization.
-
-* ```DemoApplication.java``` - is the application definition.
-* ```FormatConverterResource.java``` - is the definition of a
-resource. 
-* ```FormatConverterTool.java``` - is the place where an actual
-implementation of a tool resides. 
+is created. 
 
 How To Run And Test
 =============
