@@ -5,6 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.tcf.xb;
 
+import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifConstituent;
 import eu.clarin.weblicht.wlfxb.tc.api.Constituent;
 import eu.clarin.weblicht.wlfxb.tc.api.ConstituentParse;
 import eu.clarin.weblicht.wlfxb.tc.api.ConstituentParsingLayer;
@@ -14,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifConstituent;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.CharOffsetToTokenIdMapper;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.TcfVocabularies;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;

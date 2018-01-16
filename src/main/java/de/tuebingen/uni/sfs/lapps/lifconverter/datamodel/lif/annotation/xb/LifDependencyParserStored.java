@@ -5,6 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb;
 
+import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifParseAnnotationProcessing;
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
@@ -20,7 +21,6 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.lappsgrid.discriminator.Discriminators;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifParseAnnotationProcessing;
 
 /**
  *

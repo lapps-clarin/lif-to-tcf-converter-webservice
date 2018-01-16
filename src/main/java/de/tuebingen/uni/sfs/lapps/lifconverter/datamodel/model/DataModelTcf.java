@@ -6,13 +6,15 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model;
 
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifConstituentParser;
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifReferenceLayer;
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifConstituent;
+import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifConstituentParserStored;
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifRefererenceLayerStored;
 import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
 import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.AnnotationLayerConverter;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifConstituentParserStored;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.tcf.xb.TcfConstituentsTreeBuild;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.tcf.xb.TcfDependencyEntity;
 import eu.clarin.weblicht.wlfxb.io.WLDObjector;
@@ -46,8 +48,6 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifDe
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.CharOffsetToTokenIdMapper;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.DuplicateChecker;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifConstituent;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifConstituentParser;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifDependencyParser;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.TcfVocabularies;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifTokenPosLemmaStored;
