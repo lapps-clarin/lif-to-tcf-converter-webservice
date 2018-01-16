@@ -24,13 +24,8 @@ public class ConverterApplication extends Application<ConverterConfiguration> {
     @Override
     public void run(ConverterConfiguration configuration, Environment environment) throws Exception {
         FormatConverterResource formatConverterResource=new FormatConverterResource();
-        NamedEntitiesResource namedEntitiesResource = new NamedEntitiesResource();
-        ReferencesResource referencesResource = new ReferencesResource();
         IndexResource indexResource = new IndexResource();
         environment.jersey().register(formatConverterResource);
-        environment.jersey().register(namedEntitiesResource);
-        environment.jersey().register(referencesResource);
-        environment.jersey().register(TokSentencesResource.class);
         environment.jersey().register(indexResource);
     }
 }
