@@ -7,16 +7,19 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model;
 
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifConstituentParser;
+import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifDependencyParser;
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifReferenceLayer;
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifConstituent;
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifConstituentParserStored;
+import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifDependencyParserStored;
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifRefererenceLayerStored;
+import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifTokenPosLemmaStored;
+import de.tuebingen.uni.sfs.lapps.library.annotation.xb.DependencyEntityInfo;
 import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
 import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.AnnotationLayerConverter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.tcf.xb.TcfConstituentsTreeBuild;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.tcf.xb.TcfDependencyEntity;
 import eu.clarin.weblicht.wlfxb.io.WLDObjector;
 import eu.clarin.weblicht.wlfxb.io.WLFormatException;
 import eu.clarin.weblicht.wlfxb.tc.api.Constituent;
@@ -44,13 +47,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifDependencyParserStored;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.CharOffsetToTokenIdMapper;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.DuplicateChecker;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.api.LifDependencyParser;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.configurations.TcfVocabularies;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.lif.annotation.xb.LifTokenPosLemmaStored;
 import eu.clarin.weblicht.wlfxb.tc.api.Reference;
 import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
 import java.util.Arrays;
@@ -293,7 +293,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         try {
             List<Dependency> tcfDependencyList = new ArrayList<Dependency>();
             for (Long parseIndex : lifDependencyParser.getParseIndexs()) {
-                for (TcfDependencyEntity dependencyEntity : lifDependencyParser.getDependencyEntities(parseIndex)) {
+                for (DependencyEntityInfo dependencyEntity : lifDependencyParser.getDependencyEntities(parseIndex)) {
                     Token dependent = this.charOffsetToTokenIdMapper.startIdToToken(dependencyEntity.getDepIDs());
                     Token govonor = this.charOffsetToTokenIdMapper.startIdToToken(dependencyEntity.getGovIDs());
                     Dependency dependency = dependencyParsingLayer.createDependency(dependencyEntity.getFunc(), dependent, govonor);
