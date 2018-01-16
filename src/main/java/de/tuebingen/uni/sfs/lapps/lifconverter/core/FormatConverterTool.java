@@ -1,6 +1,6 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.core;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.api.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.library.annotation.layer.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.library.model.DataModelLif;
 import java.io.InputStream;

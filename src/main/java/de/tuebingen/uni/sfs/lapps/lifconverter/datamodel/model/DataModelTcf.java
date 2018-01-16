@@ -5,11 +5,11 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.api.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.library.annotation.layer.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifConstituentParser;
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifDependencyParser;
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifReferenceLayer;
-import de.tuebingen.uni.sfs.lapps.library.annotation.xb.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.layer.xb.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifConstituent;
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifConstituentParserStored;
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifDependencyParserStored;

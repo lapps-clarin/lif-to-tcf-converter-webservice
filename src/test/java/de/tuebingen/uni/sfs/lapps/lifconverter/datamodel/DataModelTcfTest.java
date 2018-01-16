@@ -5,8 +5,8 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel;
 
-import de.tuebingen.uni.sfs.lapps.library.annotation.api.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.library.annotation.xb.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.library.annotation.layer.api.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.library.annotation.layer.xb.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input.ConstParseInputCreation;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input.DependencyParseInputCreation;
 import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusStored;
