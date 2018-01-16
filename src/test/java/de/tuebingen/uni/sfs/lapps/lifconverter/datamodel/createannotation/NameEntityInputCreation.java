@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input;
+package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.createannotation;
 
 import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
 import java.util.ArrayList;

@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.create_input;
+package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.createannotation;
 
 import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
-import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusLayerTag;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
