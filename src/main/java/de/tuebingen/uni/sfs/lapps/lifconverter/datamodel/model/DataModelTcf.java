@@ -8,6 +8,7 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model;
 import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifConstituentParser;
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifDependencyParser;
+import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifReference;
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifReferenceLayer;
 import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifConstituent;
@@ -307,8 +308,8 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
     }
 
     public void toCoreferenceResolver() throws ConversionException, LifException {
-        LifReferenceLayer lifRefererence = new LifRefererenceLayerStored(givenAnnotations);
-        this.givenAnnotations = lifRefererence.getTokenList();
+        LifReferenceLayer lifRefererenceLayer = new LifRefererenceLayerStored(givenAnnotations);
+        this.givenAnnotations = lifRefererenceLayer.getTokenList();
         this.toToken();
         TokensLayer tokensLayer = textCorpusStored.getTokensLayer();
         ReferencesLayer refsLayer = textCorpusStored.createReferencesLayer("BART", "TuebaDZ", null);
@@ -318,6 +319,12 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
 //                  <reference ID="rc_1" tokenIDs="t18 t19 t20 t21 t22" mintokIDs="t20 t21" type="nam"/>
 //		    </entity>
 //	      </references>
+
+         for (String id: lifRefererenceLayer.getCorferenceAnnotations().keySet()){
+             LifReference lifReference=lifRefererenceLayer.getCorferenceAnnotations().get(id);
+               System.out.print(lifReference.getMentions());
+                System.out.print(lifReference.getRepresentative());
+         }
 
         Reference ref1_1 = refsLayer.createReference("pro.per3",
                 Arrays.asList(new Token[]{tokensLayer.getToken(0)}),

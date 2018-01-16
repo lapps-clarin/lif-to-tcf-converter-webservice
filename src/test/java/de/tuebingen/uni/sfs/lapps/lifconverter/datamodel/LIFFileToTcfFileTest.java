@@ -164,7 +164,7 @@ public class LIFFileToTcfFileTest {
 
     }
 
-    @Ignore
+    @Test
     public void testCorferenceLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(CORFERENCE_EXAMPLE).getFile());
         DataModelTcf instance = new DataModelTcf(null);
