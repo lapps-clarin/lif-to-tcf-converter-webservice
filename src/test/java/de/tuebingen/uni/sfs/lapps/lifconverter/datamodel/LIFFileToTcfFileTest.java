@@ -112,32 +112,49 @@ public class LIFFileToTcfFileTest {
             AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isNamedEntityLayer()) {
                 Assert.assertEquals(tool.isNamedEntityLayer(), true);
-                System.out.println("NamedEntirtyLayer exists:" + tool.getLayers().toString());
+                DataModelTcf instance = new DataModelTcf(null);
+                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                instance.setGivenAnnotations(tokenAnnotations);
+                instance.toToken();
+                instance.toNameEntity();
+                System.out.println("NamedEntirtyLayer exists:" + instance.getTextCorpusStored().getNamedEntitiesLayer().getEntity(0));
+                //assertEquals("[t_0]", instance.getTextCorpusStored().getSentencesLayer().getSentence(0).toString());
             }
         }
     }
 
-    @Ignore
+    @Test
     public void testDependencyLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(DEPENDENCY_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
             AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isDependencyLayer()) {
                 Assert.assertEquals(tool.isDependencyLayer(), true);
-                System.out.println("DependencyLayer exists:" + tool.getLayers().toString());
+                DataModelTcf instance = new DataModelTcf(null);
+                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                instance.setGivenAnnotations(tokenAnnotations);
+                instance.toDependencyParser();
+                System.out.println("DependencyLayer exists:" + instance.getTextCorpusStored().getDependencyParsingLayer().getParse(0));
+                assertEquals("[nn [t_3] <- [t_4], pobj [t_4] <- [t_2], nsubj [t_0] <- [t_1], prep [t_2] <- [t_1]]", instance.getTextCorpusStored().getDependencyParsingLayer().getParse(0).toString());
             }
         }
 
     }
 
-    @Ignore
+    @Test
     public void testConstituentLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(CONTSTITUENT_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
             AnnotationLayersStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isConstituentLayer()) {
                 Assert.assertEquals(tool.isConstituentLayer(), true);
-                System.out.println("ConstituentLayer exists:" + tool.getLayers().toString());
+                DataModelTcf instance = new DataModelTcf(null);
+                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                instance.setGivenAnnotations(tokenAnnotations);
+                instance.toConstituentParser();
+                System.out.println("ConstituentLayer exists:" + instance.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot());
+                assertEquals("c_17 -> ROOT ( c_16 -> S ( c_15 -> NP ( c_14 -> NNP ( c_13 -> NNP [t_0] ) ) c_12 -> VP ( c_11 -> VBD ( c_10 -> VBD [t_1] ) c_9 -> PP ( c_8 -> TO ( c_7 -> TO [t_2] ) c_6 -> NP ( c_5 -> NNP ( c_4 -> NNP [t_3] ) c_3 -> NNP ( c_2 -> NNP [t_4] ) ) ) ) c_1 -> . ( c_0 -> . [t_5] ) ) )", instance.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot().toString());
+
             }
         }
 
