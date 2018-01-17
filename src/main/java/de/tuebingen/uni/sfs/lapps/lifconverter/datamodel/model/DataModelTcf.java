@@ -5,6 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model;
 
+import de.tuebingen.uni.sfs.clarind.profiler.Values;
 import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifConstituentParser;
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifDependencyParser;
@@ -67,7 +68,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
     private CharOffsetToTokenIdMapper charOffsetToTokenIdMapper = null;
 
     public DataModelTcf(InputStream input) throws ConversionException, IOException {
-        toLanguage(TcfVocabularies.TCF.TcfConstants.DEFAULT_LANGUAGE);
+        toLanguage(Values.LANG_EN.getName());
     }
 
     public void toLayers(AnnotationLayerFinder layer, List<AnnotationInterpreter> annotationlist) throws Exception {
@@ -113,7 +114,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         } catch (NullPointerException ex) {
             throw new ConversionException("Language conversion failed from lif to tcf failed!!");
         } finally {
-            textCorpusStored = new TextCorpusStored(TcfVocabularies.TCF.TcfConstants.DEFAULT_LANGUAGE);
+            textCorpusStored = new TextCorpusStored(Values.LANG_EN.getName());
         }
     }
 

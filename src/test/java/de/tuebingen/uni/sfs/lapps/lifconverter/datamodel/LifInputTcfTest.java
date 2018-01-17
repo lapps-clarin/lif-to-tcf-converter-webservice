@@ -92,6 +92,7 @@ public class LifInputTcfTest {
         DataModelTcf instance = new DataModelTcf(null);
         instance.toLanguage(language);
         instance.getTextCorpusStored().getLanguage();
+        System.out.println(instance.getTextCorpusStored().getLanguage());
         assertEquals("en", instance.getTextCorpusStored().getLanguage());
     }
 

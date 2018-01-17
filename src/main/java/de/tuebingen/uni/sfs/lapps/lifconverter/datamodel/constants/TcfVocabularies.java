@@ -41,10 +41,10 @@ public class TcfVocabularies {
             public static final String CONSTITUENT_ROOT = "ROOT";
         }
 
-        public static class TcfConstants {
+        /*public static class TcfConstants {
 
             public static final String DEFAULT_LANGUAGE = "en";
-        }
+        }*/
 
     }
 }
