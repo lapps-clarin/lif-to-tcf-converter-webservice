@@ -165,7 +165,7 @@ public class LifFileToTcfFileTest {
     @Test
     public void testCorferenceLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(CORFERENCE_EXAMPLE).getFile());
-        DataModelTcf instance = new DataModelTcf(null);
+        instance = new DataModelTcf(null);
         if (inputFile.getName().contains(FILE_LIF)) {
             LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isCorferenceLayer()) {
