@@ -24,6 +24,7 @@ public class CharOffsetToTokenIdMapper {
     private Token token = null;
     private Map<Long, String> startIdTokenIdMapper = new HashMap<Long, String>();
     private Map<String, Token> tokenIdToken = new HashMap<String, Token>();
+    private Map<String, Token> lifTokenIdTcfToken=new HashMap<String, Token>();
 
     public CharOffsetToTokenIdMapper(Map<Long, String> startIdTokenIdMapper, Map<String, Token> tokenIdToken, Long start) {
         this.startIdTokenIdMapper = startIdTokenIdMapper;
@@ -34,6 +35,12 @@ public class CharOffsetToTokenIdMapper {
     public CharOffsetToTokenIdMapper(Map<Long, String> startIdTokenIdMapper, Map<String, Token> tokenIdToken) {
         this.startIdTokenIdMapper = startIdTokenIdMapper;
         this.tokenIdToken = tokenIdToken;
+    }
+    
+    public CharOffsetToTokenIdMapper(Map<Long, String> startIdTokenIdMapper, Map<String, Token> tokenIdToken,Map<String, Token> lifTokenIdTcfTokenId) {
+        this.startIdTokenIdMapper = startIdTokenIdMapper;
+        this.tokenIdToken = tokenIdToken;
+        this.lifTokenIdTcfToken=lifTokenIdTcfTokenId;
     }
 
     public List<String> getTokenIdsFromStartIds(Long start, Long end) throws ConversionException {
@@ -119,6 +126,10 @@ public class CharOffsetToTokenIdMapper {
 
     public Token getToken(String tokenId) {
         return this.tokenIdToken.get(tokenId);
+    }
+
+    public Map<String, Token> getLifTokenIdTcfToken() {
+        return lifTokenIdTcfToken;
     }
 
 }

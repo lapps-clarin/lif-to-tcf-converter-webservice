@@ -55,8 +55,6 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionEx
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.constants.TcfVocabularies;
 import eu.clarin.weblicht.wlfxb.tc.api.Reference;
 import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
-import java.util.Arrays;
-
 /**
  *
  * @author felahi
@@ -67,7 +65,6 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
     private AnnotationLayerFinder givenToolTagSetVocabularies = null;
     private List<AnnotationInterpreter> givenAnnotations = new ArrayList<AnnotationInterpreter>();
     private CharOffsetToTokenIdMapper charOffsetToTokenIdMapper = null;
-    private Map<String, Token> tokenIdToken = new HashMap<String, Token>();
 
     public DataModelTcf(InputStream input) throws ConversionException, IOException {
         toLanguage(TcfVocabularies.TCF.TcfConstants.DEFAULT_LANGUAGE);
@@ -137,7 +134,8 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         LemmasLayer lemmaLayer = null;
         boolean wordFlag = false, posFlag = false, lemmaFlag = false, flag = true;
         DuplicateChecker duplicateChecker = new DuplicateChecker();
-        tokenIdToken = new HashMap<String, Token>();
+        Map<String, Token> tokenIdToken = new HashMap<String, Token>();
+        Map<String, Token> lifTokenIdTcfToken = new HashMap<String, Token>();
         Map<Long, String> startIdTokenIdMapper = new HashMap<Long, String>();
 
         for (AnnotationInterpreter annotationInterpreter : givenAnnotations) {
@@ -167,6 +165,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
                         token = tokensLayer.addToken(lifToken.getWord());
                         startIdTokenIdMapper.put(annotationInterpreter.getStart(), token.getID());
                         tokenIdToken.put(token.getID(), token);
+                        lifTokenIdTcfToken.put(annotationInterpreter.getId(), token);
                     }
 
                     if (posFlag) {
@@ -183,7 +182,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
             }
         }
         if (wordFlag) {
-            charOffsetToTokenIdMapper = new CharOffsetToTokenIdMapper(startIdTokenIdMapper, tokenIdToken);
+            charOffsetToTokenIdMapper = new CharOffsetToTokenIdMapper(startIdTokenIdMapper, tokenIdToken,lifTokenIdTcfToken);
         }
     }
 
@@ -315,20 +314,20 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         ReferencesLayer refsLayer = textCorpusStored.createReferencesLayer(null, null, null);
 
         Map<String, Reference> markIdReference = new HashMap<String, Reference>();
-        List<Reference> references = new ArrayList<Reference>();
+        List<Reference> tcfReferences = new ArrayList<Reference>();
+        Map<String, Token> lifTokenIdToken=charOffsetToTokenIdMapper.getLifTokenIdTcfToken();
         for (String lifMarkableId : lifRefererenceLayer.getMarkableAnnotations().keySet()) {
             LifMarkable lifMarkable = lifRefererenceLayer.getMarkableAnnotations().get(lifMarkableId);
             List<String> lifTokenIds = lifMarkable.getTargets();
             List<Token> tcftokens = new ArrayList<Token>();
-            for (String tokenId : lifTokenIds) {
-                if (this.tokenIdToken.containsKey(tokenId)) {
-                    tcftokens.add(tokenIdToken.get(tokenId));
+            for (String lifTokenId : lifTokenIds) {
+                if (lifTokenIdToken.containsKey(lifTokenId)) {
+                    tcftokens.add(lifTokenIdToken.get(lifTokenId));
                 }
-
             }
             Reference reference = refsLayer.createReference(tcftokens);
             markIdReference.put(lifMarkableId, reference);
-            references.add(reference);
+            tcfReferences.add(reference);
         }
 
         for (String lifCorferId : lifRefererenceLayer.getCorferenceAnnotations().keySet()) {
@@ -353,7 +352,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
             }
 
         }
-        refsLayer.addReferent(references);
+        refsLayer.addReferent(tcfReferences);
     }
 
     public void toTextSource(String fileString) throws Exception {
