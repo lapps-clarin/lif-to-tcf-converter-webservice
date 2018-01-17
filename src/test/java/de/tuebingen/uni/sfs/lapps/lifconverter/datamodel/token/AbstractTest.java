@@ -7,7 +7,7 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.token;
 
 import de.tuebingen.uni.sfs.lapps.library.model.DataModelLif;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model.DataModelTcf;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.ToTCFAnnotationLayer;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;

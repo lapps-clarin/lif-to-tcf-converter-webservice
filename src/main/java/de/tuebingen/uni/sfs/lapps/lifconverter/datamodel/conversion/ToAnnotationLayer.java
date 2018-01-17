@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author felahi
  */
-public interface AnnotationLayerConverter {
+public interface ToAnnotationLayer {
 
     public void toLayers(AnnotationLayerFinder layer, List<AnnotationInterpreter> annotationlist) throws Exception;
 

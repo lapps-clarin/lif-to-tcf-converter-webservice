@@ -12,7 +12,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.createannotation.Depend
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.createannotation.NameEntityInputCreation;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.createannotation.SenetenceInputCreation;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.createannotation.TokenInputCreation;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model.DataModelTcf;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.ToTCFAnnotationLayer;
 import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusStored;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -55,7 +55,7 @@ public class LifInputTcfTest {
     }
 
     /**
-     * Test of toLayers method, of class DataModelTcf.
+     * Test of toLayers method, of class ToTCFAnnotationLayer.
      *
      */
     @Ignore
@@ -64,32 +64,32 @@ public class LifInputTcfTest {
         String givenLayer = "";
          AnnotationLayerFinder layer = null;
         List<AnnotationInterpreter> annotationlist = null;
-        DataModelTcf instance = null;
+        ToTCFAnnotationLayer instance = null;
         instance.toLayers(layer,annotationlist);
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of toLayer method, of class DataModelTcf.
+     * Test of toLayer method, of class ToTCFAnnotationLayer.
      *
      */
     @Ignore
     public void testToLayer() throws Exception {
         System.out.println("toLayer");
         String givenLayer = "";
-        DataModelTcf instance = null;
+        ToTCFAnnotationLayer instance = null;
         instance.toLayer(givenLayer);
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of toLanguage method, of class DataModelTcf.
+     * Test of toLanguage method, of class ToTCFAnnotationLayer.
      */
     @Test
     public void testToLanguage() throws Exception {
         System.out.println("toLanguage");
         String language = "en";
-        DataModelTcf instance = new DataModelTcf(null);
+        ToTCFAnnotationLayer instance = new ToTCFAnnotationLayer(null);
         instance.toLanguage(language);
         instance.getTextCorpusStored().getLanguage();
         System.out.println(instance.getTextCorpusStored().getLanguage());
@@ -97,60 +97,60 @@ public class LifInputTcfTest {
     }
 
     /**
-     * Test of toText method, of class DataModelTcf.
+     * Test of toText method, of class ToTCFAnnotationLayer.
      */
     @Test
     public void testToText() throws Exception {
         System.out.println("toText");
-        DataModelTcf instance = new DataModelTcf(null);
+        ToTCFAnnotationLayer instance = new ToTCFAnnotationLayer(null);
         instance.toText("Karen flew to New York.");
         assertEquals("text : Karen flew to New York.", instance.getTextCorpusStored().getTextLayer().toString());
     }
 
     /**
-     * Test of toToken method, of class DataModelTcf.
+     * Test of toToken method, of class ToTCFAnnotationLayer.
      */
     @Test
     public void testToToken() throws Exception {
         System.out.println("toToken");
-        DataModelTcf instance = new DataModelTcf(null);
+        ToTCFAnnotationLayer instance = new ToTCFAnnotationLayer(null);
         instance.setGivenAnnotations(tokenAnnotations);
         instance.toToken();
         assertEquals("0: t_0 -> Karen", instance.getTextCorpusStored().getTokensLayer().getToken(0).toString());
     }
 
     /**
-     * Test of toPos method, of class DataModelTcf.
+     * Test of toPos method, of class ToTCFAnnotationLayer.
      */
     @Test
     public void testToPos() throws Exception {
         System.out.println("toPos");
-        DataModelTcf instance = new DataModelTcf(null);
+        ToTCFAnnotationLayer instance = new ToTCFAnnotationLayer(null);
         instance.setGivenAnnotations(tokenAnnotations);
         instance.toPos();
         assertEquals("NNP [t_0]", instance.getTextCorpusStored().getPosTagsLayer().getTag(0).toString());
     }
 
     /**
-     * Test of toLemma method, of class DataModelTcf.
+     * Test of toLemma method, of class ToTCFAnnotationLayer.
      */
     @Test
     public void testToLemma() throws Exception {
         System.out.println("toLemma");
-        DataModelTcf instance = new DataModelTcf(null);
+        ToTCFAnnotationLayer instance = new ToTCFAnnotationLayer(null);
         instance.setGivenAnnotations(tokenAnnotations);
         instance.toLemma();
         assertEquals("l_0 -> Karen [t_0]", instance.getTextCorpusStored().getLemmasLayer().getLemma(0).toString());
     }
 
     /**
-     * Test of toSentences method, of class DataModelTcf.
+     * Test of toSentences method, of class ToTCFAnnotationLayer.
      *
      */
     @Test
     public void testToSentences() throws Exception {
         System.out.println("toSentences");
-        DataModelTcf instance = new DataModelTcf(null);
+        ToTCFAnnotationLayer instance = new ToTCFAnnotationLayer(null);
         instance.setGivenAnnotations(tokenAnnotations);
         instance.toToken();
         instance.setGivenAnnotations(senetenceAnnotations);
@@ -159,13 +159,13 @@ public class LifInputTcfTest {
     }
 
     /**
-     * Test of toNameEntity method, of class DataModelTcf.
+     * Test of toNameEntity method, of class ToTCFAnnotationLayer.
      *
      */
     @Ignore
     public void testToNameEntity() throws Exception {
         System.out.println("toNameEntity");
-        DataModelTcf instance = new DataModelTcf(null);
+        ToTCFAnnotationLayer instance = new ToTCFAnnotationLayer(null);
         List<AnnotationInterpreter> nameEntityAnnotations = new NameEntityInputCreation().getNameEntityAnnotations();
         instance.setGivenAnnotations(nameEntityAnnotations);
         instance.toNameEntity();
@@ -173,13 +173,13 @@ public class LifInputTcfTest {
     }
 
     /**
-     * Test of toConstituentParser method, of class DataModelTcf.
+     * Test of toConstituentParser method, of class ToTCFAnnotationLayer.
      *
      */
     @Test
     public void testToConstituentParser() throws Exception {
         System.out.println("toConstituentParser");
-        DataModelTcf instance = new DataModelTcf(null);
+        ToTCFAnnotationLayer instance = new ToTCFAnnotationLayer(null);
         List<AnnotationInterpreter> constituentParseAnnotations = new ConstParseInputCreation().getConstitunetParseAnnotations();
         instance.setGivenAnnotations(constituentParseAnnotations);
         instance.toConstituentParser();
@@ -188,13 +188,13 @@ public class LifInputTcfTest {
     }
 
     /**
-     * Test of toDependencyParser method, of class DataModelTcf.
+     * Test of toDependencyParser method, of class ToTCFAnnotationLayer.
      *
      */
     @Test
     public void testToDependencyParser() throws Exception {
         System.out.println("toDependencyParser");
-        DataModelTcf instance = new DataModelTcf(null);
+        ToTCFAnnotationLayer instance = new ToTCFAnnotationLayer(null);
         List<AnnotationInterpreter> dependencyParseAnnotations = new DependencyParseInputCreation().getDependencyParseAnnotations();
         instance.setGivenAnnotations(dependencyParseAnnotations);
         instance.toDependencyParser();
@@ -203,7 +203,7 @@ public class LifInputTcfTest {
     }
     
     /**
-     * Test of toTextSource method, of class DataModelTcf.
+     * Test of toTextSource method, of class ToTCFAnnotationLayer.
      *
      *
      */
@@ -211,44 +211,44 @@ public class LifInputTcfTest {
     public void testToTextSource() throws Exception {
         System.out.println("toTextSource");
         String fileString = "";
-        DataModelTcf instance = new DataModelTcf(null);
+        ToTCFAnnotationLayer instance = new ToTCFAnnotationLayer(null);
         instance.toTextSource(fileString);
     }
 
     /**
-     * Test of inputformat method, of class DataModelTcf.
+     * Test of inputformat method, of class ToTCFAnnotationLayer.
      *
      */
     @Ignore
     public void testInputformat() {
         System.out.println("inputformat");
         InputStream is = null;
-        DataModelTcf instance = null;
+        ToTCFAnnotationLayer instance = null;
         instance.inputDataProcessing(is);
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of process method, of class DataModelTcf.
+     * Test of process method, of class ToTCFAnnotationLayer.
      *
      */
     @Ignore
     public void testProcess() {
         System.out.println("process");
         OutputStream os = null;
-        DataModelTcf instance = null;
+        ToTCFAnnotationLayer instance = null;
         instance.process(os);
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of isValid method, of class DataModelTcf.
+     * Test of isValid method, of class ToTCFAnnotationLayer.
      *
      */
     @Ignore
     public void testIsValid() {
         System.out.println("isValid");
-        DataModelTcf instance = null;
+        ToTCFAnnotationLayer instance = null;
         boolean expResult = false;
         boolean result
                 = instance.isValid();
@@ -257,13 +257,13 @@ public class LifInputTcfTest {
     }
 
     /**
-     * Test of getTextCorpusStored method, of class DataModelTcf.
+     * Test of getTextCorpusStored method, of class ToTCFAnnotationLayer.
      *
      */
     @Ignore
     public void testGetTextCorpusStored() {
         System.out.println("getTextCorpusStored");
-        DataModelTcf instance = null;
+        ToTCFAnnotationLayer instance = null;
         TextCorpusStored expResult = null;
         TextCorpusStored result
                 = instance.getTextCorpusStored();

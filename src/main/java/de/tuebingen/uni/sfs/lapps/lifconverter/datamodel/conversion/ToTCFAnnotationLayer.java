@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model;
+package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion;
 
 import de.tuebingen.uni.sfs.clarind.profiler.Values;
 import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
@@ -23,7 +23,6 @@ import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
 import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.library.model.DataModel;
 import de.tuebingen.uni.sfs.lapps.library.utils.xb.DuplicateChecker;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.AnnotationLayerConverter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.TcfConstituentsTreeBuild;
 import eu.clarin.weblicht.wlfxb.io.WLDObjector;
 import eu.clarin.weblicht.wlfxb.io.WLFormatException;
@@ -56,18 +55,19 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.CharOffsetToToken
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
 import eu.clarin.weblicht.wlfxb.tc.api.Reference;
 import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.ToAnnotationLayer;
 /**
  *
  * @author felahi
  */
-public class DataModelTcf extends DataModel implements AnnotationLayerConverter {
+public class ToTCFAnnotationLayer extends DataModel implements ToAnnotationLayer {
 
     private TextCorpusStored textCorpusStored = null;
     private AnnotationLayerFinder givenToolTagSetVocabularies = null;
     private List<AnnotationInterpreter> givenAnnotations = new ArrayList<AnnotationInterpreter>();
     private CharOffsetToTokenIdMapper charOffsetToTokenIdMapper = null;
 
-    public DataModelTcf(InputStream input) throws ConversionException, IOException {
+    public ToTCFAnnotationLayer(InputStream input) throws ConversionException, IOException {
         toLanguage(Values.LANG_EN.getName());
     }
 
@@ -99,10 +99,10 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
                 this.toCoreferenceResolver();
             }
         } catch (LifException ex) {
-            Logger.getLogger(DataModelTcf.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ToTCFAnnotationLayer.class.getName()).log(Level.SEVERE, null, ex);
             throw new ConversionException("LIF annotations are wrong!!");
         } catch (ConversionException ex) {
-            Logger.getLogger(DataModelTcf.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ToTCFAnnotationLayer.class.getName()).log(Level.SEVERE, null, ex);
             throw new ConversionException("LIF to TCF conversion failed!!");
         }
 
@@ -122,7 +122,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         try {
             textCorpusStored.createTextLayer().addText(text.replaceAll("\n", ""));
         } catch (NullPointerException ex) {
-            Logger.getLogger(DataModelTcf.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ToTCFAnnotationLayer.class.getName()).log(Level.SEVERE, null, ex);
             throw new ConversionException("Text conversion failed from lif to tcf failed!!");
         }
     }
@@ -371,7 +371,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         try {
             WLDObjector.write(wlData, os);
         } catch (WLFormatException ex) {
-            Logger.getLogger(DataModelTcf.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ToTCFAnnotationLayer.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
