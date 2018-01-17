@@ -28,11 +28,10 @@ public class FormatConverterTool implements DataModelConverter {
         givenDataModel = lifDataModel;
         convertedDataModel.toLanguage(givenDataModel.getLanguage());
         convertedDataModel.toText(givenDataModel.getText());
-        //the text source layer is temporary closed.
-        //convertedDataModel.toTextSource(givenDataModel.getFileString());
+        convertedDataModel.toTextSource(givenDataModel.getFileString());
         try {
             convertAnnotationLayers();
-            this.display();
+            //this.display();
         } catch (ConversionException conExp) {
             Logger.getLogger(FormatConverterTool.class.getName()).log(Level.SEVERE, null, conExp);
         } catch (VocabularyMappingException vocExp) {
