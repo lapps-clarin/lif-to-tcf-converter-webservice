@@ -312,7 +312,6 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         LifReferenceLayer lifRefererenceLayer = new LifRefererenceLayerStored(givenAnnotations);
         this.givenAnnotations = lifRefererenceLayer.getTokenList();
         this.toToken();
-        TokensLayer tokensLayer = textCorpusStored.getTokensLayer();
         ReferencesLayer refsLayer = textCorpusStored.createReferencesLayer("BART", "TuebaDZ", null);
 
         Map<String, Reference> markIdReference = new HashMap<String, Reference>();
