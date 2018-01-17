@@ -312,7 +312,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         LifReferenceLayer lifRefererenceLayer = new LifRefererenceLayerStored(givenAnnotations);
         this.givenAnnotations = lifRefererenceLayer.getTokenList();
         this.toToken();
-        ReferencesLayer refsLayer = textCorpusStored.createReferencesLayer("BART", "TuebaDZ", null);
+        ReferencesLayer refsLayer = textCorpusStored.createReferencesLayer(null, null, null);
 
         Map<String, Reference> markIdReference = new HashMap<String, Reference>();
         List<Reference> references = new ArrayList<Reference>();
@@ -338,13 +338,17 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
                 Reference refRep = markIdReference.get(repMarkableId);
                 Reference[] refMentions = new Reference[lifReference.getMentions().size() - 1];
                 Integer index = 0;
+                boolean flag = false;
                 for (String mentionMarkableId : lifReference.getMentions()) {
                     if (!mentionMarkableId.equals(repMarkableId) && markIdReference.containsKey(mentionMarkableId)) {
                         refMentions[index++] = markIdReference.get(mentionMarkableId);
+                        flag = true;
                     }
 
                 }
-                refsLayer.addRelation(refRep, "anaphoric", refMentions);
+                if (flag) {
+                    refsLayer.addRelation(refRep, "anaphoric", refMentions);
+                }
 
             }
 

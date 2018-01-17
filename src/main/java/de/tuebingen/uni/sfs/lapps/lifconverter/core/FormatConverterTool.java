@@ -32,7 +32,7 @@ public class FormatConverterTool implements DataModelConverter {
         //convertedDataModel.toTextSource(givenDataModel.getFileString());
         try {
             convertAnnotationLayers();
-            //this.display();
+            this.display();
         } catch (ConversionException conExp) {
             Logger.getLogger(FormatConverterTool.class.getName()).log(Level.SEVERE, null, conExp);
         } catch (VocabularyMappingException vocExp) {
@@ -92,6 +92,10 @@ public class FormatConverterTool implements DataModelConverter {
             if (convertedDataModel.getTextCorpusStored().getConstituentParsingLayer() != null) {
                 System.out.println("Constituent Parser Layer");
                 System.out.println(convertedDataModel.getTextCorpusStored().getConstituentParsingLayer().toString());
+            }
+            if (convertedDataModel.getTextCorpusStored().getReferencesLayer() != null) {
+                System.out.println("References Layer");
+                System.out.println(convertedDataModel.getTextCorpusStored().getReferencesLayer().toString());
             }
             if (convertedDataModel.getTextCorpusStored().getTextSourceLayer() != null) {
                 System.out.println("Text Source Layer");
