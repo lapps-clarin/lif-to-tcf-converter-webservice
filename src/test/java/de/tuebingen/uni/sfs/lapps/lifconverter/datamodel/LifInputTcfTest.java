@@ -30,7 +30,7 @@ import org.junit.Ignore;
  *
  * @author felahi
  */
-public class DataModelTcfTest {
+public class LifInputTcfTest {
 
     private static List<AnnotationInterpreter> tokenAnnotations = new ArrayList<AnnotationInterpreter>();
     private static List<AnnotationInterpreter> senetenceAnnotations = new ArrayList<AnnotationInterpreter>();

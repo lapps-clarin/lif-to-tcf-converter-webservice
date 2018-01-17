@@ -21,7 +21,7 @@ import org.lappsgrid.discriminator.Discriminators;
  *
  * @author felahi
  */
-public class LIFFileToTcfFileTest {
+public class LifFileToTcfFileTest {
 
     private String CORFERENCE_EXAMPLE = "inputCorfer.json";
     private String CONTSTITUENT_EXAMPLE = "inputCon.json";
