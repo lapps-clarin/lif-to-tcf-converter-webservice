@@ -91,6 +91,7 @@ public class LIFFileToTcfFileTest {
 
     @Test
     public void testSentenceLayer() throws Exception {
+        System.out.println("toSentence");
         File inputFile = new File(classLoader.getResource(SENTENCE_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
             LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
@@ -109,6 +110,7 @@ public class LIFFileToTcfFileTest {
 
     @Ignore
     public void testNamedEntirtyLayer() throws Exception {
+        System.out.println("toNamedEntirty");
         File inputFile = new File(classLoader.getResource(NAMEENTITY_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
             LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
@@ -129,6 +131,7 @@ public class LIFFileToTcfFileTest {
 
     @Test
     public void testDependencyLayer() throws Exception {
+        System.out.println("toDependency");
         File inputFile = new File(classLoader.getResource(DEPENDENCY_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
             LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
@@ -147,6 +150,7 @@ public class LIFFileToTcfFileTest {
 
     @Test
     public void testConstituentLayer() throws Exception {
+        System.out.println("toConstituent");
         File inputFile = new File(classLoader.getResource(CONTSTITUENT_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
             LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
@@ -166,6 +170,7 @@ public class LIFFileToTcfFileTest {
 
     @Test
     public void testCorferenceLayer() throws Exception {
+        System.out.println("toCorference");
         File inputFile = new File(classLoader.getResource(CORFERENCE_EXAMPLE).getFile());
         DataModelTcf instance = new DataModelTcf(null);
         if (inputFile.getName().contains(FILE_LIF)) {

@@ -8,6 +8,7 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model;
 import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifConstituentParser;
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifDependencyParser;
+import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifMarkable;
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifReference;
 import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifReferenceLayer;
 import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
@@ -66,6 +67,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
     private AnnotationLayerFinder givenToolTagSetVocabularies = null;
     private List<AnnotationInterpreter> givenAnnotations = new ArrayList<AnnotationInterpreter>();
     private CharOffsetToTokenIdMapper charOffsetToTokenIdMapper = null;
+    private Map<String, Token> tokenIdToken = new HashMap<String, Token>();
 
     public DataModelTcf(InputStream input) throws ConversionException, IOException {
         toLanguage(TcfVocabularies.TCF.TcfConstants.DEFAULT_LANGUAGE);
@@ -101,8 +103,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         } catch (LifException ex) {
             Logger.getLogger(DataModelTcf.class.getName()).log(Level.SEVERE, null, ex);
             throw new ConversionException("LIF annotations are wrong!!");
-        }
-        catch (ConversionException ex) {
+        } catch (ConversionException ex) {
             Logger.getLogger(DataModelTcf.class.getName()).log(Level.SEVERE, null, ex);
             throw new ConversionException("LIF to TCF conversion failed!!");
         }
@@ -136,7 +137,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         LemmasLayer lemmaLayer = null;
         boolean wordFlag = false, posFlag = false, lemmaFlag = false, flag = true;
         DuplicateChecker duplicateChecker = new DuplicateChecker();
-        Map<String, Token> tokenIdToken = new HashMap<String, Token>();
+        tokenIdToken = new HashMap<String, Token>();
         Map<Long, String> startIdTokenIdMapper = new HashMap<Long, String>();
 
         for (AnnotationInterpreter annotationInterpreter : givenAnnotations) {
@@ -313,39 +314,43 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
         this.toToken();
         TokensLayer tokensLayer = textCorpusStored.getTokensLayer();
         ReferencesLayer refsLayer = textCorpusStored.createReferencesLayer("BART", "TuebaDZ", null);
-//		  <references typetagset="BART" reltagset="TuebaDZ">
-//		    <entity ID="rft_0">
-//		    <reference ID="rc_0" rel="cataphoric" target="rc_1" tokenIDs="t1" mintokIDs="t1" type="pro.per3"/>
-//                  <reference ID="rc_1" tokenIDs="t18 t19 t20 t21 t22" mintokIDs="t20 t21" type="nam"/>
-//		    </entity>
-//	      </references>
 
-         for (String id: lifRefererenceLayer.getCorferenceAnnotations().keySet()){
-             LifReference lifReference=lifRefererenceLayer.getCorferenceAnnotations().get(id);
-               System.out.print(lifReference.getMentions());
-                System.out.print(lifReference.getRepresentative());
-         }
+        Map<String, Reference> markIdReference = new HashMap<String, Reference>();
+        List<Reference> references = new ArrayList<Reference>();
+        for (String lifMarkableId : lifRefererenceLayer.getMarkableAnnotations().keySet()) {
+            LifMarkable lifMarkable = lifRefererenceLayer.getMarkableAnnotations().get(lifMarkableId);
+            List<String> lifTokenIds = lifMarkable.getTargets();
+            List<Token> tcftokens = new ArrayList<Token>();
+            for (String tokenId : lifTokenIds) {
+                if (this.tokenIdToken.containsKey(tokenId)) {
+                    tcftokens.add(tokenIdToken.get(tokenId));
+                }
 
-        Reference ref1_1 = refsLayer.createReference("pro.per3",
-                Arrays.asList(new Token[]{tokensLayer.getToken(0)}),
-                Arrays.asList(new Token[]{tokensLayer.getToken(0)}));
-        Reference ref1_2 = refsLayer.createReference("nam",
-                Arrays.asList(new Token[]{tokensLayer.getToken(1), tokensLayer.getToken(2),
-                    tokensLayer.getToken(3), tokensLayer.getToken(4), tokensLayer.getToken(5)}),
-                Arrays.asList(new Token[]{tokensLayer.getToken(6), tokensLayer.getToken(7)}));
+            }
+            Reference reference = refsLayer.createReference(tcftokens);
+            markIdReference.put(lifMarkableId, reference);
+            references.add(reference);
+        }
 
+        for (String lifCorferId : lifRefererenceLayer.getCorferenceAnnotations().keySet()) {
+            LifReference lifReference = lifRefererenceLayer.getCorferenceAnnotations().get(lifCorferId);
+            String repMarkableId = lifReference.getRepresentative();
+            if (markIdReference.containsKey(repMarkableId)) {
+                Reference refRep = markIdReference.get(repMarkableId);
+                Reference[] refMentions = new Reference[lifReference.getMentions().size() - 1];
+                Integer index = 0;
+                for (String mentionMarkableId : lifReference.getMentions()) {
+                    if (!mentionMarkableId.equals(repMarkableId) && markIdReference.containsKey(mentionMarkableId)) {
+                        refMentions[index++] = markIdReference.get(mentionMarkableId);
+                    }
 
-//		Reference ref1_3 = refsLayer.createReference("blah", 
-//				Arrays.asList(new Token[]{tokensLayer.getToken(5)}),
-//				Arrays.asList(new Token[]{tokensLayer.getToken(5)}));
-//		refsLayer.addRelation(ref1_3, "expletive", new Reference[0]);
+                }
+                refsLayer.addRelation(refRep, "anaphoric", refMentions);
 
-        refsLayer.addRelation(ref1_1, "cataphoric", new Reference[]{ref1_2});
-        List<Reference> refs1 = Arrays.asList(new Reference[]{ref1_1, ref1_2});
-        //List<Reference> refs1 = Arrays.asList(new Reference[]{ref1_1, ref1_2, ref1_3});
-        refsLayer.addReferent(refs1);
+            }
 
-
+        }
+        refsLayer.addReferent(references);
     }
 
     public void toTextSource(String fileString) throws Exception {
