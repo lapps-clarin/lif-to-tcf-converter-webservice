@@ -151,7 +151,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
                         wordFlag = true;
                     }
                     if (lifToken.getPos() != null) {
-                        posLayer = textCorpusStored.createPosTagsLayer(TcfVocabularies.TCF.TcfTagSets.POS_TAGSETS);
+                        posLayer = textCorpusStored.createPosTagsLayer(Values.TCF_POSTAGS_TAGSET_PENNTB.getName());
                         posFlag = true;
                     }
                     if (lifToken.getLemma() != null) {
@@ -264,7 +264,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
     }
 
     public void toConstituentParser() throws ConversionException, LifException {
-        ConstituentParsingLayer constituentParsingLayer = textCorpusStored.createConstituentParsingLayer(TcfVocabularies.TCF.TcfTagSets.CONSTITUENT_TAGSETS);
+        ConstituentParsingLayer constituentParsingLayer = textCorpusStored.createConstituentParsingLayer(Values.TCF_PARSING_TAGSET_PENNTB.getName());
         LifConstituentParser lifConstituentParser = new LifConstituentParserStored(givenAnnotations);
         this.givenAnnotations = lifConstituentParser.getTokenList();
         this.toToken();
@@ -287,7 +287,7 @@ public class DataModelTcf extends DataModel implements AnnotationLayerConverter 
     }
 
     public void toDependencyParser() throws ConversionException, LifException {
-        DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(TcfVocabularies.TCF.TcfTagSets.DEPARSING_TAGSETS, true, true);
+        DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(Values.TCF_DEPPARSING_TAGSET_STANFORD.getName(), true, true);
         LifDependencyParser lifDependencyParser = new LifDependencyParserStored(givenAnnotations);
         this.givenAnnotations = lifDependencyParser.getTokenList();
         this.toToken();
