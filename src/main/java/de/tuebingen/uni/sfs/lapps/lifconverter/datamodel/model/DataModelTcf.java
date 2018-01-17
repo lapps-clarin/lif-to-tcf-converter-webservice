@@ -21,6 +21,7 @@ import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifTokenPosLemmaStored;
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.DependencyEntityInfo;
 import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
 import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.library.model.DataModel;
 import de.tuebingen.uni.sfs.lapps.library.utils.xb.DuplicateChecker;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.AnnotationLayerConverter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.TcfConstituentsTreeBuild;
@@ -53,7 +54,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.CharOffsetToTokenIdMapper;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.constants.TcfVocabularies;
 import eu.clarin.weblicht.wlfxb.tc.api.Reference;
 import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
 /**

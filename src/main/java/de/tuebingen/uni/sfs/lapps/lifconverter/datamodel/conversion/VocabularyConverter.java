@@ -7,6 +7,7 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion;
 
 import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.constants.Constants;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,13 +17,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.constants.TcfVocabularies;
 
 /**
  *
  * @author felahi
  */
-public class VocabularyConverter implements AnnotationLayerFinder {
+public class VocabularyConverter implements AnnotationLayerFinder,Constants {
 
     public static Map<String, String> layerMapper = new HashMap<String, String>();
     public static Map<String, ToolTagSetAnnoConversion> vocabularyMapper = new HashMap<String, ToolTagSetAnnoConversion>();
@@ -48,10 +48,10 @@ public class VocabularyConverter implements AnnotationLayerFinder {
     private void setLayers(String filePath) throws Exception {
         BufferedReader reader = null;
         try {
-            reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filePath), TcfVocabularies.GeneralParameters.UNICODE));
+            reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filePath), UNICODE));
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parameters = line.split(TcfVocabularies.GeneralParameters.PARAMETER_SEPERATOR);
+                String[] parameters = line.split(PARAMETER_SEPERATOR);
                 String parameter = parameters[0];
                 String value = parameters[1];
                 layerMapper.put(parameter, value);
@@ -79,10 +79,10 @@ public class VocabularyConverter implements AnnotationLayerFinder {
         String tcfEntity = null;
 
         try {
-            reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filePath), TcfVocabularies.GeneralParameters.UNICODE));
+            reader = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(filePath), UNICODE));
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] parameters = line.split(TcfVocabularies.GeneralParameters.PARAMETER_SEPERATOR_REG);
+                String[] parameters = line.split(PARAMETER_SEPERATOR_REG);
                 lifTool = parameters[0];
                 tcftagSet = parameters[1];
                 lifEntity = parameters[2];
