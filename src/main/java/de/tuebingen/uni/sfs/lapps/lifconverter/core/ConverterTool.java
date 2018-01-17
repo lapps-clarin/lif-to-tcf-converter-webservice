@@ -12,14 +12,14 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model.DataModelTcf;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.DataModelConverter;
 
-public class FormatConverterTool implements DataModelConverter {
+public class ConverterTool implements DataModelConverter {
 
     private DataModelTcf convertedDataModel = null;
     private DataModelLif givenDataModel = null;
     public static final String PARAMETER_PATH = "/models/parameterlist.init";
     public static final String VOCABULARY_PATH = "/models/annotation_conversion.init";
 
-    public FormatConverterTool() throws ConversionException, VocabularyMappingException {
+    public ConverterTool() throws ConversionException, VocabularyMappingException {
         new VocabularyConverter(PARAMETER_PATH, VOCABULARY_PATH);
     }
 
@@ -33,9 +33,9 @@ public class FormatConverterTool implements DataModelConverter {
             convertAnnotationLayers();
             //this.display();
         } catch (ConversionException conExp) {
-            Logger.getLogger(FormatConverterTool.class.getName()).log(Level.SEVERE, null, conExp);
+            Logger.getLogger(ConverterTool.class.getName()).log(Level.SEVERE, null, conExp);
         } catch (VocabularyMappingException vocExp) {
-            Logger.getLogger(FormatConverterTool.class.getName()).log(Level.SEVERE, null, vocExp);
+            Logger.getLogger(ConverterTool.class.getName()).log(Level.SEVERE, null, vocExp);
         }
         return convertedDataModel;
     }
@@ -102,9 +102,9 @@ public class FormatConverterTool implements DataModelConverter {
             }
 
         } catch (IndexOutOfBoundsException exIndex) {
-            Logger.getLogger(FormatConverterTool.class.getName()).log(Level.SEVERE, null, exIndex);
+            Logger.getLogger(ConverterTool.class.getName()).log(Level.SEVERE, null, exIndex);
         } catch (Exception ex) {
-            Logger.getLogger(FormatConverterTool.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConverterTool.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

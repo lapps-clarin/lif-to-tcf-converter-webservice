@@ -11,13 +11,13 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.FormatConverterTool;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.DataModelConverter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model.DataModelTcf;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
 
 @Path("con")
-public class FormatConverterResource {
+public class ConverterResource {
 
     private static final String TEXT_TCF_XML = "text/tcf+xml";
     private static final String APPLICATION_JSON = "application/json";
@@ -27,9 +27,9 @@ public class FormatConverterResource {
 
     private DataModelConverter tool;
 
-    public FormatConverterResource() {
+    public ConverterResource() {
         try {
-            tool = new FormatConverterTool();
+            tool = new ConverterTool();
         } catch (VocabularyMappingException ex) {
             throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
         } catch (ConversionException ex) {
@@ -97,22 +97,22 @@ public class FormatConverterResource {
             }
 
         } catch (LifException exlIF) {
-            Logger.getLogger(FormatConverterResource.class.getName()).log(Level.SEVERE, null, exlIF);
+            Logger.getLogger(ConverterResource.class.getName()).log(Level.SEVERE, null, exlIF);
         } catch (Exception ex) {
-            Logger.getLogger(FormatConverterResource.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConverterResource.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (input != null) {
                 try {
                     input.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(FormatConverterResource.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ConverterResource.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (output != null) {
                 try {
                     output.close();
                 } catch (IOException ex) {
-                    Logger.getLogger(FormatConverterResource.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ConverterResource.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

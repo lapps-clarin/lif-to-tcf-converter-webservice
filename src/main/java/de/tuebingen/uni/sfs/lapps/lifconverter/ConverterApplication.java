@@ -23,7 +23,7 @@ public class ConverterApplication extends Application<ConverterConfiguration> {
 
     @Override
     public void run(ConverterConfiguration configuration, Environment environment) throws Exception {
-        FormatConverterResource formatConverterResource=new FormatConverterResource();
+        ConverterResource formatConverterResource=new ConverterResource();
         IndexResource indexResource = new IndexResource();
         environment.jersey().register(formatConverterResource);
         environment.jersey().register(indexResource);

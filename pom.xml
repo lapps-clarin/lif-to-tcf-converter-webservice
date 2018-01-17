@@ -74,6 +74,11 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>de.tuebingen.uni.sfs.clarind</groupId>
+            <artifactId>chainer</artifactId>
+            <version>1.3.36-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-core</artifactId>
             <version>1.3</version>

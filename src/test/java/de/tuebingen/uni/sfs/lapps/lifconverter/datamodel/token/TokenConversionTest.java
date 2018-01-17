@@ -4,7 +4,7 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.token;
 
 import de.tuebingen.uni.sfs.lapps.library.model.DataModelLif;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.FormatConverterTool;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.DataModelConverter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.model.DataModelTcf;
 import eu.clarin.weblicht.wlfxb.io.TextCorpusStreamed;
@@ -54,7 +54,7 @@ public class TokenConversionTest extends AbstractTest {
         //System.out.println(tc);
 
         try {
-            tool = new FormatConverterTool();
+            tool = new ConverterTool();
             DataModelTcf tcfDataModel = tool.convertModel(dataModelLif, input);
             tcfDataModel.process(output);
             assertEqualXml(EXPECTED_OUTPUT_TCF_FILE, outfile);
