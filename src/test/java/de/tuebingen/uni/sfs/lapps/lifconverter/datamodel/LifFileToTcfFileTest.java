@@ -174,6 +174,7 @@ public class LifFileToTcfFileTest {
                 instance.setGivenAnnotations(coreferenceResolverAnnotations);
                 instance.toCoreferenceResolver();
                 System.out.println("CorferenceLayer exists:" + instance.getTextCorpusStored().getReferencesLayer().getReferencedEntity(0));
+                assertEquals("[rc_0  [t_6], rc_1 anaphoric ->[rc_0] [t_0]]", instance.getTextCorpusStored().getReferencesLayer().getReferencedEntity(0).toString());
             }
 
         }
