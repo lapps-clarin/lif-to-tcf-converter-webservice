@@ -1,11 +1,11 @@
 /**
  *
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.token;
+package de.tuebingen.uni.sfs.lapps.lifconverter.endToend;
 
 import de.tuebingen.uni.sfs.lapps.library.model.DataModelLif;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.xb.ConvertToTCFAnnotations;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
 import eu.clarin.weblicht.wlfxb.io.TextCorpusStreamed;
 import java.io.File;
 import java.io.FileInputStream;

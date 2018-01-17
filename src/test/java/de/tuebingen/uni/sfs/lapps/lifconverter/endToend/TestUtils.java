@@ -1,7 +1,7 @@
 /**
  *
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.token;
+package de.tuebingen.uni.sfs.lapps.lifconverter.endToend;
 
 import java.io.IOException;
 import java.io.InputStream;

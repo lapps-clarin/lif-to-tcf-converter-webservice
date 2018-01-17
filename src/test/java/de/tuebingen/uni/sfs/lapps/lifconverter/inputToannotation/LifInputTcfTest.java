@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel;
+package de.tuebingen.uni.sfs.lapps.lifconverter.inputToannotation;
 
 import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.createannotation.ConstParseInputCreation;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.createannotation.DependencyParseInputCreation;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.createannotation.NameEntityInputCreation;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.createannotation.SenetenceInputCreation;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.createannotation.TokenInputCreation;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.xb.ConvertToTCFAnnotations;
+import de.tuebingen.uni.sfs.lapps.lifconverter.inputToannotation.input.ConstParseInputCreation;
+import de.tuebingen.uni.sfs.lapps.lifconverter.inputToannotation.input.DependencyParseInputCreation;
+import de.tuebingen.uni.sfs.lapps.lifconverter.inputToannotation.input.NameEntityInputCreation;
+import de.tuebingen.uni.sfs.lapps.lifconverter.inputToannotation.input.SenetenceInputCreation;
+import de.tuebingen.uni.sfs.lapps.lifconverter.inputToannotation.input.TokenInputCreation;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
 import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusStored;
 import java.io.InputStream;
 import java.io.OutputStream;

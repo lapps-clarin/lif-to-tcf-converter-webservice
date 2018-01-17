@@ -6,7 +6,7 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.api;
 
 import de.tuebingen.uni.sfs.lapps.library.model.DataModelLif;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.xb.ConvertToTCFAnnotations;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.ConversionException;
 import java.io.InputStream;
 

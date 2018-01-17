@@ -3,27 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel;
+package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
-import de.tuebingen.uni.sfs.clarind.profiler.Values;
+import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.library.layer.xb.LifAnnotationLayerFinderStored;
 import de.tuebingen.uni.sfs.lapps.library.utils.xb.ProcessUtils;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.xb.ConvertToTCFAnnotations;
+import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusStored;
 import java.io.File;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.List;
+import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
-import static org.junit.Assert.assertEquals;
-import org.junit.Ignore;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-import org.lappsgrid.discriminator.Discriminators;
+import static org.junit.Assert.*;
+import org.junit.Ignore;
 
 /**
  *
  * @author felahi
  */
-public class LifFileToTcfFileTest {
-
+public class ConvertToTCFAnnotationsTest {
+    
     private String CORFERENCE_EXAMPLE = "inputCorfer.json";
     private String CONTSTITUENT_EXAMPLE = "inputCon.json";
     private String DEPENDENCY_EXAMPLE = "inputDep.json";
@@ -36,7 +41,69 @@ public class LifFileToTcfFileTest {
     private String FILE_LIF = "json";
     ConvertToTCFAnnotations instance;
     private ClassLoader classLoader = getClass().getClassLoader();
+    
+    public ConvertToTCFAnnotationsTest() {
+    }
+    
+    @BeforeClass
+    public static void setUpClass() {
+    }
+    
+    @AfterClass
+    public static void tearDownClass() {
+    }
+    
+    @Before
+    public void setUp() {
+    }
+    
+    @After
+    public void tearDown() {
+    }
 
+    /**
+     * Test of toLayers method, of class ConvertToTCFAnnotations.
+     */
+    @Ignore
+    public void testToLayers() throws Exception {
+        System.out.println("toLayers");
+        AnnotationLayerFinder layer = null;
+        List<AnnotationInterpreter> annotationlist = null;
+        ConvertToTCFAnnotations instance = null;
+        instance.toLayers(layer, annotationlist);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of toLayer method, of class ConvertToTCFAnnotations.
+     */
+    @Ignore
+    public void testToLayer() throws Exception {
+        System.out.println("toLayer");
+        String givenLayer = "";
+        ConvertToTCFAnnotations instance = null;
+        instance.toLayer(givenLayer);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of toLanguage method, of class ConvertToTCFAnnotations.
+     */
+    @Ignore
+    public void testToLanguage() throws Exception {
+        System.out.println("toLanguage");
+        String language = "";
+        ConvertToTCFAnnotations instance = null;
+        instance.toLanguage(language);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of toText method, of class ConvertToTCFAnnotations.
+     */
     @Test
     public void testTextLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(TEXT_EXAMPLE).getFile());
@@ -52,7 +119,10 @@ public class LifFileToTcfFileTest {
         }
     }
 
-    @Test
+    /**
+     * Test of toToken method, of class ConvertToTCFAnnotations.
+     */
+     @Test
     public void testTokenLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(TOKEN_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
@@ -70,7 +140,10 @@ public class LifFileToTcfFileTest {
 
     }
 
-    @Test
+    /**
+     * Test of toPos method, of class ConvertToTCFAnnotations.
+     */
+     @Test
     public void testPosLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(POS_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
@@ -87,6 +160,21 @@ public class LifFileToTcfFileTest {
         }
     }
 
+    /**
+     * Test of toLemma method, of class ConvertToTCFAnnotations.
+     */
+    @Ignore
+    public void testToLemma() throws Exception {
+        System.out.println("toLemma");
+        ConvertToTCFAnnotations instance = null;
+        instance.toLemma();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of toSentences method, of class ConvertToTCFAnnotations.
+     */
     @Test
     public void testSentenceLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(SENTENCE_EXAMPLE).getFile());
@@ -105,6 +193,9 @@ public class LifFileToTcfFileTest {
         }
     }
 
+    /**
+     * Test of toNameEntity method, of class ConvertToTCFAnnotations.
+     */
     @Ignore
     public void testNamedEntirtyLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(NAMEENTITY_EXAMPLE).getFile());
@@ -125,24 +216,9 @@ public class LifFileToTcfFileTest {
         }
     }
 
-    @Test
-    public void testDependencyLayer() throws Exception {
-        File inputFile = new File(classLoader.getResource(DEPENDENCY_EXAMPLE).getFile());
-        if (inputFile.getName().contains(FILE_LIF)) {
-            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
-            if (tool.isDependencyLayer()) {
-                Assert.assertEquals(tool.isDependencyLayer(), true);
-                instance = new ConvertToTCFAnnotations(null);
-                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
-                instance.setGivenAnnotations(tokenAnnotations);
-                instance.toDependencyParser();
-                System.out.println("DependencyLayer exists:" + instance.getTextCorpusStored().getDependencyParsingLayer().getParse(0));
-                assertEquals("[nn [t_3] <- [t_4], pobj [t_4] <- [t_2], nsubj [t_0] <- [t_1], prep [t_2] <- [t_1]]", instance.getTextCorpusStored().getDependencyParsingLayer().getParse(0).toString());
-            }
-        }
-
-    }
-
+    /**
+     * Test of toConstituentParser method, of class ConvertToTCFAnnotations.
+     */
     @Test
     public void testConstituentLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(CONTSTITUENT_EXAMPLE).getFile());
@@ -162,6 +238,30 @@ public class LifFileToTcfFileTest {
 
     }
 
+    /**
+     * Test of toDependencyParser method, of class ConvertToTCFAnnotations.
+     */
+   @Test
+    public void testDependencyLayer() throws Exception {
+        File inputFile = new File(classLoader.getResource(DEPENDENCY_EXAMPLE).getFile());
+        if (inputFile.getName().contains(FILE_LIF)) {
+            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
+            if (tool.isDependencyLayer()) {
+                Assert.assertEquals(tool.isDependencyLayer(), true);
+                instance = new ConvertToTCFAnnotations(null);
+                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                instance.setGivenAnnotations(tokenAnnotations);
+                instance.toDependencyParser();
+                System.out.println("DependencyLayer exists:" + instance.getTextCorpusStored().getDependencyParsingLayer().getParse(0));
+                assertEquals("[nn [t_3] <- [t_4], pobj [t_4] <- [t_2], nsubj [t_0] <- [t_1], prep [t_2] <- [t_1]]", instance.getTextCorpusStored().getDependencyParsingLayer().getParse(0).toString());
+            }
+        }
+
+    }
+
+    /**
+     * Test of toCoreferenceResolver method, of class ConvertToTCFAnnotations.
+     */
     @Test
     public void testCorferenceLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(CORFERENCE_EXAMPLE).getFile());
@@ -181,4 +281,84 @@ public class LifFileToTcfFileTest {
 
     }
 
+    /**
+     * Test of toTextSource method, of class ConvertToTCFAnnotations.
+     */
+    @Ignore
+    public void testToTextSource() throws Exception {
+        System.out.println("toTextSource");
+        String fileString = "";
+        ConvertToTCFAnnotations instance = null;
+        instance.toTextSource(fileString);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of inputDataProcessing method, of class ConvertToTCFAnnotations.
+     */
+    @Ignore
+    public void testInputDataProcessing() {
+        System.out.println("inputDataProcessing");
+        InputStream is = null;
+        ConvertToTCFAnnotations instance = null;
+        instance.inputDataProcessing(is);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of process method, of class ConvertToTCFAnnotations.
+     */
+    @Ignore
+    public void testProcess() {
+        System.out.println("process");
+        OutputStream os = null;
+        ConvertToTCFAnnotations instance = null;
+        instance.process(os);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of isValid method, of class ConvertToTCFAnnotations.
+     */
+    @Ignore
+    public void testIsValid() {
+        System.out.println("isValid");
+        ConvertToTCFAnnotations instance = null;
+        boolean expResult = false;
+        boolean result = instance.isValid();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getTextCorpusStored method, of class ConvertToTCFAnnotations.
+     */
+    @Ignore
+    public void testGetTextCorpusStored() {
+        System.out.println("getTextCorpusStored");
+        ConvertToTCFAnnotations instance = null;
+        TextCorpusStored expResult = null;
+        TextCorpusStored result = instance.getTextCorpusStored();
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of setGivenAnnotations method, of class ConvertToTCFAnnotations.
+     */
+    @Ignore
+    public void testSetGivenAnnotations() {
+        System.out.println("setGivenAnnotations");
+        List<AnnotationInterpreter> givenAnnotations = null;
+        ConvertToTCFAnnotations instance = null;
+        instance.setGivenAnnotations(givenAnnotations);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+    
 }
