@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils;
+package de.tuebingen.uni.sfs.lapps.lifconverter.utils;
 
 import java.io.File;
 import java.util.Set;

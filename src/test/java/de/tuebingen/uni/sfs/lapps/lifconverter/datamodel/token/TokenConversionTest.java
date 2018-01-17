@@ -5,7 +5,7 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.token;
 
 import de.tuebingen.uni.sfs.lapps.library.model.DataModelLif;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.ToTCFAnnotationLayer;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.xb.ConvertToTCFAnnotations;
 import eu.clarin.weblicht.wlfxb.io.TextCorpusStreamed;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,7 +19,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.xml.sax.SAXException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.Converter;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
 
 /**
  * @author Mohammad Fazleh Elahi
@@ -34,7 +34,7 @@ public class TokenConversionTest extends AbstractTest {
     private static final String EXPECTED_OUTPUT_TCF_FILE = "/data/tokens/output-expected.tcf";
     private static final String OUTPUT_FILE = "output.xml";
 
-    private Converter tool;
+    private ConverterFormat tool;
 
     @Test
     public void testReadInput() throws Exception {
@@ -55,7 +55,7 @@ public class TokenConversionTest extends AbstractTest {
 
         try {
             tool = new ConverterTool();
-            ToTCFAnnotationLayer tcfDataModel = tool.convertModel(dataModelLif, input);
+            ConvertToTCFAnnotations tcfDataModel = tool.convertFormat(dataModelLif, input);
             tcfDataModel.process(output);
             assertEqualXml(EXPECTED_OUTPUT_TCF_FILE, outfile);
 

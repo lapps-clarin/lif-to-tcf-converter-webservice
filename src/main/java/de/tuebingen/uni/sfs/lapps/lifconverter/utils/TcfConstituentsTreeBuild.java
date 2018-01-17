@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils;
+package de.tuebingen.uni.sfs.lapps.lifconverter.utils;
 
 import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifConstituent;
 import eu.clarin.weblicht.wlfxb.tc.api.Constituent;
@@ -15,9 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.constants.Constants;
-import static de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.constants.Constants.CONSTITUENT_ROOT;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.constants.Constants;
+import static de.tuebingen.uni.sfs.lapps.lifconverter.core.constants.Constants.CONSTITUENT_ROOT;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.ConversionException;
 
 /**
  *

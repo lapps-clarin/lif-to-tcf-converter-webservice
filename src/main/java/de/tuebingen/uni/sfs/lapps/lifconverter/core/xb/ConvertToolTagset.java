@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion;
+package de.tuebingen.uni.sfs.lapps.lifconverter.core.xb;
 
 import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
 import java.util.HashMap;
@@ -12,12 +12,12 @@ import java.util.Map;
  *
  * @author felahi
  */
-public class ToolTagSetAnnoConversion {
+public class ConvertToolTagset {
 
     private String convertedTagSet = null;
     private Map<String, String> convertedVocabularies = new HashMap<String, String>();
 
-    public ToolTagSetAnnoConversion(String tcftagSet, String lifVocabulary, String tcfVocabulary) {
+    public ConvertToolTagset(String tcftagSet, String lifVocabulary, String tcfVocabulary) {
         this.convertedTagSet=tcftagSet;
         this.convertedVocabularies.put(lifVocabulary, tcfVocabulary);
     }

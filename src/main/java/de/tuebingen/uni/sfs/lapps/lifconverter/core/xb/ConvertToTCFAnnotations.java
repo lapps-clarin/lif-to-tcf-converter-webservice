@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion;
+package de.tuebingen.uni.sfs.lapps.lifconverter.core.xb;
 
 import de.tuebingen.uni.sfs.clarind.profiler.Values;
 import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
@@ -23,7 +23,7 @@ import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
 import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.library.model.DataModel;
 import de.tuebingen.uni.sfs.lapps.library.utils.xb.DuplicateChecker;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.TcfConstituentsTreeBuild;
+import de.tuebingen.uni.sfs.lapps.lifconverter.utils.TcfConstituentsTreeBuild;
 import eu.clarin.weblicht.wlfxb.io.WLDObjector;
 import eu.clarin.weblicht.wlfxb.io.WLFormatException;
 import eu.clarin.weblicht.wlfxb.tc.api.Constituent;
@@ -51,23 +51,23 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.utils.CharOffsetToTokenIdMapper;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.utils.CharOffsetToTokenIdMapper;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.ConversionException;
 import eu.clarin.weblicht.wlfxb.tc.api.Reference;
 import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.ToAnnotationLayer;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConvertAnnotations;
 /**
  *
  * @author felahi
  */
-public class ToTCFAnnotationLayer extends DataModel implements ToAnnotationLayer {
+public class ConvertToTCFAnnotations extends DataModel implements ConvertAnnotations {
 
     private TextCorpusStored textCorpusStored = null;
     private AnnotationLayerFinder givenToolTagSetVocabularies = null;
     private List<AnnotationInterpreter> givenAnnotations = new ArrayList<AnnotationInterpreter>();
     private CharOffsetToTokenIdMapper charOffsetToTokenIdMapper = null;
 
-    public ToTCFAnnotationLayer(InputStream input) throws ConversionException, IOException {
+    public ConvertToTCFAnnotations(InputStream input) throws ConversionException, IOException {
         toLanguage(Values.LANG_EN.getName());
     }
 
@@ -99,10 +99,10 @@ public class ToTCFAnnotationLayer extends DataModel implements ToAnnotationLayer
                 this.toCoreferenceResolver();
             }
         } catch (LifException ex) {
-            Logger.getLogger(ToTCFAnnotationLayer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
             throw new ConversionException("LIF annotations are wrong!!");
         } catch (ConversionException ex) {
-            Logger.getLogger(ToTCFAnnotationLayer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
             throw new ConversionException("LIF to TCF conversion failed!!");
         }
 
@@ -122,7 +122,7 @@ public class ToTCFAnnotationLayer extends DataModel implements ToAnnotationLayer
         try {
             textCorpusStored.createTextLayer().addText(text.replaceAll("\n", ""));
         } catch (NullPointerException ex) {
-            Logger.getLogger(ToTCFAnnotationLayer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
             throw new ConversionException("Text conversion failed from lif to tcf failed!!");
         }
     }
@@ -371,7 +371,7 @@ public class ToTCFAnnotationLayer extends DataModel implements ToAnnotationLayer
         try {
             WLDObjector.write(wlData, os);
         } catch (WLFormatException ex) {
-            Logger.getLogger(ToTCFAnnotationLayer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

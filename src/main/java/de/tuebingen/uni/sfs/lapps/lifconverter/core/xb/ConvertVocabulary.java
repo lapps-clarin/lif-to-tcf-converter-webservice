@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion;
+package de.tuebingen.uni.sfs.lapps.lifconverter.core.xb;
 
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.xb.ConvertToolTagset;
 import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.constants.Constants;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.constants.Constants;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -22,15 +23,15 @@ import java.util.logging.Logger;
  *
  * @author felahi
  */
-public class VocabularyConverter implements AnnotationLayerFinder,Constants {
+public class ConvertVocabulary implements AnnotationLayerFinder,Constants {
 
     public static Map<String, String> layerMapper = new HashMap<String, String>();
-    public static Map<String, ToolTagSetAnnoConversion> vocabularyMapper = new HashMap<String, ToolTagSetAnnoConversion>();
+    public static Map<String, ConvertToolTagset> vocabularyMapper = new HashMap<String, ConvertToolTagset>();
     public static Set<String> lifAnnotationlayers = new HashSet<String>();
     private String convertedLayer = null;
     private AnnotationLayerFinder givenLayer = null;
 
-    public VocabularyConverter(String layerMapperfilePath, String vocabularyFilePath) throws VocabularyMappingException {
+    public ConvertVocabulary(String layerMapperfilePath, String vocabularyFilePath) throws VocabularyMappingException {
         try {
             this.setLayers(layerMapperfilePath);
             this.setVocabularies(vocabularyFilePath);
@@ -39,7 +40,7 @@ public class VocabularyConverter implements AnnotationLayerFinder,Constants {
         }
     }
 
-    public VocabularyConverter(AnnotationLayerFinder givenLayer) throws VocabularyMappingException {
+    public ConvertVocabulary(AnnotationLayerFinder givenLayer) throws VocabularyMappingException {
         this.givenLayer = givenLayer;
         this.toLayer();
         this.toTool();
@@ -59,14 +60,14 @@ public class VocabularyConverter implements AnnotationLayerFinder,Constants {
         } catch (ArrayIndexOutOfBoundsException ex) {
             throw new ArrayIndexOutOfBoundsException("The parameters set in " + filePath + " is wrong");
         } catch (Exception ex) {
-            Logger.getLogger(VocabularyConverter.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConvertVocabulary.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if (reader != null) {
                     reader.close();
                 }
             } catch (IOException ex) {
-                Logger.getLogger(VocabularyConverter.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ConvertVocabulary.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -89,25 +90,25 @@ public class VocabularyConverter implements AnnotationLayerFinder,Constants {
                 tcfEntity = parameters[3];
 
                 if (vocabularyMapper.containsKey(lifTool)) {
-                    ToolTagSetAnnoConversion toolTagSetAnnotationConversion = vocabularyMapper.get(lifTool);
+                    ConvertToolTagset toolTagSetAnnotationConversion = vocabularyMapper.get(lifTool);
                     toolTagSetAnnotationConversion.addValues(lifEntity, tcfEntity);
                     vocabularyMapper.put(lifTool, toolTagSetAnnotationConversion);
                 } else {
-                    vocabularyMapper.put(lifTool, new ToolTagSetAnnoConversion(tcftagSet, lifEntity, tcfEntity));
+                    vocabularyMapper.put(lifTool, new ConvertToolTagset(tcftagSet, lifEntity, tcfEntity));
                 }
 
             }
         } catch (ArrayIndexOutOfBoundsException ex) {
             throw new ArrayIndexOutOfBoundsException("The parameters set in " + filePath + " is wrong");
         } catch (Exception ex) {
-            Logger.getLogger(VocabularyConverter.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConvertVocabulary.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if (reader != null) {
                     reader.close();
                 }
             } catch (IOException ex) {
-                Logger.getLogger(VocabularyConverter.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ConvertVocabulary.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

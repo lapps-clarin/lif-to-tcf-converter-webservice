@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion;
+package de.tuebingen.uni.sfs.lapps.lifconverter.core.api;
 
 import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.ConversionException;
 import java.util.List;
 
 /**
  *
  * @author felahi
  */
-public interface ToAnnotationLayer {
+public interface ConvertAnnotations {
 
     public void toLayers(AnnotationLayerFinder layer, List<AnnotationInterpreter> annotationlist) throws Exception;
 

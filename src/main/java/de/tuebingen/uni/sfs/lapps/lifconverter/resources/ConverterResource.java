@@ -12,9 +12,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.conversion.ToTCFAnnotationLayer;
-import de.tuebingen.uni.sfs.lapps.lifconverter.datamodel.exceptions.ConversionException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.Converter;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.xb.ConvertToTCFAnnotations;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.ConversionException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
 
 @Path("con")
 public class ConverterResource {
@@ -25,7 +25,7 @@ public class ConverterResource {
     private static final String TEMP_FILE_PREFIX = "ne-output-temp";
     private static final String TEMP_FILE_SUFFIX = ".xml";
 
-    private Converter tool;
+    private ConverterFormat tool;
 
     public ConverterResource() {
         try {
@@ -86,11 +86,11 @@ public class ConverterResource {
 
     }
 
-    private void process(final InputStream input, OutputStream output, Converter tool) {
+    private void process(final InputStream input, OutputStream output, ConverterFormat tool) {
         try {
             DataModelLif dataModelLif = new DataModelLif(input);
             if (dataModelLif.isValid()) {
-                ToTCFAnnotationLayer tcfDataModel = tool.convertModel(dataModelLif, input);
+                ConvertToTCFAnnotations tcfDataModel = tool.convertFormat(dataModelLif, input);
                 tcfDataModel.process(output);
             } else {
                 throw new LifException("The lif file is in correct!!");
