@@ -5,8 +5,8 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.api;
 
-import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.core.layer.api.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.core.layer.impl.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.ConversionException;
 import java.util.List;
 

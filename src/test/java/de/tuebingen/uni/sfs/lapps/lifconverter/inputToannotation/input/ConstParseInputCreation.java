@@ -5,8 +5,8 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.inputToannotation.input;
 
-import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
-import de.tuebingen.uni.sfs.lapps.library.constants.LifVocabularies;
+import de.tuebingen.uni.sfs.lapps.core.layer.impl.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.constants.LifVocabularies;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;

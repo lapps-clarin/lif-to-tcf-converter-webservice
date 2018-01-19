@@ -5,10 +5,10 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
-import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
-import de.tuebingen.uni.sfs.lapps.library.layer.xb.LifAnnotationLayerFinderStored;
-import de.tuebingen.uni.sfs.lapps.library.utils.xb.ProcessUtils;
+import de.tuebingen.uni.sfs.lapps.core.layer.api.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.core.layer.impl.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifAnnotationLayerFinderStored;
+import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifFileProcess;
 import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusStored;
 import java.io.File;
 import java.io.InputStream;
@@ -110,7 +110,7 @@ public class ConvertToTCFAnnotationsTest {
     public void testTextLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(TEXT_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
-            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = LifFileProcess.fileProcessing(inputFile);
             if (tool.isTextLayer()) {
                 Assert.assertEquals(tool.isTextLayer(), true);
                 instance = new ConvertToTCFAnnotations(null);
@@ -128,7 +128,7 @@ public class ConvertToTCFAnnotationsTest {
     public void testAllLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(ALL_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
-            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = LifFileProcess.fileProcessing(inputFile);
             if (tool.isTextLayer()) {
                 Assert.assertEquals(tool.isTextLayer(), true);
                 instance = new ConvertToTCFAnnotations(null);
@@ -146,7 +146,7 @@ public class ConvertToTCFAnnotationsTest {
     public void testTokenLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(TOKEN_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
-            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = LifFileProcess.fileProcessing(inputFile);
             if (tool.isTokenLayer()) {
                 Assert.assertEquals(tool.isTokenLayer(), true);
                 instance = new ConvertToTCFAnnotations(null);
@@ -167,7 +167,7 @@ public class ConvertToTCFAnnotationsTest {
     public void testPosLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(POS_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
-            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = LifFileProcess.fileProcessing(inputFile);
             if (tool.isPosLayer()) {
                 Assert.assertEquals(tool.isPosLayer(), true);
                 instance = new ConvertToTCFAnnotations(null);
@@ -199,7 +199,7 @@ public class ConvertToTCFAnnotationsTest {
     public void testSentenceLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(SENTENCE_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
-            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = LifFileProcess.fileProcessing(inputFile);
             if (tool.isSenetenceLayer()) {
                 Assert.assertEquals(tool.isSenetenceLayer(), true);
                 instance = new ConvertToTCFAnnotations(null);
@@ -220,7 +220,7 @@ public class ConvertToTCFAnnotationsTest {
     public void testNamedEntirtyLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(NAMEENTITY_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
-            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = LifFileProcess.fileProcessing(inputFile);
             if (tool.isNamedEntityLayer()) {
                 Assert.assertEquals(tool.isNamedEntityLayer(), true);
                 instance = new ConvertToTCFAnnotations(null);
@@ -243,7 +243,7 @@ public class ConvertToTCFAnnotationsTest {
     public void testConstituentLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(CONTSTITUENT_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
-            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = LifFileProcess.fileProcessing(inputFile);
             if (tool.isConstituentLayer()) {
                 Assert.assertEquals(tool.isConstituentLayer(), true);
                 instance = new ConvertToTCFAnnotations(null);
@@ -265,7 +265,7 @@ public class ConvertToTCFAnnotationsTest {
     public void testDependencyLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(DEPENDENCY_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
-            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = LifFileProcess.fileProcessing(inputFile);
             if (tool.isDependencyLayer()) {
                 Assert.assertEquals(tool.isDependencyLayer(), true);
                 instance = new ConvertToTCFAnnotations(null);
@@ -287,7 +287,7 @@ public class ConvertToTCFAnnotationsTest {
         File inputFile = new File(classLoader.getResource(CORFERENCE_EXAMPLE).getFile());
         instance = new ConvertToTCFAnnotations(null);
         if (inputFile.getName().contains(FILE_LIF)) {
-            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
+            LifAnnotationLayerFinderStored tool = LifFileProcess.fileProcessing(inputFile);
             if (tool.isCorferenceLayer()) {
                 Assert.assertEquals(tool.isCorferenceLayer(), true);
                 List<AnnotationInterpreter> coreferenceResolverAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);

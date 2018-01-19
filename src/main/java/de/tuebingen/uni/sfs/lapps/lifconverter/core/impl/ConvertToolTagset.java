@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
-import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.exceptions.VocabularyMappingException;
 import java.util.HashMap;
 import java.util.Map;
 /**

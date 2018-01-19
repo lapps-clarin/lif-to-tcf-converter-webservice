@@ -5,8 +5,8 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.inputToannotation;
 
-import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.core.layer.api.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.core.layer.impl.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.inputToannotation.input.ConstParseInputCreation;
 import de.tuebingen.uni.sfs.lapps.lifconverter.inputToannotation.input.DependencyParseInputCreation;
 import de.tuebingen.uni.sfs.lapps.lifconverter.inputToannotation.input.NameEntityInputCreation;

@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.api;
 
-import de.tuebingen.uni.sfs.lapps.library.model.DataModelLif;
+import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifAnnotationProcess;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.ConversionException;
 import java.io.InputStream;
@@ -16,5 +16,5 @@ import java.io.InputStream;
  */
 public interface ConverterFormat {
 
-    public ConvertToTCFAnnotations convertFormat(DataModelLif lifDataModel,InputStream is) throws ConversionException,Exception;
+    public ConvertToTCFAnnotations convertFormat(LifAnnotationProcess lifDataModel,InputStream is) throws ConversionException,Exception;
 }

@@ -1,9 +1,9 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.core;
 
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
-import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.library.model.DataModelLif;
+import de.tuebingen.uni.sfs.lapps.core.layer.api.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.exceptions.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifAnnotationProcess;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +15,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
 public class ConverterTool implements ConverterFormat {
 
     private ConvertToTCFAnnotations convertedDataModel = null;
-    private DataModelLif givenDataModel = null;
+    private LifAnnotationProcess givenDataModel = null;
     public static final String PARAMETER_PATH = "/models/parameterlist.init";
     public static final String VOCABULARY_PATH = "/models/annotation_conversion.init";
 
@@ -23,7 +23,7 @@ public class ConverterTool implements ConverterFormat {
         new ConvertVocabulary(PARAMETER_PATH, VOCABULARY_PATH);
     }
 
-    public synchronized ConvertToTCFAnnotations convertFormat(DataModelLif lifDataModel, InputStream input) throws Exception {
+    public synchronized ConvertToTCFAnnotations convertFormat(LifAnnotationProcess lifDataModel, InputStream input) throws Exception {
         convertedDataModel = new ConvertToTCFAnnotations(input);
         givenDataModel = lifDataModel;
         convertedDataModel.toLanguage(givenDataModel.getLanguage());

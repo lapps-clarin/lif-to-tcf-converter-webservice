@@ -3,7 +3,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.endToend;
 
-import de.tuebingen.uni.sfs.lapps.library.model.DataModelLif;
+import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifAnnotationProcess;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
 import eu.clarin.weblicht.wlfxb.io.TextCorpusStreamed;
@@ -39,14 +39,14 @@ public class TokenConversionTest extends AbstractTest {
     @Test
     public void testReadInput() throws Exception {
         InputStream input = read(INPUT_LIF_FILE);
-        DataModelLif dataModelLif = new DataModelLif(input);
+        LifAnnotationProcess dataModelLif = new LifAnnotationProcess(input);
         Assert.assertEquals(true, dataModelLif.isValid());
     }
 
     @Ignore
     public void testConversion() throws Exception {
         InputStream input = read(INPUT_LIF_FILE);
-        DataModelLif dataModelLif = new DataModelLif(input);
+        LifAnnotationProcess dataModelLif = new LifAnnotationProcess(input);
         Assert.assertEquals(true, dataModelLif.isValid());
 
         String outfile = testFolder.getRoot() + File.separator + OUTPUT_FILE;

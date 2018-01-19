@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.endToend;
 
-import de.tuebingen.uni.sfs.lapps.library.model.DataModelLif;
+import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifAnnotationProcess;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
 import java.io.BufferedOutputStream;

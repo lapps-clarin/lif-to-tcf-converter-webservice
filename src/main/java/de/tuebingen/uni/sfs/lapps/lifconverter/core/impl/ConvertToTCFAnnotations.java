@@ -6,23 +6,23 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
 import de.tuebingen.uni.sfs.clarind.profiler.Values;
-import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifConstituentParser;
-import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifDependencyParser;
-import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifMarkable;
-import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifReference;
-import de.tuebingen.uni.sfs.lapps.library.annotation.api.LifReferenceLayer;
-import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
-import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifConstituent;
-import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifConstituentParserStored;
-import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifDependencyParserStored;
-import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifRefererenceLayerStored;
-import de.tuebingen.uni.sfs.lapps.library.annotation.xb.LifTokenPosLemmaStored;
-import de.tuebingen.uni.sfs.lapps.library.annotation.xb.DependencyEntityInfo;
-import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
-import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.library.model.DataModel;
-import de.tuebingen.uni.sfs.lapps.library.utils.xb.DuplicateChecker;
+import de.tuebingen.uni.sfs.lapps.core.layer.api.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifConstituentParser;
+import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifDependencyParser;
+import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifMarkable;
+import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifReference;
+import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifReferenceLayer;
+import de.tuebingen.uni.sfs.lapps.core.layer.impl.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifConstituent;
+import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifConstituentParserStored;
+import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifDependencyParserStored;
+import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifRefererenceLayerStored;
+import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifTokenPosLemmaStored;
+import de.tuebingen.uni.sfs.lapps.core.annotation.impl.DependencyEntityInfo;
+import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
+import de.tuebingen.uni.sfs.lapps.exceptions.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.core.layer.api.Process;
+import de.tuebingen.uni.sfs.lapps.utils.DuplicateChecker;
 import de.tuebingen.uni.sfs.lapps.lifconverter.utils.TcfConstituentsTreeBuild;
 import eu.clarin.weblicht.wlfxb.io.WLDObjector;
 import eu.clarin.weblicht.wlfxb.io.WLFormatException;
@@ -60,7 +60,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConvertAnnotations;
  *
  * @author felahi
  */
-public class ConvertToTCFAnnotations extends DataModel implements ConvertAnnotations {
+public class ConvertToTCFAnnotations extends Process implements ConvertAnnotations {
 
     private TextCorpusStored textCorpusStored = null;
     private AnnotationLayerFinder givenToolTagSetVocabularies = null;

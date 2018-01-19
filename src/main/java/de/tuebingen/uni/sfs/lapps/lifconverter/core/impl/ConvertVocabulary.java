@@ -6,8 +6,8 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToolTagset;
-import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.core.layer.api.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.exceptions.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.constants.Constants;
 import java.io.BufferedReader;
 import java.io.IOException;

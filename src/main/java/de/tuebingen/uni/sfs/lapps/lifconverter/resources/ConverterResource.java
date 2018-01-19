@@ -1,8 +1,8 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.resources;
 
-import de.tuebingen.uni.sfs.lapps.library.exception.LifException;
-import de.tuebingen.uni.sfs.lapps.library.exception.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.library.model.DataModelLif;
+import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
+import de.tuebingen.uni.sfs.lapps.exceptions.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifAnnotationProcess;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -88,7 +88,7 @@ public class ConverterResource {
 
     private void process(final InputStream input, OutputStream output, ConverterFormat tool) {
         try {
-            DataModelLif dataModelLif = new DataModelLif(input);
+            LifAnnotationProcess dataModelLif = new LifAnnotationProcess(input);
             if (dataModelLif.isValid()) {
                 ConvertToTCFAnnotations tcfDataModel = tool.convertFormat(dataModelLif, input);
                 tcfDataModel.process(output);
