@@ -5,28 +5,17 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
-import de.tuebingen.uni.sfs.lapps.library.layer.api.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.library.layer.xb.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.library.layer.xb.LifAnnotationLayerFinderStored;
 import de.tuebingen.uni.sfs.lapps.library.utils.xb.ProcessUtils;
-import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusStored;
 import java.io.File;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Assert;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Ignore;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
 /**
  *
- * @author felahi
+ * @author Mohammad Fazleh Elahi
  */
 public class ConvertToTCFAnnotationsAllTest {
 
@@ -47,10 +36,16 @@ public class ConvertToTCFAnnotationsAllTest {
         File inputFile = new File(classLoader.getResource(ALL_LAYER_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
             LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
-            Assert.assertEquals(tool.isTextLayer(), true);
-            Assert.assertEquals(tool.isTokenLayer(), true);
-            Assert.assertEquals(tool.isPosLayer(), true);
-            Assert.assertEquals(tool.isSenetenceLayer(), true);
+            assertTrue("TextLayer exists in the file", tool.isTextLayer());
+            assertTrue("TokenLayer exists in the file", tool.isTokenLayer());
+            assertTrue("SenetenceLayer exists in the file", tool.isSenetenceLayer());
+            assertTrue("PosLayer exists in the file", tool.isPosLayer());
+            assertFalse("NameEntity layer does not exists in the file!!!", tool.isNamedEntityLayer());
+            assertTrue("ConstituentLayer exists in the file", tool.isConstituentLayer());
+            assertTrue("DependencyLayer exists in the file", tool.isDependencyLayer());
+            assertTrue("CorferenceLayer exists in the file", tool.isCorferenceLayer());
         }
+        else
+            throw new Exception("The file extension should be .json");
     }
 }
