@@ -29,15 +29,17 @@ import org.junit.Ignore;
  */
 public class ConvertToTCFAnnotationsTest {
     
-    private String CORFERENCE_EXAMPLE = "inputCorfer.json";
-    private String CONTSTITUENT_EXAMPLE = "inputCon.json";
-    private String DEPENDENCY_EXAMPLE = "inputDep.json";
-    private String MULTILAYER_EXAMPLE = "inputMulti.json";
-    private String NAMEENTITY_EXAMPLE = "inputNer.json";
-    private String SENTENCE_EXAMPLE = "inputSen.json";
-    private String POS_EXAMPLE = "inputPos.json";
-    private String TEXT_EXAMPLE = "inputText.json";
-    private String TOKEN_EXAMPLE = "inputTok.json";
+    private String CORFERENCE_EXAMPLE = "lif-corferenceLayer.json";
+    private String CONTSTITUENT_EXAMPLE = "lif-constituentLayer.json";
+    private String DEPENDENCY_EXAMPLE = "lif-dependencyLayer.json";
+    private String MULTILAYER_EXAMPLE = "lif-multipleLayer.json";
+    private String NAMEENTITY_EXAMPLE = "lif-nameEntittyLayer.json";
+    private String SENTENCE_EXAMPLE = "lif-sentenceLayer.json";
+    private String POS_EXAMPLE = "lif-posLayer.json";
+    private String TEXT_EXAMPLE = "lif-textLayer.json";
+    private String TOKEN_EXAMPLE = "lif-tokenLayer.json";
+    private String ALL_EXAMPLE = "karen-all.json";
+    
     private String FILE_LIF = "json";
     ConvertToTCFAnnotations instance;
     private ClassLoader classLoader = getClass().getClassLoader();
@@ -104,9 +106,27 @@ public class ConvertToTCFAnnotationsTest {
     /**
      * Test of toText method, of class ConvertToTCFAnnotations.
      */
-    @Test
+    @Ignore
     public void testTextLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(TEXT_EXAMPLE).getFile());
+        if (inputFile.getName().contains(FILE_LIF)) {
+            LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
+            if (tool.isTextLayer()) {
+                Assert.assertEquals(tool.isTextLayer(), true);
+                instance = new ConvertToTCFAnnotations(null);
+                instance.toText("Karen flew to New York.");
+                System.out.println("TextLayer exists:" + instance.getTextCorpusStored().getTextLayer().toString());
+                assertEquals("text : Karen flew to New York.", instance.getTextCorpusStored().getTextLayer().toString());
+            }
+        }
+    }
+    
+    /**
+     * Test of toText method, of class ConvertToTCFAnnotations.
+     */
+    @Test
+    public void testAllLayer() throws Exception {
+        File inputFile = new File(classLoader.getResource(ALL_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
             LifAnnotationLayerFinderStored tool = ProcessUtils.fileProcessing(inputFile);
             if (tool.isTextLayer()) {
@@ -122,7 +142,7 @@ public class ConvertToTCFAnnotationsTest {
     /**
      * Test of toToken method, of class ConvertToTCFAnnotations.
      */
-     @Test
+     @Ignore
     public void testTokenLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(TOKEN_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
@@ -143,7 +163,7 @@ public class ConvertToTCFAnnotationsTest {
     /**
      * Test of toPos method, of class ConvertToTCFAnnotations.
      */
-     @Test
+     @Ignore
     public void testPosLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(POS_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
@@ -175,7 +195,7 @@ public class ConvertToTCFAnnotationsTest {
     /**
      * Test of toSentences method, of class ConvertToTCFAnnotations.
      */
-    @Test
+    @Ignore
     public void testSentenceLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(SENTENCE_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
@@ -219,7 +239,7 @@ public class ConvertToTCFAnnotationsTest {
     /**
      * Test of toConstituentParser method, of class ConvertToTCFAnnotations.
      */
-    @Test
+    @Ignore
     public void testConstituentLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(CONTSTITUENT_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
@@ -241,7 +261,7 @@ public class ConvertToTCFAnnotationsTest {
     /**
      * Test of toDependencyParser method, of class ConvertToTCFAnnotations.
      */
-   @Test
+   @Ignore
     public void testDependencyLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(DEPENDENCY_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
@@ -262,7 +282,7 @@ public class ConvertToTCFAnnotationsTest {
     /**
      * Test of toCoreferenceResolver method, of class ConvertToTCFAnnotations.
      */
-    @Test
+    @Ignore
     public void testCorferenceLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(CORFERENCE_EXAMPLE).getFile());
         instance = new ConvertToTCFAnnotations(null);
