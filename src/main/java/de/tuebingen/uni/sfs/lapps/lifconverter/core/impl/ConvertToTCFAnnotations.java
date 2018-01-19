@@ -20,7 +20,6 @@ import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifRefererenceLayerStored
 import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifTokenPosLemmaStored;
 import de.tuebingen.uni.sfs.lapps.core.annotation.impl.DependencyEntityInfo;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
-import de.tuebingen.uni.sfs.lapps.exceptions.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.core.layer.api.Process;
 import de.tuebingen.uni.sfs.lapps.utils.DuplicateChecker;
 import de.tuebingen.uni.sfs.lapps.lifconverter.utils.TcfConstituentsTreeBuild;
@@ -56,6 +55,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.ConversionExcepti
 import eu.clarin.weblicht.wlfxb.tc.api.Reference;
 import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConvertAnnotations;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.VocabularyMappingException;
 /**
  *
  * @author felahi
@@ -232,7 +232,7 @@ public class ConvertToTCFAnnotations extends Process implements ConvertAnnotatio
         }
     }
 
-    public void toNameEntity() throws ConversionException, VocabularyMappingException {
+    public void toNameEntity() throws ConversionException, VocabularyMappingException, LifException {
         try {
             if (textCorpusStored.getTokensLayer().isEmpty()) {
                 throw new ConversionException("There is no token layer in lif file. For conversion of LIF to TCF nameEntitty layer, a token layer is mandatory!!");

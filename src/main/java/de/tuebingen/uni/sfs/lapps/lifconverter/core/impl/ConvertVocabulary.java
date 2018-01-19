@@ -7,8 +7,9 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToolTagset;
 import de.tuebingen.uni.sfs.lapps.core.layer.api.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.exceptions.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.constants.Constants;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.VocabularyMappingException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -40,7 +41,7 @@ public class ConvertVocabulary implements AnnotationLayerFinder,Constants {
         }
     }
 
-    public ConvertVocabulary(AnnotationLayerFinder givenLayer) throws VocabularyMappingException {
+    public ConvertVocabulary(AnnotationLayerFinder givenLayer) throws LifException, VocabularyMappingException {
         this.givenLayer = givenLayer;
         this.toLayer();
         this.toTool();
@@ -113,7 +114,7 @@ public class ConvertVocabulary implements AnnotationLayerFinder,Constants {
         }
     }
 
-    private void toLayer() throws VocabularyMappingException {
+    private void toLayer() throws VocabularyMappingException, LifException {
         if (givenLayer.isLayerExists()) {
             if (layerMapper.containsKey(givenLayer.getLayer())) {
                 this.convertedLayer = layerMapper.get(givenLayer.getLayer());
@@ -125,26 +126,27 @@ public class ConvertVocabulary implements AnnotationLayerFinder,Constants {
         }
     }
 
-    private void toTool() throws VocabularyMappingException {
+    private void toTool() throws VocabularyMappingException, LifException {
         givenLayer.getTool();
     }
 
-    public boolean isLayerExists() throws VocabularyMappingException {
+    public boolean isLayerExists() throws LifException {
         if (layerMapper.containsKey(this.givenLayer.getLayer())) {
             return true;
         }
         return false;
     }
 
-    public boolean isToolExists(String tool) throws VocabularyMappingException {
+    //this is wrong. Need to be corrected in future..
+    public boolean isToolExists(String tool) throws LifException {
         if (vocabularyMapper.isEmpty()) {
-            throw new VocabularyMappingException("vocabularyMapper is empty!!");
+            throw new LifException("vocabularyMapper is empty!!");
         }
 
         if (vocabularyMapper.containsKey(tool)) {
             return true;
         } else {
-            throw new VocabularyMappingException("This tool (" + tool + ") is not registered in the model!!");
+            throw new LifException("This tool (" + tool + ") is not registered in the model!!");
         }
     }
 
@@ -156,39 +158,45 @@ public class ConvertVocabulary implements AnnotationLayerFinder,Constants {
         }
     }
 
-    public String getTool() throws VocabularyMappingException {
+    public String getTool() throws LifException {
         if (givenLayer.getTool() != null) {
             return givenLayer.getTool();
         } else {
-            throw new VocabularyMappingException("No tool is found for the tool!!");
+            throw new LifException("No tool is found for the tool!!");
         }
     }
 
-    public String getProducer() throws VocabularyMappingException {
+    public String getProducer() throws LifException {
         if (givenLayer.getProducer() != null) {
             return givenLayer.getProducer();
         } else {
-            throw new VocabularyMappingException("No tool producer is found for the tool!!");
+            throw new LifException("No tool producer is found for the tool!!");
         }
     }
 
-    public String getTagSetName(String tool) throws VocabularyMappingException {
+    //this wrong it needs to be corrected in future--
+    public String getTagSetName(String tool) throws LifException {
         if (isToolExists(tool)) {
             if (vocabularyMapper.get(tool).getConvertedTagSet() != null) {
                 return vocabularyMapper.get(tool).getConvertedTagSet();
             } else {
-                throw new VocabularyMappingException("No converted tagset found for the tool " + tool + "!!");
+                throw new LifException("No converted tagset found for the tool " + tool + "!!");
             }
         }
         return null;
     }
 
-    public String getVocabularies(String tool, String key) throws VocabularyMappingException {
+     //this wrong it needs to be corrected in future--
+    public String getVocabularies(String tool, String key) throws LifException {
         if (isToolExists(tool)) {
-            if (vocabularyMapper.get(tool).getConvertedVocabularies(key) != null) {
-                return vocabularyMapper.get(tool).getConvertedVocabularies(key);
-            } else {
-                throw new VocabularyMappingException("This vacabulary for (" + key + ") is not registered in the model!!");
+            try {
+                if (vocabularyMapper.get(tool).getConvertedVocabularies(key) != null) {
+                    return vocabularyMapper.get(tool).getConvertedVocabularies(key);
+                } else {
+                    throw new LifException("This vacabulary for (" + key + ") is not registered in the model!!");
+                }
+            } catch (VocabularyMappingException ex) {
+                 throw new LifException("This vacabulary for (" + key + ") is not registered in the model!!");
             }
         }
         return null;

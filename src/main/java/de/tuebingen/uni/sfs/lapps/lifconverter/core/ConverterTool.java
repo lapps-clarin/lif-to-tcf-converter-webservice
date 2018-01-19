@@ -2,8 +2,8 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.core;
 
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
 import de.tuebingen.uni.sfs.lapps.core.layer.api.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.exceptions.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifAnnotationProcess;
+import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertVocabulary;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.VocabularyMappingException;
 
 public class ConverterTool implements ConverterFormat {
 
@@ -51,7 +52,7 @@ public class ConverterTool implements ConverterFormat {
         convertedDataModel.toLayers(tcfLayer, givenDataModel.getAnnotationLayerData(layerIndex));
     }
 
-    protected AnnotationLayerFinder converAnnotationlayervocabularies(Integer layerIndex) throws VocabularyMappingException {
+    protected AnnotationLayerFinder converAnnotationlayervocabularies(Integer layerIndex) throws VocabularyMappingException, LifException {
         AnnotationLayerFinder lifLayer = givenDataModel.getIndexAnnotationLayer(layerIndex);
         AnnotationLayerFinder tcfLayer = new ConvertVocabulary(lifLayer);
         return tcfLayer;
