@@ -18,59 +18,66 @@ public class IndexResource {
     }
 
     @GET
-    @Path("/inputMulti.json")
+    @Path("/lif-multipleLayer.json")
     @Produces("application/json")
     public InputStream inputTestMultiData() {
-        return getClass().getResourceAsStream("/inputMulti.json");
+        return getClass().getResourceAsStream("/lif-multipleLayer.json");
     }
 
     @GET
-    @Path("/inputText.json")
+    @Path("/lif-textLayer.json")
     @Produces("application/json")
     public InputStream inputTestTextData() {
-        return getClass().getResourceAsStream("/inputText.json");
+        return getClass().getResourceAsStream("/lif-textLayer.json");
     }
 
     @GET
-    @Path("/inputTok.json")
+    @Path("/lif-tokenLayer.json")
     @Produces("application/json")
     public InputStream inputTestTokData() {
-        return getClass().getResourceAsStream("/inputTok.json");
+        return getClass().getResourceAsStream("/lif-tokenLayer.json");
     }
 
     @GET
-    @Path("/inputPos.json")
+    @Path("/lif-posLayer.json")
     @Produces("application/json")
     public InputStream inputTestPosData() {
-        return getClass().getResourceAsStream("/inputPos.json");
+        return getClass().getResourceAsStream("/lif-posLayer.json");
     }
 
     @GET
-    @Path("/inputNer.json")
+    @Path("/lif-nameEntittyLayer.json")
     @Produces("application/json")
     public InputStream inputTestNerData() {
-        return getClass().getResourceAsStream("/inputNer.json");
+        return getClass().getResourceAsStream("/lif-nameEntittyLayer.json");
     }
 
     @GET
-    @Path("/inputCon.json")
+    @Path("/lif-constituentLayer.json")
     @Produces("application/json")
     public InputStream inputTestConData() {
-        return getClass().getResourceAsStream("/inputCon.json");
+        return getClass().getResourceAsStream("/lif-constituentLayer.json");
     }
 
     @GET
-    @Path("/inputDep.json")
+    @Path("/lif-dependencyLayer.json")
     @Produces("application/json")
     public InputStream inputTestDepData() {
-        return getClass().getResourceAsStream("/inputDep.json");
+        return getClass().getResourceAsStream("/lif-dependencyLayer.json");
     }
     
     @GET
-    @Path("/inputCorfer.json")
+    @Path("/lif-corferenceLayer.json")
     @Produces("application/json")
     public InputStream inputTestCorferenceData() {
-        return getClass().getResourceAsStream("/inputCorfer.json");
+        return getClass().getResourceAsStream("/lif-corferenceLayer.json");
+    }
+    
+    @GET
+    @Path("/karen-all.json")
+    @Produces("application/json")
+    public InputStream inputTestAllData() {
+        return getClass().getResourceAsStream("/karen-all.json");
     }
 
 }
