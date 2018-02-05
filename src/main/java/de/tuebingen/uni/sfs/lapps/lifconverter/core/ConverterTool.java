@@ -9,9 +9,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertVocabulary;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.ConversionException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
 
 public class ConverterTool implements ConverterFormat {
 
@@ -58,7 +58,7 @@ public class ConverterTool implements ConverterFormat {
         return tcfLayer;
     }
 
-    private void display() {
+    /*private void display() {
 
         try {
             if (convertedDataModel.getTextCorpusStored().getTextLayer() != null) {
@@ -107,5 +107,5 @@ public class ConverterTool implements ConverterFormat {
         } catch (Exception ex) {
             Logger.getLogger(ConverterTool.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
+    }*/
 }

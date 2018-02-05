@@ -12,9 +12,9 @@ import java.util.logging.Logger;
 
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.ConversionException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
 
 @Path("con")
 public class ConverterResource {

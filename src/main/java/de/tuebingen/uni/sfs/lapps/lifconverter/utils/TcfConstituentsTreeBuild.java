@@ -15,9 +15,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.constants.Constants;
-import static de.tuebingen.uni.sfs.lapps.lifconverter.core.constants.Constants.CONSTITUENT_ROOT;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.ConversionException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.Constants;
+import static de.tuebingen.uni.sfs.lapps.lifconverter.core.api.Constants.CONSTITUENT_ROOT;
+import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 
 /**
  *

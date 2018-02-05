@@ -51,11 +51,11 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import de.tuebingen.uni.sfs.lapps.lifconverter.utils.CharOffsetToTokenIdMapper;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.ConversionException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import eu.clarin.weblicht.wlfxb.tc.api.Reference;
 import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConvertAnnotations;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
 /**
  *
  * @author felahi

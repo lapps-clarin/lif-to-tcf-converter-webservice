@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.utils;
 
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.exceptions.ConversionException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import eu.clarin.weblicht.wlfxb.tc.api.Token;
 import java.util.ArrayList;
 import java.util.HashMap;
