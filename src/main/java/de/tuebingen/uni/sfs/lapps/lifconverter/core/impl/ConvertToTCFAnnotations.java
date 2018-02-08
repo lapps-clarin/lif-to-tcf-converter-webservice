@@ -12,15 +12,15 @@ import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifDependencyParser;
 import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifMarkable;
 import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifReference;
 import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifReferenceLayer;
-import de.tuebingen.uni.sfs.lapps.core.layer.impl.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.utils.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifConstituent;
 import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifConstituentParserStored;
 import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifDependencyParserStored;
 import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifRefererenceLayerStored;
 import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifTokenPosLemmaStored;
 import de.tuebingen.uni.sfs.lapps.core.annotation.impl.DependencyEntityInfo;
+import de.tuebingen.uni.sfs.lapps.profile.ProfileProcessing;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
-import de.tuebingen.uni.sfs.lapps.core.layer.api.Process;
 import de.tuebingen.uni.sfs.lapps.utils.DuplicateChecker;
 import de.tuebingen.uni.sfs.lapps.lifconverter.utils.TcfConstituentsTreeBuild;
 import eu.clarin.weblicht.wlfxb.io.WLDObjector;
@@ -60,7 +60,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingExcep
  *
  * @author felahi
  */
-public class ConvertToTCFAnnotations extends Process implements ConvertAnnotations {
+public class ConvertToTCFAnnotations implements ConvertAnnotations,ProfileProcessing {
 
     private TextCorpusStored textCorpusStored = null;
     private AnnotationLayerFinder givenToolTagSetVocabularies = null;

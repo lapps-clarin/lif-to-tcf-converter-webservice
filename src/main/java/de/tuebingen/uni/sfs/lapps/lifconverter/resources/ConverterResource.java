@@ -1,7 +1,7 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.resources;
 
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
-import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifAnnotationProcess;
+import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifViewProcess;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -15,6 +15,8 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.profile.LIFProfiler;
+import de.tuebingen.uni.sfs.lapps.profile.LIFProfilerImpl;
 
 @Path("con")
 public class ConverterResource {
@@ -88,9 +90,9 @@ public class ConverterResource {
 
     private void process(final InputStream input, OutputStream output, ConverterFormat tool) {
         try {
-            LifAnnotationProcess dataModelLif = new LifAnnotationProcess(input);
-            if (dataModelLif.isValid()) {
-                ConvertToTCFAnnotations tcfDataModel = tool.convertFormat(dataModelLif, input);
+             LIFProfiler lifProfiler= new LIFProfilerImpl(input);
+            if (lifProfiler.isValid()) {
+                ConvertToTCFAnnotations tcfDataModel = tool.convertFormat(lifProfiler, input);
                 tcfDataModel.process(output);
             } else {
                 throw new LifException("The lif file is in correct!!");

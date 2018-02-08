@@ -3,7 +3,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.endToend;
 
-import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifAnnotationProcess;
+import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifViewProcess;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
 import eu.clarin.weblicht.wlfxb.io.TextCorpusStreamed;
@@ -20,6 +20,8 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.xml.sax.SAXException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
+import de.tuebingen.uni.sfs.lapps.profile.LIFProfiler;
+import de.tuebingen.uni.sfs.lapps.profile.LIFProfilerImpl;
 
 /**
  * @author Mohammad Fazleh Elahi
@@ -39,14 +41,14 @@ public class TokenConversionTest extends AbstractTest {
     @Test
     public void testReadInput() throws Exception {
         InputStream input = read(INPUT_LIF_FILE);
-        LifAnnotationProcess dataModelLif = new LifAnnotationProcess(input);
+        LIFProfiler dataModelLif = new LIFProfilerImpl(input);
         Assert.assertEquals(true, dataModelLif.isValid());
     }
 
     @Ignore
     public void testConversion() throws Exception {
         InputStream input = read(INPUT_LIF_FILE);
-        LifAnnotationProcess dataModelLif = new LifAnnotationProcess(input);
+        LIFProfiler dataModelLif = new LIFProfilerImpl(input);
         Assert.assertEquals(true, dataModelLif.isValid());
 
         String outfile = testFolder.getRoot() + File.separator + OUTPUT_FILE;

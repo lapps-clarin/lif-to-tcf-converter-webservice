@@ -6,7 +6,7 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
 import de.tuebingen.uni.sfs.lapps.core.layer.api.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.core.layer.impl.AnnotationInterpreter;
+import de.tuebingen.uni.sfs.lapps.utils.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifAnnotationLayerFinderStored;
 import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifFileProcess;
 import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusStored;
@@ -150,7 +150,7 @@ public class ConvertToTCFAnnotationsTest {
             if (tool.isTokenLayer()) {
                 Assert.assertEquals(tool.isTokenLayer(), true);
                 instance = new ConvertToTCFAnnotations(null);
-                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getLifViewProfile().getAnnotationLayerData(0);
                 instance.setGivenAnnotations(tokenAnnotations);
                 instance.toToken();
                 System.out.println("TokenLayer exists:" + instance.getTextCorpusStored().getTokensLayer().getToken(0).toString());
@@ -171,7 +171,7 @@ public class ConvertToTCFAnnotationsTest {
             if (tool.isPosLayer()) {
                 Assert.assertEquals(tool.isPosLayer(), true);
                 instance = new ConvertToTCFAnnotations(null);
-                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getLifViewProfile().getAnnotationLayerData(0);
                 instance.setGivenAnnotations(tokenAnnotations);
                 instance.toPos();
                 System.out.println("PosLayer exists:" + instance.getTextCorpusStored().getPosTagsLayer().getTag(0).toString());
@@ -203,7 +203,7 @@ public class ConvertToTCFAnnotationsTest {
             if (tool.isSenetenceLayer()) {
                 Assert.assertEquals(tool.isSenetenceLayer(), true);
                 instance = new ConvertToTCFAnnotations(null);
-                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getLifViewProfile().getAnnotationLayerData(0);
                 instance.setGivenAnnotations(tokenAnnotations);
                 instance.toToken();
                 instance.toSentences();
@@ -225,7 +225,7 @@ public class ConvertToTCFAnnotationsTest {
                 Assert.assertEquals(tool.isNamedEntityLayer(), true);
                 instance = new ConvertToTCFAnnotations(null);
                 
-                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getLifViewProfile().getAnnotationLayerData(0);
                 //instance.toLayers(Discriminators.Uri.NE.toString(), tokenAnnotations);
                 //instance.setGivenAnnotations(tokenAnnotations);
                 instance.toToken();
@@ -247,7 +247,7 @@ public class ConvertToTCFAnnotationsTest {
             if (tool.isConstituentLayer()) {
                 Assert.assertEquals(tool.isConstituentLayer(), true);
                 instance = new ConvertToTCFAnnotations(null);
-                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getLifViewProfile().getAnnotationLayerData(0);
                 instance.setGivenAnnotations(tokenAnnotations);
                 instance.toConstituentParser();
                 System.out.println("ConstituentLayer exists:" + instance.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot());
@@ -269,7 +269,7 @@ public class ConvertToTCFAnnotationsTest {
             if (tool.isDependencyLayer()) {
                 Assert.assertEquals(tool.isDependencyLayer(), true);
                 instance = new ConvertToTCFAnnotations(null);
-                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getLifViewProfile().getAnnotationLayerData(0);
                 instance.setGivenAnnotations(tokenAnnotations);
                 instance.toDependencyParser();
                 System.out.println("DependencyLayer exists:" + instance.getTextCorpusStored().getDependencyParsingLayer().getParse(0));
@@ -290,7 +290,7 @@ public class ConvertToTCFAnnotationsTest {
             LifAnnotationLayerFinderStored tool = LifFileProcess.fileProcessing(inputFile);
             if (tool.isCorferenceLayer()) {
                 Assert.assertEquals(tool.isCorferenceLayer(), true);
-                List<AnnotationInterpreter> coreferenceResolverAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                List<AnnotationInterpreter> coreferenceResolverAnnotations = tool.getGivenDataModel().getLifViewProfile().getAnnotationLayerData(0);
                 instance.setGivenAnnotations(coreferenceResolverAnnotations);
                 instance.toCoreferenceResolver();
                 System.out.println("CorferenceLayer exists:" + instance.getTextCorpusStored().getReferencesLayer().getReferencedEntity(0));
