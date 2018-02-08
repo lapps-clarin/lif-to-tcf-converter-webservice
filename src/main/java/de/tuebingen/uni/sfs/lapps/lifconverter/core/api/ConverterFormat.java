@@ -7,8 +7,8 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.core.api;
 
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
-import de.tuebingen.uni.sfs.lapps.profile.LIFProfiler;
 import java.io.InputStream;
+import de.tuebingen.uni.sfs.lapps.profile.LIFProfile;
 
 /**
  *
@@ -16,5 +16,5 @@ import java.io.InputStream;
  */
 public interface ConverterFormat {
 
-    public ConvertToTCFAnnotations convertFormat(LIFProfiler lifDataModel,InputStream is) throws ConversionException,Exception;
+    public ConvertToTCFAnnotations convertFormat(LIFProfile lifDataModel,InputStream is) throws ConversionException,Exception;
 }

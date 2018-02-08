@@ -19,7 +19,6 @@ import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifDependencyParserStored
 import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifRefererenceLayerStored;
 import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifTokenPosLemmaStored;
 import de.tuebingen.uni.sfs.lapps.core.annotation.impl.DependencyEntityInfo;
-import de.tuebingen.uni.sfs.lapps.profile.ProfileProcessing;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
 import de.tuebingen.uni.sfs.lapps.utils.DuplicateChecker;
 import de.tuebingen.uni.sfs.lapps.lifconverter.utils.TcfConstituentsTreeBuild;
@@ -60,7 +59,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingExcep
  *
  * @author felahi
  */
-public class ConvertToTCFAnnotations implements ConvertAnnotations,ProfileProcessing {
+public class ConvertToTCFAnnotations implements ConvertAnnotations{
 
     private TextCorpusStored textCorpusStored = null;
     private AnnotationLayerFinder givenToolTagSetVocabularies = null;
@@ -365,7 +364,6 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations,ProfileProces
 
     }
 
-    @Override
     public void process(OutputStream os) {
         WLData wlData = new WLData(textCorpusStored);
         try {
@@ -375,7 +373,6 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations,ProfileProces
         }
     }
 
-    @Override
     public boolean isValid() {
         if (textCorpusStored != null) {
             return true;
