@@ -1,7 +1,7 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.resources;
 
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
-import de.tuebingen.uni.sfs.lapps.profile.LifProfilerImpl;
+import de.tuebingen.uni.sfs.lapps.profile.impl.LifProfilerImpl;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -15,7 +15,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.profile.LifProfile;
+import de.tuebingen.uni.sfs.lapps.profile.api.LifProfile;
 
 @Path("con")
 public class ConverterResource {

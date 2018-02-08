@@ -8,7 +8,7 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 import de.tuebingen.uni.sfs.lapps.core.layer.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.utils.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifAnnotationLayerFinderStored;
-import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifFileProcess;
+import de.tuebingen.uni.sfs.lapps.utils.LifFileProcess;
 import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusStored;
 import java.io.File;
 import java.io.InputStream;

@@ -3,7 +3,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.endToend;
 
-import de.tuebingen.uni.sfs.lapps.profile.LifProfilerImpl;
+import de.tuebingen.uni.sfs.lapps.profile.impl.LifProfilerImpl;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
 import eu.clarin.weblicht.wlfxb.io.TextCorpusStreamed;
@@ -20,8 +20,8 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import org.xml.sax.SAXException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
-import de.tuebingen.uni.sfs.lapps.profile.LifTopLevelProfiler;
-import de.tuebingen.uni.sfs.lapps.profile.LifProfile;
+import de.tuebingen.uni.sfs.lapps.profile.impl.LifTopLevelProfiler;
+import de.tuebingen.uni.sfs.lapps.profile.api.LifProfile;
 
 /**
  * @author Mohammad Fazleh Elahi

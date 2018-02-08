@@ -11,7 +11,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertVocabulary;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.profile.LifProfile;
+import de.tuebingen.uni.sfs.lapps.profile.api.LifProfile;
 
 public class ConverterTool implements ConverterFormat {
 
