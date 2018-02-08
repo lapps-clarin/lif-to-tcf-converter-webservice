@@ -7,7 +7,6 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
 import de.tuebingen.uni.sfs.clarind.profiler.Values;
 import de.tuebingen.uni.sfs.lapps.core.layer.api.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifConstituentParser;
 import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifDependencyParser;
 import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifMarkable;
 import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifReference;
@@ -18,7 +17,7 @@ import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifConstituentParserStore
 import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifDependencyParserStored;
 import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifRefererenceLayerStored;
 import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifTokenPosLemmaStored;
-import de.tuebingen.uni.sfs.lapps.core.annotation.impl.DependencyEntityInfo;
+import de.tuebingen.uni.sfs.lapps.utils.DependencyEntityInfo;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
 import de.tuebingen.uni.sfs.lapps.utils.DuplicateChecker;
 import de.tuebingen.uni.sfs.lapps.lifconverter.utils.TcfConstituentsTreeBuild;
@@ -55,6 +54,7 @@ import eu.clarin.weblicht.wlfxb.tc.api.Reference;
 import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConvertAnnotations;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifConstituentParser;
 /**
  *
  * @author felahi

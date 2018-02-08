@@ -11,12 +11,12 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertVocabulary;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.profile.LIFProfile;
+import de.tuebingen.uni.sfs.lapps.profile.LifProfile;
 
 public class ConverterTool implements ConverterFormat {
 
     private ConvertToTCFAnnotations convertedDataModel = null;
-    private LIFProfile lifProfiler = null;
+    private LifProfile lifProfiler = null;
     public static final String PARAMETER_PATH = "/models/parameterlist.init";
     public static final String VOCABULARY_PATH = "/models/annotation_conversion.init";
 
@@ -24,7 +24,7 @@ public class ConverterTool implements ConverterFormat {
         new ConvertVocabulary(PARAMETER_PATH, VOCABULARY_PATH);
     }
 
-    public synchronized ConvertToTCFAnnotations convertFormat(LIFProfile lifDataModel, InputStream input) throws Exception {
+    public synchronized ConvertToTCFAnnotations convertFormat(LifProfile lifDataModel, InputStream input) throws Exception {
         convertedDataModel = new ConvertToTCFAnnotations(input);
         lifProfiler = lifDataModel;
         convertedDataModel.toLanguage(lifProfiler.getLanguage());
