@@ -210,4 +210,8 @@ public class ConvertVocabulary implements AnnotationLayerFinder,Constants {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public Integer getLayerIndex() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
