@@ -6,7 +6,7 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.inputToannotation.input;
 
 import de.tuebingen.uni.sfs.lapps.utils.AnnotationInterpreter;
-import de.tuebingen.uni.sfs.lapps.constants.LifConnstant;
+import de.tuebingen.uni.sfs.lapps.constants.LifDocumentConnstant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -141,8 +141,8 @@ public class CoreferenceResolverCreation {
         List<String> constitunetList = Arrays.asList("c_0_0", "c_0_1", "c_0_2", "c_0_3", "c_0_4", "c_0_5", "c_0_6", "c_0_7", "c_0_8", "c_0_9", "c_0_10", "c_0_11");
         Map<Object, Object> map = new HashMap<Object, Object>();
         map.put(Discriminators.Alias.SENTENCE, text);
-        map.put(LifConnstant.LIF.DiscriminitorsExtended.PENN_TREE, pennTree);
-        map.put(LifConnstant.LIF.DiscriminitorsExtended.CONSTITUENTS, constitunetList);
+        map.put(LifDocumentConnstant.Annotation.DiscriminitorsExtended.PENN_TREE, pennTree);
+        map.put(LifDocumentConnstant.Annotation.DiscriminitorsExtended.CONSTITUENTS, constitunetList);
         annotations.add(setTokenAnnotation(urlParseStructureType, null, "ps_0", new Long(0), new Long(23), map));
         return annotations;
     }
