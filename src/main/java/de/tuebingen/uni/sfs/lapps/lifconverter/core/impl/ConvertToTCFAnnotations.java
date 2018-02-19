@@ -55,11 +55,15 @@ import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConvertAnnotations;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifConstituentParser;
+import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifNameEntity;
+import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifNameEntityLayer;
+import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifNameEntityLayerStored;
+
 /**
  *
  * @author felahi
  */
-public class ConvertToTCFAnnotations implements ConvertAnnotations{
+public class ConvertToTCFAnnotations implements ConvertAnnotations {
 
     private TextCorpusStored textCorpusStored = null;
     private AnnotationLayerFinder givenToolTagSetVocabularies = null;
@@ -182,7 +186,7 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations{
             }
         }
         if (wordFlag) {
-            charOffsetToTokenIdMapper = new CharOffsetToTokenIdMapper(startIdTokenIdMapper, tokenIdToken,lifTokenIdTcfToken);
+            charOffsetToTokenIdMapper = new CharOffsetToTokenIdMapper(startIdTokenIdMapper, tokenIdToken, lifTokenIdTcfToken);
         }
     }
 
@@ -232,6 +236,7 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations{
     }
 
     public void toNameEntity() throws ConversionException, VocabularyMappingException, LifException {
+        LifNameEntityLayer lifNameEntityLayer = new LifNameEntityLayerStored(givenAnnotations);
         try {
             if (textCorpusStored.getTokensLayer().isEmpty()) {
                 throw new ConversionException("There is no token layer in lif file. For conversion of LIF to TCF nameEntitty layer, a token layer is mandatory!!");
@@ -240,18 +245,17 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations{
             throw new ConversionException("There is no token layer in lif file. For conversion of LIF to TCF nameEntitty layer, a token layer is mandatory!!");
         }
 
-        String tool = this.givenToolTagSetVocabularies.getTool();
-        NamedEntitiesLayer namedEntitiesLayer = textCorpusStored.createNamedEntitiesLayer(this.givenToolTagSetVocabularies.getTagSetName(tool));
+        NamedEntitiesLayer namedEntitiesLayer = textCorpusStored.createNamedEntitiesLayer("");
 
-        for (AnnotationInterpreter annotationObject : givenAnnotations) {
-            List<String> tokenIds = charOffsetToTokenIdMapper.getTokenIdsFromStartIds(annotationObject.getStart(), annotationObject.getEnd());
+        for (LifNameEntity lifNameEntity : lifNameEntityLayer.getNameEntityList()) {
+            List<String> tokenIds = charOffsetToTokenIdMapper.getTokenIdsFromStartIds(lifNameEntity.getStart(), lifNameEntity.getEnd());
             List<Token> tokenList = new ArrayList<Token>();
             for (String tokenId : tokenIds) {
                 Token token = charOffsetToTokenIdMapper.getToken(tokenId);
                 tokenList.add(token);
             }
             if (!tokenList.isEmpty()) {
-                String nameEntityKey = this.givenToolTagSetVocabularies.getVocabularies(tool, annotationObject.getUrl());
+                String nameEntityKey = lifNameEntity.getCategory();
                 if (tokenList.size() == 1) {
                     namedEntitiesLayer.addEntity(nameEntityKey, tokenList.get(0));
                 } else {
@@ -315,7 +319,7 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations{
 
         Map<String, Reference> markIdReference = new HashMap<String, Reference>();
         List<Reference> tcfReferences = new ArrayList<Reference>();
-        Map<String, Token> lifTokenIdToken=charOffsetToTokenIdMapper.getLifTokenIdTcfToken();
+        Map<String, Token> lifTokenIdToken = charOffsetToTokenIdMapper.getLifTokenIdTcfToken();
         for (String lifMarkableId : lifRefererenceLayer.getMarkableAnnotations().keySet()) {
             LifMarkable lifMarkable = lifRefererenceLayer.getMarkableAnnotations().get(lifMarkableId);
             List<String> lifTokenIds = lifMarkable.getTargets();

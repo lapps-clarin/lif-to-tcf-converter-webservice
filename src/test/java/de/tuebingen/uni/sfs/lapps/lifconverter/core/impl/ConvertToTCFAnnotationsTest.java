@@ -102,6 +102,27 @@ public class ConvertToTCFAnnotationsTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+    
+     /**
+     * Test of toText method, of class ConvertToTCFAnnotations.
+     */
+    @Ignore
+    public void testAllLayer() throws Exception {
+        File inputFile = new File(classLoader.getResource(ALL_EXAMPLE).getFile());
+        if (inputFile.getName().contains(FILE_LIF)) {
+            LifAnnotationLayerFinderStored tool = LifFileProcess.fileProcessing(inputFile);
+            if (tool.isTextLayer()) {
+                Assert.assertEquals(tool.isTextLayer(), true);
+                instance = new ConvertToTCFAnnotations(null);
+                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                System.out.println(tokenAnnotations.toString());
+                instance.setGivenAnnotations(tokenAnnotations);
+                instance.toText("Karen flew to New York.");
+                System.out.println("TextLayer exists:" + instance.getTextCorpusStored().getTextLayer().toString());
+                assertEquals("text : Karen flew to New York.", instance.getTextCorpusStored().getTextLayer().toString());
+            }
+        }
+    }
 
     /**
      * Test of toText method, of class ConvertToTCFAnnotations.
@@ -109,24 +130,6 @@ public class ConvertToTCFAnnotationsTest {
     @Ignore
     public void testTextLayer() throws Exception {
         File inputFile = new File(classLoader.getResource(TEXT_EXAMPLE).getFile());
-        if (inputFile.getName().contains(FILE_LIF)) {
-            LifAnnotationLayerFinderStored tool = LifFileProcess.fileProcessing(inputFile);
-            if (tool.isTextLayer()) {
-                Assert.assertEquals(tool.isTextLayer(), true);
-                instance = new ConvertToTCFAnnotations(null);
-                instance.toText("Karen flew to New York.");
-                System.out.println("TextLayer exists:" + instance.getTextCorpusStored().getTextLayer().toString());
-                assertEquals("text : Karen flew to New York.", instance.getTextCorpusStored().getTextLayer().toString());
-            }
-        }
-    }
-    
-    /**
-     * Test of toText method, of class ConvertToTCFAnnotations.
-     */
-    @Test
-    public void testAllLayer() throws Exception {
-        File inputFile = new File(classLoader.getResource(ALL_EXAMPLE).getFile());
         if (inputFile.getName().contains(FILE_LIF)) {
             LifAnnotationLayerFinderStored tool = LifFileProcess.fileProcessing(inputFile);
             if (tool.isTextLayer()) {
@@ -151,6 +154,7 @@ public class ConvertToTCFAnnotationsTest {
                 Assert.assertEquals(tool.isTokenLayer(), true);
                 instance = new ConvertToTCFAnnotations(null);
                 List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
+                System.out.println(tokenAnnotations.toString());
                 instance.setGivenAnnotations(tokenAnnotations);
                 instance.toToken();
                 System.out.println("TokenLayer exists:" + instance.getTextCorpusStored().getTokensLayer().getToken(0).toString());
