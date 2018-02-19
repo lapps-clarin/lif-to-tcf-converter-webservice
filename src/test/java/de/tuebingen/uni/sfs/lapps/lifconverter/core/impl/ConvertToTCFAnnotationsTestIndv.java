@@ -27,7 +27,7 @@ import org.junit.Ignore;
  *
  * @author felahi
  */
-public class ConvertToTCFAnnotationsTest {
+public class ConvertToTCFAnnotationsTestIndv {
     
     private String CORFERENCE_EXAMPLE = "lif-corferenceLayer.json";
     private String CONTSTITUENT_EXAMPLE = "lif-constituentLayer.json";
@@ -37,14 +37,12 @@ public class ConvertToTCFAnnotationsTest {
     private String SENTENCE_EXAMPLE = "lif-sentenceLayer.json";
     private String POS_EXAMPLE = "lif-posLayer.json";
     private String TEXT_EXAMPLE = "lif-textLayer.json";
-    private String TOKEN_EXAMPLE = "lif-tokenLayer.json";
-    private String ALL_EXAMPLE = "karen-all.json";
-    
+    private String TOKEN_EXAMPLE = "lif-tokenLayer.json";    
     private String FILE_LIF = "json";
     ConvertToTCFAnnotations instance;
     private ClassLoader classLoader = getClass().getClassLoader();
     
-    public ConvertToTCFAnnotationsTest() {
+    public ConvertToTCFAnnotationsTestIndv() {
     }
     
     @BeforeClass
@@ -101,27 +99,6 @@ public class ConvertToTCFAnnotationsTest {
         instance.toLanguage(language);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
-    }
-    
-     /**
-     * Test of toText method, of class ConvertToTCFAnnotations.
-     */
-    @Ignore
-    public void testAllLayer() throws Exception {
-        File inputFile = new File(classLoader.getResource(ALL_EXAMPLE).getFile());
-        if (inputFile.getName().contains(FILE_LIF)) {
-            LifAnnotationLayerFinderStored tool = LifFileProcess.fileProcessing(inputFile);
-            if (tool.isTextLayer()) {
-                Assert.assertEquals(tool.isTextLayer(), true);
-                instance = new ConvertToTCFAnnotations(null);
-                List<AnnotationInterpreter> tokenAnnotations = tool.getGivenDataModel().getAnnotationLayerData(0);
-                System.out.println(tokenAnnotations.toString());
-                instance.setGivenAnnotations(tokenAnnotations);
-                instance.toText("Karen flew to New York.");
-                System.out.println("TextLayer exists:" + instance.getTextCorpusStored().getTextLayer().toString());
-                assertEquals("text : Karen flew to New York.", instance.getTextCorpusStored().getTextLayer().toString());
-            }
-        }
     }
 
     /**
@@ -314,73 +291,6 @@ public class ConvertToTCFAnnotationsTest {
         String fileString = "";
         ConvertToTCFAnnotations instance = null;
         instance.toTextSource(fileString);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of inputDataProcessing method, of class ConvertToTCFAnnotations.
-     */
-    @Ignore
-    public void testInputDataProcessing() {
-        System.out.println("inputDataProcessing");
-        InputStream is = null;
-        ConvertToTCFAnnotations instance = null;
-        instance.inputDataProcessing(is);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of process method, of class ConvertToTCFAnnotations.
-     */
-    @Ignore
-    public void testProcess() {
-        System.out.println("process");
-        OutputStream os = null;
-        ConvertToTCFAnnotations instance = null;
-        instance.process(os);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of isValid method, of class ConvertToTCFAnnotations.
-     */
-    @Ignore
-    public void testIsValid() {
-        System.out.println("isValid");
-        ConvertToTCFAnnotations instance = null;
-        boolean expResult = false;
-        boolean result = instance.isValid();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getTextCorpusStored method, of class ConvertToTCFAnnotations.
-     */
-    @Ignore
-    public void testGetTextCorpusStored() {
-        System.out.println("getTextCorpusStored");
-        ConvertToTCFAnnotations instance = null;
-        TextCorpusStored expResult = null;
-        TextCorpusStored result = instance.getTextCorpusStored();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of setGivenAnnotations method, of class ConvertToTCFAnnotations.
-     */
-    @Ignore
-    public void testSetGivenAnnotations() {
-        System.out.println("setGivenAnnotations");
-        List<AnnotationInterpreter> givenAnnotations = null;
-        ConvertToTCFAnnotations instance = null;
-        instance.setGivenAnnotations(givenAnnotations);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

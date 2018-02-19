@@ -58,54 +58,7 @@ public class ConverterTool implements ConverterFormat {
         return tcfLayer;
     }
 
-    /*private void display() {
-
-        try {
-            if (convertedDataModel.getTextCorpusStored().getTextLayer() != null) {
-                System.out.println("Text Layer");
-                System.out.println(convertedDataModel.getTextCorpusStored().getTextLayer().toString());
-            }
-            if (convertedDataModel.getTextCorpusStored().getTokensLayer() != null) {
-                System.out.println("Token Layer");
-                System.out.println(convertedDataModel.getTextCorpusStored().getTokensLayer().toString());
-            }
-            if (convertedDataModel.getTextCorpusStored().getDependencyParsingLayer() != null) {
-                System.out.println("Dependency Parser Layer");
-                System.out.println(convertedDataModel.getTextCorpusStored().getDependencyParsingLayer().getParse(0).toString());
-            }
-            if (convertedDataModel.getTextCorpusStored().getPosTagsLayer() != null) {
-                System.out.println("PosTags Layer");
-                System.out.println(convertedDataModel.getTextCorpusStored().getPosTagsLayer().toString());
-            }
-            if (convertedDataModel.getTextCorpusStored().getLemmasLayer() != null) {
-                System.out.println("Lemma Layer");
-                System.out.println(convertedDataModel.getTextCorpusStored().getLemmasLayer().toString());
-            }
-            if (convertedDataModel.getTextCorpusStored().getSentencesLayer() != null) {
-                System.out.println("Sentence Layer");
-                System.out.println(convertedDataModel.getTextCorpusStored().getSentencesLayer().toString());
-            }
-            if (convertedDataModel.getTextCorpusStored().getNamedEntitiesLayer() != null) {
-                System.out.println("NameEntitty Layer");
-                System.out.println(convertedDataModel.getTextCorpusStored().getNamedEntitiesLayer().toString());
-            }
-            if (convertedDataModel.getTextCorpusStored().getConstituentParsingLayer() != null) {
-                System.out.println("Constituent Parser Layer");
-                System.out.println(convertedDataModel.getTextCorpusStored().getConstituentParsingLayer().toString());
-            }
-            if (convertedDataModel.getTextCorpusStored().getReferencesLayer() != null) {
-                System.out.println("References Layer");
-                System.out.println(convertedDataModel.getTextCorpusStored().getReferencesLayer().toString());
-            }
-            if (convertedDataModel.getTextCorpusStored().getTextSourceLayer() != null) {
-                System.out.println("Text Source Layer");
-                System.out.println(convertedDataModel.getTextCorpusStored().getTextSourceLayer().getText().toString().substring(0, 99));
-            }
-
-        } catch (IndexOutOfBoundsException exIndex) {
-            Logger.getLogger(ConverterTool.class.getName()).log(Level.SEVERE, null, exIndex);
-        } catch (Exception ex) {
-            Logger.getLogger(ConverterTool.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }*/
+    public ConvertToTCFAnnotations getConvertedDataModel() {
+        return convertedDataModel;
+    }
 }
