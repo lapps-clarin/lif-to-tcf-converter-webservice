@@ -27,7 +27,7 @@ import org.junit.Before;
  *
  * @author felahi
  */
-public class ConvertToTCFAnnotationsTestAll {
+public class ConvertToTCFAllLayersTest {
 
     private String ALL_EXAMPLE = "karen-all.json";
     private String FILE_LIF = "json";
