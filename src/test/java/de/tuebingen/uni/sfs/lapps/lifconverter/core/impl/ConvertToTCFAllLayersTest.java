@@ -23,6 +23,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
+import org.lappsgrid.discriminator.Discriminators;
 
 /**
  *
@@ -31,7 +32,7 @@ import org.junit.Before;
 public class ConvertToTCFAllLayersTest {
 
     private String ALL_EXAMPLE = "karen-all.json";
-    private String FILE_LIF = "json";
+    private String FILE_LIF = Discriminators.Alias.JSON;
     private ClassLoader classLoader = getClass().getClassLoader();
     private File inputFile;
     private InputStream targetStream;

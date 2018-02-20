@@ -31,6 +31,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Ignore;
+import org.lappsgrid.discriminator.Discriminators;
 
 /**
  *
@@ -47,7 +48,7 @@ public class ConvertToTCFEachLayerTest {
     private String POS_EXAMPLE = "lif-posLayer.json";
     private String TEXT_EXAMPLE = "lif-textLayer.json";
     private String TOKEN_EXAMPLE = "lif-tokenLayer.json";
-    private String FILE_LIF = "json";
+    private String FILE_LIF = Discriminators.Alias.JSON;
     private ClassLoader classLoader = getClass().getClassLoader();
     private File inputFile;
     private InputStream targetStream;
