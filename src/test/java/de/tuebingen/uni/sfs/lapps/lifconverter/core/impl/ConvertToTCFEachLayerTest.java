@@ -14,7 +14,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.profile.api.LifProfile;
-import de.tuebingen.uni.sfs.lapps.profile.impl.LifProfilerImpl;
+import de.tuebingen.uni.sfs.lapps.profile.impl.LifProfiler;
 import de.tuebingen.uni.sfs.lapps.utils.LifFileProcess;
 import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusStored;
 import java.io.File;
@@ -61,7 +61,7 @@ public class ConvertToTCFEachLayerTest {
     public void testTextLayer() throws Exception {
         inputFile = new File(classLoader.getResource(TEXT_EXAMPLE).getFile());
         targetStream = FileUtils.openInputStream(inputFile);
-        givenLifFormat = new LifProfilerImpl(FileUtils.openInputStream(inputFile));
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
         instance = Convertertool.getConvertedDataModel();
@@ -80,7 +80,7 @@ public class ConvertToTCFEachLayerTest {
 
         inputFile = new File(classLoader.getResource(TOKEN_EXAMPLE).getFile());
         targetStream = FileUtils.openInputStream(inputFile);
-        givenLifFormat = new LifProfilerImpl(FileUtils.openInputStream(inputFile));
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
         instance = Convertertool.getConvertedDataModel();
@@ -99,7 +99,7 @@ public class ConvertToTCFEachLayerTest {
 
         inputFile = new File(classLoader.getResource(POS_EXAMPLE).getFile());
         targetStream = FileUtils.openInputStream(inputFile);
-        givenLifFormat = new LifProfilerImpl(FileUtils.openInputStream(inputFile));
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
         instance = Convertertool.getConvertedDataModel();
@@ -129,7 +129,7 @@ public class ConvertToTCFEachLayerTest {
     public void testSentenceLayer() throws Exception {
         inputFile = new File(classLoader.getResource(SENTENCE_EXAMPLE).getFile());
         targetStream = FileUtils.openInputStream(inputFile);
-        givenLifFormat = new LifProfilerImpl(FileUtils.openInputStream(inputFile));
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
         instance = Convertertool.getConvertedDataModel();
@@ -147,7 +147,7 @@ public class ConvertToTCFEachLayerTest {
     public void testNamedEntirtyLayer() throws Exception {
         inputFile = new File(classLoader.getResource(NAMEENTITY_EXAMPLE).getFile());
         targetStream = FileUtils.openInputStream(inputFile);
-        givenLifFormat = new LifProfilerImpl(FileUtils.openInputStream(inputFile));
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
         instance = Convertertool.getConvertedDataModel();
@@ -165,7 +165,7 @@ public class ConvertToTCFEachLayerTest {
     public void testConstituentLayer() throws Exception {
         inputFile = new File(classLoader.getResource(CONTSTITUENT_EXAMPLE).getFile());
         targetStream = FileUtils.openInputStream(inputFile);
-        givenLifFormat = new LifProfilerImpl(FileUtils.openInputStream(inputFile));
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
         instance = Convertertool.getConvertedDataModel();
@@ -184,7 +184,7 @@ public class ConvertToTCFEachLayerTest {
     public void testDependencyLayer() throws Exception {
         inputFile = new File(classLoader.getResource(DEPENDENCY_EXAMPLE).getFile());
         targetStream = FileUtils.openInputStream(inputFile);
-        givenLifFormat = new LifProfilerImpl(FileUtils.openInputStream(inputFile));
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
         instance = Convertertool.getConvertedDataModel();
@@ -202,7 +202,7 @@ public class ConvertToTCFEachLayerTest {
     public void testCorferenceLayer() throws Exception {
         inputFile = new File(classLoader.getResource(CORFERENCE_EXAMPLE).getFile());
         targetStream = FileUtils.openInputStream(inputFile);
-        givenLifFormat = new LifProfilerImpl(FileUtils.openInputStream(inputFile));
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
         instance = Convertertool.getConvertedDataModel();

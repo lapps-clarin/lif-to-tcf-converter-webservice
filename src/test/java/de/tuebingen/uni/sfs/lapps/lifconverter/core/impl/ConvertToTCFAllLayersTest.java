@@ -5,6 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import de.tuebingen.uni.sfs.lapps.core.layer.impl.LifAnnotationLayerFinderStored;
 import de.tuebingen.uni.sfs.lapps.exceptions.JsonValidityException;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
@@ -12,7 +13,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.profile.api.LifProfile;
-import de.tuebingen.uni.sfs.lapps.profile.impl.LifProfilerImpl;
+import de.tuebingen.uni.sfs.lapps.profile.impl.LifProfiler;
 import de.tuebingen.uni.sfs.lapps.utils.LifFileProcess;
 import java.io.File;
 import java.io.IOException;
@@ -41,7 +42,7 @@ public class ConvertToTCFAllLayersTest {
     public void setUp() throws IOException, LifException, JsonValidityException, ConversionException, VocabularyMappingException, Exception {
         inputFile = new File(classLoader.getResource(ALL_EXAMPLE).getFile());
         targetStream = FileUtils.openInputStream(inputFile);
-        givenLifFormat = new LifProfilerImpl(FileUtils.openInputStream(inputFile));
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
         resultingTcfFormat = Convertertool.getConvertedDataModel();
@@ -51,7 +52,7 @@ public class ConvertToTCFAllLayersTest {
      * Test of all layers conversion.
      */
     @Test
-    public void testAllLayer() {
+    public void testAllLayer() throws IOException, JsonParseException, JsonValidityException, LifException {
 
         Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
         Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());

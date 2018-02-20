@@ -5,8 +5,10 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToolTagset;
 import de.tuebingen.uni.sfs.lapps.core.layer.api.AnnotationLayerFinder;
+import de.tuebingen.uni.sfs.lapps.exceptions.JsonValidityException;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.Constants;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
@@ -211,6 +213,10 @@ public class ConvertVocabulary implements AnnotationLayerFinder,Constants {
     }
 
     public Integer getLayerIndex() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public boolean isValid() throws JsonParseException, IOException, JsonValidityException, LifException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

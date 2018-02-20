@@ -1,7 +1,7 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.resources;
 
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
-import de.tuebingen.uni.sfs.lapps.profile.impl.LifProfilerImpl;
+import de.tuebingen.uni.sfs.lapps.profile.impl.LifProfiler;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -89,7 +89,7 @@ public class ConverterResource {
 
     private void process(final InputStream input, OutputStream output, ConverterFormat tool) {
         try {
-             LifProfile lifProfiler= new LifProfilerImpl(input);
+             LifProfile lifProfiler= new LifProfiler(input);
             if (lifProfiler.isValid()) {
                 ConvertToTCFAnnotations tcfDataModel = tool.convertFormat(lifProfiler, input);
                 tcfDataModel.process(output);
