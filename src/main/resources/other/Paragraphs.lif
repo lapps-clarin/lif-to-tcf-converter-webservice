@@ -1,0 +1,68 @@
+{
+  "discriminator" : "http://vocab.lappsgrid.org/ns/media/jsonld#lapps",
+  "payload" : {
+    "@context" : "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
+    "metadata" : {
+      "HEADLINE" : [ "\nZhirinovsky quizzes Russian PM on place for party in government \n" ],
+      "DATELINE" : [ "\nMOSCOW, May 12 (AFP) \n" ]
+    },
+    "text" : {
+      "@value" : "\nRussian ultranationalist Vladimir Zhirinovsky said Thursday he had\napproached Prime Minister Viktor Chernomyrdin with a view to his party\nbeing given places in the government, Interfax said.\n\n\nThe meeting came days after the entry into Chernomyrdin's team of\nDemocratic Party president Nikolai Travkin, a centrist generally\nopposed to President Boris Yeltsin. Travkin did not receive a specific\nportfolio.\n\n\nZhirinovsky said he had spelled out three ways his party could receive\ngovernmental positions, preferably those of defence and interior,\nalong with the counter-espionage portfolio. His Liberal Democratic\nParty also has its sights on the posts of justice minister, as well as\nthe treasury and the ministry for privatisation.\n\n\n\"The head of the government now has to reflect,\" Zhirinovsky said.\n\"And we too are going to reflect on the position we are going to adopt\nin future vis-a-vis the government.\"\n\n\nChernomyrdin's office did not comment on the nationalist leader's\nstatements.\n\n\nZhirinovsky has had the foreign ministry, the defence ministry and the\ninterior porfolio in his sights for the LDP since December's\nparliamentary elections gave the party nearly 70 seats in the lower\nhouse of parliament.\n\n\nHe recently also demanded the resignation of six ministers.\n\n",
+      "@language" : "en"
+    },
+    "views" : [ {
+      "id" : "v1",
+      "metadata" : {
+        "contains" : {
+          "http://vocab.lappsgrid.org/Paragraph" : {
+            "producer" : "gigaword2lif.lsd",
+            "type" : "paragraph"
+          }
+        }
+      },
+      "annotations" : [ {
+        "id" : "p0",
+        "start" : 0,
+        "end" : 192,
+        "@type" : "http://vocab.lappsgrid.org/Paragraph",
+        "label" : "Paragraph"
+      }, {
+        "id" : "p1",
+        "start" : 193,
+        "end" : 407,
+        "@type" : "http://vocab.lappsgrid.org/Paragraph",
+        "label" : "Paragraph"
+      }, {
+        "id" : "p2",
+        "start" : 408,
+        "end" : 733,
+        "@type" : "http://vocab.lappsgrid.org/Paragraph",
+        "label" : "Paragraph"
+      }, {
+        "id" : "p3",
+        "start" : 734,
+        "end" : 910,
+        "@type" : "http://vocab.lappsgrid.org/Paragraph",
+        "label" : "Paragraph"
+      }, {
+        "id" : "p4",
+        "start" : 911,
+        "end" : 990,
+        "@type" : "http://vocab.lappsgrid.org/Paragraph",
+        "label" : "Paragraph"
+      }, {
+        "id" : "p5",
+        "start" : 991,
+        "end" : 1213,
+        "@type" : "http://vocab.lappsgrid.org/Paragraph",
+        "label" : "Paragraph"
+      }, {
+        "id" : "p6",
+        "start" : 1214,
+        "end" : 1275,
+        "@type" : "http://vocab.lappsgrid.org/Paragraph",
+        "label" : "Paragraph"
+      } ]
+    } ]
+  }
+}
