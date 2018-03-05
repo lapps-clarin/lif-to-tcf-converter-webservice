@@ -29,7 +29,8 @@ public class ConverterTool implements ConverterFormat {
         lifProfiler = lifDataModel;
         convertedDataModel.toLanguage(lifProfiler.getLanguage());
         convertedDataModel.toText(lifProfiler.getText());
-        convertedDataModel.toTextSource(lifProfiler.getFileString());
+        //temporarily closed
+        //convertedDataModel.toTextSource(lifProfiler.getFileString());
         try {
             convertAnnotationLayers();
             //this.display();
