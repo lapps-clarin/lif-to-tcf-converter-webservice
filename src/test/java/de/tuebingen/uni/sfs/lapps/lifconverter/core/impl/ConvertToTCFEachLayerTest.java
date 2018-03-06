@@ -45,7 +45,8 @@ public class ConvertToTCFEachLayerTest {
     private String MULTILAYER_EXAMPLE = "lif-multipleLayer.json";
     private String NAMEENTITY_EXAMPLE = "lif-nameEntittyLayer.json";
     private String SENTENCE_EXAMPLE = "lif-sentenceLayer.json";
-    private String POS_EXAMPLE = "lif-posLayer.json";
+    private String POS_EXAMPLE1 = "lif-posLayer.json";
+    private String POS_EXAMPLE2 = "other/lif-posLayer-tcfToLifCon.json";
     private String TEXT_EXAMPLE = "lif-textLayer.json";
     private String TOKEN_EXAMPLE = "lif-tokenLayer.json";
     private String FILE_LIF = Discriminators.Alias.JSON;
@@ -98,7 +99,26 @@ public class ConvertToTCFEachLayerTest {
     @Test
     public void testPosLayer() throws Exception {
 
-        inputFile = new File(classLoader.getResource(POS_EXAMPLE).getFile());
+        inputFile = new File(classLoader.getResource(POS_EXAMPLE1).getFile());
+        targetStream = FileUtils.openInputStream(inputFile);
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
+        ConverterTool Convertertool = new ConverterTool();
+        Convertertool.convertFormat(givenLifFormat, targetStream);
+        instance = Convertertool.getConvertedDataModel();
+
+        Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
+        Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
+        assertTrue("PosTag Layer exists in TCF file", instance.getTextCorpusStored().getPosTagsLayer() != null);
+        assertEquals("NNP [t_0]", instance.getTextCorpusStored().getPosTagsLayer().getTag(0).toString());
+    }
+    
+     /**
+     * Test of toPos method, of class ConvertToTCFAnnotations.
+     */
+    @Test
+    public void testPosLayerTCFtoLifConverter() throws Exception {
+
+        inputFile = new File(classLoader.getResource(POS_EXAMPLE2).getFile());
         targetStream = FileUtils.openInputStream(inputFile);
         givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();

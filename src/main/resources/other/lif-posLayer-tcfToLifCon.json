@@ -1,0 +1,72 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld#lif",
+    "payload": {
+        "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
+        "metadata": {},
+        "text": {
+            "@value": "Karen",
+            "@language": "en"
+        },
+        "views": [{
+                "id": "token-view",
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/Token": {
+                            "producer": "org.lappsgrid.converter.tcf.TCFConverter",
+                            "type": "token:fromTCF"
+                        },
+                        "http://vocab.lappsgrid.org/Token#pos": {
+                            "producer": "org.lappsgrid.converter.tcf.TCFConverter",
+                            "type": "pos:fromTCF"
+                        }
+                    }
+                },
+                "annotations": [{
+                        "id": "t_0",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "Karen",
+                            "pos": "NNP"
+                        }
+                    }]
+            }, {
+                "id": "sentence-view",
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/Sentence": {
+                            "producer": "org.lappsgrid.converter.tcf.TCFConverter",
+                            "type": "tcf:sentence"
+                        }
+                    }
+                },
+                "annotations": [{
+                        "id": "s_1",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "http://vocab.lappsgrid.org/Sentence",
+                        "label": "Sentence"
+                    }]
+            }, {
+                "id": "ne-view",
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/NamedEntity": {
+                            "producer": "org.lappsgrid.converter.tcf.TCFConverter",
+                            "type": "CoNLL2002"
+                        }
+                    }
+                },
+                "annotations": [{
+                        "id": "ne_1",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "http://vocab.lappsgrid.org/NamedEntity",
+                        "features": {
+                            "category": "PER"
+                        }
+                    }]
+            }]
+    }
+}
