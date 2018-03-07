@@ -35,7 +35,6 @@ public class ConverToTCFAfterConversionTest {
     private LifProfile givenLifFormat;
     private ConvertToTCFAnnotations instance;
 
-   
     /**
      * Test of toToken method, of class ConvertToTCFAnnotations.
      */
@@ -56,7 +55,7 @@ public class ConverToTCFAfterConversionTest {
         assertTrue("Sentence Layer exists in TCF file", instance.getTextCorpusStored().getSentencesLayer() != null);
         System.out.println(instance.getTextCorpusStored().getSentencesLayer().getSentence(0).toString());
     }
-    
+
     /**
      * Test of toPos method, of class ConvertToTCFAnnotations.
      */
@@ -76,8 +75,8 @@ public class ConverToTCFAfterConversionTest {
         assertEquals("NNP [t_0]", instance.getTextCorpusStored().getPosTagsLayer().getTag(0).toString());
         //assertEquals("[t_0, t_1, t_2, t_3, t_4, t_5]", instance.getTextCorpusStored().getSentencesLayer().getSentence(0).toString());
     }
-    
-     /**
+
+    /**
      * Test of toPos method, of class ConvertToTCFAnnotations.
      */
     @Ignore
@@ -96,8 +95,8 @@ public class ConverToTCFAfterConversionTest {
         assertEquals("NNP [t_0]", instance.getTextCorpusStored().getPosTagsLayer().getTag(0).toString());
         //assertEquals("[t_0, t_1, t_2, t_3, t_4, t_5]", instance.getTextCorpusStored().getSentencesLayer().getSentence(0).toString());
     }
-    
-     /**
+
+    /**
      * Test of toToken method, of class ConvertToTCFAnnotations.
      */
     @Test
@@ -115,12 +114,12 @@ public class ConverToTCFAfterConversionTest {
         assertTrue("Token Layer exists in TCF file", instance.getTextCorpusStored().getTextLayer() != null);
         assertEquals("0: t_0 -> Karen", instance.getTextCorpusStored().getTokensLayer().getToken(0).toString());
     }
-    
+
     /**
      * Test of toToken method, of class ConvertToTCFAnnotations.
      */
     @Test
-    public void testNamedEntityVer1() throws Exception {
+    public void testNamedEntityOldAnnotation() throws Exception {
 
         inputFile = new File(classLoader.getResource(NAMEDENTITY_RECOGNIZER).getFile());
         targetStream = FileUtils.openInputStream(inputFile);
@@ -133,7 +132,8 @@ public class ConverToTCFAfterConversionTest {
         Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
         assertTrue("Token Layer exists in TCF file", instance.getTextCorpusStored().getTextLayer() != null);
         assertEquals("0: t_0 -> Karen", instance.getTextCorpusStored().getTokensLayer().getToken(0).toString());
+        assertTrue("NameEntitty Layer exists in TCF file", instance.getTextCorpusStored().getNamedEntitiesLayer() != null);
+        assertEquals("Person [t_0]", instance.getTextCorpusStored().getNamedEntitiesLayer().getEntity(0).toString());
     }
 
-    
- }
+}
