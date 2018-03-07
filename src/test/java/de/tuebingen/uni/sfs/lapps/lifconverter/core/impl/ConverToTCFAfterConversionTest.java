@@ -14,6 +14,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.Ignore;
 import org.lappsgrid.discriminator.Discriminators;
 
 /**
@@ -24,6 +25,9 @@ public class ConverToTCFAfterConversionTest {
 
     private String POS_EXAMPLE2 = "other/lif-posLayer-tcfToLifCon.json";
     private String TOKEN_EXAMPLE2 = "other/lif-tokSen-tcfToLifCon.json";
+    private String DEPENDENCY_PARSER = "other/dependencyCon.json";
+    private String NAMEDENTITY_RECOGNIZER = "other/lif-namedEntities1.json";
+    private String CONSTITUENT_PARSER = "other/lif-constituentLayerNew1.json";
     private String FILE_LIF = Discriminators.Alias.JSON;
     private ClassLoader classLoader = getClass().getClassLoader();
     private File inputFile;
@@ -72,5 +76,64 @@ public class ConverToTCFAfterConversionTest {
         assertEquals("NNP [t_0]", instance.getTextCorpusStored().getPosTagsLayer().getTag(0).toString());
         //assertEquals("[t_0, t_1, t_2, t_3, t_4, t_5]", instance.getTextCorpusStored().getSentencesLayer().getSentence(0).toString());
     }
+    
+     /**
+     * Test of toPos method, of class ConvertToTCFAnnotations.
+     */
+    @Ignore
+    public void testDependencyParser() throws Exception {
 
+        inputFile = new File(classLoader.getResource(DEPENDENCY_PARSER).getFile());
+        targetStream = FileUtils.openInputStream(inputFile);
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
+        ConverterTool Convertertool = new ConverterTool();
+        Convertertool.convertFormat(givenLifFormat, targetStream);
+        instance = Convertertool.getConvertedDataModel();
+
+        Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
+        Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
+        assertTrue("PosTag Layer exists in TCF file", instance.getTextCorpusStored().getPosTagsLayer() != null);
+        assertEquals("NNP [t_0]", instance.getTextCorpusStored().getPosTagsLayer().getTag(0).toString());
+        //assertEquals("[t_0, t_1, t_2, t_3, t_4, t_5]", instance.getTextCorpusStored().getSentencesLayer().getSentence(0).toString());
+    }
+    
+     /**
+     * Test of toToken method, of class ConvertToTCFAnnotations.
+     */
+    @Test
+    public void testConstituentLayer() throws Exception {
+
+        inputFile = new File(classLoader.getResource(CONSTITUENT_PARSER).getFile());
+        targetStream = FileUtils.openInputStream(inputFile);
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
+        ConverterTool Convertertool = new ConverterTool();
+        Convertertool.convertFormat(givenLifFormat, targetStream);
+        instance = Convertertool.getConvertedDataModel();
+
+        Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
+        Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
+        assertTrue("Token Layer exists in TCF file", instance.getTextCorpusStored().getTextLayer() != null);
+        assertEquals("0: t_0 -> Karen", instance.getTextCorpusStored().getTokensLayer().getToken(0).toString());
+    }
+    
+    /**
+     * Test of toToken method, of class ConvertToTCFAnnotations.
+     */
+    @Test
+    public void testNamedEntityVer1() throws Exception {
+
+        inputFile = new File(classLoader.getResource(NAMEDENTITY_RECOGNIZER).getFile());
+        targetStream = FileUtils.openInputStream(inputFile);
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
+        ConverterTool Convertertool = new ConverterTool();
+        Convertertool.convertFormat(givenLifFormat, targetStream);
+        instance = Convertertool.getConvertedDataModel();
+
+        Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
+        Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
+        assertTrue("Token Layer exists in TCF file", instance.getTextCorpusStored().getTextLayer() != null);
+        assertEquals("0: t_0 -> Karen", instance.getTextCorpusStored().getTokensLayer().getToken(0).toString());
+    }
+
+    
  }
