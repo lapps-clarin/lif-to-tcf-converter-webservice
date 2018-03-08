@@ -100,7 +100,7 @@ public class ConverToTCFAfterConversionTest {
     /**
      * Test of toToken method, of class ConvertToTCFAnnotations.
      */
-    @Test
+    @Ignore
     public void testConstituentLayerAfterTCFtoLIFConversion() throws Exception {
 
         inputFile = new File(classLoader.getResource(CONSTITUENT_PARSER_CON).getFile());

@@ -2,48 +2,38 @@
     "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld#lif",
     "payload": {
         "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
-        "metadata": {
-            
-        },
+        "metadata": {},
         "text": {
-            "@value": "Karen flew to New York.\n",
+            "@value": "Karen flew to New York.",
             "@language": "en"
         },
-        "views": [
-            {
+        "views": [{
                 "metadata": {
                     "contains": {
                         "http://vocab.lappsgrid.org/DependencyStructure": {
-                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.DependencyParser:2.0.1",
+                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.DependencyParser:2.0.2",
                             "type": "dependency-parser:stanford"
                         },
                         "http://vocab.lappsgrid.org/Dependency": {
-                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.DependencyParser:2.0.1",
+                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.DependencyParser:2.0.2",
                             "type": "dependency-parser:stanford"
                         },
                         "http://vocab.lappsgrid.org/Token": {
-                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.DependencyParser:2.0.1",
+                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.DependencyParser:2.0.2",
                             "type": "tokenizer:stanford"
                         }
                     }
                 },
-                "annotations": [
-                    {
+                "annotations": [{
                         "id": "ds_0",
                         "start": 0,
                         "end": 23,
                         "@type": "http://vocab.lappsgrid.org/DependencyStructure",
                         "features": {
                             "sentence": "Karen flew to New York.",
-                            "dependencies": [
-                                "dep_0_0",
-                                "dep_0_1",
-                                "dep_0_2",
-                                "dep_0_3"
-                            ]
+                            "dependencies": ["dep_0_0", "dep_0_1", "dep_0_2", "dep_0_3"]
                         }
-                    },
-                    {
+                    }, {
                         "id": "dep_0_0",
                         "start": -1,
                         "end": -1,
@@ -55,8 +45,7 @@
                             "dependent": "tk_0_3",
                             "dependent_word": "New"
                         }
-                    },
-                    {
+                    }, {
                         "id": "dep_0_1",
                         "start": -1,
                         "end": -1,
@@ -68,8 +57,7 @@
                             "dependent": "tk_0_4",
                             "dependent_word": "York"
                         }
-                    },
-                    {
+                    }, {
                         "id": "dep_0_2",
                         "start": -1,
                         "end": -1,
@@ -81,8 +69,7 @@
                             "dependent": "tk_0_0",
                             "dependent_word": "Karen"
                         }
-                    },
-                    {
+                    }, {
                         "id": "dep_0_3",
                         "start": -1,
                         "end": -1,
@@ -94,8 +81,7 @@
                             "dependent": "tk_0_2",
                             "dependent_word": "to"
                         }
-                    },
-                    {
+                    }, {
                         "id": "tk_0_0",
                         "start": 0,
                         "end": 5,
@@ -104,8 +90,7 @@
                             "pos": "NNP",
                             "word": "Karen"
                         }
-                    },
-                    {
+                    }, {
                         "id": "tk_0_1",
                         "start": 6,
                         "end": 10,
@@ -114,8 +99,7 @@
                             "pos": "VBD",
                             "word": "flew"
                         }
-                    },
-                    {
+                    }, {
                         "id": "tk_0_2",
                         "start": 11,
                         "end": 13,
@@ -124,8 +108,7 @@
                             "pos": "TO",
                             "word": "to"
                         }
-                    },
-                    {
+                    }, {
                         "id": "tk_0_3",
                         "start": 14,
                         "end": 17,
@@ -134,8 +117,7 @@
                             "pos": "NNP",
                             "word": "New"
                         }
-                    },
-                    {
+                    }, {
                         "id": "tk_0_4",
                         "start": 18,
                         "end": 22,
@@ -144,8 +126,7 @@
                             "pos": "NNP",
                             "word": "York"
                         }
-                    },
-                    {
+                    }, {
                         "id": "tk_0_5",
                         "start": 22,
                         "end": 23,
@@ -154,9 +135,7 @@
                             "pos": ".",
                             "word": "."
                         }
-                    }
-                ]
-            }
-        ]
+                    }]
+            }]
     }
 }

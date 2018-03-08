@@ -290,7 +290,7 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
     }
 
     public void toDependencyParser() throws ConversionException, LifException {
-        DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(Values.TCF_DEPPARSING_TAGSET_STANFORD.getName(), true, true);
+        DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(Values.TCF_DEPPARSING_TAGSET_STANFORD.getName(), false, true);
         LifDependencyParser lifDependencyParser = new LifDependencyParserStored(givenAnnotations);
         this.givenAnnotations = lifDependencyParser.getTokenList();
         this.toToken();
