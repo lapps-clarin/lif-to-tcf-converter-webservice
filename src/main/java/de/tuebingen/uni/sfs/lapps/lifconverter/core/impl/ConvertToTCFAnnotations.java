@@ -235,6 +235,7 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
         }
     }
 
+    //extremely dirty code. addressed many issues of LIF. needs to be refactor later
     public void toNameEntity() throws ConversionException, VocabularyMappingException, LifException {
         LifNameEntityLayer lifNameEntityLayer = new LifNameEntityLayerStored(givenAnnotations);
         try {
@@ -266,11 +267,15 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
 
     }
 
+    //extremely dirty code. addressed many issues of LIF. needs to be refactor later
     public void toConstituentParser() throws ConversionException, LifException {
         ConstituentParsingLayer constituentParsingLayer = textCorpusStored.createConstituentParsingLayer(Values.TCF_PARSING_TAGSET_PENNTB.getName());
         LifConstituentParser lifConstituentParser = new LifConstituentParserStored(givenAnnotations);
         this.givenAnnotations = lifConstituentParser.getTokenList();
         this.toToken();
+        this.givenAnnotations = new ArrayList<AnnotationInterpreter>();
+        this.givenAnnotations =lifConstituentParser.getSentenceList();
+        this.toSentences();
 
         try {
             for (Long parseIndex : lifConstituentParser.getParseIndexs()) {
@@ -289,11 +294,15 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
         }
     }
 
+    //extremely dirty code. addressed many issues of LIF. needs to be refactor later
     public void toDependencyParser() throws ConversionException, LifException {
         DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(Values.TCF_DEPPARSING_TAGSET_STANFORD.getName(), false, true);
         LifDependencyParser lifDependencyParser = new LifDependencyParserStored(givenAnnotations);
         this.givenAnnotations = lifDependencyParser.getTokenList();
         this.toToken();
+        this.givenAnnotations = new ArrayList<AnnotationInterpreter>();
+        this.givenAnnotations =lifDependencyParser.getSentenceList();
+        this.toSentences();
 
         try {
             List<Dependency> tcfDependencyList = new ArrayList<Dependency>();
@@ -311,10 +320,15 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
         }
     }
 
+    //extremely dirty changes since Lif is invalid but we have to continue demo
     public void toCoreferenceResolver() throws ConversionException, LifException {
         LifReferenceLayer lifRefererenceLayer = new LifRefererenceLayerStored(givenAnnotations);
         this.givenAnnotations = lifRefererenceLayer.getTokenList();
         this.toToken();
+        
+        if(lifRefererenceLayer.getCorferenceAnnotations().isEmpty()||lifRefererenceLayer.getMarkableAnnotations().isEmpty())
+            return;
+        
         ReferencesLayer refsLayer = textCorpusStored.createReferencesLayer(null, null, null);
 
         Map<String, Reference> markIdReference = new HashMap<String, Reference>();

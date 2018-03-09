@@ -173,6 +173,8 @@ public class ConvertToTCFEachLayerTest {
 
         Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
         Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
+        assertTrue("Sentence Layer exists in TCF file", instance.getTextCorpusStored().getSentencesLayer() != null);
+        assertEquals("[t_0, t_1, t_2, t_3, t_4, t_5]", instance.getTextCorpusStored().getSentencesLayer().getSentence(0).toString());
         assertTrue("Constituent Parser Layer exists in TCF file", instance.getTextCorpusStored().getConstituentParsingLayer() != null);
         assertEquals("c_17 -> ROOT ( c_16 -> S ( c_15 -> NP ( c_14 -> NNP ( c_13 -> NNP [t_0] ) ) c_12 -> VP ( c_11 -> VBD ( c_10 -> VBD [t_1] ) c_9 -> PP ( c_8 -> TO ( c_7 -> TO [t_2] ) c_6 -> NP ( c_5 -> NNP ( c_4 -> NNP [t_3] ) c_3 -> NNP ( c_2 -> NNP [t_4] ) ) ) ) c_1 -> . ( c_0 -> . [t_5] ) ) )", instance.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot().toString());
 
@@ -192,6 +194,8 @@ public class ConvertToTCFEachLayerTest {
 
         Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
         Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
+        assertTrue("Sentence Layer exists in TCF file", instance.getTextCorpusStored().getSentencesLayer() != null);
+        assertEquals("[t_0, t_1, t_2, t_3, t_4, t_5]", instance.getTextCorpusStored().getSentencesLayer().getSentence(0).toString());
         assertTrue("Dependency Parser Layer exists in TCF file", instance.getTextCorpusStored().getDependencyParsingLayer() != null);
         assertEquals("[nn [t_3] <- [t_4], pobj [t_4] <- [t_2], nsubj [t_0] <- [t_1], prep [t_2] <- [t_1]]", instance.getTextCorpusStored().getDependencyParsingLayer().getParse(0).toString());
     }

@@ -28,6 +28,7 @@ public class ConverToTCFAfterConversionTest {
     private String CONSTITUENT_PARSER_CON = "other/afterConverter/lif-contsLayer-after-converter.json";
     private String DEPENDENCY_PARSER_CON = "other/afterConverter/lif-depLayer-after-converter.json";
     private String NAMEDENTITY_OLD_ANNOTATION = "other/lif-named-entities-old-annotation.json";
+    private String CORFERENCE_WITHOUT_REFERENCE= "other/refLayer-without-ref-wrong.json";
     private String FILE_LIF = Discriminators.Alias.JSON;
     private ClassLoader classLoader = getClass().getClassLoader();
     private File inputFile;
@@ -133,6 +134,20 @@ public class ConverToTCFAfterConversionTest {
         assertEquals("0: t_0 -> Karen", instance.getTextCorpusStored().getTokensLayer().getToken(0).toString());
         assertTrue("NameEntitty Layer exists in TCF file", instance.getTextCorpusStored().getNamedEntitiesLayer() != null);
         assertEquals("Person [t_0]", instance.getTextCorpusStored().getNamedEntitiesLayer().getEntity(0).toString());
+    }
+    
+    @Test
+    public void testCorferenceLayerWithOutReference() throws Exception {
+        inputFile = new File(classLoader.getResource(CORFERENCE_WITHOUT_REFERENCE).getFile());
+        targetStream = FileUtils.openInputStream(inputFile);
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
+        ConverterTool Convertertool = new ConverterTool();
+        Convertertool.convertFormat(givenLifFormat, targetStream);
+        instance = Convertertool.getConvertedDataModel();
+
+        Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
+        Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
+        assertFalse("References Layer not exists in TCF file", instance.getTextCorpusStored().getReferencesLayer() != null);
     }
 
 }
