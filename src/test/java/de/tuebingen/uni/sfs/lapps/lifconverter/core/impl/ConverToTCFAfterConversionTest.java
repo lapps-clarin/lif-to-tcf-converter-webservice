@@ -27,7 +27,8 @@ public class ConverToTCFAfterConversionTest {
     private String TOKEN_EXAMPLE2 = "other/lif-tokSen-tcfToLifCon.json";
     private String DEPENDENCY_PARSER = "other/dependencyCon.json";
     private String NAMEDENTITY_RECOGNIZER = "other/lif-namedEntities1.json";
-    private String CONSTITUENT_PARSER_CON = "other/lif-ConstLayer-tcfToLifCon.json";
+    private String CONSTITUENT_PARSER_CON = "other/lif-contsLayer-after-converter.json";
+    private String DEPENDENCY_PARSER_CON = "other/lif-depLayer-after-converter.json";
     private String CONSTITUENT_PARSER = "other/lif-constituentLayerNew1.json";
     private String FILE_LIF = Discriminators.Alias.JSON;
     private ClassLoader classLoader = getClass().getClassLoader();
@@ -100,7 +101,7 @@ public class ConverToTCFAfterConversionTest {
     /**
      * Test of toToken method, of class ConvertToTCFAnnotations.
      */
-    @Ignore
+    @Test
     public void testConstituentLayerAfterTCFtoLIFConversion() throws Exception {
 
         inputFile = new File(classLoader.getResource(CONSTITUENT_PARSER_CON).getFile());
@@ -115,6 +116,7 @@ public class ConverToTCFAfterConversionTest {
         assertTrue("Token Layer exists in TCF file", instance.getTextCorpusStored().getTextLayer() != null);
         assertEquals("0: t_0 -> Karen", instance.getTextCorpusStored().getTokensLayer().getToken(0).toString());
         assertTrue("Constituent Parser Layer exists in TCF file", instance.getTextCorpusStored().getConstituentParsingLayer() != null);
+        System.out.println(instance.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot().toString());
         //assertEquals("c_17 -> ROOT ( c_16 -> S ( c_15 -> NP ( c_14 -> NNP ( c_13 -> NNP [t_0] ) ) c_12 -> VP ( c_11 -> VBD ( c_10 -> VBD [t_1] ) c_9 -> PP ( c_8 -> TO ( c_7 -> TO [t_2] ) c_6 -> NP ( c_5 -> NNP ( c_4 -> NNP [t_3] ) c_3 -> NNP ( c_2 -> NNP [t_4] ) ) ) ) c_1 -> . ( c_0 -> . [t_5] ) ) )", instance.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot().toString());
     }
 
