@@ -4,9 +4,6 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations
 import de.tuebingen.uni.sfs.lapps.core.layer.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
 import java.io.InputStream;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertVocabulary;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
@@ -24,32 +21,26 @@ public class ConverterTool implements ConverterFormat {
         new ConvertVocabulary(PARAMETER_PATH, VOCABULARY_PATH);
     }
 
-    public synchronized ConvertToTCFAnnotations convertFormat(LifProfile lifDataModel, InputStream input) throws Exception {
+    public synchronized ConvertToTCFAnnotations convertFormat(LifProfile lifDataModel, InputStream input) throws LifException, VocabularyMappingException, ConversionException {
         convertedDataModel = new ConvertToTCFAnnotations(input);
         lifProfiler = lifDataModel;
         convertedDataModel.toLanguage(lifProfiler.getLanguage());
         convertedDataModel.toText(lifProfiler.getText());
         //temporarily closed
         //convertedDataModel.toTextSource(lifProfiler.getFileString());
-        try {
-            convertAnnotationLayers();
-            //this.display();
-        } catch (ConversionException conExp) {
-            Logger.getLogger(ConverterTool.class.getName()).log(Level.SEVERE, null, conExp);
-        } catch (VocabularyMappingException vocExp) {
-            Logger.getLogger(ConverterTool.class.getName()).log(Level.SEVERE, null, vocExp);
-        }
+        convertAnnotationLayers();
+        //this.display();
         return convertedDataModel;
     }
 
-    protected void convertAnnotationLayers() throws VocabularyMappingException, ConversionException, Exception {
+    protected void convertAnnotationLayers() throws VocabularyMappingException, ConversionException, LifException {
         for (Integer layerIndex : lifProfiler.getSortedLayer()) {
             AnnotationLayerFinder tcfLayer = converAnnotationlayervocabularies(layerIndex);
             convertAnnotations(tcfLayer, layerIndex);
         }
     }
 
-    protected void convertAnnotations(AnnotationLayerFinder tcfLayer, Integer layerIndex) throws ConversionException, Exception {
+    protected void convertAnnotations(AnnotationLayerFinder tcfLayer, Integer layerIndex) throws ConversionException, LifException, VocabularyMappingException {
         convertedDataModel.toLayers(tcfLayer, lifProfiler.getAnnotationLayerData(layerIndex));
     }
 

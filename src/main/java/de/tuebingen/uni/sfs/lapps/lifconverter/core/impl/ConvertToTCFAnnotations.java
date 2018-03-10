@@ -58,23 +58,24 @@ import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifConstituentParser;
 import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifNameEntity;
 import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifNameEntityLayer;
 import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifNameEntityLayerStored;
+import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionErrorMessage;
 
 /**
  *
  * @author felahi
  */
-public class ConvertToTCFAnnotations implements ConvertAnnotations {
+public class ConvertToTCFAnnotations implements ConvertAnnotations,ConversionErrorMessage {
 
     private TextCorpusStored textCorpusStored = null;
     private AnnotationLayerFinder givenToolTagSetVocabularies = null;
     private List<AnnotationInterpreter> givenAnnotations = new ArrayList<AnnotationInterpreter>();
     private CharOffsetToTokenIdMapper charOffsetToTokenIdMapper = null;
 
-    public ConvertToTCFAnnotations(InputStream input) throws ConversionException, IOException {
+    public ConvertToTCFAnnotations(InputStream input) throws ConversionException, LifException {
         toLanguage(Values.LANG_EN.getName());
     }
 
-    public void toLayers(AnnotationLayerFinder layer, List<AnnotationInterpreter> annotationlist) throws Exception {
+    public void toLayers(AnnotationLayerFinder layer, List<AnnotationInterpreter> annotationlist) throws ConversionException, LifException, VocabularyMappingException {
         //System.out.println("++++++++++++++++++++++++++++" + givenLayer + "++++++++++++++++++++++++++++");
         this.givenAnnotations = annotationlist;
         this.givenToolTagSetVocabularies = layer;
@@ -103,10 +104,13 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
             }
         } catch (LifException ex) {
             Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ConversionException("LIF annotations are wrong!!");
+            throw new ConversionException(MESSAGE_INVALID_LIF);
         } catch (ConversionException ex) {
             Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ConversionException("LIF to TCF conversion failed!!");
+            throw new ConversionException(MESSAGE_CONVERSION_FAILED);
+        } catch (VocabularyMappingException ex) {
+            Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ConversionException(MESSAGE_VOCABULARY_CONVERSION_FAILED);
         }
 
     }
@@ -114,8 +118,9 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
     public void toLanguage(String language) throws ConversionException {
         try {
             textCorpusStored = new TextCorpusStored(language);
-        } catch (NullPointerException ex) {
-            throw new ConversionException("Language conversion failed from lif to tcf failed!!");
+        } catch (Exception ex) {
+            Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ConversionException(MESSAGE_LANGUAGE_CONVERSION_FAILED);
         } finally {
             textCorpusStored = new TextCorpusStored(Values.LANG_EN.getName());
         }
@@ -124,9 +129,9 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
     public void toText(String text) throws ConversionException {
         try {
             textCorpusStored.createTextLayer().addText(text.replaceAll("\n", ""));
-        } catch (NullPointerException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ConversionException("Text conversion failed from lif to tcf failed!!");
+            throw new ConversionException(MESSAGE_TEXT_CONVERSION_FAILED);
         }
     }
 
@@ -198,7 +203,7 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
             if (token != null) {
                 return token;
             } else {
-                throw new ConversionException("no connected token found for this token-level-layer!!");
+                throw new ConversionException(MESSAGE_STARTID_TOKEN_CONNECTION_NOT_FOUND);
             }
         }
     }
@@ -216,10 +221,11 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
 
         try {
             if (textCorpusStored.getTokensLayer().isEmpty()) {
-                throw new ConversionException("There is no token layer. A token layer is required for sentence layer");
+                throw new ConversionException(MESSAGE_TOKEN_LAYER_REQUIRED_FOR_SENTENCE_LAYER);
             }
-        } catch (NullPointerException nullExp) {
-            throw new ConversionException("There is no token layer before sentence layer!!");
+        } catch (Exception ex) {
+            Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ConversionException(MESSAGE_TOKEN_LAYER_REQUIRED_FOR_SENTENCE_LAYER);
         }
 
         SentencesLayer sentencesLayer = textCorpusStored.createSentencesLayer();
@@ -240,10 +246,11 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
         LifNameEntityLayer lifNameEntityLayer = new LifNameEntityLayerStored(givenAnnotations);
         try {
             if (textCorpusStored.getTokensLayer().isEmpty()) {
-                throw new ConversionException("There is no token layer in lif file. For conversion of LIF to TCF nameEntitty layer, a token layer is mandatory!!");
+                throw new ConversionException(MESSAGE_TOKEN_LAYER_REQUIRED_FOR_NAMEENTITY_LAYER);
             }
-        } catch (NullPointerException nullExp) {
-            throw new ConversionException("There is no token layer in lif file. For conversion of LIF to TCF nameEntitty layer, a token layer is mandatory!!");
+        } catch (Exception ex) {
+            Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ConversionException(MESSAGE_TOKEN_LAYER_REQUIRED_FOR_NAMEENTITY_LAYER);
         }
 
         NamedEntitiesLayer namedEntitiesLayer = textCorpusStored.createNamedEntitiesLayer("");
@@ -270,16 +277,16 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
     //extremely dirty code. addressed many issues of LIF. needs to be refactor later
     public void toConstituentParser() throws ConversionException, LifException {
         LifConstituentParser lifConstituentParser = new LifConstituentParserStored(givenAnnotations);
-        if(!lifConstituentParser.getTokenList().isEmpty()){
+        if (!lifConstituentParser.getTokenList().isEmpty()) {
             this.givenAnnotations = lifConstituentParser.getTokenList();
             this.toToken();
         }
-        if(!lifConstituentParser.getSentenceList().isEmpty()){
+        if (!lifConstituentParser.getSentenceList().isEmpty()) {
             this.givenAnnotations = new ArrayList<AnnotationInterpreter>();
             this.givenAnnotations = lifConstituentParser.getSentenceList();
             this.toSentences();
         }
-        
+
         ConstituentParsingLayer constituentParsingLayer = textCorpusStored.createConstituentParsingLayer(Values.TCF_PARSING_TAGSET_PENNTB.getName());
 
         try {
@@ -293,20 +300,20 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
                 constituentParsingLayer.addParse(tcfRoot);
             }
 
-        } catch (NullPointerException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ConversionException(ex.getMessage());
+            throw new ConversionException(MESSAGE_CONSTITUENT_CONVERSION_FAILED);
         }
     }
 
     //extremely dirty code. addressed many issues of LIF. needs to be refactor later
     public void toDependencyParser() throws ConversionException, LifException {
         LifDependencyParser lifDependencyParser = new LifDependencyParserStored(givenAnnotations);
-         if(!lifDependencyParser.getTokenList().isEmpty()){
+        if (!lifDependencyParser.getTokenList().isEmpty()) {
             this.givenAnnotations = lifDependencyParser.getTokenList();
             this.toToken();
         }
-        if(!lifDependencyParser.getSentenceList().isEmpty()){
+        if (!lifDependencyParser.getSentenceList().isEmpty()) {
             this.givenAnnotations = new ArrayList<AnnotationInterpreter>();
             this.givenAnnotations = lifDependencyParser.getSentenceList();
             this.toSentences();
@@ -324,8 +331,9 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
                 }
                 dependencyParsingLayer.addParse(tcfDependencyList);
             }
-        } catch (Exception exp) {
-            throw new ConversionException("the converion of constituent parser failed!!");
+        } catch (Exception ex) {
+            Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ConversionException(MESSAGE_DEPENDENCY_CONVERSION_FAILED);
         }
     }
 
@@ -341,6 +349,7 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
 
         ReferencesLayer refsLayer = textCorpusStored.createReferencesLayer(null, null, null);
 
+       try {
         Map<String, Reference> markIdReference = new HashMap<String, Reference>();
         List<Reference> tcfReferences = new ArrayList<Reference>();
         Map<String, Token> lifTokenIdToken = charOffsetToTokenIdMapper.getLifTokenIdTcfToken();
@@ -381,31 +390,20 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
 
         }
         refsLayer.addReferent(tcfReferences);
+        } catch (Exception ex) {
+            Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ConversionException(MESSAGE_COREFERENCE_CONVERSION_FAILED);
+        }
     }
 
-    public void toTextSource(String fileString) throws Exception {
+    public void toTextSource(String fileString) {
         TextSourceLayer textSourceLayer = textCorpusStored.createTextSourceLayer();
         textSourceLayer.addText(fileString);
     }
 
-    public void inputDataProcessing(InputStream is) {
-
-    }
-
-    public void process(OutputStream os) {
+    public void process(OutputStream os) throws WLFormatException {
         WLData wlData = new WLData(textCorpusStored);
-        try {
-            WLDObjector.write(wlData, os);
-        } catch (WLFormatException ex) {
-            Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public boolean isValid() {
-        if (textCorpusStored != null) {
-            return true;
-        }
-        return false;
+        WLDObjector.write(wlData, os);
     }
 
     public TextCorpusStored getTextCorpusStored() {

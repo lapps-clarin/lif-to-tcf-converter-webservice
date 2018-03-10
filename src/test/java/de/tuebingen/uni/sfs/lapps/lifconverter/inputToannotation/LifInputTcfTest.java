@@ -13,6 +13,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.inputToannotation.input.NameEntit
 import de.tuebingen.uni.sfs.lapps.lifconverter.inputToannotation.input.SenetenceInputCreation;
 import de.tuebingen.uni.sfs.lapps.lifconverter.inputToannotation.input.TokenInputCreation;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
+import eu.clarin.weblicht.wlfxb.io.WLFormatException;
 import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusStored;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -214,62 +215,6 @@ public class LifInputTcfTest {
         String fileString = "";
         ConvertToTCFAnnotations instance = new ConvertToTCFAnnotations(null);
         instance.toTextSource(fileString);
-    }
-
-    /**
-     * Test of inputformat method, of class ConvertToTCFAnnotations.
-     *
-     */
-    @Ignore
-    public void testInputformat() {
-        System.out.println("inputformat");
-        InputStream is = null;
-        ConvertToTCFAnnotations instance = null;
-        instance.inputDataProcessing(is);
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of process method, of class ConvertToTCFAnnotations.
-     *
-     */
-    @Ignore
-    public void testProcess() {
-        System.out.println("process");
-        OutputStream os = null;
-        ConvertToTCFAnnotations instance = null;
-        instance.process(os);
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of isValid method, of class ConvertToTCFAnnotations.
-     *
-     */
-    @Ignore
-    public void testIsValid() {
-        System.out.println("isValid");
-        ConvertToTCFAnnotations instance = null;
-        boolean expResult = false;
-        boolean result
-                = instance.isValid();
-        assertEquals(expResult, result);
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of getTextCorpusStored method, of class ConvertToTCFAnnotations.
-     *
-     */
-    @Ignore
-    public void testGetTextCorpusStored() {
-        System.out.println("getTextCorpusStored");
-        ConvertToTCFAnnotations instance = null;
-        TextCorpusStored expResult = null;
-        TextCorpusStored result
-                = instance.getTextCorpusStored();
-        assertEquals(expResult, result); // TODO
-        fail("The test case is a prototype.");
     }
 
 }

@@ -5,8 +5,10 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.api;
 
+import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
 import java.io.InputStream;
 import de.tuebingen.uni.sfs.lapps.profile.api.LifProfile;
 
@@ -16,5 +18,5 @@ import de.tuebingen.uni.sfs.lapps.profile.api.LifProfile;
  */
 public interface ConverterFormat {
 
-    public ConvertToTCFAnnotations convertFormat(LifProfile lifDataModel,InputStream is) throws ConversionException,Exception;
+    public ConvertToTCFAnnotations convertFormat(LifProfile lifFormat,InputStream is) throws LifException,VocabularyMappingException,ConversionException;
 }

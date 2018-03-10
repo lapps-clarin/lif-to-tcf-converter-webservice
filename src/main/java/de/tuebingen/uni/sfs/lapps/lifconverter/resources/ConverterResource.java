@@ -16,6 +16,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.profile.api.LifProfile;
+import eu.clarin.weblicht.wlfxb.io.WLFormatException;
 
 @Path("con")
 public class ConverterResource {
@@ -87,40 +88,45 @@ public class ConverterResource {
 
     }
 
-    private void process(final InputStream input, OutputStream output, ConverterFormat tool) {
-        try {
-             LifProfile lifProfiler= new LifProfiler(input);
-            if (lifProfiler.isValid()) {
-                ConvertToTCFAnnotations tcfDataModel = tool.convertFormat(lifProfiler, input);
-                tcfDataModel.process(output);
-            } else {
-                throw new LifException("The lif file is in correct!!");
-            }
+    private void process(InputStream input, OutputStream output, ConverterFormat tool) {
 
-        } catch (LifException exlIF) {
-            Logger.getLogger(ConverterResource.class.getName()).log(Level.SEVERE, null, exlIF);
+        try {
+            LifProfile lifFormat = new LifProfiler(input);
+            ConvertToTCFAnnotations tcfFormat = tool.convertFormat(lifFormat, input);
+            tcfFormat.process(output);
+        } catch (LifException ex) {
+            throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
+        } catch (VocabularyMappingException ex) {
+            throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
+        } catch (ConversionException ex) {
+            throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
+        } catch (WLFormatException ex) {
+            throw new WebApplicationException(createResponse(ex, Response.Status.BAD_REQUEST));
         } catch (Exception ex) {
-            Logger.getLogger(ConverterResource.class.getName()).log(Level.SEVERE, null, ex);
+            throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
         } finally {
-            if (input != null) {
-                try {
-                    input.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(ConverterResource.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                if (input != null) {
+                    try {
+                        input.close();
+                    } catch (IOException ex) {
+                        throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
+                    }
                 }
-            }
-            if (output != null) {
-                try {
-                    output.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(ConverterResource.class.getName()).log(Level.SEVERE, null, ex);
+                if (output != null) {
+                    try {
+                        output.close();
+                    } catch (IOException ex) {
+                        throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
+                    }
                 }
+            } catch (Exception ex) {
+                throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
             }
         }
-
     }
 
-    /* if exception message is provided, use it as it is;
+ /* if exception message is provided, use it as it is;
      * if exception message is null, use fall back message
      * (needs to be non-empty String in order to prevent
      * HTTP container generated html message) */
