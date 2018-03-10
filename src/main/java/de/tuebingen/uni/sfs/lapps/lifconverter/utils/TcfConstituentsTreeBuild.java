@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.Constants;
 import static de.tuebingen.uni.sfs.lapps.lifconverter.core.api.Constants.CONSTITUENT_ROOT;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 
@@ -126,8 +125,8 @@ public class TcfConstituentsTreeBuild implements ConstituentParse {
 
         if (tokenIdStartIdMapper.containsKey(childId)) {
             Constituent terminal = this.setLexicon(parentId, childId);
-            Constituent terminalConstituent = setTerminalNode(parentId, terminal);
-            this.vistedNodes.put(parentId, terminalConstituent);
+            //Constituent terminalConstituent = setTerminalNode(parentId, terminal);
+            this.vistedNodes.put(parentId, terminal);
             return true;
         } else {
             if (vistedNodes.containsKey(childId)) {

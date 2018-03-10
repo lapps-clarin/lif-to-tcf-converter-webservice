@@ -114,7 +114,7 @@ public class ConverToTCFAfterConversionTest {
         assertTrue("Token Layer exists in TCF file", instance.getTextCorpusStored().getTextLayer() != null);
         assertEquals("0: t_0 -> Karen", instance.getTextCorpusStored().getTokensLayer().getToken(0).toString());
         assertTrue("Constituent Parser Layer exists in TCF file", instance.getTextCorpusStored().getConstituentParsingLayer() != null);
-        assertEquals("c_30 -> ROOT ( c_29 -> S ( c_28 -> NP ( c_27 -> NNP ( c_26 -> NNP [t_0] ) ) c_25 -> VP ( c_24 -> VBD ( c_23 -> VBD [t_1] ) c_22 -> PP ( c_21 -> TO ( c_20 -> TO [t_2] ) c_19 -> NP ( c_18 -> NNP ( c_17 -> NNP [t_3] ) c_16 -> NNP ( c_15 -> NNP [t_4] ) ) ) c_14 -> SBAR ( c_13 -> IN ( c_12 -> IN [t_5] ) c_11 -> S ( c_10 -> NP ( c_9 -> PRP ( c_8 -> PRP [t_6] ) ) c_7 -> VP ( c_6 -> VBZ ( c_5 -> VBZ [t_7] ) c_4 -> NP ( c_3 -> PRP ( c_2 -> PRP [t_8] ) ) ) ) ) ) c_1 -> . ( c_0 -> . [t_9] ) ) )", instance.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot().toString());
+        assertEquals("c_20 -> ROOT ( c_19 -> S ( c_18 -> NP ( c_17 -> NNP [t_0] ) c_16 -> VP ( c_15 -> VBD [t_1] c_14 -> PP ( c_13 -> TO [t_2] c_12 -> NP ( c_11 -> NNP [t_3] c_10 -> NNP [t_4] ) ) c_9 -> SBAR ( c_8 -> IN [t_5] c_7 -> S ( c_6 -> NP ( c_5 -> PRP [t_6] ) c_4 -> VP ( c_3 -> VBZ [t_7] c_2 -> NP ( c_1 -> PRP [t_8] ) ) ) ) ) c_0 -> . [t_9] ) )", instance.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot().toString());
     }
     
     @Test
@@ -130,8 +130,8 @@ public class ConverToTCFAfterConversionTest {
         Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
         assertFalse("Sentence Layer does not exist in TCF file", instance.getTextCorpusStored().getSentencesLayer() != null);
         assertTrue("Constituent Parser Layer exists in TCF file", instance.getTextCorpusStored().getConstituentParsingLayer() != null);
-        assertEquals("c_17 -> ROOT ( c_16 -> S ( c_15 -> NP ( c_14 -> NNP ( c_13 -> NNP [t_0] ) ) c_12 -> VP ( c_11 -> VBD ( c_10 -> VBD [t_1] ) c_9 -> PP ( c_8 -> TO ( c_7 -> TO [t_2] ) c_6 -> NP ( c_5 -> NNP ( c_4 -> NNP [t_3] ) c_3 -> NNP ( c_2 -> NNP [t_4] ) ) ) ) c_1 -> . ( c_0 -> . [t_5] ) ) )", instance.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot().toString());
-
+        System.out.println(instance.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot().toString());
+        assertEquals("c_11 -> ROOT ( c_10 -> S ( c_9 -> NP ( c_8 -> NNP [t_0] ) c_7 -> VP ( c_6 -> VBD [t_1] c_5 -> PP ( c_4 -> TO [t_2] c_3 -> NP ( c_2 -> NNP [t_3] c_1 -> NNP [t_4] ) ) ) c_0 -> . [t_5] ) )", instance.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot().toString());
     }
     
     /**

@@ -183,7 +183,8 @@ public class LifInputTcfTest {
         List<AnnotationInterpreter> constituentParseAnnotations = new ConstParseInputCreation().getConstitunetParseAnnotations();
         instance.setGivenAnnotations(constituentParseAnnotations);
         instance.toConstituentParser();
-        String expectedParseResult = "c_17 -> ROOT ( c_16 -> S ( c_15 -> NP ( c_14 -> NNP ( c_13 -> NNP [t_0] ) ) c_12 -> VP ( c_11 -> VBD ( c_10 -> VBD [t_1] ) c_9 -> PP ( c_8 -> TO ( c_7 -> TO [t_2] ) c_6 -> NP ( c_5 -> NNP ( c_4 -> NNP [t_3] ) c_3 -> NNP ( c_2 -> NNP [t_4] ) ) ) ) c_1 -> . ( c_0 -> . [t_5] ) ) )";
+        String expectedParseResult = "c_11 -> ROOT ( c_10 -> S ( c_9 -> NP ( c_8 -> NNP [t_0] ) c_7 -> VP ( c_6 -> VBD [t_1] c_5 -> PP ( c_4 -> TO [t_2] c_3 -> NP ( c_2 -> NNP [t_3] c_1 -> NNP [t_4] ) ) ) c_0 -> . [t_5] ) )";
+        System.out.println(instance.getTextCorpusStored().getConstituentParsingLayer().getParseRoot(0).toString());
         assertEquals(expectedParseResult, instance.getTextCorpusStored().getConstituentParsingLayer().getParseRoot(0).toString());
     }
 
