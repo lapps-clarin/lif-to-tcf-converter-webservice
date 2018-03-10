@@ -269,13 +269,18 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
 
     //extremely dirty code. addressed many issues of LIF. needs to be refactor later
     public void toConstituentParser() throws ConversionException, LifException {
-        ConstituentParsingLayer constituentParsingLayer = textCorpusStored.createConstituentParsingLayer(Values.TCF_PARSING_TAGSET_PENNTB.getName());
         LifConstituentParser lifConstituentParser = new LifConstituentParserStored(givenAnnotations);
-        this.givenAnnotations = lifConstituentParser.getTokenList();
-        this.toToken();
-        this.givenAnnotations = new ArrayList<AnnotationInterpreter>();
-        this.givenAnnotations =lifConstituentParser.getSentenceList();
-        this.toSentences();
+        if(!lifConstituentParser.getTokenList().isEmpty()){
+            this.givenAnnotations = lifConstituentParser.getTokenList();
+            this.toToken();
+        }
+        if(!lifConstituentParser.getSentenceList().isEmpty()){
+            this.givenAnnotations = new ArrayList<AnnotationInterpreter>();
+            this.givenAnnotations = lifConstituentParser.getSentenceList();
+            this.toSentences();
+        }
+        
+        ConstituentParsingLayer constituentParsingLayer = textCorpusStored.createConstituentParsingLayer(Values.TCF_PARSING_TAGSET_PENNTB.getName());
 
         try {
             for (Long parseIndex : lifConstituentParser.getParseIndexs()) {
@@ -286,24 +291,28 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
                         charOffsetToTokenIdMapper, constituentParsingLayer);
                 Constituent tcfRoot = tcfTreeBuild.getRoot();
                 constituentParsingLayer.addParse(tcfRoot);
-                break;
             }
 
-        } catch (NullPointerException nullExp) {
-            throw new ConversionException(nullExp.getMessage());
+        } catch (NullPointerException ex) {
+            Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ConversionException(ex.getMessage());
         }
     }
 
     //extremely dirty code. addressed many issues of LIF. needs to be refactor later
     public void toDependencyParser() throws ConversionException, LifException {
-        DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(Values.TCF_DEPPARSING_TAGSET_STANFORD.getName(), false, true);
         LifDependencyParser lifDependencyParser = new LifDependencyParserStored(givenAnnotations);
-        this.givenAnnotations = lifDependencyParser.getTokenList();
-        this.toToken();
-        this.givenAnnotations = new ArrayList<AnnotationInterpreter>();
-        this.givenAnnotations =lifDependencyParser.getSentenceList();
-        this.toSentences();
+         if(!lifDependencyParser.getTokenList().isEmpty()){
+            this.givenAnnotations = lifDependencyParser.getTokenList();
+            this.toToken();
+        }
+        if(!lifDependencyParser.getSentenceList().isEmpty()){
+            this.givenAnnotations = new ArrayList<AnnotationInterpreter>();
+            this.givenAnnotations = lifDependencyParser.getSentenceList();
+            this.toSentences();
+        }
 
+        DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(Values.TCF_DEPPARSING_TAGSET_STANFORD.getName(), false, true);
         try {
             List<Dependency> tcfDependencyList = new ArrayList<Dependency>();
             for (Long parseIndex : lifDependencyParser.getParseIndexs()) {
@@ -325,10 +334,11 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations {
         LifReferenceLayer lifRefererenceLayer = new LifRefererenceLayerStored(givenAnnotations);
         this.givenAnnotations = lifRefererenceLayer.getTokenList();
         this.toToken();
-        
-        if(lifRefererenceLayer.getCorferenceAnnotations().isEmpty()||lifRefererenceLayer.getMarkableAnnotations().isEmpty())
+
+        if (lifRefererenceLayer.getCorferenceAnnotations().isEmpty() || lifRefererenceLayer.getMarkableAnnotations().isEmpty()) {
             return;
-        
+        }
+
         ReferencesLayer refsLayer = textCorpusStored.createReferencesLayer(null, null, null);
 
         Map<String, Reference> markIdReference = new HashMap<String, Reference>();

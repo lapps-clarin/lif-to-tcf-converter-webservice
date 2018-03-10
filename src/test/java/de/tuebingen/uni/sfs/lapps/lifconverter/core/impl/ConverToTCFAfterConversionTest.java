@@ -26,6 +26,8 @@ public class ConverToTCFAfterConversionTest {
     private String POS_AFTER_TCF_TO_LIF = "other/afterConverter/lif-posLayer-after-converter.json";
     private String TOKEN_AFTER_TCF_TO_LIF = "other/afterConverter/lif-tokSenLayer-after-converter.json";
     private String CONSTITUENT_PARSER_CON = "other/afterConverter/lif-contsLayer-after-converter.json";
+    private String CONSTITUENT_PARSER_WITHOUT_SENTENCE = "other/variations/lif-constituentLayer-without-sentence.json";
+    private String DEPENDENCY_PARSER_WITHOUT_SENTENCE = "other/variations/lif-dependencyLayer-without-sentence.json";
     private String DEPENDENCY_PARSER_CON = "other/afterConverter/lif-depLayer-after-converter.json";
     private String NAMEDENTITY_OLD_ANNOTATION = "other/lif-named-entities-old-annotation.json";
     private String CORFERENCE_WITHOUT_REFERENCE= "other/refLayer-without-ref-wrong.json";
@@ -114,6 +116,43 @@ public class ConverToTCFAfterConversionTest {
         assertTrue("Constituent Parser Layer exists in TCF file", instance.getTextCorpusStored().getConstituentParsingLayer() != null);
         assertEquals("c_30 -> ROOT ( c_29 -> S ( c_28 -> NP ( c_27 -> NNP ( c_26 -> NNP [t_0] ) ) c_25 -> VP ( c_24 -> VBD ( c_23 -> VBD [t_1] ) c_22 -> PP ( c_21 -> TO ( c_20 -> TO [t_2] ) c_19 -> NP ( c_18 -> NNP ( c_17 -> NNP [t_3] ) c_16 -> NNP ( c_15 -> NNP [t_4] ) ) ) c_14 -> SBAR ( c_13 -> IN ( c_12 -> IN [t_5] ) c_11 -> S ( c_10 -> NP ( c_9 -> PRP ( c_8 -> PRP [t_6] ) ) c_7 -> VP ( c_6 -> VBZ ( c_5 -> VBZ [t_7] ) c_4 -> NP ( c_3 -> PRP ( c_2 -> PRP [t_8] ) ) ) ) ) ) c_1 -> . ( c_0 -> . [t_9] ) ) )", instance.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot().toString());
     }
+    
+    @Test
+    public void testConstituentLayerWithOutSentence() throws Exception {
+        inputFile = new File(classLoader.getResource(CONSTITUENT_PARSER_WITHOUT_SENTENCE).getFile());
+        targetStream = FileUtils.openInputStream(inputFile);
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
+        ConverterTool Convertertool = new ConverterTool();
+        Convertertool.convertFormat(givenLifFormat, targetStream);
+        instance = Convertertool.getConvertedDataModel();
+
+        Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
+        Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
+        assertFalse("Sentence Layer does not exist in TCF file", instance.getTextCorpusStored().getSentencesLayer() != null);
+        assertTrue("Constituent Parser Layer exists in TCF file", instance.getTextCorpusStored().getConstituentParsingLayer() != null);
+        assertEquals("c_17 -> ROOT ( c_16 -> S ( c_15 -> NP ( c_14 -> NNP ( c_13 -> NNP [t_0] ) ) c_12 -> VP ( c_11 -> VBD ( c_10 -> VBD [t_1] ) c_9 -> PP ( c_8 -> TO ( c_7 -> TO [t_2] ) c_6 -> NP ( c_5 -> NNP ( c_4 -> NNP [t_3] ) c_3 -> NNP ( c_2 -> NNP [t_4] ) ) ) ) c_1 -> . ( c_0 -> . [t_5] ) ) )", instance.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot().toString());
+
+    }
+    
+    /**
+     * Test of toDependencyParser method, of class ConvertToTCFAnnotations.
+     */
+    @Test
+    public void testDependencyLayerWithOutSentence() throws Exception {
+        inputFile = new File(classLoader.getResource(DEPENDENCY_PARSER_WITHOUT_SENTENCE).getFile());
+        targetStream = FileUtils.openInputStream(inputFile);
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
+        ConverterTool Convertertool = new ConverterTool();
+        Convertertool.convertFormat(givenLifFormat, targetStream);
+        instance = Convertertool.getConvertedDataModel();
+
+        Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
+        Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
+        assertFalse("Sentence Layer does not exist in TCF file", instance.getTextCorpusStored().getSentencesLayer() != null);
+        assertTrue("Dependency Parser Layer exists in TCF file", instance.getTextCorpusStored().getDependencyParsingLayer() != null);
+        assertEquals("[nn [t_3] <- [t_4], pobj [t_4] <- [t_2], nsubj [t_0] <- [t_1], prep [t_2] <- [t_1]]", instance.getTextCorpusStored().getDependencyParsingLayer().getParse(0).toString());
+    }
+
 
     /**
      * Test of named entity layer, old annotation
