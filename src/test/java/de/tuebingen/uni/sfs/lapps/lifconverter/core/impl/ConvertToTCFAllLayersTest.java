@@ -80,7 +80,7 @@ public class ConvertToTCFAllLayersTest {
         assertEquals("c_24 -> ROOT ( c_23 -> S ( c_22 -> S ( c_21 -> NP ( c_20 -> NNP [t_0] ) c_19 -> VP ( c_18 -> VBZ [t_1] c_17 -> PP ( c_16 -> TO [t_2] c_15 -> NP ( c_14 -> NNP [t_3] c_13 -> NNP [t_4] ) ) ) ) c_12 -> CC [t_5] c_11 -> S ( c_10 -> NP ( c_9 -> PRP [t_6] ) c_8 -> VP ( c_7 -> VBZ [t_7] c_6 -> ADJP ( c_5 -> JJ [t_8] c_4 -> PP ( c_3 -> IN [t_9] c_2 -> NP ( c_1 -> DT [t_10] ) ) ) ) ) c_0 -> . [t_11] ) )", resultingTcfFormat.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot().toString());
 
         assertTrue("Dependency Parser Layer exists in TCF file", resultingTcfFormat.getTextCorpusStored().getDependencyParsingLayer() != null);
-        assertEquals("[ROOT [t_1] <- [t_0], nn [t_3] <- [t_4], conj [t_8] <- [t_1], pobj [t_4] <- [t_2], cop [t_7] <- [t_8], pobj [t_10] <- [t_9], nsubj [t_0] <- [t_1], nsubj [t_6] <- [t_8], prep [t_9] <- [t_8], cc [t_5] <- [t_1], prep [t_2] <- [t_1]]", resultingTcfFormat.getTextCorpusStored().getDependencyParsingLayer().getParse(0).toString());
+        assertEquals("[ROOT [t_1] <- [ ], nn [t_3] <- [t_4], conj [t_8] <- [t_1], pobj [t_4] <- [t_2], cop [t_7] <- [t_8], pobj [t_10] <- [t_9], nsubj [t_0] <- [t_1], nsubj [t_6] <- [t_8], prep [t_9] <- [t_8], cc [t_5] <- [t_1], prep [t_2] <- [t_1]]", resultingTcfFormat.getTextCorpusStored().getDependencyParsingLayer().getParse(0).toString());
 
         assertTrue("References Layer exists in TCF file", resultingTcfFormat.getTextCorpusStored().getReferencesLayer() != null);
         assertEquals("[rc_0  [t_6], rc_1 anaphoric ->[rc_0] [t_0]]", resultingTcfFormat.getTextCorpusStored().getReferencesLayer().getReferencedEntity(0).toString());

@@ -324,10 +324,20 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations,ConversionErr
             List<Dependency> tcfDependencyList = new ArrayList<Dependency>();
             for (Long parseIndex : lifDependencyParser.getParseIndexs()) {
                 for (DependencyEntityInfo dependencyEntity : lifDependencyParser.getDependencyEntities(parseIndex)) {
-                    Token dependent = this.charOffsetToTokenIdMapper.startIdToToken(dependencyEntity.getDepIDs());
-                    Token govonor = this.charOffsetToTokenIdMapper.startIdToToken(dependencyEntity.getGovIDs());
-                    Dependency dependency = dependencyParsingLayer.createDependency(dependencyEntity.getFunc(), dependent, govonor);
-                    tcfDependencyList.add(dependency);
+                    Token govonor =null,dependent=null;
+                    if(dependencyEntity.getGovIDs()!=null&&dependencyEntity.getDepIDs()!=null){
+                       govonor = this.charOffsetToTokenIdMapper.startIdToToken(dependencyEntity.getGovIDs()); 
+                       dependent = this.charOffsetToTokenIdMapper.startIdToToken(dependencyEntity.getDepIDs());
+                       Dependency dependency = dependencyParsingLayer.createDependency(dependencyEntity.getFunc(), dependent, govonor);
+                       tcfDependencyList.add(dependency);
+                    }
+                    else if(dependencyEntity.getDepIDs()!=null){
+                       dependent = this.charOffsetToTokenIdMapper.startIdToToken(dependencyEntity.getDepIDs());
+                       Dependency dependency = dependencyParsingLayer.createDependency(dependencyEntity.getFunc(), dependent);
+                       tcfDependencyList.add(dependency);
+                    }
+                    
+                    
                 }
                 dependencyParsingLayer.addParse(tcfDependencyList);
             }
