@@ -1,0 +1,1 @@
+wget --post-file=lif-depLayer-after-converter_1.json --header='Content-Type: application/json' http://localhost:8080/con/stream

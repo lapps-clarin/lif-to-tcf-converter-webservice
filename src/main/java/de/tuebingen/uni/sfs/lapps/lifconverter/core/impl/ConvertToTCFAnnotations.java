@@ -104,13 +104,13 @@ public class ConvertToTCFAnnotations implements ConvertAnnotations,ConversionErr
             }
         } catch (LifException ex) {
             Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ConversionException(MESSAGE_INVALID_LIF);
+            throw new LifException(MESSAGE_INVALID_LIF);
         } catch (ConversionException ex) {
             Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
             throw new ConversionException(MESSAGE_CONVERSION_FAILED);
         } catch (VocabularyMappingException ex) {
             Logger.getLogger(ConvertToTCFAnnotations.class.getName()).log(Level.SEVERE, null, ex);
-            throw new ConversionException(MESSAGE_VOCABULARY_CONVERSION_FAILED);
+            throw new VocabularyMappingException(MESSAGE_VOCABULARY_CONVERSION_FAILED);
         }
 
     }

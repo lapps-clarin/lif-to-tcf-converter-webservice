@@ -29,6 +29,7 @@ public class ConverToTCFAfterConversionTest {
     private String CONSTITUENT_PARSER_WITHOUT_SENTENCE = "other/variations/lif-constituentLayer-without-sentence.json";
     private String DEPENDENCY_PARSER_WITHOUT_SENTENCE = "other/variations/lif-dependencyLayer-without-sentence.json";
     private String DEPENDENCY_PARSER_CON = "other/afterConverter/lif-depLayer-after-converter.json";
+    private String DEPENDENCY_PARSER_CON_ROOT = "other/afterConverter/lif-depLayer-after-converter_1.json";
     private String NAMEDENTITY_OLD_ANNOTATION = "other/lif-named-entities-old-annotation.json";
     private String CORFERENCE_WITHOUT_REFERENCE= "other/refLayer-without-ref-wrong.json";
     private String FILE_LIF = Discriminators.Alias.JSON;
@@ -97,6 +98,24 @@ public class ConverToTCFAfterConversionTest {
     }
 
     /**
+     * Test of dependency layer, after TCF to LIF converter
+     */
+    @Test
+    public void testDependencyLayerTCFtoLifConverterRoot() throws Exception {
+
+        inputFile = new File(classLoader.getResource(DEPENDENCY_PARSER_CON_ROOT).getFile());
+        targetStream = FileUtils.openInputStream(inputFile);
+        givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
+        ConverterTool Convertertool = new ConverterTool();
+        Convertertool.convertFormat(givenLifFormat, targetStream);
+        instance = Convertertool.getConvertedDataModel();
+
+        Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
+        Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
+        assertTrue("Dependency Parser Layer exists in TCF file", instance.getTextCorpusStored().getDependencyParsingLayer() != null);
+        assertEquals("pobj [t_4] <- [t_2]", instance.getTextCorpusStored().getDependencyParsingLayer().getParse(0).getDependencies()[1].toString());
+    }
+    /**
      * Test of constituent layer, after TCF to LIF converter
      */
     @Test
@@ -130,7 +149,6 @@ public class ConverToTCFAfterConversionTest {
         Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
         assertFalse("Sentence Layer does not exist in TCF file", instance.getTextCorpusStored().getSentencesLayer() != null);
         assertTrue("Constituent Parser Layer exists in TCF file", instance.getTextCorpusStored().getConstituentParsingLayer() != null);
-        System.out.println(instance.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot().toString());
         assertEquals("c_11 -> ROOT ( c_10 -> S ( c_9 -> NP ( c_8 -> NNP [t_0] ) c_7 -> VP ( c_6 -> VBD [t_1] c_5 -> PP ( c_4 -> TO [t_2] c_3 -> NP ( c_2 -> NNP [t_3] c_1 -> NNP [t_4] ) ) ) c_0 -> . [t_5] ) )", instance.getTextCorpusStored().getConstituentParsingLayer().getParse(0).getRoot().toString());
     }
     
