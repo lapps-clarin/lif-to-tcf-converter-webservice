@@ -15,7 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Stack;
-import static de.tuebingen.uni.sfs.lapps.lifconverter.core.api.Constants.CONSTITUENT_ROOT;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 
 /**
@@ -24,6 +23,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
  */
 public class TcfConstituentsTreeBuild implements ConstituentParse {
 
+    public static final String CONSTITUENT_ROOT = "ROOT";
     private Stack<String> travelStack = new Stack<String>();
     private Map<String, Constituent> vistedNodes = new HashMap<String, Constituent>();
     private Map<String, LifConstituent> idConstituents = new HashMap<String, LifConstituent>();

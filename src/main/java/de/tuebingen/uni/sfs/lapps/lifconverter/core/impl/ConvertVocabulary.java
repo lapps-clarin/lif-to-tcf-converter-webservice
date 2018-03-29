@@ -6,11 +6,9 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
 import com.fasterxml.jackson.core.JsonParseException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToolTagset;
 import de.tuebingen.uni.sfs.lapps.core.layer.api.AnnotationLayerFinder;
 import de.tuebingen.uni.sfs.lapps.exceptions.JsonValidityException;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.Constants;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -26,8 +24,11 @@ import java.util.logging.Logger;
  *
  * @author felahi
  */
-public class ConvertVocabulary implements AnnotationLayerFinder,Constants {
+public class ConvertVocabulary implements AnnotationLayerFinder {
 
+    public static final String UNICODE = "UTF-8";
+    public static final String PARAMETER_SEPERATOR_REG = "\\=";
+    public static final String PARAMETER_SEPERATOR = "=";
     public static Map<String, String> layerMapper = new HashMap<String, String>();
     public static Map<String, ConvertToolTagset> vocabularyMapper = new HashMap<String, ConvertToolTagset>();
     public static Set<String> lifAnnotationlayers = new HashSet<String>();

@@ -85,8 +85,7 @@ public class ConvertToTCFAllLayersTest {
         assertTrue("References Layer exists in TCF file", resultingTcfFormat.getTextCorpusStored().getReferencesLayer() != null);
         assertEquals("[rc_0  [t_6], rc_1 anaphoric ->[rc_0] [t_0]]", resultingTcfFormat.getTextCorpusStored().getReferencesLayer().getReferencedEntity(0).toString());
 
-        //Text source layer is temporarily closed...
-        assertFalse("Text source Layer exists in TCF file", resultingTcfFormat.getTextCorpusStored().getTextSourceLayer() != null);
+        assertTrue("Text source Layer exists in TCF file", resultingTcfFormat.getTextCorpusStored().getTextSourceLayer() != null);
 
     }
 
