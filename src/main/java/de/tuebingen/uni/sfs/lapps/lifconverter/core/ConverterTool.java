@@ -12,43 +12,39 @@ import de.tuebingen.uni.sfs.lapps.profile.api.LifProfile;
 
 public class ConverterTool implements ConverterFormat {
 
-    private ConvertToTCFAnnotations convertedDataModel = null;
-    private LifProfile lifProfiler = null;
+    private ConvertToTCFAnnotations weblichtTcfProfile = null;
+    private LifProfile lappsLifProfile = null;
     public static final String PARAMETER_PATH = "/models/parameterlist.init";
-    public static final String VOCABULARY_PATH = "/models/annotation_conversion.init";
+    public static final String VOCABULARY_PATH = "/models/annotationConversion.init";
 
     public ConverterTool() throws ConversionException, VocabularyMappingException {
         new ConvertVocabulary(PARAMETER_PATH, VOCABULARY_PATH);
     }
 
     public synchronized ConvertToTCFAnnotations convertFormat(LifProfile lifDataModel, InputStream input) throws LifException, VocabularyMappingException, ConversionException {
-        convertedDataModel = new ConvertToTCFAnnotations(input);
-        lifProfiler = lifDataModel;
-        convertedDataModel.toLanguage(lifProfiler.getLanguage());
-        convertedDataModel.toText(lifProfiler.getText());
-        convertedDataModel.toTextSource(lifProfiler.getFileString());
+        lappsLifProfile = lifDataModel;
+        weblichtTcfProfile = new ConvertToTCFAnnotations(input);
+        weblichtTcfProfile.toLanguage(lappsLifProfile.getLanguage());
+        weblichtTcfProfile.toText(lappsLifProfile.getText());
+        weblichtTcfProfile.toTextSource(lappsLifProfile.getFileString());
         convertAnnotationLayers();
-        return convertedDataModel;
+        return weblichtTcfProfile;
     }
 
     protected void convertAnnotationLayers() throws VocabularyMappingException, ConversionException, LifException {
-        for (Integer layerIndex : lifProfiler.getSortedLayer()) {
+        for (Integer layerIndex : lappsLifProfile.getSortedLayer()) {
             AnnotationLayerFinder tcfLayer = converAnnotationlayervocabularies(layerIndex);
-            convertAnnotations(tcfLayer, layerIndex);
+            weblichtTcfProfile.toLayers(tcfLayer, lappsLifProfile.getAnnotationLayerData(layerIndex));
         }
     }
 
-    protected void convertAnnotations(AnnotationLayerFinder tcfLayer, Integer layerIndex) throws ConversionException, LifException, VocabularyMappingException {
-        convertedDataModel.toLayers(tcfLayer, lifProfiler.getAnnotationLayerData(layerIndex));
-    }
-
     protected AnnotationLayerFinder converAnnotationlayervocabularies(Integer layerIndex) throws VocabularyMappingException, LifException {
-        AnnotationLayerFinder lifLayer = lifProfiler.getIndexAnnotationLayer(layerIndex);
+        AnnotationLayerFinder lifLayer = lappsLifProfile.getIndexAnnotationLayer(layerIndex);
         AnnotationLayerFinder tcfLayer = new ConvertVocabulary(lifLayer);
         return tcfLayer;
     }
 
-    public ConvertToTCFAnnotations getConvertedDataModel() {
-        return convertedDataModel;
+    public ConvertToTCFAnnotations getWeblichtTcfProfile() {
+        return weblichtTcfProfile;
     }
 }

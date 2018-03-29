@@ -65,7 +65,7 @@ public class ConvertToTCFEachLayerTest {
         givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
-        instance = Convertertool.getConvertedDataModel();
+        instance = Convertertool.getWeblichtTcfProfile();
 
         Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
         Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
@@ -84,7 +84,7 @@ public class ConvertToTCFEachLayerTest {
         givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
-        instance = Convertertool.getConvertedDataModel();
+        instance = Convertertool.getWeblichtTcfProfile();
 
         Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
         Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
@@ -103,7 +103,7 @@ public class ConvertToTCFEachLayerTest {
         givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
-        instance = Convertertool.getConvertedDataModel();
+        instance = Convertertool.getWeblichtTcfProfile();
 
         Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
         Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
@@ -133,7 +133,7 @@ public class ConvertToTCFEachLayerTest {
         givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
-        instance = Convertertool.getConvertedDataModel();
+        instance = Convertertool.getWeblichtTcfProfile();
 
         Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
         Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
@@ -151,7 +151,7 @@ public class ConvertToTCFEachLayerTest {
         givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
-        instance = Convertertool.getConvertedDataModel();
+        instance = Convertertool.getWeblichtTcfProfile();
 
         Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
         Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
@@ -169,7 +169,7 @@ public class ConvertToTCFEachLayerTest {
         givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
-        instance = Convertertool.getConvertedDataModel();
+        instance = Convertertool.getWeblichtTcfProfile();
 
         Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
         Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
@@ -189,7 +189,7 @@ public class ConvertToTCFEachLayerTest {
         givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
-        instance = Convertertool.getConvertedDataModel();
+        instance = Convertertool.getWeblichtTcfProfile();
 
         Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
         Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());
@@ -209,7 +209,7 @@ public class ConvertToTCFEachLayerTest {
         givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
-        instance = Convertertool.getConvertedDataModel();
+        instance = Convertertool.getWeblichtTcfProfile();
 
         Assert.assertTrue("input file has json extension", inputFile.getName().contains(FILE_LIF));
         Assert.assertTrue("input lif file is valid", givenLifFormat.isValid());

@@ -46,7 +46,7 @@ public class ConvertToTCFAllLayersTest {
         givenLifFormat = new LifProfiler(FileUtils.openInputStream(inputFile));
         ConverterTool Convertertool = new ConverterTool();
         Convertertool.convertFormat(givenLifFormat, targetStream);
-        resultingTcfFormat = Convertertool.getConvertedDataModel();
+        resultingTcfFormat = Convertertool.getWeblichtTcfProfile();
     }
 
     /**

@@ -95,7 +95,7 @@ public class ConverterResource {
             ConvertToTCFAnnotations tcfFormat = tool.convertFormat(lifFormat, input);
             tcfFormat.process(output);
         } catch (LifException ex) {
-            throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
+            throw new WebApplicationException(createResponse(ex, Response.Status.BAD_REQUEST));
         } catch (VocabularyMappingException ex) {
             throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
         } catch (ConversionException ex) {
