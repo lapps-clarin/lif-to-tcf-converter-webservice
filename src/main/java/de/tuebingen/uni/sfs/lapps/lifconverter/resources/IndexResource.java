@@ -17,7 +17,7 @@ public class IndexResource {
         return getClass().getResourceAsStream("/index.html");
     }
 
-    @GET
+    /*@GET
     @Path("/lif-multipleLayer.json")
     @Produces("application/json")
     public InputStream inputTestMultiData() {
@@ -71,7 +71,7 @@ public class IndexResource {
     @Produces("application/json")
     public InputStream inputTestCorferenceData() {
         return getClass().getResourceAsStream("/lif-corferenceLayer.json");
-    }
+    }*/
     
     @GET
     @Path("/karen-all.json")
