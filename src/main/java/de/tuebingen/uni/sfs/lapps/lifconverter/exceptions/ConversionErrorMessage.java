@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.exceptions;
 
-import de.tuebingen.uni.sfs.clarind.utils.lapps.constants.ErrorMessage;
+import de.tuebingen.uni.sfs.lapps.constants.ErrorMessage;
 
 /**
  *
