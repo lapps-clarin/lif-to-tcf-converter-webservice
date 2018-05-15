@@ -5,18 +5,17 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.api;
 
+import de.tuebingen.uni.sfs.lapps.exceptions.JsonValidityException;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertAnnotationsImpl;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
-import java.io.InputStream;
 import de.tuebingen.uni.sfs.lapps.profile.api.LifProfile;
-
+import java.io.IOException;
 /**
  *
- * @author felahi
+ * @author Mohammad Fazleh Elahi
  */
 public interface ConverterFormat {
-
-    public ConvertToTCFAnnotations convertFormat(LifProfile lifFormat,InputStream is) throws LifException,VocabularyMappingException,ConversionException;
+    public ConvertAnnotationsImpl convertFormat(LifProfile lappsLifProfile) throws LifException,VocabularyMappingException,ConversionException,IOException,JsonValidityException;
 }

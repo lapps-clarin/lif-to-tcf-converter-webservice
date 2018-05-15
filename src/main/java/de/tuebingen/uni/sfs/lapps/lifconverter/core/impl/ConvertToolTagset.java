@@ -12,6 +12,7 @@ import java.util.Map;
  *
  * @author felahi
  */
+@Deprecated
 public class ConvertToolTagset {
 
     private String convertedTagSet = null;
@@ -41,11 +42,4 @@ public class ConvertToolTagset {
     public String getConvertedTagSet() {
         return convertedTagSet;
     }
-
-    @Override
-    public String toString() {
-        return "ToolTagSetAnnoConversion{" + "convertedTagSet=" + convertedTagSet + ", convertedVocabularies=" + convertedVocabularies + '}';
-    }
-
-   
 }

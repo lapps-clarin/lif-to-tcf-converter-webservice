@@ -1,7 +1,6 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.resources;
 
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
-import de.tuebingen.uni.sfs.lapps.profile.impl.LifProfiler;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -9,13 +8,12 @@ import javax.ws.rs.core.StreamingOutput;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertToTCFAnnotations;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertAnnotationsImpl;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.profile.api.LifProfile;
+import de.tuebingen.uni.sfs.lapps.profile.impl.LifProfiler;
 import eu.clarin.weblicht.wlfxb.io.WLFormatException;
 
 @Path("con")
@@ -33,8 +31,6 @@ public class ConverterResource {
         try {
             tool = new ConverterTool();
         } catch (VocabularyMappingException ex) {
-            throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
-        } catch (ConversionException ex) {
             throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
         }
     }
@@ -91,8 +87,8 @@ public class ConverterResource {
     private void process(InputStream input, OutputStream output, ConverterFormat tool) {
 
         try {
-            LifProfile lifFormat = new LifProfiler(input);
-            ConvertToTCFAnnotations tcfFormat = tool.convertFormat(lifFormat, input);
+            LifProfiler lappsLifProfile = new LifProfiler(input);
+            ConvertAnnotationsImpl tcfFormat = tool.convertFormat(lappsLifProfile);
             tcfFormat.process(output);
         } catch (LifException ex) {
             throw new WebApplicationException(createResponse(ex, Response.Status.BAD_REQUEST));

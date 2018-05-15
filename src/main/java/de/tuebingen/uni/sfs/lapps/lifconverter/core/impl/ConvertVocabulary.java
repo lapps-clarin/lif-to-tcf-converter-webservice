@@ -5,10 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import de.tuebingen.uni.sfs.lapps.core.layer.api.AnnotationLayerFinder;
-import de.tuebingen.uni.sfs.lapps.exceptions.JsonValidityException;
-import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
+import de.tuebingen.uni.sfs.lapps.core.layer.impl.LIFAnnotationLayer;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,9 +19,9 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author felahi
+ * @author Mohammad Fazleh Elahi
  */
-public class ConvertVocabulary implements AnnotationLayerFinder {
+public class ConvertVocabulary  {
 
     public static final String UNICODE = "UTF-8";
     public static final String PARAMETER_SEPERATOR_REG = "\\=";
@@ -33,7 +30,7 @@ public class ConvertVocabulary implements AnnotationLayerFinder {
     public static Map<String, ConvertToolTagset> vocabularyMapper = new HashMap<String, ConvertToolTagset>();
     public static Set<String> lifAnnotationlayers = new HashSet<String>();
     private String convertedLayer = null;
-    private AnnotationLayerFinder givenLayer = null;
+    private LIFAnnotationLayer givenLayer = null;
 
     public ConvertVocabulary(String layerMapperfilePath, String vocabularyFilePath) throws VocabularyMappingException {
         try {
@@ -44,10 +41,9 @@ public class ConvertVocabulary implements AnnotationLayerFinder {
         }
     }
 
-    public ConvertVocabulary(AnnotationLayerFinder givenLayer) throws LifException, VocabularyMappingException {
+    public ConvertVocabulary(LIFAnnotationLayer givenLayer)  {
         this.givenLayer = givenLayer;
         this.toLayer();
-        this.toTool();
     }
 
     private void setLayers(String filePath) throws Exception {
@@ -117,39 +113,9 @@ public class ConvertVocabulary implements AnnotationLayerFinder {
         }
     }
 
-    private void toLayer() throws VocabularyMappingException, LifException {
-        if (givenLayer.isLayerExists()) {
-            if (layerMapper.containsKey(givenLayer.getLayer())) {
-                this.convertedLayer = layerMapper.get(givenLayer.getLayer());
-            } else {
-                throw new VocabularyMappingException(givenLayer.getLayer() + " is not integrated yet!!");
-            }
-        } else {
-            throw new VocabularyMappingException(givenLayer.getLayer() + " is not integrated yet!!");
-        }
-    }
-
-    private void toTool() throws VocabularyMappingException, LifException {
-        givenLayer.getTool();
-    }
-
-    public boolean isLayerExists() throws LifException {
-        if (layerMapper.containsKey(this.givenLayer.getLayer())) {
-            return true;
-        }
-        return false;
-    }
-
-    //this is wrong. Need to be corrected in future..
-    public boolean isToolExists(String tool) throws LifException {
-        if (vocabularyMapper.isEmpty()) {
-            throw new LifException("vocabularyMapper is empty!!");
-        }
-
-        if (vocabularyMapper.containsKey(tool)) {
-            return true;
-        } else {
-            throw new LifException("This tool (" + tool + ") is not registered in the model!!");
+    private void toLayer()  {
+        if (isValid()) {
+            this.convertedLayer = layerMapper.get(givenLayer.getLayer());
         }
     }
 
@@ -161,64 +127,8 @@ public class ConvertVocabulary implements AnnotationLayerFinder {
         }
     }
 
-    public String getTool() throws LifException {
-        if (givenLayer.getTool() != null) {
-            return givenLayer.getTool();
-        } else {
-            throw new LifException("No tool is found for the tool!!");
-        }
-    }
-
-    public String getProducer() throws LifException {
-        if (givenLayer.getProducer() != null) {
-            return givenLayer.getProducer();
-        } else {
-            throw new LifException("No tool producer is found for the tool!!");
-        }
-    }
-
-    //this wrong it needs to be corrected in future--
-    public String getTagSetName(String tool) throws LifException {
-        if (isToolExists(tool)) {
-            if (vocabularyMapper.get(tool).getConvertedTagSet() != null) {
-                return vocabularyMapper.get(tool).getConvertedTagSet();
-            } else {
-                throw new LifException("No converted tagset found for the tool " + tool + "!!");
-            }
-        }
-        return null;
-    }
-
-     //this wrong it needs to be corrected in future--
-    public String getVocabularies(String tool, String key) throws LifException {
-        if (isToolExists(tool)) {
-            try {
-                if (vocabularyMapper.get(tool).getConvertedVocabularies(key) != null) {
-                    return vocabularyMapper.get(tool).getConvertedVocabularies(key);
-                } else {
-                    throw new LifException("This vacabulary for (" + key + ") is not registered in the model!!");
-                }
-            } catch (VocabularyMappingException ex) {
-                 throw new LifException("This vacabulary for (" + key + ") is not registered in the model!!");
-            }
-        }
-        return null;
-    }
-
-    public void getLayerFromSingleUrl() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public void getLayerFromMultipleUrls() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Integer getLayerIndex() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public boolean isValid() throws JsonParseException, IOException, JsonValidityException, LifException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean isValid() {
+        return layerMapper.containsKey(givenLayer.getLayer());
     }
 
 }
