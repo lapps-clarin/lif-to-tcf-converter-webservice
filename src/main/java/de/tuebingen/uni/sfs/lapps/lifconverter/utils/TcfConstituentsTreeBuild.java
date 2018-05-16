@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.utils;
 
-import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifConstituent;
+import de.tuebingen.uni.sfs.lapps.core.impl.annotation.LifConstituent;
 import eu.clarin.weblicht.wlfxb.tc.api.Constituent;
 import eu.clarin.weblicht.wlfxb.tc.api.ConstituentParse;
 import eu.clarin.weblicht.wlfxb.tc.api.ConstituentParsingLayer;

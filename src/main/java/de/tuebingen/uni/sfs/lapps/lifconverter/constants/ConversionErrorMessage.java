@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.exceptions;
+package de.tuebingen.uni.sfs.lapps.lifconverter.constants;
 
-import de.tuebingen.uni.sfs.lapps.constants.ErrorMessage;
+import de.tuebingen.uni.sfs.lapps.constants.LifErrorMessage;
 
 /**
  *
  * @author fazlehelahi
  */
-public interface ConversionErrorMessage extends ErrorMessage{
+public interface ConversionErrorMessage extends LifErrorMessage{
     public static final String MESSAGE_CONVERSION_FAILED = "LIF to TCF CONVERSION ERROR: LIF to TCF conversion failed!!";
     public static final String MESSAGE_VOCABULARY_CONVERSION_FAILED = "LIF to TCF CONVERSION ERROR: Vocabulary conversion is failed!!";
     public static final String MESSAGE_LANGUAGE_CONVERSION_FAILED = "LIF to TCF CONVERSION ERROR: Language conversion failed from LIF to TCF failed!!";

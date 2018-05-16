@@ -9,12 +9,12 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertAnnotationsImpl;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.ConverterFormat;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.TcfFormat;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.profile.impl.LifProfiler;
+import de.tuebingen.uni.sfs.lapps.core.impl.profiler.LifFormatImpl;
 import eu.clarin.weblicht.wlfxb.io.WLFormatException;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.FormatConverter;
 
 @Path("con")
 public class ConverterResource {
@@ -25,7 +25,7 @@ public class ConverterResource {
     private static final String TEMP_FILE_PREFIX = "ne-output-temp";
     private static final String TEMP_FILE_SUFFIX = ".xml";
 
-    private ConverterFormat tool;
+    private FormatConverter tool;
 
     public ConverterResource() {
         try {
@@ -84,12 +84,12 @@ public class ConverterResource {
 
     }
 
-    private void process(InputStream input, OutputStream output, ConverterFormat tool) {
+    private void process(InputStream input, OutputStream output, FormatConverter tool) {
 
         try {
-            LifProfiler lappsLifProfile = new LifProfiler(input);
-            ConvertAnnotationsImpl tcfFormat = tool.convertFormat(lappsLifProfile);
-            tcfFormat.process(output);
+            LifFormatImpl lifFormat = new LifFormatImpl(input);
+            tool.convertFormat(lifFormat);
+            tool.process(output);
         } catch (LifException ex) {
             throw new WebApplicationException(createResponse(ex, Response.Status.BAD_REQUEST));
         } catch (VocabularyMappingException ex) {

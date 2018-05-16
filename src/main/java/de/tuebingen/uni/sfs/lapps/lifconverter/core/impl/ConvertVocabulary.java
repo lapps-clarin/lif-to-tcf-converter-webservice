@@ -5,7 +5,7 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
-import de.tuebingen.uni.sfs.lapps.core.layer.impl.LIFAnnotationLayer;
+import de.tuebingen.uni.sfs.lapps.core.impl.layer.LifSingleLayer;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class ConvertVocabulary  {
     public static Map<String, ConvertToolTagset> vocabularyMapper = new HashMap<String, ConvertToolTagset>();
     public static Set<String> lifAnnotationlayers = new HashSet<String>();
     private String convertedLayer = null;
-    private LIFAnnotationLayer givenLayer = null;
+    private LifSingleLayer givenLayer = null;
 
     public ConvertVocabulary(String layerMapperfilePath, String vocabularyFilePath) throws VocabularyMappingException {
         try {
@@ -41,7 +41,7 @@ public class ConvertVocabulary  {
         }
     }
 
-    public ConvertVocabulary(LIFAnnotationLayer givenLayer)  {
+    public ConvertVocabulary(LifSingleLayer givenLayer)  {
         this.givenLayer = givenLayer;
         this.toLayer();
     }
@@ -128,7 +128,9 @@ public class ConvertVocabulary  {
     }
 
     public boolean isValid() {
-        return layerMapper.containsKey(givenLayer.getLayer());
+        if(givenLayer.getLayer()!=null)
+           return layerMapper.containsKey(givenLayer.getLayer());
+        return false;
     }
 
 }

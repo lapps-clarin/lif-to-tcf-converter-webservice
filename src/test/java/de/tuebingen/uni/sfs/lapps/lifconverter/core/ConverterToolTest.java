@@ -7,16 +7,15 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.core;
 
 import de.tuebingen.uni.sfs.lapps.exceptions.JsonValidityException;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.impl.ConvertAnnotationsImpl;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.TcfFormat;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.profile.impl.LifProfiler;
+import de.tuebingen.uni.sfs.lapps.core.impl.profiler.LifFormatImpl;
 import java.io.IOException;
 import java.io.InputStream;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
-import org.junit.Ignore;
 
 /**
  *
@@ -25,12 +24,12 @@ import org.junit.Ignore;
 public class ConverterToolTest {
 
     private String ALL_LAYER_EXAMPLE = "/data/karen-all.json";
-    private ConvertAnnotationsImpl weblichtTcfProfile;
+    private TcfFormat weblichtTcfProfile;
 
     @Before
     public void setUp() throws VocabularyMappingException, LifException, ConversionException, IOException, JsonValidityException {
         InputStream is = this.getClass().getResourceAsStream(ALL_LAYER_EXAMPLE);
-        LifProfiler lappsLifProfile = new LifProfiler(is);
+        LifFormatImpl lappsLifProfile = new LifFormatImpl(is);
         ConverterTool instance = new ConverterTool();
         weblichtTcfProfile = instance.convertFormat(lappsLifProfile);
     }

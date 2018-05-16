@@ -6,39 +6,27 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
 import de.tuebingen.uni.sfs.clarind.profiler.Values;
-import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifMarkable;
-import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifReference;
-import de.tuebingen.uni.sfs.lapps.core.annotation.api.LifReferenceLayer;
-import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifRefererenceLayerStored;
-import de.tuebingen.uni.sfs.lapps.core.annotation.impl.LifTokenPosLemmaStored;
-import de.tuebingen.uni.sfs.lapps.core.layer.impl.LIFAnnotationLayer;
-import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
-import static de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionErrorMessage.MESSAGE_COREFERENCE_CONVERSION_FAILED;
-import static de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionErrorMessage.MESSAGE_STARTID_TOKEN_CONNECTION_NOT_FOUND;
+import de.tuebingen.uni.sfs.lapps.core.impl.annotation.LifTokenPosLemmaStored;
+import static de.tuebingen.uni.sfs.lapps.lifconverter.constants.ConversionErrorMessage.MESSAGE_STARTID_TOKEN_CONNECTION_NOT_FOUND;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.utils.CharOffsetToTokenIdMapper;
 import de.tuebingen.uni.sfs.lapps.utils.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.utils.DuplicateChecker;
 import eu.clarin.weblicht.wlfxb.tc.api.LemmasLayer;
 import eu.clarin.weblicht.wlfxb.tc.api.PosTagsLayer;
-import eu.clarin.weblicht.wlfxb.tc.api.Reference;
-import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
 import eu.clarin.weblicht.wlfxb.tc.api.Token;
 import eu.clarin.weblicht.wlfxb.tc.api.TokensLayer;
 import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusStored;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Mohammad Fazleh Elahi
  */
-public class TokenLevelInfoConversion {
+public class ConvertTokenLevelInfo {
 
     private CharOffsetToTokenIdMapper charOffsetToTokenIdMapper = null;
     private TextCorpusStored textCorpusStored = null;
@@ -47,9 +35,9 @@ public class TokenLevelInfoConversion {
     private LemmasLayer tcfLemmaLayer = null;
     private List<AnnotationInterpreter> givenAnnotations = new ArrayList<AnnotationInterpreter>();
 
-    public TokenLevelInfoConversion(TextCorpusStored textCorpusStored,List<AnnotationInterpreter> givenAnnotations) throws ConversionException {
+    public ConvertTokenLevelInfo(TextCorpusStored textCorpusStored, List<AnnotationInterpreter> givenAnnotations) throws ConversionException {
         this.textCorpusStored = textCorpusStored;
-        this.givenAnnotations=givenAnnotations;
+        this.givenAnnotations = givenAnnotations;
         this.toToken();
     }
 
@@ -108,7 +96,7 @@ public class TokenLevelInfoConversion {
             charOffsetToTokenIdMapper = new CharOffsetToTokenIdMapper(startIdTokenIdMapper, tokenIdToken, lifTokenIdTcfToken);
         }
     }
-    
+
     private Token findConnectedToken(Long start, Token token) throws ConversionException {
         if (token != null) {
             return token;

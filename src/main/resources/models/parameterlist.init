@@ -1,5 +1,6 @@
 http://vocab.lappsgrid.org/Token=TOKENS 
 http://vocab.lappsgrid.org/Token#pos=POSTAGS
+http://vocab.lappsgrid.org/Token#lemma=LEMMA
 http://vocab.lappsgrid.org/Sentence=SENTENCES
 http://vocab.lappsgrid.org/NamedEntity=NAMED_ENTITIES 
 http://vocab.lappsgrid.org/PhraseStructure=PARSING_CONSTITUENT 
