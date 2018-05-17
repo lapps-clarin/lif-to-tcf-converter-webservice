@@ -5,9 +5,9 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
-import de.tuebingen.uni.sfs.clarind.profiler.Values;
 import de.tuebingen.uni.sfs.lapps.core.impl.annotation.LifTokenPosLemmaStored;
 import static de.tuebingen.uni.sfs.lapps.lifconverter.constants.ConversionErrorMessage.MESSAGE_STARTID_TOKEN_CONNECTION_NOT_FOUND;
+import de.tuebingen.uni.sfs.lapps.lifconverter.constants.TcfConstants;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.utils.CharOffsetToTokenIdMapper;
 import de.tuebingen.uni.sfs.lapps.utils.AnnotationInterpreter;
@@ -61,7 +61,7 @@ public class ConvertTokenLevelInfo {
                         wordFlag = true;
                     }
                     if (lifToken.getPos() != null) {
-                        tcfPosLayer = textCorpusStored.createPosTagsLayer(Values.TCF_POSTAGS_TAGSET_PENNTB.getName());
+                        tcfPosLayer = textCorpusStored.createPosTagsLayer(TcfConstants.TCF_POSTAGS_TAGSET_PENNTB);
                         posFlag = true;
                     }
                     if (lifToken.getLemma() != null) {

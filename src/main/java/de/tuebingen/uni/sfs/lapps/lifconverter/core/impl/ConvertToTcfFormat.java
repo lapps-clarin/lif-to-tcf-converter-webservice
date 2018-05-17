@@ -5,7 +5,6 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
 
-import de.tuebingen.uni.sfs.clarind.profiler.Values;
 import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifDependencyParser;
 import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifMarkable;
 import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifReference;
@@ -53,6 +52,7 @@ import de.tuebingen.uni.sfs.lapps.core.impl.annotation.LifNameEntityLayerStored;
 import de.tuebingen.uni.sfs.lapps.core.impl.annotation.LifSentenceLayerStored;
 import de.tuebingen.uni.sfs.lapps.core.impl.layer.LifSingleLayer;
 import de.tuebingen.uni.sfs.lapps.lifconverter.constants.ConversionErrorMessage;
+import de.tuebingen.uni.sfs.lapps.lifconverter.constants.TcfConstants;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.TcfFormat;
 
 /**
@@ -114,10 +114,10 @@ public class ConvertToTcfFormat implements TcfFormat, ConversionErrorMessage {
     public String toTcfLanguage(String language) throws ConversionException {
         if (language != null) {
             if (language.equals("en")) {
-                return Values.LANG_EN.getName();
+                return TcfConstants.LANG_EN;
             }
         }
-        return Values.LANG_EN.getName();
+        return TcfConstants.LANG_EN;
     }
 
     public String toTcfText(String text) throws ConversionException {
@@ -229,7 +229,7 @@ public class ConvertToTcfFormat implements TcfFormat, ConversionErrorMessage {
         this.lifLayer = new LifSingleLayer(null, lifConstituentParser.getSentenceList());
         this.toTcfSentences();
 
-        ConstituentParsingLayer constituentParsingLayer = textCorpusStored.createConstituentParsingLayer(Values.TCF_PARSING_TAGSET_PENNTB.getName());
+        ConstituentParsingLayer constituentParsingLayer = textCorpusStored.createConstituentParsingLayer(TcfConstants.TCF_PARSING_TAGSET_PENNTB);
 
         try {
             for (Long parseIndex : lifConstituentParser.getParseIndexs()) {
@@ -258,7 +258,7 @@ public class ConvertToTcfFormat implements TcfFormat, ConversionErrorMessage {
         this.lifLayer = new LifSingleLayer(null, lifDependencyParser.getSentenceList());
         this.toTcfSentences();
 
-        DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(Values.TCF_DEPPARSING_TAGSET_STANFORD.getName(), false, true);
+        DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(TcfConstants.TCF_DEPPARSING_TAGSET_STANFORD, false, true);
         try {
             List<Dependency> tcfDependencyList = new ArrayList<Dependency>();
             for (Long parseIndex : lifDependencyParser.getParseIndexs()) {
