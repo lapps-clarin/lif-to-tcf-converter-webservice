@@ -171,6 +171,7 @@
                         "label": "Token",
                         "features": {
                             "pos": "NNP",
+                            "lemma": "Karen",
                             "word": "Karen"
                         }
                     },
@@ -182,6 +183,7 @@
                         "label": "Token",
                         "features": {
                             "pos": "VBZ",
+                            "lemma": "fly",
                             "word": "flies"
                         }
                     },
@@ -193,6 +195,7 @@
                         "label": "Token",
                         "features": {
                             "pos": "TO",
+                            "lemma": "to",
                             "word": "to"
                         }
                     },
@@ -204,6 +207,7 @@
                         "label": "Token",
                         "features": {
                             "pos": "NNP",
+                            "lemma": "New",
                             "word": "New"
                         }
                     },
@@ -215,6 +219,7 @@
                         "label": "Token",
                         "features": {
                             "pos": "NNP",
+                            "lemma": "York",
                             "word": "York"
                         }
                     },
@@ -226,6 +231,7 @@
                         "label": "Token",
                         "features": {
                             "pos": "CC",
+                            "lemma": "and",
                             "word": "and"
                         }
                     },
@@ -237,6 +243,7 @@
                         "label": "Token",
                         "features": {
                             "pos": "PRP",
+                            "lemma": "and",
                             "word": "she"
                         }
                     },
@@ -248,6 +255,7 @@
                         "label": "Token",
                         "features": {
                             "pos": "VBZ",
+                            "lemma": "is",
                             "word": "is"
                         }
                     },
@@ -259,6 +267,7 @@
                         "label": "Token",
                         "features": {
                             "pos": "JJ",
+                            "lemma": "happy",
                             "word": "happy"
                         }
                     },
@@ -270,6 +279,7 @@
                         "label": "Token",
                         "features": {
                             "pos": "IN",
+                            "lemma": "about",
                             "word": "about"
                         }
                     },
@@ -281,6 +291,7 @@
                         "label": "Token",
                         "features": {
                             "pos": "DT",
+                            "lemma": "that",
                             "word": "that"
                         }
                     },
@@ -292,6 +303,7 @@
                         "label": "Token",
                         "features": {
                             "pos": ".",
+                            "lemma": ".",
                             "word": "."
                         }
                     }

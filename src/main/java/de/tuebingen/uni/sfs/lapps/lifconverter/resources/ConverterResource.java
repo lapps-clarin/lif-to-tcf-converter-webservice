@@ -10,11 +10,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.TcfFormat;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.core.impl.profiler.LifFormatImpl;
 import eu.clarin.weblicht.wlfxb.io.WLFormatException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.FormatConverter;
+import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.LayerConverter;
 
 @Path("con")
 public class ConverterResource {

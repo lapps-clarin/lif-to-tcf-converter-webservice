@@ -6,6 +6,7 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.utils;
 
 import de.tuebingen.uni.sfs.lapps.core.impl.annotation.LifConstituent;
+import de.tuebingen.uni.sfs.lapps.lifconverter.constants.TcfConstants;
 import eu.clarin.weblicht.wlfxb.tc.api.Constituent;
 import eu.clarin.weblicht.wlfxb.tc.api.ConstituentParse;
 import eu.clarin.weblicht.wlfxb.tc.api.ConstituentParsingLayer;
@@ -23,21 +24,19 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
  */
 public class TcfConstituentsTreeBuild implements ConstituentParse {
 
-    public static final String CONSTITUENT_ROOT = "ROOT";
     private Stack<String> travelStack = new Stack<String>();
     private Map<String, Constituent> vistedNodes = new HashMap<String, Constituent>();
     private Map<String, LifConstituent> idConstituents = new HashMap<String, LifConstituent>();
-    private Map<String, Long> tokenIdStartIdMapper = new HashMap<String, Long>();
     private CharOffsetToTokenIdMapper charOffsetToTokenIdMapper = null;
     private ConstituentParsingLayer constituentParsingLayer = null;
     private Constituent rootConstituent = null;
 
-    public TcfConstituentsTreeBuild(LifConstituent rootNode, List<LifConstituent> constituentLifConstituents, Map<String, Long> tokenIdStartIdMapper,
-            CharOffsetToTokenIdMapper charOffsetToTokenIdMapper, ConstituentParsingLayer constituentParsingLayer) throws ConversionException {
-        this.tokenIdStartIdMapper = tokenIdStartIdMapper;
+    //In TCF constituent and terminal are stored in Constituent. Therefore, similar thing is done in LIF.
+    //The constituent list of lif  contains both constituent and terminals
+    public TcfConstituentsTreeBuild(LifConstituent rootNode, Map<String, LifConstituent> idConstituents, CharOffsetToTokenIdMapper charOffsetToTokenIdMapper, ConstituentParsingLayer constituentParsingLayer) throws ConversionException {
+        this.idConstituents = idConstituents;
         this.charOffsetToTokenIdMapper = charOffsetToTokenIdMapper;
         this.constituentParsingLayer = constituentParsingLayer;
-        this.setIdInitialConstituents(constituentLifConstituents);
         this.buildTree(rootNode);
     }
 
@@ -46,11 +45,11 @@ public class TcfConstituentsTreeBuild implements ConstituentParse {
             if (rootNode != null) {
                 this.exploreTree(rootNode);
             } else {
-                throw new NullPointerException("The root node null. The tree building failed!!");
+                throw new ConversionException("The root node null. The tree building failed!!");
             }
             this.setTreeRoot(rootNode);
-        } catch (ConversionException ex) {
-            throw new ConversionException("The constituent node null. The tree building failed!!");
+        } catch (Exception ex) {
+            throw new ConversionException(ex.getMessage());
         }
     }
 
@@ -76,12 +75,6 @@ public class TcfConstituentsTreeBuild implements ConstituentParse {
         LifConstituent node = this.idConstituents.get(nodeToVisit);
         for (String childId : node.getChildrenList()) {
             this.travelStack.push(childId);
-        }
-    }
-
-    private void setIdInitialConstituents(List<LifConstituent> constituentLifConstituents) {
-        for (LifConstituent lifConstituent : constituentLifConstituents) {
-            this.idConstituents.put(lifConstituent.getConstituentId(), lifConstituent);
         }
     }
 
@@ -122,8 +115,8 @@ public class TcfConstituentsTreeBuild implements ConstituentParse {
 
     private boolean childListIsOne(LifConstituent lifConstituent, String parentId) throws ConversionException {
         String childId = lifConstituent.getChildrenList().iterator().next();
-
-        if (tokenIdStartIdMapper.containsKey(childId)) {
+    
+        if (!this.idConstituents.containsKey(childId)) {
             Constituent terminal = this.setLexicon(parentId, childId);
             //Constituent terminalConstituent = setTerminalNode(parentId, terminal);
             this.vistedNodes.put(parentId, terminal);
@@ -143,17 +136,15 @@ public class TcfConstituentsTreeBuild implements ConstituentParse {
 
     private Constituent setLexicon(String parentId, String childId) throws ConversionException {
         LifConstituent parentLifConstituent = this.idConstituents.get(parentId);
-        Long startId = tokenIdStartIdMapper.get(childId);
-        Token token = charOffsetToTokenIdMapper.startIdToToken(startId);
-        return this.createTcfTerminal(parentLifConstituent.getCatFunction(), token);
+        return this.createTcfTerminal(parentLifConstituent.getCatFunction(), charOffsetToTokenIdMapper.getTcfToken(childId));
     }
 
-    private Constituent setTerminalNode(String parentId, Constituent terminal) {
+    /*private Constituent setTerminalNode(String parentId, Constituent terminal) {
         LifConstituent parentLifConstituent = this.idConstituents.get(parentId);
         List<Constituent> childConstituents = new ArrayList<Constituent>();
         childConstituents.add(terminal);
         return this.createTcfConstituent(parentLifConstituent.getCatFunction(), childConstituents);
-    }
+    }*/
 
     private Constituent setNonTerminalNode(String parentId, String childId) {
         LifConstituent parentLifConstituent = this.idConstituents.get(parentId);
@@ -188,7 +179,7 @@ public class TcfConstituentsTreeBuild implements ConstituentParse {
         if (this.vistedNodes.containsKey(rootNode.getConstituentId())) {
             if (this.vistedNodes.get(rootNode.getConstituentId()) != null) {
                 rootConstituent = this.vistedNodes.get(rootNode.getConstituentId());
-                if (rootConstituent.toString().contains(CONSTITUENT_ROOT)) {
+                if (rootConstituent.toString().contains(TcfConstants.CONSTITUENT_ROOT)) {
                     return rootConstituent;
                 } else {
                     throw new ConversionException("The root node in tcf is not build in Depth first search tree making");

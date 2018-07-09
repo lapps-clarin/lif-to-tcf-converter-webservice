@@ -19,7 +19,7 @@ import de.tuebingen.uni.sfs.lapps.core.api.profiler.LifFormat;
  */
 public interface FormatConverter {
 
-    public TcfFormat convertFormat(LifFormat lappsLifProfile) throws LifException, VocabularyMappingException, ConversionException, IOException, JsonValidityException;
+    public LayerConverter convertFormat(LifFormat lappsLifProfile) throws LifException, VocabularyMappingException, ConversionException, IOException, JsonValidityException;
 
     public void process(OutputStream os) throws ConversionException;
 }
