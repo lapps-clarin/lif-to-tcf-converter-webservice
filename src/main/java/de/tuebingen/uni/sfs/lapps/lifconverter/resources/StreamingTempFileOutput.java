@@ -1,5 +1,6 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.resources;
 
+import de.tuebingen.uni.sfs.lapps.lifconverter.utils.StreamingOutputExtended;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.StreamingOutput;
 import java.io.File;
@@ -11,11 +12,13 @@ import java.nio.channels.FileChannel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class StreamingTempFileOutput implements StreamingOutput {
+public class StreamingTempFileOutput implements StreamingOutputExtended {
 
     private final File file;
 
-    public StreamingTempFileOutput(File file) {this.file = file;}
+    public StreamingTempFileOutput(File file) {
+        this.file = file;
+    }
 
     @Override
     public void write(OutputStream out) throws IOException, WebApplicationException {
@@ -41,5 +44,9 @@ public class StreamingTempFileOutput implements StreamingOutput {
         }
     }
 
+    @Override
+    public File getFile() {
+        return file;
+    }
 
 }

@@ -15,6 +15,7 @@ import de.tuebingen.uni.sfs.lapps.core.impl.profiler.LifFormatImpl;
 import eu.clarin.weblicht.wlfxb.io.WLFormatException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.FormatConverter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.LayerConverter;
+import de.tuebingen.uni.sfs.lapps.lifconverter.utils.StreamingOutputExtended;
 
 @Path("con")
 public class ConverterResource {
@@ -53,7 +54,7 @@ public class ConverterResource {
     @POST
     @Consumes(APPLICATION_JSON)
     @Produces(TEXT_TCF_XML)
-    public StreamingOutput processWithStreaming(final InputStream input) {
+    public StreamingOutputExtended processWithStreaming(final InputStream input) {
 
         // prepare temporary file and temprary output stream for writing TCF
         OutputStream tempOutputData = null;
