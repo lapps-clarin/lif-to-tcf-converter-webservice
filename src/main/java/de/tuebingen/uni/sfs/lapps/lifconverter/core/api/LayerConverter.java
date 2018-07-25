@@ -42,7 +42,8 @@ public interface LayerConverter {
 
     public ReferencesLayer toTcfCoreferenceResolver(LifReferenceLayer lifRefererenceLayer) throws Exception;
 
-    public void toTcfTextSource(String fileString) throws Exception;
+    //closed temporarily..
+    //public void toTcfTextSource(String fileString) throws Exception;
 
     public TextCorpusStored getTextCorpusStored();
 

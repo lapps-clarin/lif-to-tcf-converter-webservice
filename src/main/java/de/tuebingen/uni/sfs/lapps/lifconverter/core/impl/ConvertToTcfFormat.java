@@ -46,6 +46,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.constants.ConversionErrorMessage;
 import de.tuebingen.uni.sfs.lapps.lifconverter.constants.TcfConstants;
 import static de.tuebingen.uni.sfs.lapps.lifconverter.constants.TcfConstants.ANAPHORIC;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.LayerConverter;
+import de.tuebingen.uni.sfs.lapps.lifconverter.utils.JsonPrettyPrint;
 import de.tuebingen.uni.sfs.lapps.utils.DuplicateChecker;
 import eu.clarin.weblicht.wlfxb.tc.api.LemmasLayer;
 import eu.clarin.weblicht.wlfxb.tc.api.PosTagsLayer;
@@ -64,8 +65,9 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
 
     public ConvertToTcfFormat(LifFormat lappsLifFormat) throws ConversionException, LifException, VocabularyMappingException {
         textCorpusStored = new TextCorpusStored(toTcfLanguage(lappsLifFormat.getLanguage()));
-        toTcfText(lappsLifFormat.getText());
-        toTcfTextSource(lappsLifFormat.getFileString());
+        if (lappsLifFormat.getText() != null) {
+            toTcfText(lappsLifFormat.getText());
+        }
         if (lappsLifFormat.getLifTokenLayer() != null) {
             toTcfToken(lappsLifFormat.getLifTokenLayer());
         }
@@ -84,8 +86,12 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
         if (lappsLifFormat.getLifRefererenceLayer() != null) {
             this.toTcfCoreferenceResolver(lappsLifFormat.getLifRefererenceLayer());
         }
+        /*if (lappsLifFormat.getFileString() != null) {
+            toTcfTextSource(lappsLifFormat.getFileString());
+        }*/
     }
 
+    @Override
     public String toTcfLanguage(String language) throws ConversionException {
         if (language != null) {
             if (language.equals("en")) {
@@ -95,6 +101,7 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
         return TcfConstants.LANG_EN;
     }
 
+    @Override
     public String toTcfText(String text) throws ConversionException {
         String modifiedText = text.replaceAll("\n", "");
         try {
@@ -106,11 +113,19 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
         return modifiedText;
     }
 
-    public void toTcfTextSource(String fileString) {
-        TextSourceLayer textSourceLayer = textCorpusStored.createTextSourceLayer();
-        textSourceLayer.addText(fileString);
-    }
+    /*@Override
+    public void toTcfTextSource(String fileString) throws ConversionException {
+        try {
+            fileString = JsonPrettyPrint.formatJsonString(fileString);
+            TextSourceLayer textSourceLayer = textCorpusStored.createTextSourceLayer();
+            textSourceLayer.addText(fileString);
+        } catch (Exception ex) {
+            Logger.getLogger(ConvertToTcfFormat.class.getName()).log(Level.SEVERE, null, ex);
+            throw new ConversionException(ex.getMessage());
+        }
+    }*/
 
+    @Override
     public TokensLayer toTcfToken(LifTokenLayer lifTokenLayer) throws ConversionException {
         TokensLayer tcfTokensLayer = null;
         PosTagsLayer tcfPosLayer = null;
@@ -151,11 +166,12 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
             }
         }
         if (lifTokenLayer.isTokenLayer()) {
-            charOffsetToTokenIdMapper = new CharOffsetToTokenIdMapper(lifTokenIdToTcfToken,lifStartIdToTcfToken);
+            charOffsetToTokenIdMapper = new CharOffsetToTokenIdMapper(lifTokenIdToTcfToken, lifStartIdToTcfToken);
         }
         return tcfTokensLayer;
     }
 
+    @Override
     public SentencesLayer toTcfSentences(LifSentenceLayer lifSentenceLayer) throws ConversionException, LifException {
         SentencesLayer sentencesLayer = textCorpusStored.createSentencesLayer();
 
@@ -175,8 +191,9 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
         return sentencesLayer;
     }
 
+    @Override
     public NamedEntitiesLayer toTcfNameEntity(LifNameEntityLayer lifNameEntityLayer) throws ConversionException, VocabularyMappingException, LifException {
-       NamedEntitiesLayer namedEntitiesLayer = textCorpusStored.createNamedEntitiesLayer("");
+        NamedEntitiesLayer namedEntitiesLayer = textCorpusStored.createNamedEntitiesLayer("");
 
         for (LifNameEntity lifNameEntity : lifNameEntityLayer.getNameEntityList()) {
             List<Token> tokens = charOffsetToTokenIdMapper.getTcfTokens(lifNameEntity.getStart(), lifNameEntity.getEnd());
@@ -193,6 +210,7 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
         return namedEntitiesLayer;
     }
 
+    @Override
     public ConstituentParsingLayer toTcfConstituentParser(LifConstituentParser lifConstituentParser) throws ConversionException, LifException {
         ConstituentParsingLayer constituentParsingLayer = textCorpusStored.createConstituentParsingLayer(TcfConstants.TCF_PARSING_TAGSET_PENNTB);
 
@@ -214,6 +232,7 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
         return constituentParsingLayer;
     }
 
+    @Override
     public DependencyParsingLayer toTcfDependencyParser(LifDependencyParser lifDependencyParser) throws ConversionException, LifException {
         DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(TcfConstants.TCF_DEPPARSING_TAGSET_STANFORD, false, true);
 
@@ -243,6 +262,7 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
         return dependencyParsingLayer;
     }
 
+    @Override
     public ReferencesLayer toTcfCoreferenceResolver(LifReferenceLayer lifRefererenceLayer) throws ConversionException, LifException {
         ReferencesLayer refsLayer = textCorpusStored.createReferencesLayer(null, null, null);
 
@@ -284,7 +304,6 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
                     }
 
                 }
-
             }
             refsLayer.addReferent(tcfReferences);
         } catch (Exception ex) {
@@ -294,6 +313,7 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
         return refsLayer;
     }
 
+    @Override
     public TextCorpusStored getTextCorpusStored() {
         return textCorpusStored;
     }
