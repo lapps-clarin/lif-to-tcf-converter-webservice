@@ -7,7 +7,6 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.utils;
 
 import static de.tuebingen.uni.sfs.lapps.constants.LifConstants.VIEW_ELEMENT_INDEX;
 import static de.tuebingen.uni.sfs.lapps.constants.LifConstants.VIEW_REFERENCE_INDICATOR;
-import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import eu.clarin.weblicht.wlfxb.tc.api.Token;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,22 +17,24 @@ import java.util.Map;
  *
  * @author Mohammad Fazleh Elahi
  */
-public class CharOffsetToTokenIdMapper {
+public class LifTokenToTcfTokenIdMapper {
 
     private static Map<String, Token> lifTokenIdToTcfToken = new HashMap<String, Token>();
     private static Map<Long, Token> lifStartIdToTcfToken = new HashMap<Long, Token>();
 
-    public CharOffsetToTokenIdMapper(Map<String, Token> lifTokenIdToTcfToken, Map<Long, Token> lifStartIdToTcfToken) {
+    public LifTokenToTcfTokenIdMapper(Map<String, Token> lifTokenIdToTcfToken, Map<Long, Token> lifStartIdToTcfToken) {
         this.lifTokenIdToTcfToken = lifTokenIdToTcfToken;
         this.lifStartIdToTcfToken = lifStartIdToTcfToken;
     }
 
-    public List<Token> getTcfTokens(Long start, Long end) throws ConversionException {
+    public List<Token> getTcfTokens(Long start, Long end) {
         List<Token> tokens = new ArrayList<Token>();
-        for (Long charId = start; charId < end; charId++) {
-            if (this.lifStartIdToTcfToken.containsKey(charId)) {
-                Token token = this.lifStartIdToTcfToken.get(charId);
-                tokens.add(token);
+        if (start != null && end != null) {
+            for (Long charId = start; charId < end; charId++) {
+                if (this.lifStartIdToTcfToken.containsKey(charId)) {
+                    Token token = this.lifStartIdToTcfToken.get(charId);
+                    tokens.add(token);
+                }
             }
         }
         return tokens;

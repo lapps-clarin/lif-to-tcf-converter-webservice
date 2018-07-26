@@ -122,7 +122,7 @@
         <tc:dependency depIDs="t_6" govIDs="t_7"></tc:dependency>
       </tc:parse>
     </tc:depparsing>
-    <tc:namedEntities type="">
+    <tc:namedEntities type="opennlp">
       <tc:entity class="PERSON" tokenIDs="t_0"></tc:entity>
       <tc:entity class="LOCATION" tokenIDs="t_3 t_4"></tc:entity>
     </tc:namedEntities>

@@ -92,7 +92,7 @@
         <tc:dependency func="prep" depIDs="t_2" govIDs="t_1"></tc:dependency>
       </tc:parse>
     </tc:depparsing>
-    <tc:namedEntities type="">
+    <tc:namedEntities type="opennlp">
       <tc:entity class="LOCATION" tokenIDs="t_3"></tc:entity>
       <tc:entity class="LOCATION" tokenIDs="t_4"></tc:entity>
     </tc:namedEntities>

@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import de.tuebingen.uni.sfs.lapps.lifconverter.utils.CharOffsetToTokenIdMapper;
+import de.tuebingen.uni.sfs.lapps.lifconverter.utils.LifTokenToTcfTokenIdMapper;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import eu.clarin.weblicht.wlfxb.tc.api.Reference;
 import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
@@ -45,6 +45,7 @@ import de.tuebingen.uni.sfs.lapps.core.api.profiler.LifFormat;
 import de.tuebingen.uni.sfs.lapps.lifconverter.constants.ConversionErrorMessage;
 import de.tuebingen.uni.sfs.lapps.lifconverter.constants.TcfConstants;
 import static de.tuebingen.uni.sfs.lapps.lifconverter.constants.TcfConstants.ANAPHORIC;
+import static de.tuebingen.uni.sfs.lapps.lifconverter.constants.TcfConstants.TCF_NAMED_ENTITIES_TYPE_OPENNLP;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.LayerConverter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.utils.JsonPrettyPrint;
 import de.tuebingen.uni.sfs.lapps.utils.DuplicateChecker;
@@ -59,9 +60,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessage {
 
     private TextCorpusStored textCorpusStored = null;
-    private CharOffsetToTokenIdMapper charOffsetToTokenIdMapper = null;
-    private Map<String, Long> tokenIdStartIdMapper = new HashMap<String, Long>();
-    private Map<String, Token> tokenIdTokenMapper = new HashMap<String, Token>();
+    private LifTokenToTcfTokenIdMapper lifTokenToTcfTokenIdMapper = null;
 
     public ConvertToTcfFormat(LifFormat lappsLifFormat) throws ConversionException, LifException, VocabularyMappingException {
         textCorpusStored = new TextCorpusStored(toTcfLanguage(lappsLifFormat.getLanguage()));
@@ -124,7 +123,6 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
             throw new ConversionException(ex.getMessage());
         }
     }*/
-
     @Override
     public TokensLayer toTcfToken(LifTokenLayer lifTokenLayer) throws ConversionException {
         TokensLayer tcfTokensLayer = null;
@@ -166,7 +164,7 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
             }
         }
         if (lifTokenLayer.isTokenLayer()) {
-            charOffsetToTokenIdMapper = new CharOffsetToTokenIdMapper(lifTokenIdToTcfToken, lifStartIdToTcfToken);
+            lifTokenToTcfTokenIdMapper = new LifTokenToTcfTokenIdMapper(lifTokenIdToTcfToken, lifStartIdToTcfToken);
         }
         return tcfTokensLayer;
     }
@@ -178,11 +176,15 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
         if (textCorpusStored.getTokensLayer() != null) {
             for (AnnotationInterpreter lifSentence : lifSentenceLayer.getSentenceList()) {
                 List<Token> sentenceTokens = new ArrayList<Token>();
-                List<Token> tokens = charOffsetToTokenIdMapper.getTcfTokens(lifSentence.getStart(), lifSentence.getEnd());
-                for (Token token : tokens) {
-                    sentenceTokens.add(token);
+                List<Token> tokens = lifTokenToTcfTokenIdMapper.getTcfTokens(lifSentence.getStart(), lifSentence.getEnd());
+                if (tokens.isEmpty()) {
+                    throw new ConversionException(MESSAGE_SENTENCE_BOUNDERY_NOT_GIVEN);
+                } else {
+                    for (Token token : tokens) {
+                        sentenceTokens.add(token);
+                    }
+                    sentencesLayer.addSentence(sentenceTokens);
                 }
-                sentencesLayer.addSentence(sentenceTokens);
             }
         } else {
             throw new ConversionException(MESSAGE_TOKEN_LAYER_REQUIRED_FOR_SENTENCE_LAYER);
@@ -193,10 +195,10 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
 
     @Override
     public NamedEntitiesLayer toTcfNameEntity(LifNameEntityLayer lifNameEntityLayer) throws ConversionException, VocabularyMappingException, LifException {
-        NamedEntitiesLayer namedEntitiesLayer = textCorpusStored.createNamedEntitiesLayer("");
+        NamedEntitiesLayer namedEntitiesLayer = textCorpusStored.createNamedEntitiesLayer(TCF_NAMED_ENTITIES_TYPE_OPENNLP);
 
         for (LifNameEntity lifNameEntity : lifNameEntityLayer.getNameEntityList()) {
-            List<Token> tokens = charOffsetToTokenIdMapper.getTcfTokens(lifNameEntity.getStart(), lifNameEntity.getEnd());
+            List<Token> tokens = lifTokenToTcfTokenIdMapper.getTcfTokens(lifNameEntity.getStart(), lifNameEntity.getEnd());
             CopyOnWriteArrayList<Token> tokenList = new CopyOnWriteArrayList<Token>(tokens);
             if (!tokenList.isEmpty()) {
                 String nameEntityKey = lifNameEntity.getCategory();
@@ -218,7 +220,7 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
             for (Long parseIndex : lifConstituentParser.getParseIndexs()) {
                 ConstituentParse tcfTreeBuild = new TcfConstituentsTreeBuild(lifConstituentParser.getRoot(parseIndex),
                         lifConstituentParser.getConstituentEntities(parseIndex),
-                        charOffsetToTokenIdMapper,
+                        lifTokenToTcfTokenIdMapper,
                         constituentParsingLayer);
                 Constituent tcfRoot = tcfTreeBuild.getRoot();
                 constituentParsingLayer.addParse(tcfRoot);
@@ -242,12 +244,12 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
                 for (DependencyEntityInfo dependencyEntity : lifDependencyParser.getDependencyEntities(parseIndex)) {
                     Token govonor = null, dependent = null;
                     if (dependencyEntity.getGovIDs() != null && dependencyEntity.getDepIDs() != null) {
-                        govonor = this.charOffsetToTokenIdMapper.getTcfToken(dependencyEntity.getGovIDs());
-                        dependent = this.charOffsetToTokenIdMapper.getTcfToken(dependencyEntity.getDepIDs());
+                        govonor = this.lifTokenToTcfTokenIdMapper.getTcfToken(dependencyEntity.getGovIDs());
+                        dependent = this.lifTokenToTcfTokenIdMapper.getTcfToken(dependencyEntity.getDepIDs());
                         Dependency dependency = dependencyParsingLayer.createDependency(dependencyEntity.getFunc(), dependent, govonor);
                         tcfDependencyList.add(dependency);
                     } else if (dependencyEntity.getDepIDs() != null) {
-                        dependent = this.charOffsetToTokenIdMapper.getTcfToken(dependencyEntity.getDepIDs());
+                        dependent = this.lifTokenToTcfTokenIdMapper.getTcfToken(dependencyEntity.getDepIDs());
                         Dependency dependency = dependencyParsingLayer.createDependency(dependencyEntity.getFunc(), dependent);
                         tcfDependencyList.add(dependency);
                     }
@@ -269,7 +271,7 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
         try {
             Map<String, Reference> markIdReference = new HashMap<String, Reference>();
             List<Reference> tcfReferences = new ArrayList<Reference>();
-            Map<String, Token> lifTokenIdToken = charOffsetToTokenIdMapper.getLifTokenIdTcfToken();
+            Map<String, Token> lifTokenIdToken = lifTokenToTcfTokenIdMapper.getLifTokenIdTcfToken();
             for (String lifMarkableId : lifRefererenceLayer.getMarkableAnnotations().keySet()) {
                 LifMarkable lifMarkable = lifRefererenceLayer.getMarkableAnnotations().get(lifMarkableId);
                 List<String> lifTokenIds = lifMarkable.getTargets();

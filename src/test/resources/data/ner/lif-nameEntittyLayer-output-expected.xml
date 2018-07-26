@@ -18,7 +18,7 @@
       <tc:token ID="t_10">that</tc:token>
       <tc:token ID="t_11">.</tc:token>
     </tc:tokens>
-    <tc:namedEntities type="">
+    <tc:namedEntities type="opennlp">
       <tc:entity class="LOCATION" tokenIDs="t_3"></tc:entity>
       <tc:entity class="LOCATION" tokenIDs="t_4"></tc:entity>
     </tc:namedEntities>

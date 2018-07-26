@@ -27,13 +27,13 @@ public class TcfConstituentsTreeBuild implements ConstituentParse {
     private Stack<String> travelStack = new Stack<String>();
     private Map<String, Constituent> vistedNodes = new HashMap<String, Constituent>();
     private Map<String, LifConstituent> idConstituents = new HashMap<String, LifConstituent>();
-    private CharOffsetToTokenIdMapper charOffsetToTokenIdMapper = null;
+    private LifTokenToTcfTokenIdMapper charOffsetToTokenIdMapper = null;
     private ConstituentParsingLayer constituentParsingLayer = null;
     private Constituent rootConstituent = null;
 
     //In TCF constituent and terminal are stored in Constituent. Therefore, similar thing is done in LIF.
     //The constituent list of lif  contains both constituent and terminals
-    public TcfConstituentsTreeBuild(LifConstituent rootNode, Map<String, LifConstituent> idConstituents, CharOffsetToTokenIdMapper charOffsetToTokenIdMapper, ConstituentParsingLayer constituentParsingLayer) throws ConversionException {
+    public TcfConstituentsTreeBuild(LifConstituent rootNode, Map<String, LifConstituent> idConstituents, LifTokenToTcfTokenIdMapper charOffsetToTokenIdMapper, ConstituentParsingLayer constituentParsingLayer) throws ConversionException {
         this.idConstituents = idConstituents;
         this.charOffsetToTokenIdMapper = charOffsetToTokenIdMapper;
         this.constituentParsingLayer = constituentParsingLayer;

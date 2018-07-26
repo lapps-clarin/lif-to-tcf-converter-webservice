@@ -6,14 +6,8 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.core;
 
 import org.junit.Test;
-import de.tuebingen.uni.sfs.lapps.lifconverter.resources.ConverterResource;
 import de.tuebingen.uni.sfs.lapps.lifconverter.tests.utils.LifToTcfConversionAssertUtils;
-import de.tuebingen.uni.sfs.lapps.lifconverter.utils.StreamingOutputExtended;
-import static de.tuebingen.uni.sfs.lapps.lifconverter.tests.utils.LifToTcfConversionAssertUtils.assertEqualXml;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
-
 /**
  *
  * @author Mohammad Fazleh Elahi

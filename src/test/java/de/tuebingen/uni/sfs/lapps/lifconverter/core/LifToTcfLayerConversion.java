@@ -5,24 +5,18 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.core;
 
-import de.tuebingen.uni.sfs.lapps.lifconverter.resources.ConverterResource;
 import de.tuebingen.uni.sfs.lapps.lifconverter.tests.utils.LifToTcfConversionAssertUtils;
-import de.tuebingen.uni.sfs.lapps.lifconverter.utils.StreamingOutputExtended;
-import de.tuebingen.uni.sfs.lapps.lifconverter.tests.utils.LifToTcfConversionAssertUtils;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
-import javax.xml.parsers.ParserConfigurationException;
 import org.junit.Test;
-import org.xml.sax.SAXException;
 
 /**
  *
  * @author Mohammad Fazleh Elahi
  */
 public class LifToTcfLayerConversion {
+    
+    private String TEXT_LAYER_LIF_INPUT = "/data/text/lif-textLayer.json";
+    private String TEXT_LAYER_TCF_EXPECTED_OUTPUT = "/data/text/lif-textLayer-output-expected.xml";
 
     private String TOKEN_LAYER_LIF_INPUT = "/data/tokens/lif-tokenLayer.json";
     private String TOKEN_LAYER_TCF_EXPECTED_OUTPUT = "/data/tokens/lif-tokenLayer-output-expected.xml";
@@ -49,6 +43,17 @@ public class LifToTcfLayerConversion {
     private String CORFERENCE_LAYER_TCF_EXPECTED_OUTPUT = "/data/cor/lif-corferenceLayer-output-expected.xml";
 
     public LifToTcfLayerConversion() {
+    }
+
+    /**
+     * Test of lif to tcf toText layer conversion
+     */
+    @Test
+    public void testLayerConversion_whenTextLayer() throws Exception {
+        System.out.println("testLayerConversion_whenTokenLayer");
+        InputStream input = this.getClass().getResourceAsStream(TEXT_LAYER_LIF_INPUT);
+        InputStream expectedOutput = this.getClass().getResourceAsStream(TEXT_LAYER_TCF_EXPECTED_OUTPUT);
+        LifToTcfConversionAssertUtils.lifToTcfAssertEqual(input, expectedOutput);
     }
 
     /**
