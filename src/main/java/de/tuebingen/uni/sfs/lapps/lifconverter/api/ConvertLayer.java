@@ -5,12 +5,12 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.api;
 
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifConstituentParser;
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifDependencyParser;
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifNameEntityLayer;
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifReferenceLayer;
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifSentenceLayer;
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifTokenLayer;
+import de.tuebingen.uni.sfs.lapps.core.api.LifConstituentParser;
+import de.tuebingen.uni.sfs.lapps.core.api.LifDependencyParser;
+import de.tuebingen.uni.sfs.lapps.core.api.LifNameEntityLayer;
+import de.tuebingen.uni.sfs.lapps.core.api.LifReferenceLayer;
+import de.tuebingen.uni.sfs.lapps.core.api.LifSentenceLayer;
+import de.tuebingen.uni.sfs.lapps.core.api.LifTokenLayer;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import eu.clarin.weblicht.wlfxb.tc.api.ConstituentParsingLayer;
 import eu.clarin.weblicht.wlfxb.tc.api.DependencyParsingLayer;
@@ -24,7 +24,7 @@ import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusStored;
  *
  * @author Mohammad Fazleh Elahi
  */
-public interface LayerConverter {
+public interface ConvertLayer {
 
     public String toTcfText(String text) throws ConversionException;
 

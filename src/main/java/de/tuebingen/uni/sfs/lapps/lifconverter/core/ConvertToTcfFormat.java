@@ -5,10 +5,10 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.core;
 
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifDependencyParser;
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifMarkable;
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifReference;
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifReferenceLayer;
+import de.tuebingen.uni.sfs.lapps.core.api.LifDependencyParser;
+import de.tuebingen.uni.sfs.lapps.core.api.LifMarkable;
+import de.tuebingen.uni.sfs.lapps.core.api.LifReference;
+import de.tuebingen.uni.sfs.lapps.core.api.LifReferenceLayer;
 import de.tuebingen.uni.sfs.lapps.utils.AnnotationInterpreter;
 import de.tuebingen.uni.sfs.lapps.utils.DependencyEntityInfo;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
@@ -35,29 +35,29 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import eu.clarin.weblicht.wlfxb.tc.api.Reference;
 import eu.clarin.weblicht.wlfxb.tc.api.ReferencesLayer;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifConstituentParser;
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifNameEntity;
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifNameEntityLayer;
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifSentenceLayer;
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifTokenLayer;
-import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifTokenPosLemma;
-import de.tuebingen.uni.sfs.lapps.core.api.profiler.LifFormat;
-import de.tuebingen.uni.sfs.lapps.lifconverter.api.ConversionErrorMessage;
+import de.tuebingen.uni.sfs.lapps.core.api.LifConstituentParser;
+import de.tuebingen.uni.sfs.lapps.core.api.LifNameEntity;
+import de.tuebingen.uni.sfs.lapps.core.api.LifNameEntityLayer;
+import de.tuebingen.uni.sfs.lapps.core.api.LifSentenceLayer;
+import de.tuebingen.uni.sfs.lapps.core.api.LifTokenLayer;
+import de.tuebingen.uni.sfs.lapps.core.api.LifTokenPosLemma;
+import de.tuebingen.uni.sfs.lapps.core.profiler.LifFormat;
 import de.tuebingen.uni.sfs.lapps.lifconverter.api.TcfConstants;
 import static de.tuebingen.uni.sfs.lapps.lifconverter.api.TcfConstants.ANAPHORIC;
 import static de.tuebingen.uni.sfs.lapps.lifconverter.api.TcfConstants.TCF_NAMED_ENTITIES_TYPE_OPENNLP;
-import de.tuebingen.uni.sfs.lapps.lifconverter.api.LayerConverter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.utils.JsonPrettyPrint;
 import de.tuebingen.uni.sfs.lapps.utils.DuplicateChecker;
 import eu.clarin.weblicht.wlfxb.tc.api.LemmasLayer;
 import eu.clarin.weblicht.wlfxb.tc.api.PosTagsLayer;
 import java.util.concurrent.CopyOnWriteArrayList;
+import de.tuebingen.uni.sfs.lapps.lifconverter.api.ErrorMessage;
+import de.tuebingen.uni.sfs.lapps.lifconverter.api.ConvertLayer;
 
 /**
  *
  * @author felahi
  */
-public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessage {
+public class ConvertToTcfFormat implements ConvertLayer, ErrorMessage {
 
     private TextCorpusStored textCorpusStored = null;
     private LifTokenToTcfTokenIdMapper lifTokenToTcfTokenIdMapper = null;

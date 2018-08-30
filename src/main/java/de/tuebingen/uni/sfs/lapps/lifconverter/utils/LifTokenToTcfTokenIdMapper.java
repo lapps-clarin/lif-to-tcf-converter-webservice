@@ -5,8 +5,8 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.utils;
 
-import static de.tuebingen.uni.sfs.lapps.constants.LifConstants.VIEW_ELEMENT_INDEX;
-import static de.tuebingen.uni.sfs.lapps.constants.LifConstants.VIEW_REFERENCE_INDICATOR;
+import static de.tuebingen.uni.sfs.lapps.core.api.LifConstants.VIEW_ELEMENT_INDEX;
+import static de.tuebingen.uni.sfs.lapps.core.api.LifConstants.VIEW_REFERENCE_INDICATOR;
 import eu.clarin.weblicht.wlfxb.tc.api.Token;
 import java.util.ArrayList;
 import java.util.HashMap;

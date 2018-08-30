@@ -5,13 +5,13 @@
  */
 package de.tuebingen.uni.sfs.lapps.lifconverter.api;
 
-import de.tuebingen.uni.sfs.lapps.constants.LifErrorMessage;
+import de.tuebingen.uni.sfs.lapps.core.api.LifErrorMessage;
 
 /**
  *
  * @author fazlehelahi
  */
-public interface ConversionErrorMessage extends LifErrorMessage{
+public interface ErrorMessage extends LifErrorMessage{
     public static final String MESSAGE_CONVERSION_FAILED = "LIF to TCF CONVERSION ERROR: LIF to TCF conversion failed!!";
     public static final String MESSAGE_VOCABULARY_CONVERSION_FAILED = "LIF to TCF CONVERSION ERROR: Vocabulary conversion is failed!!";
     public static final String MESSAGE_LANGUAGE_CONVERSION_FAILED = "LIF to TCF CONVERSION ERROR: Language conversion failed from LIF to TCF failed!!";

@@ -8,6 +8,7 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.api;
 /**
  *
  * @author Mohammad Fazleh Elahi
+ *  These constants are in chainer. Instead of adding the whole chainer library we define the constants here.
  */
 public class TcfConstants {
 

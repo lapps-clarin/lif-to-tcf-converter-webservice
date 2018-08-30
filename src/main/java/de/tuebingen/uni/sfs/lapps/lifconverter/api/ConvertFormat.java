@@ -11,15 +11,15 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
 import java.io.IOException;
 import java.io.OutputStream;
-import de.tuebingen.uni.sfs.lapps.core.api.profiler.LifFormat;
+import de.tuebingen.uni.sfs.lapps.core.profiler.LifFormat;
 
 /**
  *
  * @author Mohammad Fazleh Elahi
  */
-public interface FormatConverter {
+public interface ConvertFormat {
 
-    public LayerConverter convertFormat(LifFormat lappsLifProfile) throws LifException, VocabularyMappingException, ConversionException, IOException, JsonValidityException;
+    public ConvertLayer convertFormat(LifFormat lappsLifProfile) throws LifException, VocabularyMappingException, ConversionException, IOException, JsonValidityException;
 
     public void process(OutputStream os) throws ConversionException;
 }

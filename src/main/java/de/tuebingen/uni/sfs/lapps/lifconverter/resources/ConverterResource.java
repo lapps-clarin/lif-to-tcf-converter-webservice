@@ -1,6 +1,6 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.resources;
 
-import de.tuebingen.uni.sfs.lapps.core.impl.annotation.LifDependencyParserStored;
+import de.tuebingen.uni.sfs.lapps.core.impl.LifDependencyParserStored;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -11,10 +11,10 @@ import java.util.logging.Logger;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.core.impl.profiler.LifFormatImpl;
+import de.tuebingen.uni.sfs.lapps.core.profiler.LifFormatImpl;
 import eu.clarin.weblicht.wlfxb.io.WLFormatException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.api.FormatConverter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.utils.StreamingOutputExtended;
+import de.tuebingen.uni.sfs.lapps.lifconverter.api.ConvertFormat;
 
 @Path("con")
 public class ConverterResource {
@@ -25,7 +25,7 @@ public class ConverterResource {
     private static final String TEMP_FILE_PREFIX = "ne-output-temp";
     private static final String TEMP_FILE_SUFFIX = ".xml";
 
-    private FormatConverter tool;
+    private ConvertFormat tool;
 
     public ConverterResource() {
         tool = new ConverterTool();
@@ -80,7 +80,7 @@ public class ConverterResource {
 
     }
 
-    private void process(InputStream input, OutputStream output, FormatConverter tool) {
+    private void process(InputStream input, OutputStream output, ConvertFormat tool) {
 
         try {
             LifFormatImpl lifFormat = new LifFormatImpl(input);
