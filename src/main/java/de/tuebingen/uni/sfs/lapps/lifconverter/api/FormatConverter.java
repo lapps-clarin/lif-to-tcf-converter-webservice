@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.core.api;
+package de.tuebingen.uni.sfs.lapps.lifconverter.api;
 
 import de.tuebingen.uni.sfs.lapps.exceptions.JsonValidityException;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;

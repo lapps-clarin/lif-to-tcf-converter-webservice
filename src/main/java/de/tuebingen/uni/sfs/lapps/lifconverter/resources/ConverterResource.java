@@ -1,10 +1,10 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.resources;
 
+import de.tuebingen.uni.sfs.lapps.core.impl.annotation.LifDependencyParserStored;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.StreamingOutput;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,8 +13,7 @@ import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.core.impl.profiler.LifFormatImpl;
 import eu.clarin.weblicht.wlfxb.io.WLFormatException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.FormatConverter;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.LayerConverter;
+import de.tuebingen.uni.sfs.lapps.lifconverter.api.FormatConverter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.utils.StreamingOutputExtended;
 
 @Path("con")
@@ -29,11 +28,7 @@ public class ConverterResource {
     private FormatConverter tool;
 
     public ConverterResource() {
-        try {
-            tool = new ConverterTool();
-        } catch (VocabularyMappingException ex) {
-            throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
-        }
+        tool = new ConverterTool();
     }
 
     @Path("bytes")
@@ -100,6 +95,7 @@ public class ConverterResource {
         } catch (WLFormatException ex) {
             throw new WebApplicationException(createResponse(ex, Response.Status.BAD_REQUEST));
         } catch (Exception ex) {
+            Logger.getLogger(LifDependencyParserStored.class.getName()).log(Level.SEVERE, null, ex);
             throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
         } finally {
             try {
@@ -123,7 +119,7 @@ public class ConverterResource {
         }
     }
 
- /* if exception message is provided, use it as it is;
+    /* if exception message is provided, use it as it is;
      * if exception message is null, use fall back message
      * (needs to be non-empty String in order to prevent
      * HTTP container generated html message) */

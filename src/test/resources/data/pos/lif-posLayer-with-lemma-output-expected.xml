@@ -12,10 +12,21 @@
       <tc:token ID="t_4">York</tc:token>
       <tc:token ID="t_5">.</tc:token>
     </tc:tokens>
-    <tc:namedEntities type="opennlp">
-      <tc:entity class="PERSON" tokenIDs="t_0"></tc:entity>
-      <tc:entity class="LOCATION" tokenIDs="t_3"></tc:entity>
-      <tc:entity class="LOCATION" tokenIDs="t_4"></tc:entity>
-    </tc:namedEntities>
+    <tc:lemmas>
+      <tc:lemma ID="l_0" tokenIDs="t_0">Karen</tc:lemma>
+      <tc:lemma ID="l_1" tokenIDs="t_1">flew</tc:lemma>
+      <tc:lemma ID="l_2" tokenIDs="t_2">to</tc:lemma>
+      <tc:lemma ID="l_3" tokenIDs="t_3">New</tc:lemma>
+      <tc:lemma ID="l_4" tokenIDs="t_4">York</tc:lemma>
+      <tc:lemma ID="l_5" tokenIDs="t_5">.</tc:lemma>
+    </tc:lemmas>
+    <tc:POStags tagset="penntb">
+      <tc:tag tokenIDs="t_0">NNP</tc:tag>
+      <tc:tag tokenIDs="t_1">VBD</tc:tag>
+      <tc:tag tokenIDs="t_2">TO</tc:tag>
+      <tc:tag tokenIDs="t_3">NNP</tc:tag>
+      <tc:tag tokenIDs="t_4">NNP</tc:tag>
+      <tc:tag tokenIDs="t_5">.</tc:tag>
+    </tc:POStags>
   </tc:TextCorpus>
 </D-Spin>

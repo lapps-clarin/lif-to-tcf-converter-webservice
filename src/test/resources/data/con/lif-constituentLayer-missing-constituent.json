@@ -4,7 +4,7 @@
         "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
         "metadata": {},
         "text": {
-            "@value": "Karen flew to New York.",
+            "@value": "Karen flew to New York.\n",
             "@language": "en"
         },
         "views": [{

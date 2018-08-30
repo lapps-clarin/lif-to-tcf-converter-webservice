@@ -12,10 +12,13 @@
       <tc:token ID="t_4">York</tc:token>
       <tc:token ID="t_5">.</tc:token>
     </tc:tokens>
-    <tc:namedEntities type="opennlp">
-      <tc:entity class="PERSON" tokenIDs="t_0"></tc:entity>
-      <tc:entity class="LOCATION" tokenIDs="t_3"></tc:entity>
-      <tc:entity class="LOCATION" tokenIDs="t_4"></tc:entity>
-    </tc:namedEntities>
+    <tc:POStags tagset="penntb">
+      <tc:tag tokenIDs="t_0">NNP</tc:tag>
+      <tc:tag tokenIDs="t_1">VBD</tc:tag>
+      <tc:tag tokenIDs="t_2">TO</tc:tag>
+      <tc:tag tokenIDs="t_3">NNP</tc:tag>
+      <tc:tag tokenIDs="t_4">NNP</tc:tag>
+      <tc:tag tokenIDs="t_5">.</tc:tag>
+    </tc:POStags>
   </tc:TextCorpus>
 </D-Spin>

@@ -9,6 +9,7 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.exceptions;
  *
  * @author felahi
  */
+@Deprecated
 public class VocabularyMappingException extends Exception{
 
   public VocabularyMappingException() {

@@ -80,12 +80,8 @@
                         }
                     }, {
                         "id": "ps_0",
-                        "start": 0,
-                        "end": 23,
                         "@type": "http://vocab.lappsgrid.org/PhraseStructure",
                         "features": {
-                            "sentence": "Karen flew to New York.",
-                            "penntree": "(ROOT [40.118]\n  (S [39.965]\n    (NP [12.050] (NNP Karen))\n    (VP [26.780] (VBD flew)\n      (PP [14.690] (TO to)\n        (NP [12.219] (NNP New) (NNP York))))\n    (. .)))\n",
                             "constituents": ["c_0_0", "c_0_1", "c_0_2", "c_0_3", "c_0_4", "c_0_5", "c_0_6", "c_0_7", "c_0_8", "c_0_9", "c_0_10", "c_0_11"]
                         }
                     }, {

@@ -11,15 +11,15 @@
                 "metadata": {
                     "contains": {
                         "http://vocab.lappsgrid.org/DependencyStructure": {
-                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.DependencyParser:2.0.4",
+                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.DependencyParser:2.0.2",
                             "type": "dependency-parser:stanford"
                         },
                         "http://vocab.lappsgrid.org/Dependency": {
-                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.DependencyParser:2.0.4",
+                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.DependencyParser:2.0.2",
                             "type": "dependency-parser:stanford"
                         },
                         "http://vocab.lappsgrid.org/Token": {
-                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.DependencyParser:2.0.4",
+                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.DependencyParser:2.0.2",
                             "type": "tokenizer:stanford"
                         }
                     }
@@ -31,19 +31,12 @@
                         "@type": "http://vocab.lappsgrid.org/DependencyStructure",
                         "features": {
                             "sentence": "Karen flew to New York.",
-                            "dependencies": ["dep_0_0", "dep_0_1", "dep_0_2", "dep_0_3", "dep_0_4"]
+                            "dependencies": ["dep_0_0", "dep_0_1", "dep_0_2", "dep_0_3"]
                         }
                     }, {
                         "id": "dep_0_0",
-                        "@type": "http://vocab.lappsgrid.org/Dependency",
-                        "label": "ROOT",
-                        "features": {
-                            "governor": "null",
-                            "dependent": "tk_0_1",
-                            "dependent_word": "flew"
-                        }
-                    }, {
-                        "id": "dep_0_1",
+                        "start": -1,
+                        "end": -1,
                         "@type": "http://vocab.lappsgrid.org/Dependency",
                         "label": "nn",
                         "features": {
@@ -53,7 +46,9 @@
                             "dependent_word": "New"
                         }
                     }, {
-                        "id": "dep_0_2",
+                        "id": "dep_0_1",
+                        "start": -1,
+                        "end": -1,
                         "@type": "http://vocab.lappsgrid.org/Dependency",
                         "label": "pobj",
                         "features": {
@@ -63,7 +58,9 @@
                             "dependent_word": "York"
                         }
                     }, {
-                        "id": "dep_0_3",
+                        "id": "dep_0_2",
+                        "start": -1,
+                        "end": -1,
                         "@type": "http://vocab.lappsgrid.org/Dependency",
                         "label": "nsubj",
                         "features": {
@@ -73,7 +70,9 @@
                             "dependent_word": "Karen"
                         }
                     }, {
-                        "id": "dep_0_4",
+                        "id": "dep_0_3",
+                        "start": -1,
+                        "end": -1,
                         "@type": "http://vocab.lappsgrid.org/Dependency",
                         "label": "prep",
                         "features": {

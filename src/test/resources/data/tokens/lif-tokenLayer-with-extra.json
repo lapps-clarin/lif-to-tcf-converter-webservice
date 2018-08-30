@@ -1,0 +1,108 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld#lif",
+    "payload": {
+        "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
+        "metadata": {},
+        "text": {
+            "@value": "Karen flew to New York.",
+            "@language": "en"
+        },
+        "views": [{
+                "id": "token-view",
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/Token": {
+                            "producer": "org.lappsgrid.converter.tcf.TCFConverter",
+                            "type": "token:fromTCF"
+                        },
+                        "http://vocab.lappsgrid.org/Token#morphology": {
+                            "producer": "org.lappsgrid.converter.tcf.TCFConverter",
+                            "type": "morph"
+                        }
+                    }
+                },
+                "annotations": [{
+                        "id": "t_0",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "Karen",
+                            "morphology": {
+                                "major word class": "noun",
+                                "word class": "np",
+                                "syntax": "np1",
+                                "number": "sg"
+                            }
+                        }
+                    }, {
+                        "id": "t_1",
+                        "start": 6,
+                        "end": 10,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "flew",
+                            "morphology": {
+                                "major word class": "verb",
+                                "word class": "v",
+                                "syntax": "vvd",
+                                "tense": "past"
+                            }
+                        }
+                    }, {
+                        "id": "t_2",
+                        "start": 11,
+                        "end": 13,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "to",
+                            "morphology": {
+                                "major word class": "adv_conj_pcl_prep",
+                                "word class": "pp",
+                                "syntax": "p"
+                            }
+                        }
+                    }, {
+                        "id": "t_3",
+                        "start": 14,
+                        "end": 17,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "New",
+                            "morphology": {
+                                "major word class": "adjective",
+                                "word class": "j",
+                                "syntax": "j"
+                            }
+                        }
+                    }, {
+                        "id": "t_4",
+                        "start": 18,
+                        "end": 22,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "York",
+                            "morphology": {
+                                "major word class": "noun",
+                                "word class": "np",
+                                "syntax": "np1",
+                                "number": "sg"
+                            }
+                        }
+                    }, {
+                        "id": "t_5",
+                        "start": 22,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": ".",
+                            "morphology": {
+                                "major word class": "punctuation",
+                                "word class": "pu",
+                                "syntax": "."
+                            }
+                        }
+                    }]
+            }]
+    }
+}

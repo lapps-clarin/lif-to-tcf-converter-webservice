@@ -1,0 +1,228 @@
+{
+    "discriminator": "http://vocab.lappsgrid.org/ns/media/jsonld#lif",
+    "payload": {
+        "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
+        "metadata": {},
+        "text": {
+            "@value": "Karen flew to New York.",
+            "@language": "en"
+        },
+        "views": [
+            {
+                "id": "token-view",
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/Token": {
+                            "producer": "org.lappsgrid.converter.tcf.TCFConverter",
+                            "type": "token:fromTCF"
+                        },
+                        "http://vocab.lappsgrid.org/Token#pos": {
+                            "producer": "org.lappsgrid.converter.tcf.TCFConverter",
+                            "type": "pos:fromTCF"
+                        }
+                    }
+                },
+                "annotations": [{
+                        "id": "t_0",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "Karen",
+                            "pos": "NNP"
+                        }
+                    }, {
+                        "id": "t_1",
+                        "start": 6,
+                        "end": 10,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "flew",
+                            "pos": "VBD"
+                        }
+                    }, {
+                        "id": "t_2",
+                        "start": 11,
+                        "end": 13,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "to",
+                            "pos": "TO"
+                        }
+                    }, {
+                        "id": "t_3",
+                        "start": 14,
+                        "end": 17,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "New",
+                            "pos": "NNP"
+                        }
+                    }, {
+                        "id": "t_4",
+                        "start": 18,
+                        "end": 22,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "York",
+                            "pos": "NNP"
+                        }
+                    }, {
+                        "id": "t_5",
+                        "start": 22,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": ".",
+                            "pos": "."
+                        }
+                    }]
+            }, 
+            {
+                "id": "sentence-view",
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/Sentence": {
+                            "producer": "org.lappsgrid.converter.tcf.TCFConverter",
+                            "type": "tcf:sentence"
+                        }
+                    }
+                },
+                "annotations": [{
+                        "id": "s_1",
+                        "start": 0,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Sentence",
+                        "label": "Sentence"
+                    }]
+            },  
+            {
+                "id": "dependency-view",
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/DependencyStructure": {
+                            "dependencySet": "penntb",
+                            "producer": "org.lappsgrid.converter.tcf.TCFConverter",
+                            "type": "dependency_structure:fromTCF"
+                        },
+                        "http://vocab.lappsgrid.org/Token": {
+                            "producer": "org.lappsgrid.converter.tcf.TCFConverter",
+                            "type": "token"
+                        },
+                        "http://vocab.lappsgrid.org/Dependency": {
+                            "producer": "org.lappsgrid.converter.tcf.TCFConverter",
+                            "type": "dependency:fromTCF"
+                        }
+                    }
+                },
+                "annotations": [{
+                        "id": "t_0",
+                        "start": 0,
+                        "end": 5,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "Karen",
+                            "pos": "NNP"
+                        }
+                    }, {
+                        "id": "t_1",
+                        "start": 6,
+                        "end": 10,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "flew",
+                            "pos": "VBD"
+                        }
+                    }, {
+                        "id": "t_2",
+                        "start": 11,
+                        "end": 13,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "to",
+                            "pos": "TO"
+                        }
+                    }, {
+                        "id": "t_3",
+                        "start": 14,
+                        "end": 17,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "New",
+                            "pos": "NNP"
+                        }
+                    }, {
+                        "id": "t_4",
+                        "start": 18,
+                        "end": 22,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": "York",
+                            "pos": "NNP"
+                        }
+                    }, {
+                        "id": "t_5",
+                        "start": 22,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Token",
+                        "features": {
+                            "word": ".",
+                            "pos": "."
+                        }
+                    }, {
+                        "id": "dep_0_0",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "nn",
+                        "features": {
+                            "dependent": "t_3",
+                            "governor": "t_4"
+                        }
+                    }, {
+                        "id": "dep_0_1",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "pobj",
+                        "features": {
+                            "dependent": "t_4",
+                            "governor": "t_2"
+                        }
+                    }, {
+                        "id": "dep_0_2",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "ROOT",
+                        "features": {
+                            "dependent": "t_1"
+                        }
+                    }, {
+                        "id": "dep_0_3",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "punct",
+                        "features": {
+                            "dependent": "t_5",
+                            "governor": "t_1"
+                        }
+                    }, {
+                        "id": "dep_0_4",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "prep",
+                        "features": {
+                            "dependent": "t_2",
+                            "governor": "t_1"
+                        }
+                    }, {
+                        "id": "dep_0_5",
+                        "@type": "http://vocab.lappsgrid.org/Dependency",
+                        "label": "nsubj",
+                        "features": {
+                            "dependent": "t_0",
+                            "governor": "t_1"
+                        }
+                    }, {
+                        "id": "depstr_0",
+                        "@type": "http://vocab.lappsgrid.org/DependencyStructure",
+                        "features": {
+                            "dependencies": ["dep_0_0", "dep_0_1", "dep_0_2", "dep_0_3", "dep_0_4", "dep_0_5"]
+                        }
+                    }]
+            }]
+    }
+}

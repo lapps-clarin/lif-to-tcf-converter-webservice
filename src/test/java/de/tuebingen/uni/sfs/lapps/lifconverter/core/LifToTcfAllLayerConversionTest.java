@@ -8,11 +8,13 @@ package de.tuebingen.uni.sfs.lapps.lifconverter.core;
 import org.junit.Test;
 import de.tuebingen.uni.sfs.lapps.lifconverter.tests.utils.LifToTcfConversionAssertUtils;
 import java.io.InputStream;
+import org.junit.Ignore;
+
 /**
  *
  * @author Mohammad Fazleh Elahi
  */
-public class LifToTcfConversionTest {
+public class LifToTcfAllLayerConversionTest {
 
     private String SINGLE_VIEW_SINGLE_LAYER_EXAMPLE = "/data/all/tool/karen-all.json";
     private String SINGLE_VIEW_SINGLE_LAYER_EXAMPLE_EXPECTED_OUTPUT = "/data/all/tool/karen-all-output-expected.xml";
@@ -22,6 +24,9 @@ public class LifToTcfConversionTest {
 
     private String VIEW_REFERENCE_EXAMPLE = "/data/all/ref/lif-viewref.json";
     private String VIEW_REFERENCE_EXPECTED_OUTPUT = "/data/all/ref/lif-viewref-output-expected.xml";
+
+    private String VIEW_REFERENCE_TEST_EXAMPLE = "/data/all/ref/lif-viewref-test.json";
+    private String VIEW_REFERENCE_EXPECTED_TEST_OUTPUT = "/data/all/ref/lif-viewref-output-expected.xml";
 
     /**
      * Test of all layer scattered in different views in lif
@@ -46,11 +51,20 @@ public class LifToTcfConversionTest {
     /**
      * Test of one layer refer other view in lif
      */
-    @Test
+    @Ignore
     public void test_whenOneViewReferOtherView() throws Exception {
         InputStream input = this.getClass().getResourceAsStream(VIEW_REFERENCE_EXAMPLE);
         InputStream expectedOutput = this.getClass().getResourceAsStream(VIEW_REFERENCE_EXPECTED_OUTPUT);
         LifToTcfConversionAssertUtils.lifToTcfAssertEqual(input, expectedOutput);
+    }
+
+    /**
+     * Test of all layer scattered in different views in lif
+     */
+    @Ignore
+    public void test_whenSingleViewReferSingleLayertEST() throws Exception {
+        InputStream input = this.getClass().getResourceAsStream(VIEW_REFERENCE_TEST_EXAMPLE);
+        LifToTcfConversionAssertUtils.lifToTcf(input);
     }
 
 }

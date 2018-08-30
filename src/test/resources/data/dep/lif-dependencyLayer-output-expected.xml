@@ -12,6 +12,9 @@
       <tc:token ID="t_4">York</tc:token>
       <tc:token ID="t_5">.</tc:token>
     </tc:tokens>
+    <tc:sentences>
+      <tc:sentence tokenIDs="t_0 t_1 t_2 t_3 t_4 t_5"></tc:sentence>
+    </tc:sentences>
     <tc:POStags tagset="penntb">
       <tc:tag tokenIDs="t_0">NNP</tc:tag>
       <tc:tag tokenIDs="t_1">VBD</tc:tag>
@@ -22,6 +25,7 @@
     </tc:POStags>
     <tc:depparsing tagset="stanford" multigovs="false" emptytoks="true">
       <tc:parse>
+        <tc:dependency func="ROOT" depIDs="t_1"></tc:dependency>
         <tc:dependency func="nn" depIDs="t_3" govIDs="t_4"></tc:dependency>
         <tc:dependency func="pobj" depIDs="t_4" govIDs="t_2"></tc:dependency>
         <tc:dependency func="nsubj" depIDs="t_0" govIDs="t_1"></tc:dependency>

@@ -12,12 +12,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.List;
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -32,9 +27,16 @@ import org.xml.sax.SAXException;
 
 /**
  *
- * @author felahi
+ * @author Mohammad Fazleh Elahi
  */
 public class LifToTcfConversionAssertUtils {
+    
+    public static void lifToTcf(InputStream input) throws IOException, ParserConfigurationException, FileNotFoundException, SAXException {
+        ConverterResource instance = new ConverterResource();
+        StreamingOutputExtended streamingOutput = instance.processWithStreaming(input);
+        File outputFile = streamingOutput.getFile();
+        InputStream result = new FileInputStream(outputFile);
+    }
 
     public static void lifToTcfAssertEqual(InputStream input, InputStream expectedOutput) throws IOException, ParserConfigurationException, FileNotFoundException, SAXException {
         ConverterResource instance = new ConverterResource();

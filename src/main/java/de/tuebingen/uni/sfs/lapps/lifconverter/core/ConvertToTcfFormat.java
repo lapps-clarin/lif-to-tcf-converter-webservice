@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.tuebingen.uni.sfs.lapps.lifconverter.core.impl;
+package de.tuebingen.uni.sfs.lapps.lifconverter.core;
 
 import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifDependencyParser;
 import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifMarkable;
@@ -42,11 +42,11 @@ import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifSentenceLayer;
 import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifTokenLayer;
 import de.tuebingen.uni.sfs.lapps.core.api.annotations.LifTokenPosLemma;
 import de.tuebingen.uni.sfs.lapps.core.api.profiler.LifFormat;
-import de.tuebingen.uni.sfs.lapps.lifconverter.constants.ConversionErrorMessage;
-import de.tuebingen.uni.sfs.lapps.lifconverter.constants.TcfConstants;
-import static de.tuebingen.uni.sfs.lapps.lifconverter.constants.TcfConstants.ANAPHORIC;
-import static de.tuebingen.uni.sfs.lapps.lifconverter.constants.TcfConstants.TCF_NAMED_ENTITIES_TYPE_OPENNLP;
-import de.tuebingen.uni.sfs.lapps.lifconverter.core.api.LayerConverter;
+import de.tuebingen.uni.sfs.lapps.lifconverter.api.ConversionErrorMessage;
+import de.tuebingen.uni.sfs.lapps.lifconverter.api.TcfConstants;
+import static de.tuebingen.uni.sfs.lapps.lifconverter.api.TcfConstants.ANAPHORIC;
+import static de.tuebingen.uni.sfs.lapps.lifconverter.api.TcfConstants.TCF_NAMED_ENTITIES_TYPE_OPENNLP;
+import de.tuebingen.uni.sfs.lapps.lifconverter.api.LayerConverter;
 import de.tuebingen.uni.sfs.lapps.lifconverter.utils.JsonPrettyPrint;
 import de.tuebingen.uni.sfs.lapps.utils.DuplicateChecker;
 import eu.clarin.weblicht.wlfxb.tc.api.LemmasLayer;
@@ -171,6 +171,11 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
 
     @Override
     public SentencesLayer toTcfSentences(LifSentenceLayer lifSentenceLayer) throws ConversionException, LifException {
+
+        if (textCorpusStored.getSentencesLayer() != null) {
+            return textCorpusStored.getSentencesLayer();
+        }
+
         SentencesLayer sentencesLayer = textCorpusStored.createSentencesLayer();
 
         if (textCorpusStored.getTokensLayer() != null) {
@@ -187,7 +192,7 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
                 }
             }
         } else {
-            throw new ConversionException(MESSAGE_TOKEN_LAYER_REQUIRED_FOR_SENTENCE_LAYER);
+            throw new ConversionException(MESSAGE_TOKEN_LAYER_REQUIRED);
         }
 
         return sentencesLayer;
@@ -197,17 +202,21 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
     public NamedEntitiesLayer toTcfNameEntity(LifNameEntityLayer lifNameEntityLayer) throws ConversionException, VocabularyMappingException, LifException {
         NamedEntitiesLayer namedEntitiesLayer = textCorpusStored.createNamedEntitiesLayer(TCF_NAMED_ENTITIES_TYPE_OPENNLP);
 
-        for (LifNameEntity lifNameEntity : lifNameEntityLayer.getNameEntityList()) {
-            List<Token> tokens = lifTokenToTcfTokenIdMapper.getTcfTokens(lifNameEntity.getStart(), lifNameEntity.getEnd());
-            CopyOnWriteArrayList<Token> tokenList = new CopyOnWriteArrayList<Token>(tokens);
-            if (!tokenList.isEmpty()) {
-                String nameEntityKey = lifNameEntity.getCategory();
-                if (tokenList.size() == 1) {
-                    namedEntitiesLayer.addEntity(nameEntityKey, tokenList.get(0));
-                } else {
-                    namedEntitiesLayer.addEntity(nameEntityKey, tokenList);
+        if (textCorpusStored.getTokensLayer() != null) {
+            for (LifNameEntity lifNameEntity : lifNameEntityLayer.getNameEntityList()) {
+                List<Token> tokens = lifTokenToTcfTokenIdMapper.getTcfTokens(lifNameEntity.getStart(), lifNameEntity.getEnd());
+                CopyOnWriteArrayList<Token> tokenList = new CopyOnWriteArrayList<Token>(tokens);
+                if (!tokenList.isEmpty()) {
+                    String nameEntityKey = lifNameEntity.getCategory();
+                    if (tokenList.size() == 1) {
+                        namedEntitiesLayer.addEntity(nameEntityKey, tokenList.get(0));
+                    } else {
+                        namedEntitiesLayer.addEntity(nameEntityKey, tokenList);
+                    }
                 }
             }
+        } else {
+            throw new ConversionException(MESSAGE_TOKEN_LAYER_REQUIRED);
         }
         return namedEntitiesLayer;
     }
@@ -215,6 +224,16 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
     @Override
     public ConstituentParsingLayer toTcfConstituentParser(LifConstituentParser lifConstituentParser) throws ConversionException, LifException {
         ConstituentParsingLayer constituentParsingLayer = textCorpusStored.createConstituentParsingLayer(TcfConstants.TCF_PARSING_TAGSET_PENNTB);
+
+        if (textCorpusStored.getSentencesLayer() != null) {
+            //do nothing
+        } else {
+            if (lifConstituentParser.getSentenceLayer() != null) {
+                toTcfSentences(lifConstituentParser.getSentenceLayer());
+            } else {
+                throw new ConversionException(MESSAGE_SENTENCE_LAYER_REQUIRED);
+            }
+        }
 
         try {
             for (Long parseIndex : lifConstituentParser.getParseIndexs()) {
@@ -227,16 +246,25 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
             }
 
         } catch (Exception ex) {
-            Logger.getLogger(ConvertToTcfFormat.class.getName()).log(Level.SEVERE, null, ex);
-            //throw new ConversionException(MESSAGE_CONSTITUENT_CONVERSION_FAILED);
             throw new ConversionException(ex.getMessage());
         }
+
         return constituentParsingLayer;
     }
 
     @Override
     public DependencyParsingLayer toTcfDependencyParser(LifDependencyParser lifDependencyParser) throws ConversionException, LifException {
         DependencyParsingLayer dependencyParsingLayer = textCorpusStored.createDependencyParsingLayer(TcfConstants.TCF_DEPPARSING_TAGSET_STANFORD, false, true);
+
+        if (textCorpusStored.getSentencesLayer() != null) {
+            //do nothing
+        } else {
+            if (lifDependencyParser.getSentenceLayer() != null) {
+                toTcfSentences(lifDependencyParser.getSentenceLayer());
+            } else {
+                throw new ConversionException(MESSAGE_SENTENCE_LAYER_REQUIRED);
+            }
+        }
 
         try {
             List<Dependency> tcfDependencyList = new ArrayList<Dependency>();
@@ -258,7 +286,6 @@ public class ConvertToTcfFormat implements LayerConverter, ConversionErrorMessag
                 dependencyParsingLayer.addParse(tcfDependencyList);
             }
         } catch (Exception ex) {
-            Logger.getLogger(ConvertToTcfFormat.class.getName()).log(Level.SEVERE, null, ex);
             throw new ConversionException(MESSAGE_DEPENDENCY_CONVERSION_FAILED);
         }
         return dependencyParsingLayer;

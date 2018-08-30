@@ -6,7 +6,7 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.utils;
 
 import de.tuebingen.uni.sfs.lapps.core.impl.annotation.LifConstituent;
-import de.tuebingen.uni.sfs.lapps.lifconverter.constants.TcfConstants;
+import de.tuebingen.uni.sfs.lapps.lifconverter.api.TcfConstants;
 import eu.clarin.weblicht.wlfxb.tc.api.Constituent;
 import eu.clarin.weblicht.wlfxb.tc.api.ConstituentParse;
 import eu.clarin.weblicht.wlfxb.tc.api.ConstituentParsingLayer;
@@ -35,6 +35,7 @@ public class TcfConstituentsTreeBuild implements ConstituentParse {
     //The constituent list of lif  contains both constituent and terminals
     public TcfConstituentsTreeBuild(LifConstituent rootNode, Map<String, LifConstituent> idConstituents, LifTokenToTcfTokenIdMapper charOffsetToTokenIdMapper, ConstituentParsingLayer constituentParsingLayer) throws ConversionException {
         this.idConstituents = idConstituents;
+        System.out.print(idConstituents.toString());
         this.charOffsetToTokenIdMapper = charOffsetToTokenIdMapper;
         this.constituentParsingLayer = constituentParsingLayer;
         this.buildTree(rootNode);
