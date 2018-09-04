@@ -15,7 +15,7 @@ import org.junit.Test;
  *
  * @author Mohammad Fazleh Elahi
  */
-public class LifToTcfNamedEntityLayerConversion {
+public class LifToTcfNamedEntityLayerConversionTest {
 
     private String NAMED_ENTITY_LAYER_LIF_INPUT = "/data/ner/lif-nameEntittyLayer.json";
     private String NAMED_ENTITY_LAYER_NO_TOKEN_LAYER_LIF_INPUT = "/data/ner/lif-nameEntittyLayer-no-tokenLayer.json";

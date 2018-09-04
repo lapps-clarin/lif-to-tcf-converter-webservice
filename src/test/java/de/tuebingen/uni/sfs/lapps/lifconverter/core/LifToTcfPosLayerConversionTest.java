@@ -13,7 +13,7 @@ import org.junit.Test;
  *
  * @author Mohammad Fazleh Elahi
  */
-public class LifToTcfPosLayerConversion {
+public class LifToTcfPosLayerConversionTest {
 
     private String POS_LAYER_LIF_INPUT = "/data/pos/lif-posLayer.json";
     private String POS_LAYER_TCF_EXPECTED_OUTPUT = "/data/pos/lif-posLayer-output-expected.xml";

@@ -15,7 +15,7 @@ import org.junit.Test;
  *
  * @author Mohammad Fazleh Elahi
  */
-public class LifToTcfSentenceLayerConversion {
+public class LifToTcfSentenceLayerConversionTest {
 
     private String SENTENCE_LAYER_LIF_INPUT = "/data/sen/lif-sentenceLayer.json";
     private String SENTENCE_LAYER_BEFORE_TOKEN_LAYERLIF_INPUT = "/data/sen/lif-sentenceLayer-before-tokenLayer.json";

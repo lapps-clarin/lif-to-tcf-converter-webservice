@@ -13,7 +13,7 @@ import org.junit.Test;
  *
  * @author Mohammad Fazleh Elahi
  */
-public class LifToTcfLemmaLayerConversion {
+public class LifToTcfLemmaLayerConversionTest {
 
     private String LEMMA_LAYER_LIF_INPUT = "/data/lem/lif-lemmaLayer.json";
     private String LEMMA_LAYER_TCF_EXPECTED_OUTPUT = "/data/lem/lif-lemmaLayer-output-expected.xml";

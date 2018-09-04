@@ -14,7 +14,7 @@ import org.junit.Test;
  *
  * @author Mohammad Fazleh Elahi
  */
-public class LifToTcfLayerCoreferenceConversion {
+public class LifToTcfLayerCoreferenceConversionTest {
 
     private String CORFERENCE_LAYER_LIF_INPUT = "/data/cor/lif-corferenceLayer.json";
     private String CORFERENCE_LAYER_TCF_EXPECTED_OUTPUT = "/data/cor/lif-corferenceLayer-output-expected.xml";

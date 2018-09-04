@@ -14,7 +14,7 @@ import org.junit.Test;
  *
  * @author Mohammad Fazleh Elahi
  */
-public class LifToTcfTokenLayerConversion {
+public class LifToTcfTokenLayerConversionTest {
 
     private String TOKEN_LAYER_LIF_INPUT = "/data/tokens/lif-tokenLayer.json";
     private String TOKEN_LAYER_TCF_EXPECTED_OUTPUT = "/data/tokens/lif-tokenLayer-output-expected.xml";

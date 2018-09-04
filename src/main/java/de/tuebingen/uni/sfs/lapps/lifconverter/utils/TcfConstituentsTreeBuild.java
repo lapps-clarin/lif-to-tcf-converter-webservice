@@ -30,12 +30,12 @@ public class TcfConstituentsTreeBuild implements ConstituentParse {
     private LifTokenToTcfTokenIdMapper charOffsetToTokenIdMapper = null;
     private ConstituentParsingLayer constituentParsingLayer = null;
     private Constituent rootConstituent = null;
+    private Integer searchLimit = 10000;
 
     //In TCF constituent and terminal are stored in Constituent. Therefore, similar thing is done in LIF.
     //The constituent list of lif  contains both constituent and terminals
     public TcfConstituentsTreeBuild(LifConstituent rootNode, Map<String, LifConstituent> idConstituents, LifTokenToTcfTokenIdMapper charOffsetToTokenIdMapper, ConstituentParsingLayer constituentParsingLayer) throws ConversionException {
         this.idConstituents = idConstituents;
-        System.out.print(idConstituents.toString());
         this.charOffsetToTokenIdMapper = charOffsetToTokenIdMapper;
         this.constituentParsingLayer = constituentParsingLayer;
         this.buildTree(rootNode);
@@ -57,7 +57,7 @@ public class TcfConstituentsTreeBuild implements ConstituentParse {
     private void exploreTree(LifConstituent rootNode) throws ConversionException {
         this.travelStack.push(rootNode.getConstituentId());
 
-        for (Integer index = 0; index < 50; index++) {
+        for (Integer index = 0; index < searchLimit; index++) {
             if (travelStack.isEmpty()) {
                 break;
             } else {
@@ -116,7 +116,7 @@ public class TcfConstituentsTreeBuild implements ConstituentParse {
 
     private boolean childListIsOne(LifConstituent lifConstituent, String parentId) throws ConversionException {
         String childId = lifConstituent.getChildrenList().iterator().next();
-    
+
         if (!this.idConstituents.containsKey(childId)) {
             Constituent terminal = this.setLexicon(parentId, childId);
             //Constituent terminalConstituent = setTerminalNode(parentId, terminal);
@@ -146,7 +146,6 @@ public class TcfConstituentsTreeBuild implements ConstituentParse {
         childConstituents.add(terminal);
         return this.createTcfConstituent(parentLifConstituent.getCatFunction(), childConstituents);
     }*/
-
     private Constituent setNonTerminalNode(String parentId, String childId) {
         LifConstituent parentLifConstituent = this.idConstituents.get(parentId);
         List<Constituent> childConstituents = getChildLists(childId);

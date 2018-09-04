@@ -14,7 +14,7 @@ import org.junit.Test;
  *
  * @author Mohammad Fazleh Elahi
  */
-public class LifToTcfTextLayerConversion {
+public class LifToTcfTextLayerConversionTest {
 
     private String TEXT_LAYER_LIF_INPUT = "/data/text/lif-textLayer.json";
     private String TEXT_LAYER_TCF_EXPECTED_OUTPUT = "/data/text/lif-textLayer-output-expected.xml";

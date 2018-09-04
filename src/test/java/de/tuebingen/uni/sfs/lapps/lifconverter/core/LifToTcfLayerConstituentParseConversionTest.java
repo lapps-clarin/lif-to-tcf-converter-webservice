@@ -15,13 +15,16 @@ import org.junit.Test;
  *
  * @author Mohammad Fazleh Elahi
  */
-public class LifToTcfLayerConstituentParseConversion {
+public class LifToTcfLayerConstituentParseConversionTest {
 
     private String CONSTITUENT_PARSE_LAYER_LIF_INPUT = "/data/con/lif-constituentLayer.json";
     private String CONSTITUENT_PARSE_LAYER_TCF_EXPECTED_OUTPUT = "/data/con/lif-constituentLayer-output-expected.xml";
 
     private String CONSTITUENT_PARSE_LAYER_LIF_WITHOUT_SENTENCE_INPUT = "/data/con/lif-constituentLayer-without-sentence.json";
     private String CONSTITUENT_PARSE_LAYER_LIF_WITH_SENTENCE_INPUT = "/data/con/lif-constituentLayer-with-sentence.json";
+
+    private String CONSTITUENT_PARSE_LAYER_LIF_PARAGRAPH_INPUT = "/data/con/lif-constituentLayer-paragraph.json";
+    private String CONSTITUENT_PARSE_LAYER_TCF_PARAGRAPH_EXPECTED_OUTPUT = "/data/con/lif-constituentLayer-paragraph-output-expected.xml";
 
     /**
      * Test of lif to tcf toConstituebt layer conversion. This test when all the
@@ -46,6 +49,19 @@ public class LifToTcfLayerConstituentParseConversion {
         System.out.println("testLayerConversion_whenConstituentParserLayer_WithSenetenceSeperate");
         InputStream input = this.getClass().getResourceAsStream(CONSTITUENT_PARSE_LAYER_LIF_WITH_SENTENCE_INPUT);
         InputStream expectedOutput = this.getClass().getResourceAsStream(CONSTITUENT_PARSE_LAYER_TCF_EXPECTED_OUTPUT);
+        LifToTcfConversionAssertUtils.lifToTcfAssertEqual(input, expectedOutput);
+    }
+
+    /**
+     * Test of lif to tcf toConstituebt layer conversion. This test when many
+     * sentences inside in phrase structure layer. This is test of parsing
+     * paragraph
+     */
+    @Test
+    public void testLayerConversion_whenConstituentParserLayer_WithParagraph() throws Exception {
+        System.out.println("testLayerConversion_whenConstituentParserLayer_WithParagraph");
+        InputStream input = this.getClass().getResourceAsStream(CONSTITUENT_PARSE_LAYER_LIF_PARAGRAPH_INPUT);
+        InputStream expectedOutput = this.getClass().getResourceAsStream(CONSTITUENT_PARSE_LAYER_TCF_PARAGRAPH_EXPECTED_OUTPUT);
         LifToTcfConversionAssertUtils.lifToTcfAssertEqual(input, expectedOutput);
     }
 
