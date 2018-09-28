@@ -13,7 +13,7 @@ import de.tuebingen.uni.sfs.lapps.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.exceptions.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.core.lifwrapper.profiler.LifFormatImpl;
 import eu.clarin.weblicht.wlfxb.io.WLFormatException;
-import de.tuebingen.uni.sfs.lapps.core.converter.api.ConvertFormat;
+import de.tuebingen.uni.sfs.lapps.core.converter.api.FormatConverter;
 
 @Path("con")
 public class ConverterResource {
@@ -24,7 +24,7 @@ public class ConverterResource {
     private static final String TEMP_FILE_PREFIX = "ne-output-temp";
     private static final String TEMP_FILE_SUFFIX = ".xml";
 
-    private ConvertFormat tool;
+    private FormatConverter tool;
 
     public ConverterResource() {
         tool = new ConverterTool();
@@ -79,12 +79,12 @@ public class ConverterResource {
 
     }
 
-    private void process(InputStream input, OutputStream output, ConvertFormat tool) {
+    private void process(InputStream input, OutputStream output, FormatConverter tool) {
 
         try {
             LifFormatImpl lifFormat = new LifFormatImpl(input);
-            tool.convertFormat(lifFormat);
-            tool.process(output);
+            tool.convertLifToTcf(lifFormat);
+            tool.write(output);
         } catch (LifException ex) {
             throw new WebApplicationException(createResponse(ex, Response.Status.BAD_REQUEST));
         } catch (VocabularyMappingException ex) {

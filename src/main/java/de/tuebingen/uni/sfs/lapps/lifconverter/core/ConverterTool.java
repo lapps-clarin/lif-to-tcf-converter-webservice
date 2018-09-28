@@ -1,6 +1,6 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.core;
 
-import de.tuebingen.uni.sfs.lapps.core.converter.impl.ConvertToTcfFormat;
+import de.tuebingen.uni.sfs.lapps.core.converter.impl.LayerConverterImpl;
 import de.tuebingen.uni.sfs.lapps.exceptions.JsonValidityException;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
 import de.tuebingen.uni.sfs.lapps.exceptions.ConversionException;
@@ -11,33 +11,40 @@ import eu.clarin.weblicht.wlfxb.xb.WLData;
 import java.io.IOException;
 import java.io.OutputStream;
 import de.tuebingen.uni.sfs.lapps.core.lifwrapper.profiler.LifFormat;
-import de.tuebingen.uni.sfs.lapps.core.converter.api.ConvertLayer;
-import de.tuebingen.uni.sfs.lapps.core.converter.api.ConvertFormat;
+import de.tuebingen.uni.sfs.lapps.core.converter.api.FormatConverter;
+import de.tuebingen.uni.sfs.lapps.core.converter.api.LayersConverter;
+import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusStored;
+import java.io.File;
 
-public class ConverterTool implements ConvertFormat {
+public class ConverterTool implements FormatConverter {
 
-    private ConvertLayer weblichtTcfProfile;
-    private LifFormat lappsLifProfile = null;
+    private TextCorpusStored tcfFormat;
     public static final String PARAMETER_PATH = "/models/parameterlist.init";
     public static final String VOCABULARY_PATH = "/models/annotationConversion.init";
 
-    public ConverterTool()  {
-        
+    public ConverterTool() {
+
     }
 
-    public synchronized ConvertLayer convertFormat(LifFormat lappsLifFormat) throws LifException, ConversionException, IOException, JsonValidityException, VocabularyMappingException {
-        weblichtTcfProfile = new ConvertToTcfFormat(lappsLifFormat);
-        return weblichtTcfProfile;
+    public synchronized TextCorpusStored convertLifToTcf(LifFormat lifFormat) throws LifException, ConversionException, IOException, JsonValidityException, VocabularyMappingException {
+        LayersConverter lifToTCFLayersConverter = new LayerConverterImpl(lifFormat);
+        tcfFormat = lifToTCFLayersConverter.getTextCorpusStored();
+        return tcfFormat;
     }
 
     @Override
-    public void process(OutputStream os) throws ConversionException {
-        WLData wlData = new WLData(weblichtTcfProfile.getTextCorpusStored());
+    public void write(OutputStream os) throws ConversionException {
+        WLData wlData = new WLData(tcfFormat);
         try {
             WLDObjector.write(wlData, os);
         } catch (WLFormatException ex) {
             throw new ConversionException(ex.getMessage());
         }
+    }
+
+    @Override
+    public File convertLifToTcf(File lifFile) throws LifException, VocabularyMappingException, ConversionException, IOException, JsonValidityException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
