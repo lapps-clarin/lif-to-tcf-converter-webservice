@@ -1,6 +1,6 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.resources;
 
-import de.tuebingen.uni.sfs.lapps.core.impl.LifDependencyParserStored;
+import de.tuebingen.uni.sfs.lapps.core.lifwrapper.impl.LifDependencyParserStored;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -9,12 +9,11 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
-import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.core.profiler.LifFormatImpl;
+import de.tuebingen.uni.sfs.lapps.exceptions.ConversionException;
+import de.tuebingen.uni.sfs.lapps.exceptions.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.core.lifwrapper.profiler.LifFormatImpl;
 import eu.clarin.weblicht.wlfxb.io.WLFormatException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.utils.StreamingOutputExtended;
-import de.tuebingen.uni.sfs.lapps.lifconverter.api.ConvertFormat;
+import de.tuebingen.uni.sfs.lapps.core.converter.api.ConvertFormat;
 
 @Path("con")
 public class ConverterResource {

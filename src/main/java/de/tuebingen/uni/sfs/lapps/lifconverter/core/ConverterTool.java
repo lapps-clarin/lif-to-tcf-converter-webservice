@@ -1,17 +1,18 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.core;
 
+import de.tuebingen.uni.sfs.lapps.core.converter.impl.ConvertToTcfFormat;
 import de.tuebingen.uni.sfs.lapps.exceptions.JsonValidityException;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.ConversionException;
-import de.tuebingen.uni.sfs.lapps.lifconverter.exceptions.VocabularyMappingException;
+import de.tuebingen.uni.sfs.lapps.exceptions.ConversionException;
+import de.tuebingen.uni.sfs.lapps.exceptions.VocabularyMappingException;
 import eu.clarin.weblicht.wlfxb.io.WLDObjector;
 import eu.clarin.weblicht.wlfxb.io.WLFormatException;
 import eu.clarin.weblicht.wlfxb.xb.WLData;
 import java.io.IOException;
 import java.io.OutputStream;
-import de.tuebingen.uni.sfs.lapps.core.profiler.LifFormat;
-import de.tuebingen.uni.sfs.lapps.lifconverter.api.ConvertLayer;
-import de.tuebingen.uni.sfs.lapps.lifconverter.api.ConvertFormat;
+import de.tuebingen.uni.sfs.lapps.core.lifwrapper.profiler.LifFormat;
+import de.tuebingen.uni.sfs.lapps.core.converter.api.ConvertLayer;
+import de.tuebingen.uni.sfs.lapps.core.converter.api.ConvertFormat;
 
 public class ConverterTool implements ConvertFormat {
 

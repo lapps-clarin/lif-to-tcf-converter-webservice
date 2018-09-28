@@ -6,7 +6,7 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.tests.utils;
 
 import de.tuebingen.uni.sfs.lapps.lifconverter.resources.ConverterResource;
-import de.tuebingen.uni.sfs.lapps.lifconverter.utils.StreamingOutputExtended;
+import de.tuebingen.uni.sfs.lapps.lifconverter.resources.StreamingOutputExtended;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
