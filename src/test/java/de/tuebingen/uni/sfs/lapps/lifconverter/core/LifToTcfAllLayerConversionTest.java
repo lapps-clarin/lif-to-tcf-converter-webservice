@@ -41,6 +41,7 @@ public class LifToTcfAllLayerConversionTest {
     /**
      * Test of single layer scattered in single view in lif
      */
+    //temporarily closed..//to do
     @Test
     public void test_whenSingleViewReferAllLayer() throws Exception {
         InputStream input = this.getClass().getResourceAsStream(SINGLE_VIEW_ALL_LAYERS_EXAMPLE);
