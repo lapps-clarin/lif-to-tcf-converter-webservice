@@ -4,7 +4,7 @@
         "@context": "http://vocab.lappsgrid.org/context-1.0.0.jsonld",
         "metadata": {},
         "text": {
-            "@value": "Karen flew to New York.\n",
+            "@value": "Karen flew to New York.",
             "@language": "en"
         },
         "views": [{
@@ -86,9 +86,17 @@
                         "features": {
                             "sentence": "Karen flew to New York.",
                             "penntree": "(ROOT [40.118]\n  (S [39.965]\n    (NP [12.050] (NNP Karen))\n    (VP [26.780] (VBD flew)\n      (PP [14.690] (TO to)\n        (NP [12.219] (NNP New) (NNP York))))\n    (. .)))\n",
-                            "constituents": ["c_0_1", "c_0_2", "c_0_3", "c_0_4", "c_0_5", "c_0_6", "c_0_7", "c_0_8", "c_0_9", "c_0_10", "c_0_11"]
+                            "constituents": ["c_0_0", "c_0_1", "c_0_2", "c_0_3", "c_0_4", "c_0_5", "c_0_6", "c_0_7", "c_0_8", "c_0_9", "c_0_10", "c_0_11"]
                         }
-                    },  {
+                    }, {
+                        "id": "c_0_0",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
+                        "label": "ROOT",
+                        "features": {
+                            "children": ["c_0_1"],
+                            "parent": null
+                        }
+                    }, {
                         "id": "c_0_1",
                         "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "S",
@@ -159,14 +167,6 @@
                         "features": {
                             "children": ["c_0_10", "c_0_11"],
                             "parent": "c_0_7"
-                        }
-                    }, {
-                        "id": "c_0_10",
-                        "@type": "http://vocab.lappsgrid.org/Constituent",
-                        "label": "NNP",
-                        "features": {
-                            "children": ["tk_0_3"],
-                            "parent": "c_0_9"
                         }
                     }, {
                         "id": "c_0_11",

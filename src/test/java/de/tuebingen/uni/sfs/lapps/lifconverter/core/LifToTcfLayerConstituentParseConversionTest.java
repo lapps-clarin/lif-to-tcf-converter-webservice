@@ -18,13 +18,16 @@ import org.junit.Test;
 public class LifToTcfLayerConstituentParseConversionTest {
 
     private String CONSTITUENT_PARSE_LAYER_LIF_INPUT = "/data/con/lif-constituentLayer.json";
+    private String CONSTITUENT_PARSE_LAYER_LIF_WITH_SENTENCELAYER_SEPERATE_INPUT = "/data/con/lif-constituentLayer-with-sentencelayer-seperate.json";
     private String CONSTITUENT_PARSE_LAYER_TCF_EXPECTED_OUTPUT = "/data/con/lif-constituentLayer-output-expected.xml";
 
-    private String CONSTITUENT_PARSE_LAYER_LIF_WITHOUT_SENTENCE_INPUT = "/data/con/lif-constituentLayer-without-sentence.json";
-    private String CONSTITUENT_PARSE_LAYER_LIF_WITH_SENTENCE_INPUT = "/data/con/lif-constituentLayer-with-sentence.json";
+    private String CONSTITUENT_PARSE_LAYER_LIF_MULTIPLE_SENTENCES_INPUT = "/data/con/lif-constituentLayer-paragraph.json";
+    private String CONSTITUENT_PARSE_LAYER_TCF_MULTIPLE_SENTENCES_EXPECTED_OUTPUT = "/data/con/lif-constituentLayer-paragraph-output-expected.xml";
 
-    private String CONSTITUENT_PARSE_LAYER_LIF_PARAGRAPH_INPUT = "/data/con/lif-constituentLayer-paragraph.json";
-    private String CONSTITUENT_PARSE_LAYER_TCF_PARAGRAPH_EXPECTED_OUTPUT = "/data/con/lif-constituentLayer-paragraph-output-expected.xml";
+    private String CONSTITUENT_PARSE_LAYER_LIF_WITHOUT_SENTENCE_INPUT = "/data/con/lif-constituentLayer-without-sentence.json";
+    private String CONSTITUENT_PARSE_LAYER_LIF_WITHOUT_ROOT_INPUT = "/data/con/lif-constituentLayer-without-root.json";
+    private String CONSTITUENT_PARSE_LAYER_LIF_WITHOUT_TOKENS_INPUT = "/data/con/lif-constituentLayer-without-tokens.json";
+    private String CONSTITUENT_PARSE_LAYER_LIF_MISSING_ANNOTATIONS_INPUT = "/data/con/lif-constituentLayer-without-annotation.json";
 
     /**
      * Test of lif to tcf toConstituebt layer conversion. This test when all the
@@ -47,7 +50,7 @@ public class LifToTcfLayerConstituentParseConversionTest {
     @Test
     public void testLayerConversion_whenConstituentParserLayer_WithSenetenceSeperate() throws Exception {
         System.out.println("testLayerConversion_whenConstituentParserLayer_WithSenetenceSeperate");
-        InputStream input = this.getClass().getResourceAsStream(CONSTITUENT_PARSE_LAYER_LIF_WITH_SENTENCE_INPUT);
+        InputStream input = this.getClass().getResourceAsStream(CONSTITUENT_PARSE_LAYER_LIF_WITH_SENTENCELAYER_SEPERATE_INPUT);
         InputStream expectedOutput = this.getClass().getResourceAsStream(CONSTITUENT_PARSE_LAYER_TCF_EXPECTED_OUTPUT);
         LifToTcfConversionAssertUtils.lifToTcfAssertEqual(input, expectedOutput);
     }
@@ -60,8 +63,8 @@ public class LifToTcfLayerConstituentParseConversionTest {
     @Test
     public void testLayerConversion_whenConstituentParserLayer_WithParagraph() throws Exception {
         System.out.println("testLayerConversion_whenConstituentParserLayer_WithParagraph");
-        InputStream input = this.getClass().getResourceAsStream(CONSTITUENT_PARSE_LAYER_LIF_PARAGRAPH_INPUT);
-        InputStream expectedOutput = this.getClass().getResourceAsStream(CONSTITUENT_PARSE_LAYER_TCF_PARAGRAPH_EXPECTED_OUTPUT);
+        InputStream input = this.getClass().getResourceAsStream(CONSTITUENT_PARSE_LAYER_LIF_MULTIPLE_SENTENCES_INPUT);
+        InputStream expectedOutput = this.getClass().getResourceAsStream(CONSTITUENT_PARSE_LAYER_TCF_MULTIPLE_SENTENCES_EXPECTED_OUTPUT);
         LifToTcfConversionAssertUtils.lifToTcfAssertEqual(input, expectedOutput);
     }
 
@@ -73,6 +76,39 @@ public class LifToTcfLayerConstituentParseConversionTest {
     public void testLayerConversion_whenConstituentParserLayer_WithoutSentence() throws Exception {
         System.out.println("testLayerConversion_whenConstituentParserLayer_WithoutSentence");
         InputStream input = this.getClass().getResourceAsStream(CONSTITUENT_PARSE_LAYER_LIF_WITHOUT_SENTENCE_INPUT);
+        LifToTcfConversionAssertUtils.lifToTcf(input);
+    }
+
+    /**
+     * Test of lif to tcf toConstituebt layer conversion. This is a test when
+     * root does not exist in lif. So a tcf tree building is failed.
+     */
+    @Test(expected = WebApplicationException.class)
+    public void testLayerConversion_whenConstituentParserLayer_WithoutRoot() throws Exception {
+        System.out.println("testLayerConversion_whenConstituentParserLayer_WithoutRoot");
+        InputStream input = this.getClass().getResourceAsStream(CONSTITUENT_PARSE_LAYER_LIF_WITHOUT_ROOT_INPUT);
+        LifToTcfConversionAssertUtils.lifToTcf(input);
+    }
+
+    /**
+     * Test of lif to tcf toConstituebt layer conversion. This is a test when
+     * token annotation missing in LIF.
+     */
+    @Test(expected = WebApplicationException.class)
+    public void testLayerConversion_whenConstituentParserLayer_WithoutToken() throws Exception {
+        System.out.println("testLayerConversion_whenConstituentParserLayer_MissingAnnotations");
+        InputStream input = this.getClass().getResourceAsStream(CONSTITUENT_PARSE_LAYER_LIF_WITHOUT_TOKENS_INPUT);
+        LifToTcfConversionAssertUtils.lifToTcf(input);
+    }
+
+    /**
+     * Test of lif to tcf toConstituebt layer conversion. This is a test when
+     * one ( or more) constituent annotation missing in LIF.
+     */
+    @Test(expected = WebApplicationException.class)
+    public void testLayerConversion_whenConstituentParserLayer_MissingAnnotation() throws Exception {
+        System.out.println("testLayerConversion_whenConstituentParserLayer_MissingAnnotations");
+        InputStream input = this.getClass().getResourceAsStream(CONSTITUENT_PARSE_LAYER_LIF_MISSING_ANNOTATIONS_INPUT);
         LifToTcfConversionAssertUtils.lifToTcf(input);
     }
 
