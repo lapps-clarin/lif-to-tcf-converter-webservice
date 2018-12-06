@@ -20,9 +20,12 @@ public class LifToTcfLayerDependencyParseConversionTest {
     private String DEPENDENCY_PARSE_LAYER_LIF_INPUT = "/data/dep/lif-dependencyLayer.json";
     private String DEPENDENCY_PARSE_LAYER_TCF_EXPECTED_OUTPUT = "/data/dep/lif-dependencyLayer-output-expected.xml";
 
+    private String DEPENDENCY_PARSE_LAYER_LIF_SENTENCE_LAYER_SEPERATE_INPUT = "/data/dep/lif-dependencyLayer-with-sentencelayer-seperate.json";
+    private String DEPENDENCY_PARSE_LAYER_TCF_SENTENCE_LAYER_SEPERATE_EXPECTED_OUTPUT = "/data/dep/lif-dependencyLayer-with-senetencelayer-seperate-output-expected.xml";
+
     private String DEPENDENCY_PARSE_LAYER_LIF_WITHOUT_SENTENCE_INPUT = "/data/dep/lif-dependencyLayer-without-sentence.json";
-    private String DEPENDENCY_PARSE_LAYER_LIF_WITH_SENTENCE_INPUT = "/data/dep/lif-dependencyLayer-with-sentence.json";
-    private String DEPENDENCY_PARSE_LAYER_TCF_WITH_SENTENCE_EXPECTED_OUTPUT = "/data/dep/lif-dependencyLayer-with-senetence-output-expected.xml";
+    // TO Do need to write a test of dependency structure without root
+    private String DEPENDENCY_PARSE_LAYER_LIF_WITHOUT_ROOT_INPUT = "/data/dep/lif-dependencyLayer-without-root.json";
 
     /**
      * Test of lif to tcf toDependency layer conversion. This is a test of
@@ -43,8 +46,8 @@ public class LifToTcfLayerDependencyParseConversionTest {
     @Test
     public void testLayerConversion_whenDependencyParserLayerr_WithSenetenceSeperate() throws Exception {
         System.out.println("testLayerConversion_whenDependencyParserLayerr__WithSenetenceSeperate");
-        InputStream input = this.getClass().getResourceAsStream(DEPENDENCY_PARSE_LAYER_LIF_WITH_SENTENCE_INPUT);
-        InputStream expectedOutput = this.getClass().getResourceAsStream(DEPENDENCY_PARSE_LAYER_TCF_WITH_SENTENCE_EXPECTED_OUTPUT);
+        InputStream input = this.getClass().getResourceAsStream(DEPENDENCY_PARSE_LAYER_LIF_SENTENCE_LAYER_SEPERATE_INPUT);
+        InputStream expectedOutput = this.getClass().getResourceAsStream(DEPENDENCY_PARSE_LAYER_TCF_SENTENCE_LAYER_SEPERATE_EXPECTED_OUTPUT);
         LifToTcfConversionAssertUtils.lifToTcfAssertEqual(input, expectedOutput);
     }
 

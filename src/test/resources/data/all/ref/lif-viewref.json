@@ -79,6 +79,28 @@
                     }]
             } , 
             {
+            	"id" :"v1",
+                "metadata": {
+                    "contains": {
+                        "http://vocab.lappsgrid.org/Sentence": {
+                            "producer": "edu.brandeis.cs.lappsgrid.stanford.corenlp.Splitter:2.0.4",
+                            "type": "splitter:stanford"
+                        }
+                    }
+                },
+                "annotations": [
+                    {
+                        "id": "s_0",
+                        "start": 0,
+                        "end": 23,
+                        "@type": "http://vocab.lappsgrid.org/Sentence",
+                        "features": {
+                            "sentence": "Karen flew to New York."
+                        }
+                    }
+                ]
+            },
+            {
             	"id" :"v4",
                 "metadata": {
                     "contains": {
@@ -193,6 +215,7 @@
                 },
                 "annotations": [{
                         "id": "c_0_0",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "ROOT",
                         "features": {
                             "parent": "null",
@@ -200,6 +223,7 @@
                         }
                     }, {
                         "id": "c_0_1",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "S",
                         "features": {
                             "parent": "c_0_0",
@@ -207,6 +231,7 @@
                         }
                     }, {
                         "id": "c_0_2",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "NP",
                         "features": {
                             "parent": "c_0_1",
@@ -214,6 +239,7 @@
                         }
                     }, {
                         "id": "c_0_3",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "VP",
                         "features": {
                             "parent": "c_0_1",
@@ -221,6 +247,7 @@
                         }
                     }, {
                         "id": "c_0_4",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": ".",
                         "features": {
                             "parent": "c_0_1",
@@ -228,6 +255,7 @@
                         }
                     }, {
                         "id": "c_0_5",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "NNP",
                         "features": {
                             "parent": "c_0_2",
@@ -235,6 +263,7 @@
                         }
                     }, {
                         "id": "c_0_6",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "VBD",
                         "features": {
                             "parent": "c_0_3",
@@ -242,6 +271,7 @@
                         }
                     }, {
                         "id": "c_0_7",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "PP",
                         "features": {
                             "parent": "c_0_3",
@@ -249,6 +279,7 @@
                         }
                     }, {
                         "id": "c_0_8",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": ".",
                         "features": {
                             "parent": "c_0_4",
@@ -256,6 +287,7 @@
                         }
                     }, {
                         "id": "c_0_9",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "NNP",
                         "features": {
                             "parent": "c_0_5",
@@ -263,6 +295,7 @@
                         }
                     }, {
                         "id": "c_0_10",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "VBD",
                         "features": {
                             "parent": "c_0_6",
@@ -270,6 +303,7 @@
                         }
                     }, {
                         "id": "c_0_11",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "TO",
                         "features": {
                             "parent": "c_0_7",
@@ -277,6 +311,7 @@
                         }
                     }, {
                         "id": "c_0_12",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "NP",
                         "features": {
                             "parent": "c_0_7",
@@ -284,6 +319,7 @@
                         }
                     }, {
                         "id": "c_0_13",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "TO",
                         "features": {
                             "parent": "c_0_11",
@@ -291,6 +327,7 @@
                         }
                     }, {
                         "id": "c_0_14",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "NNP",
                         "features": {
                             "parent": "c_0_12",
@@ -298,6 +335,7 @@
                         }
                     }, {
                         "id": "c_0_15",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "NNP",
                         "features": {
                             "parent": "c_0_12",
@@ -305,6 +343,7 @@
                         }
                     }, {
                         "id": "c_0_16",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "NNP",
                         "features": {
                             "parent": "c_0_14",
@@ -312,6 +351,7 @@
                         }
                     }, {
                         "id": "c_0_17",
+                        "@type": "http://vocab.lappsgrid.org/Constituent",
                         "label": "NNP",
                         "features": {
                             "parent": "c_0_15",

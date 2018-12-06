@@ -25,47 +25,35 @@ public class LifToTcfAllLayerConversionTest {
     private String VIEW_REFERENCE_EXAMPLE = "/data/all/ref/lif-viewref.json";
     private String VIEW_REFERENCE_EXPECTED_OUTPUT = "/data/all/ref/lif-viewref-output-expected.xml";
 
-    private String VIEW_REFERENCE_TEST_EXAMPLE = "/data/all/ref/lif-viewref-test.json";
-    private String VIEW_REFERENCE_EXPECTED_TEST_OUTPUT = "/data/all/ref/lif-viewref-output-expected.xml";
-
     /**
-     * Test of all layer scattered in different views in lif
+     * Test of all layer when layers are scattered in different views in lif
+     * document
      */
     @Test
-    public void test_whenSingleViewReferSingleLayer() throws Exception {
+    public void test_whenSingleViewSingleLayer_LifDocument() throws Exception {
         InputStream input = this.getClass().getResourceAsStream(SINGLE_VIEW_SINGLE_LAYER_EXAMPLE);
         InputStream expectedOutput = this.getClass().getResourceAsStream(SINGLE_VIEW_SINGLE_LAYER_EXAMPLE_EXPECTED_OUTPUT);
         LifToTcfConversionAssertUtils.lifToTcfAssertEqual(input, expectedOutput);
     }
 
     /**
-     * Test of single layer scattered in single view in lif
+     * Test of all layers when a single view contains all layers in lif document
      */
-    //temporarily closed..//to do
     @Test
-    public void test_whenSingleViewReferAllLayer() throws Exception {
+    public void test_whenSingleViewContainsAllLayer_LifDocument() throws Exception {
         InputStream input = this.getClass().getResourceAsStream(SINGLE_VIEW_ALL_LAYERS_EXAMPLE);
         InputStream expectedOutput = this.getClass().getResourceAsStream(SINGLE_VIEW_ALL_LAYERS_EXAMPLE_EXPECTED_OUTPUT);
         LifToTcfConversionAssertUtils.lifToTcfAssertEqual(input, expectedOutput);
     }
 
     /**
-     * Test of one layer refer other view in lif
+     * Test of all layers when one layer refer other view in lif document
      */
-    @Ignore
-    public void test_whenOneViewReferOtherView() throws Exception {
+    @Test
+    public void test_whenOneViewReferOtherView_LifDocument() throws Exception {
         InputStream input = this.getClass().getResourceAsStream(VIEW_REFERENCE_EXAMPLE);
         InputStream expectedOutput = this.getClass().getResourceAsStream(VIEW_REFERENCE_EXPECTED_OUTPUT);
         LifToTcfConversionAssertUtils.lifToTcfAssertEqual(input, expectedOutput);
-    }
-
-    /**
-     * Test of all layer scattered in different views in lif
-     */
-    @Ignore
-    public void test_whenSingleViewReferSingleLayertEST() throws Exception {
-        InputStream input = this.getClass().getResourceAsStream(VIEW_REFERENCE_TEST_EXAMPLE);
-        LifToTcfConversionAssertUtils.lifToTcf(input);
     }
 
 }
