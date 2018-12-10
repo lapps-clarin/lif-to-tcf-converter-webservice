@@ -263,8 +263,8 @@
           {
             "id": "c_0_0",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "ROOT",
             "features": {
-              "label": "ROOT",
               "children": [
                 "c_0_1"
               ],
@@ -274,8 +274,8 @@
           {
             "id": "c_0_1",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "S",
             "features": {
-              "label": "S",
               "children": [
                 "c_0_2",
                 "c_0_3",
@@ -287,8 +287,8 @@
           {
             "id": "c_0_2",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "NP",
             "features": {
-              "label": "NP",
               "children": [
                 "c_0_5"
               ],
@@ -298,8 +298,8 @@
           {
             "id": "c_0_3",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "VP",
             "features": {
-              "label": "VP",
               "children": [
                 "c_0_6",
                 "c_0_7"
@@ -310,8 +310,8 @@
           {
             "id": "c_0_4",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": ".",
             "features": {
-              "label": ".",
               "children": [
                 "tk_0_5"
               ],
@@ -321,8 +321,8 @@
           {
             "id": "c_0_5",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "NNP",
             "features": {
-              "label": "NNP",
               "children": [
                 "tk_0_0"
               ],
@@ -332,8 +332,8 @@
           {
             "id": "c_0_6",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "VBD",
             "features": {
-              "label": "VBD",
               "children": [
                 "tk_0_1"
               ],
@@ -343,8 +343,8 @@
           {
             "id": "c_0_7",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "PP",
             "features": {
-              "label": "PP",
               "children": [
                 "c_0_8",
                 "c_0_9"
@@ -355,8 +355,8 @@
           {
             "id": "c_0_8",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "TO",
             "features": {
-              "label": "TO",
               "children": [
                 "tk_0_2"
               ],
@@ -366,8 +366,8 @@
           {
             "id": "c_0_9",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "NP",
             "features": {
-              "label": "NP",
               "children": [
                 "c_0_10",
                 "c_0_11"
@@ -377,9 +377,9 @@
           },
           {
             "id": "c_0_10",
+            "label": "NNP",
             "@type": "http://vocab.lappsgrid.org/Constituent",
             "features": {
-              "label": "NNP",
               "children": [
                 "tk_0_3"
               ],
@@ -389,8 +389,8 @@
           {
             "id": "c_0_11",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "NNP",
             "features": {
-              "label": "NNP",
               "children": [
                 "tk_0_4"
               ],
@@ -427,8 +427,8 @@
           {
             "id": "c_1_0",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "ROOT",
             "features": {
-              "label": "ROOT",
               "children": [
                 "c_1_1"
               ],
@@ -438,8 +438,8 @@
           {
             "id": "c_1_1",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "S",
             "features": {
-              "label": "S",
               "children": [
                 "c_1_2",
                 "c_1_3",
@@ -451,8 +451,8 @@
           {
             "id": "c_1_2",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "NP",
             "features": {
-              "label": "NP",
               "children": [
                 "c_1_5"
               ],
@@ -462,8 +462,8 @@
           {
             "id": "c_1_3",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "VP",
             "features": {
-              "label": "VP",
               "children": [
                 "c_1_6",
                 "c_1_7"
@@ -474,8 +474,8 @@
           {
             "id": "c_1_4",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": ".",
             "features": {
-              "label": ".",
               "children": [
                 "tk_1_6"
               ],
@@ -485,8 +485,8 @@
           {
             "id": "c_1_5",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "PRP",
             "features": {
-              "label": "PRP",
               "children": [
                 "tk_1_0"
               ],
@@ -496,8 +496,8 @@
           {
             "id": "c_1_6",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "VBD",
             "features": {
-              "label": "VBD",
               "children": [
                 "tk_1_1"
               ],
@@ -507,8 +507,8 @@
           {
             "id": "c_1_7",
             "@type": "http://vocab.lappsgrid.org/Constituent",
-            "features": {
-              "label": "S",
+            "label": "S",
+            "features": { 
               "children": [
                 "c_1_8"
               ],
@@ -518,8 +518,8 @@
           {
             "id": "c_1_8",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "VP",
             "features": {
-              "label": "VP",
               "children": [
                 "c_1_9",
                 "c_1_10"
@@ -530,8 +530,8 @@
           {
             "id": "c_1_9",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "TO",
             "features": {
-              "label": "TO",
               "children": [
                 "tk_1_2"
               ],
@@ -541,8 +541,8 @@
           {
             "id": "c_1_10",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "VP",
             "features": {
-              "label": "VP",
               "children": [
                 "c_1_11",
                 "c_1_12"
@@ -553,8 +553,8 @@
           {
             "id": "c_1_11",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "VB",
             "features": {
-              "label": "VB",
               "children": [
                 "tk_1_3"
               ],
@@ -564,8 +564,8 @@
           {
             "id": "c_1_12",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "NP",
             "features": {
-              "label": "NP",
               "children": [
                 "c_1_13",
                 "c_1_14"
@@ -576,8 +576,8 @@
           {
             "id": "c_1_13",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "PRP$",
             "features": {
-              "label": "PRP$",
               "children": [
                 "tk_1_4"
               ],
@@ -587,8 +587,8 @@
           {
             "id": "c_1_14",
             "@type": "http://vocab.lappsgrid.org/Constituent",
+            "label": "NN",
             "features": {
-              "label": "NN",
               "children": [
                 "tk_1_5"
               ],
@@ -614,8 +614,8 @@
           {
             "id": "dep_0_0",
             "@type": "http://vocab.lappsgrid.org/Dependency",
+            "label": "ROOT",
             "features": {
-              "label": "ROOT",
               "governor": "null",
               "dependent": "tk_0_1",
               "dependent_word": "flew"
@@ -624,8 +624,8 @@
           {
             "id": "dep_0_1",
             "@type": "http://vocab.lappsgrid.org/Dependency",
+            "label": "nn",
             "features": {
-              "label": "nn",
               "governor": "tk_0_4",
               "governor_word": "York",
               "dependent": "tk_0_3",
@@ -635,8 +635,8 @@
           {
             "id": "dep_0_2",
             "@type": "http://vocab.lappsgrid.org/Dependency",
+            "label": "pobj",
             "features": {
-              "label": "pobj",
               "governor": "tk_0_2",
               "governor_word": "to",
               "dependent": "tk_0_4",
@@ -646,8 +646,8 @@
           {
             "id": "dep_0_3",
             "@type": "http://vocab.lappsgrid.org/Dependency",
+            "label": "nsubj",
             "features": {
-              "label": "nsubj",
               "governor": "tk_0_1",
               "governor_word": "flew",
               "dependent": "tk_0_0",
@@ -657,8 +657,8 @@
           {
             "id": "dep_0_4",
             "@type": "http://vocab.lappsgrid.org/Dependency",
+            "label": "prep",
             "features": {
-              "label": "prep",
               "governor": "tk_0_1",
               "governor_word": "flew",
               "dependent": "tk_0_2",
@@ -685,8 +685,8 @@
           {
             "id": "dep_1_0",
             "@type": "http://vocab.lappsgrid.org/Dependency",
+            "label": "ROOT",
             "features": {
-              "label": "ROOT",
               "governor": "null",
               "dependent": "tk_1_1",
               "dependent_word": "went"
@@ -695,8 +695,8 @@
           {
             "id": "dep_1_1",
             "@type": "http://vocab.lappsgrid.org/Dependency",
+            "label": "dobj",
             "features": {
-              "label": "dobj",
               "governor": "tk_1_3",
               "governor_word": "see",
               "dependent": "tk_1_5",
@@ -706,8 +706,8 @@
           {
             "id": "dep_1_2",
             "@type": "http://vocab.lappsgrid.org/Dependency",
+            "label": "aux",
             "features": {
-              "label": "aux",
               "governor": "tk_1_3",
               "governor_word": "see",
               "dependent": "tk_1_2",
@@ -717,8 +717,8 @@
           {
             "id": "dep_1_3",
             "@type": "http://vocab.lappsgrid.org/Dependency",
+            "label": "poss",
             "features": {
-              "label": "poss",
               "governor": "tk_1_5",
               "governor_word": "cousin",
               "dependent": "tk_1_4",
@@ -728,8 +728,8 @@
           {
             "id": "dep_1_4",
             "@type": "http://vocab.lappsgrid.org/Dependency",
+            "label": "xcomp",
             "features": {
-              "label": "xcomp",
               "governor": "tk_1_1",
               "governor_word": "went",
               "dependent": "tk_1_3",
@@ -739,8 +739,8 @@
           {
             "id": "dep_1_5",
             "@type": "http://vocab.lappsgrid.org/Dependency",
+            "label": "nsubj",
             "features": {
-              "label": "nsubj",
               "governor": "tk_1_1",
               "governor_word": "went",
               "dependent": "tk_1_0",

@@ -1,6 +1,6 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.resources;
 
-import de.tuebingen.uni.sfs.lapps.core.lifwrapper.impl.LifDependencyParserStored;
+import de.tuebingen.uni.sfs.lapps.core.lifwrapper.anno.impl.LifDependencyParserStored;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
 import de.tuebingen.uni.sfs.lapps.exceptions.ConversionException;
 import de.tuebingen.uni.sfs.lapps.exceptions.VocabularyMappingException;
-import de.tuebingen.uni.sfs.lapps.core.lifwrapper.profiler.LifFormatImpl;
+import de.tuebingen.uni.sfs.lapps.core.lifwrapper.profiler.impl.LifFormatImpl;
 import eu.clarin.weblicht.wlfxb.io.WLFormatException;
 import de.tuebingen.uni.sfs.lapps.core.converter.api.FormatConverter;
 

@@ -1,6 +1,6 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.core;
 
-import de.tuebingen.uni.sfs.lapps.core.converter.impl.LayerConverterImpl;
+import de.tuebingen.uni.sfs.lapps.core.converter.impl.LifToTcfAnnoLayerConverter;
 import de.tuebingen.uni.sfs.lapps.exceptions.JsonValidityException;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
 import de.tuebingen.uni.sfs.lapps.exceptions.ConversionException;
@@ -10,7 +10,7 @@ import eu.clarin.weblicht.wlfxb.io.WLFormatException;
 import eu.clarin.weblicht.wlfxb.xb.WLData;
 import java.io.IOException;
 import java.io.OutputStream;
-import de.tuebingen.uni.sfs.lapps.core.lifwrapper.profiler.LifFormat;
+import de.tuebingen.uni.sfs.lapps.core.lifwrapper.profiler.api.LifFormat;
 import de.tuebingen.uni.sfs.lapps.core.converter.api.FormatConverter;
 import de.tuebingen.uni.sfs.lapps.core.converter.api.LayersConverter;
 import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusStored;
@@ -27,7 +27,7 @@ public class ConverterTool implements FormatConverter {
     }
 
     public synchronized TextCorpusStored convertLifToTcf(LifFormat lifFormat) throws LifException, ConversionException, IOException, JsonValidityException, VocabularyMappingException {
-        LayersConverter lifToTCFLayersConverter = new LayerConverterImpl(lifFormat);
+        LayersConverter lifToTCFLayersConverter = new LifToTcfAnnoLayerConverter(lifFormat);
         tcfFormat = lifToTCFLayersConverter.getTextCorpusStored();
         return tcfFormat;
     }

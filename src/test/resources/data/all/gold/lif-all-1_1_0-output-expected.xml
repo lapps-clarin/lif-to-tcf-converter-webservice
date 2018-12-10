@@ -102,19 +102,19 @@
     </tc:parsing>
     <tc:depparsing tagset="stanford" multigovs="false" emptytoks="true">
       <tc:parse>
-        <tc:dependency depIDs="t_1"></tc:dependency>
-        <tc:dependency depIDs="t_3" govIDs="t_4"></tc:dependency>
-        <tc:dependency depIDs="t_4" govIDs="t_2"></tc:dependency>
-        <tc:dependency depIDs="t_0" govIDs="t_1"></tc:dependency>
-        <tc:dependency depIDs="t_2" govIDs="t_1"></tc:dependency>
+        <tc:dependency func="ROOT" depIDs="t_1"></tc:dependency>
+        <tc:dependency func="nn" depIDs="t_3" govIDs="t_4"></tc:dependency>
+        <tc:dependency func="pobj" depIDs="t_4" govIDs="t_2"></tc:dependency>
+        <tc:dependency func="nsubj" depIDs="t_0" govIDs="t_1"></tc:dependency>
+        <tc:dependency func="prep" depIDs="t_2" govIDs="t_1"></tc:dependency>
       </tc:parse>
       <tc:parse>
-        <tc:dependency depIDs="t_7"></tc:dependency>
-        <tc:dependency depIDs="t_11" govIDs="t_9"></tc:dependency>
-        <tc:dependency depIDs="t_8" govIDs="t_9"></tc:dependency>
-        <tc:dependency depIDs="t_10" govIDs="t_11"></tc:dependency>
-        <tc:dependency depIDs="t_9" govIDs="t_7"></tc:dependency>
-        <tc:dependency depIDs="t_6" govIDs="t_7"></tc:dependency>
+        <tc:dependency func="ROOT" depIDs="t_7"></tc:dependency>
+        <tc:dependency func="dobj" depIDs="t_11" govIDs="t_9"></tc:dependency>
+        <tc:dependency func="aux" depIDs="t_8" govIDs="t_9"></tc:dependency>
+        <tc:dependency func="poss" depIDs="t_10" govIDs="t_11"></tc:dependency>
+        <tc:dependency func="xcomp" depIDs="t_9" govIDs="t_7"></tc:dependency>
+        <tc:dependency func="nsubj" depIDs="t_6" govIDs="t_7"></tc:dependency>
       </tc:parse>
     </tc:depparsing>
     <tc:namedEntities type="opennlp">
