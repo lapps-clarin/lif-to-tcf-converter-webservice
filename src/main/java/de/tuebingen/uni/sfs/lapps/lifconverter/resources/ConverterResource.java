@@ -1,7 +1,5 @@
 package de.tuebingen.uni.sfs.lapps.lifconverter.resources;
 
-import de.tuebingen.uni.sfs.lapps.core.lifwrapper.anno.impl.LifDependencyParserStored;
-import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -9,10 +7,8 @@ import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import de.tuebingen.uni.sfs.lapps.lifconverter.core.ConverterTool;
-import de.tuebingen.uni.sfs.lapps.exceptions.ConversionException;
-import de.tuebingen.uni.sfs.lapps.exceptions.VocabularyMappingException;
 import de.tuebingen.uni.sfs.lapps.core.lifwrapper.profiler.impl.LifFormatImpl;
-import eu.clarin.weblicht.wlfxb.io.WLFormatException;
+
 import de.tuebingen.uni.sfs.lapps.core.converter.api.FormatConverter;
 
 @Path("con")
@@ -85,16 +81,7 @@ public class ConverterResource {
             LifFormatImpl lifFormat = new LifFormatImpl(input);
             tool.convertLifToTcf(lifFormat);
             tool.write(output);
-        } catch (LifException ex) {
-            throw new WebApplicationException(createResponse(ex, Response.Status.BAD_REQUEST));
-        } catch (VocabularyMappingException ex) {
-            throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
-        } catch (ConversionException ex) {
-            throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
-        } catch (WLFormatException ex) {
-            throw new WebApplicationException(createResponse(ex, Response.Status.BAD_REQUEST));
         } catch (Exception ex) {
-            Logger.getLogger(LifDependencyParserStored.class.getName()).log(Level.SEVERE, null, ex);
             throw new WebApplicationException(createResponse(ex, Response.Status.INTERNAL_SERVER_ERROR));
         } finally {
             try {

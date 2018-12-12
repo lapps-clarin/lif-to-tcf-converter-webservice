@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.tuebingen.uni.sfs.lapps</groupId>
-    <artifactId>service-lapps-converter</artifactId>
+    <artifactId>lif-to-tcf-converter-webservice</artifactId>
     <version>1.6-SNAPSHOT</version>
     <properties>
         <dropwizard.version>0.7.1</dropwizard.version>
@@ -76,7 +76,7 @@
         </dependency>
         <dependency>
             <groupId>de.tuebingen.uni.sfs.lapps</groupId>
-            <artifactId>lapps-lif-library</artifactId>
+            <artifactId>lif-to-tcf-converter-core</artifactId>
             <version>1.5-SNAPSHOT</version>
         </dependency>
        <dependency>
@@ -156,4 +156,5 @@
             </plugin>
         </plugins>
     </build>
+    <name>lif-to-tcf-converter-webservice</name>
 </project>
