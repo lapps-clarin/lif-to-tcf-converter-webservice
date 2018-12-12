@@ -13,13 +13,12 @@ is created.
 The converter is dependent on library lif-to-tcf-converter-core. 
 The library extracts annotation layer from a LIF from flat JSON and then converts it to TCF. 
 
-## Installing
-
-git clone the [lif-to-tcf-converter-core](https://github.com/lapps-clarin/lif-to-tcf-converter-core)
-
-git clone the [lif-to-tcf-converter-webservice](https://github.com/lapps-clarin/lif-to-tcf-converter-webservice.git)
 
 ## How To Run And Test
+
+git clone [lif-to-tcf-converter-core](https://github.com/lapps-clarin/lif-to-tcf-converter-core)
+
+git clone [lif-to-tcf-converter-webservice](https://github.com/lapps-clarin/lif-to-tcf-converter-webservice.git)
 
 Make a runnable jar
 ```
@@ -37,5 +36,9 @@ Once the application is started, it can be accessed using the following URL:
 http://localhost:8080/
 ```
 Following the instructions on the homepage, The home page contain an example how to test the service. 
+
+## Author
+
+* **Mohammad Fazleh Elahi**
 
 
