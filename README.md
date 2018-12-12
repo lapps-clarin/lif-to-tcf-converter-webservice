@@ -1,5 +1,5 @@
 ## LIF to TCF converter
-===========
+
 
 This is a RESTful web service that converts LIF (LAPPS Grid interchange format)file to TCF(WebLicht interchange format).
 The service processes POST requests containing LIF data and produces TCF data.
@@ -9,18 +9,18 @@ once (the corresponding list resource is loaded only once), when the application
 is created. 
 
 ## Dependencies
-===========
+
 The converter is dependent on library lif-to-tcf-converter-core. 
 The library extracts annotation layer from a LIF from flat JSON and then converts it to TCF. 
 
-## installing
-===========
+## Installing
+
 git clone the [lif-to-tcf-converter-core](https://github.com/lapps-clarin/lif-to-tcf-converter-core)
 
 git clone the [lif-to-tcf-converter-webservice](https://github.com/lapps-clarin/lif-to-tcf-converter-webservice.git)
 
 ## How To Run And Test
-===========
+
 Make a runnable jar
 ```
 mvn clean package
