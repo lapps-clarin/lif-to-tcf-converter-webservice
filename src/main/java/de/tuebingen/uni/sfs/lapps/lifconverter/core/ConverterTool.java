@@ -10,21 +10,29 @@ import java.io.OutputStream;
 import de.tuebingen.uni.sfs.lapps.core.lifwrapper.profiler.api.LifFormat;
 import de.tuebingen.uni.sfs.lapps.core.converter.api.FormatConverter;
 import de.tuebingen.uni.sfs.lapps.core.converter.api.LayersConverter;
+import de.tuebingen.uni.sfs.lapps.core.lifwrapper.profiler.impl.LifFormatImpl;
+import de.tuebingen.uni.sfs.lapps.exceptions.JsonValidityException;
 import de.tuebingen.uni.sfs.lapps.exceptions.LifException;
 import eu.clarin.weblicht.wlfxb.tc.xb.TextCorpusStored;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class ConverterTool implements FormatConverter {
 
     private TextCorpusStored tcfFormat;
     public static final String PARAMETER_PATH = "/models/parameterlist.init";
     public static final String VOCABULARY_PATH = "/models/annotationConversion.init";
+    private static final String TEMP_FILE_PREFIX = "ne-output-temp";
+    private static final String TEMP_FILE_SUFFIX = ".xml";
 
     public ConverterTool() {
 
     }
 
-    public synchronized TextCorpusStored convertLifToTcf(LifFormat lifFormat) throws  ConversionException, VocabularyMappingException, LifException {
+    @Override
+    public TextCorpusStored convertLifToTcf(LifFormat lifFormat) throws LifException, VocabularyMappingException, ConversionException, IOException, JsonValidityException {
         LayersConverter lifToTCFLayersConverter = new LifToTcfAnnoLayerConverter(lifFormat);
         tcfFormat = lifToTCFLayersConverter.getTextCorpusStored();
         return tcfFormat;
@@ -40,9 +48,15 @@ public class ConverterTool implements FormatConverter {
         }
     }
 
+    @Deprecated
     @Override
-    public File convertLifToTcf(File lifFile) throws VocabularyMappingException, ConversionException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public File convertLifToTcf(InputStream input) throws LifException, VocabularyMappingException, ConversionException, IOException, JsonValidityException {
+        File tcfFile = File.createTempFile(TEMP_FILE_PREFIX, TEMP_FILE_SUFFIX);
+        OutputStream fos = new FileOutputStream(tcfFile);
+        LifFormatImpl lifFormat = new LifFormatImpl(input);
+        tcfFormat = convertLifToTcf(lifFormat);
+        write(fos);
+        return tcfFile;
     }
 
 }
