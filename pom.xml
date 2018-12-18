@@ -15,7 +15,7 @@
         <url>https://elahi@weblicht.sfs.uni-tuebingen.de/gitlab/lapps/service-lapps-converter.git</url>
         <connection>scm:git:ssh://elahi@weblicht.sfs.uni-tuebingen.de:29418/lapps/service-lapps-converter.git</connection>
         <developerConnection>scm:git:ssh://elahi@weblicht.sfs.uni-tuebingen.de:29418/lapps/service-lapps-converter.git</developerConnection>
-        <tag>1.5</tag>
+        <tag>1.6</tag>
     </scm>
      
     <distributionManagement>
