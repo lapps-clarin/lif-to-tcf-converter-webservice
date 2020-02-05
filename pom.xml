@@ -4,7 +4,7 @@
 
     <groupId>de.tuebingen.uni.sfs.lapps</groupId>
     <artifactId>lif-to-tcf-converter-webservice</artifactId>
-    <version>1.7-SNAPSHOT</version>
+    <version>1.7</version>
     <properties>
         <dropwizard.version>0.7.1</dropwizard.version>
         <wlfxb.version>1.4.3</wlfxb.version>
@@ -15,7 +15,7 @@
         <url>https://weblicht.sfs.uni-tuebingen.de/gitlab/lapps/service-lapps-converter.git</url>
         <connection>scm:git:https://weblicht.sfs.uni-tuebingen.de/gitlab/lapps/service-lapps-converter.git</connection>
         <developerConnection>scm:git:https://weblicht.sfs.uni-tuebingen.de/gitlab/lapps/service-lapps-converter.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>lif-to-tcf-converter-webservice-1.7</tag>
     </scm>
 
     <distributionManagement>
