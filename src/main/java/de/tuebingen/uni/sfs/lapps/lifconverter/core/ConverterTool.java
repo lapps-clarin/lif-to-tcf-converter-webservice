@@ -41,6 +41,7 @@ public class ConverterTool implements FormatConverter {
     @Override
     public void write(OutputStream os) throws ConversionException {
         WLData wlData = new WLData(tcfFormat);
+        wlData.setVersion(WLData.XML_VERSION_04);
         try {
             WLDObjector.write(wlData, os);
         } catch (WLFormatException ex) {

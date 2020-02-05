@@ -4,20 +4,20 @@
 
     <groupId>de.tuebingen.uni.sfs.lapps</groupId>
     <artifactId>lif-to-tcf-converter-webservice</artifactId>
-    <version>1.6</version>
+    <version>1.7-SNAPSHOT</version>
     <properties>
         <dropwizard.version>0.7.1</dropwizard.version>
-        <wlfxb.version>1.3.3</wlfxb.version>
+        <wlfxb.version>1.4.3</wlfxb.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-    
+
     <scm>
-        <url>https://elahi@weblicht.sfs.uni-tuebingen.de/gitlab/lapps/service-lapps-converter.git</url>
-        <connection>scm:git:ssh://elahi@weblicht.sfs.uni-tuebingen.de:29418/lapps/service-lapps-converter.git</connection>
-        <developerConnection>scm:git:ssh://elahi@weblicht.sfs.uni-tuebingen.de:29418/lapps/service-lapps-converter.git</developerConnection>
-        <tag>1.6</tag>
+        <url>https://weblicht.sfs.uni-tuebingen.de/gitlab/lapps/service-lapps-converter.git</url>
+        <connection>scm:git:https://weblicht.sfs.uni-tuebingen.de/gitlab/lapps/service-lapps-converter.git</connection>
+        <developerConnection>scm:git:https://weblicht.sfs.uni-tuebingen.de/gitlab/lapps/service-lapps-converter.git</developerConnection>
+        <tag>HEAD</tag>
     </scm>
-     
+
     <distributionManagement>
         <repository>
             <id>sfs-clarind-nexus</id>
@@ -30,7 +30,7 @@
             <url>http://t.weblicht.sfs.uni-tuebingen.de/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
     </distributionManagement>
-    
+
     <repositories>
         <repository>
             <id>sfs-clarind</id>
@@ -77,7 +77,7 @@
         <dependency>
             <groupId>de.tuebingen.uni.sfs.lapps</groupId>
             <artifactId>lif-to-tcf-converter-core</artifactId>
-            <version>1.5</version>
+            <version>1.6.0</version>
         </dependency>
        <dependency>
             <groupId>xmlunit</groupId>
